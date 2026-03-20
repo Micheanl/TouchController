@@ -47,7 +47,7 @@ object ControlTab : Tab() {
                 title = Text.translatable(Texts.SCREEN_CONFIG_GENERAL_CONTROL_VIEW_MOVEMENT_SENSITIVITY_TITLE),
                 description = Text.translatable(Texts.SCREEN_CONFIG_GENERAL_CONTROL_VIEW_MOVEMENT_SENSITIVITY_DESCRIPTION),
                 percent = false,
-                range = 0f..900f,
+                range = 0f..1800f,
                 value = globalConfig.control.viewMovementSensitivity,
                 onValueChanged = { update { copy(viewMovementSensitivity = it) } }
             )
