@@ -236,6 +236,8 @@
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.title": "Время обнаружения удержания",
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.description": "Устанавливает минимальное время нажатия для определения, является ли касание долгим.",
 
+
+
   "touchcontroller.screen.config.general.touch_ring.title": "Кольцо касания",
   "touchcontroller.screen.config.general.touch_ring.radius.title": "Радиус",
   "touchcontroller.screen.config.general.touch_ring.radius.description": "Радиус колца касания.",

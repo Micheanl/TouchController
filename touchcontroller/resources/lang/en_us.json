@@ -235,6 +235,8 @@
   "touchcontroller.screen.config.general.control.view_hold_detect_threshold.description": "Set the distance threshold of determining whether a pointer is moving or a long click.",
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.title": "Hold-detect time",
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.description": "Set the minimum pressing time of determining whether a pointer is a long click.",
+  "touchcontroller.screen.config.general.control.creative_break_hold_ticks.title": "Creative mode break hold time",
+  "touchcontroller.screen.config.general.control.creative_break_hold_ticks.description": "Set the minimum pressing time of breaking blocks in creative mode.",
 
   "touchcontroller.screen.config.general.touch_ring.title": "Touch ring",
   "touchcontroller.screen.config.general.touch_ring.radius.title": "Radius",

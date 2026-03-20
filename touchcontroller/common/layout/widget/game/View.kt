@@ -119,8 +119,14 @@ fun Context.View() {
         val crosshairTarget = viewActionProvider.getCrosshairTarget()
         val itemUsable = config.isHandItemUsable(player)
 
+        val holdDetectTicks = if (player.instantBuild && crosshairTarget == CrosshairTarget.Block) {
+            config.controlConfig.creativeBreakDetectTicks
+        } else {
+            config.controlConfig.viewHoldDetectTicks
+        }
+
         // If pointer kept still and held for hold-detecting ticks in config
-        if (viewState == PointerState.View.ViewPointerState.INITIAL && pressTime >= config.controlConfig.viewHoldDetectTicks && !moving) {
+        if (viewState == PointerState.View.ViewPointerState.INITIAL && pressTime >= holdDetectTicks && !moving) {
             viewState = if (itemUsable) {
                 // Trigger item long click
                 useKeyState.addLock(viewUuid, timer.renderTick)

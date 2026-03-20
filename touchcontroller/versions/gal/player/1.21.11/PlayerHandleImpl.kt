@@ -84,6 +84,9 @@ class PlayerHandleImpl(val inner: LocalPlayer) : PlayerHandle {
     override val canFly: Boolean
         get() = inner.abilities.mayfly
 
+    override val instantBuild: Boolean
+        get() = inner.abilities.instabuild
+
     override var currentSelectedSlot: Int
         get() = inner.inventory.selectedSlot
         set(value) {

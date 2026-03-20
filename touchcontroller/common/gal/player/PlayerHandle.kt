@@ -23,6 +23,7 @@ interface PlayerHandle {
     val isSneaking: Boolean
     val ridingEntityType: EntityType?
     val canFly: Boolean
+    val instantBuild: Boolean
 
     @ExpectFactory
     interface Factory {

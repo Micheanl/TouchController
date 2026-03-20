@@ -65,6 +65,13 @@ object ControlTab : Tab() {
                 value = globalConfig.control.viewHoldDetectTicks,
                 onValueChanged = { update { copy(viewHoldDetectTicks = it) } }
             )
+            IntSliderPreferenceItem(
+                title = Text.translatable(Texts.SCREEN_CONFIG_GENERAL_CONTROL_CREATIVE_BREAK_HOLD_TICKS_TITLE),
+                description = Text.translatable(Texts.SCREEN_CONFIG_GENERAL_CONTROL_CREATIVE_BREAK_HOLD_TICKS_DESCRIPTION),
+                range = 1..60,
+                value = globalConfig.control.creativeBreakDetectTicks,
+                onValueChanged = { update { copy(creativeBreakDetectTicks = it) } }
+            )
         }
     }
 }

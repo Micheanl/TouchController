@@ -236,6 +236,8 @@
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.title": "Час виявлення утримування",
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.description": "Установлює мінімальний час натискання для визначення того, чи є курсор довгим натисканням.",
 
+
+
   "touchcontroller.screen.config.general.touch_ring.title": "Сенсорне кільце",
   "touchcontroller.screen.config.general.touch_ring.radius.title": "Радіус",
   "touchcontroller.screen.config.general.touch_ring.radius.description": "Радіус сенсорного кільця.",

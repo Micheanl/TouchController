@@ -235,6 +235,8 @@
   "touchcontroller.screen.config.general.control.view_hold_detect_threshold.description": "设置判断屏幕点击是长按还是移动所需要的最小移动距离。",
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.title": "长按检测时间",
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.description": "设置判断屏幕点击是否为长按所需要的最小按下时间。",
+  "touchcontroller.screen.config.general.control.creative_break_hold_ticks.title": "创造长按破坏时间",
+  "touchcontroller.screen.config.general.control.creative_break_hold_ticks.description": "设置创造模式下长按破坏方块所需要的最小按下时间。",
 
   "touchcontroller.screen.config.general.touch_ring.title": "触控圈",
   "touchcontroller.screen.config.general.touch_ring.radius.title": "半径",

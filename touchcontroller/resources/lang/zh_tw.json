@@ -236,6 +236,8 @@
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.title": "長按檢測時間",
   "touchcontroller.screen.config.general.control.view_hold_detect_ticks.description": "設定判斷螢幕點擊是否為長按所需的最小按下時間。",
 
+
+
   "touchcontroller.screen.config.general.touch_ring.title": "觸控圈",
   "touchcontroller.screen.config.general.touch_ring.radius.title": "半徑",
   "touchcontroller.screen.config.general.touch_ring.radius.description": "觸控圈的半徑。",
