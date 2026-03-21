@@ -1,3 +1,4 @@
+load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("//rule:maven_publish.bzl", "java_export")
 load("//rule:mod_info_jar.bzl", "mod_info_jar")
@@ -20,10 +21,31 @@ expand_template(
 )
 
 expand_template(
+    name = "mcmod_info",
+    out = "mcmod.info",
+    substitutions = substitutions,
+    template = "resources/mcmod.info",
+)
+
+expand_template(
     name = "neoforge_mods_toml",
     out = "META-INF/neoforge.mods.toml",
     substitutions = substitutions,
     template = "resources/META-INF/neoforge.mods.toml",
+)
+
+expand_template(
+    name = "mods_toml",
+    out = "META-INF/mods.toml",
+    substitutions = substitutions,
+    template = "resources/META-INF/mods.toml",
+)
+
+copy_file(
+    name = "icon",
+    src = "//touchcontroller/resources/texture:icon",
+    out = "icon.png",
+    is_executable = False,
 )
 
 java_export(
@@ -34,6 +56,9 @@ java_export(
     resource_strip_prefix = "touchcontroller/api",
     resources = [
         ":fabric_mod_json",
+        ":icon",
+        ":mcmod_info",
+        ":mods_toml",
         ":neoforge_mods_toml",
     ],
     visibility = ["//touchcontroller:__subpackages__"],

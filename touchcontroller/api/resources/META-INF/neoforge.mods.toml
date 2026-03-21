@@ -4,7 +4,7 @@ issueTrackerURL="${issue_tracker}"
 [[mods]]
 modId="touchcontroller_api"
 version="${version}"
-displayName="${name}"
+displayName="TouchController API"
 displayURL="${home_page}"
 logoFile="icon.png"
 authors="fifth_light"

@@ -1,0 +1,9 @@
+[{
+    "modid": "touchcontroller_api",
+    "name": "TouchController API",
+    "version": "${version}",
+    "description": "${description}",
+    "authorList": ["fifth_light"],
+    "url": "${home_page}",
+    "logoFile": "icon.png"
+}]

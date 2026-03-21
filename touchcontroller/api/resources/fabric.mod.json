@@ -2,7 +2,7 @@
     "schemaVersion": 1,
     "id": "touchcontroller-api",
     "version": "${version}",
-    "name": "${name}",
+    "name": "TouchController API",
     "description": "${description}",
     "authors": ["fifth_light"],
     "license": "${license}",
