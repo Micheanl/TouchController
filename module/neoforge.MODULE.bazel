@@ -195,7 +195,7 @@ neoforge_versions = {
     },
     "26.1": {
         "java_target": 25,
-        "version": "26.1-pre-3",
+        "version": "26.1-rc-2",
         "mapping": False,
         "neoform_version": "26.1-pre-3-1",
         "neoform_sha256": "a932a547db9bfbc0358ff79f1addd71d266858cea4771b5cd4abbbd1c9b7aae1",
