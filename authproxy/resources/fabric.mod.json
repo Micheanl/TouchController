@@ -5,7 +5,7 @@
 	"name": "Authproxy",
 	"description": "Make authlib use your proxy.",
 	"authors": ["fifth_light"],
-	"license": "LGPL-3.0-or-later",
+	"license": "Apache-2.0",
 	"environment": "server",
 	"mixins": ["authproxy.mixins.json"],
 	"icon": "icon.png",
