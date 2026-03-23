@@ -540,10 +540,10 @@
     },
     "//repo:modrinth.bzl%modrinth": {
       "general": {
-        "bzlTransitiveDigest": "6afW+cPgSP5Ms8rL+f1Jvm0fhJm9dYaqURyghYx3q3M=",
+        "bzlTransitiveDigest": "7bZrnPYnPzta1OzmNYpMz2NpOj4U6Id4+3tkJvF+K+c=",
         "usagesDigest": "c3FRxP62obdnUseiROjVE9xIwHs8z9xp5Qexck6Ypas=",
         "recordedInputs": [
-          "FILE:@@//modrinth_lock.json 5d261a40c4ec173c389374f3945961a1153f36e62518dd0fe495717a2cc3dd22"
+          "FILE:@@//modrinth_lock.json 6ec16646a2cf59b26c427a8d3e5d73468001b2465d696e88ccf262d00236ae30"
         ],
         "generatedRepoSpecs": {
           "sodium_fabric_1_21": {
