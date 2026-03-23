@@ -31,6 +31,7 @@ kt_merge_library(
     actual = True,
     merge_deps = [
         "//touchcontroller/buildinfo",
+        "//touchcontroller/common/api",
         "//touchcontroller/common/config",
         "//touchcontroller/common/config/data",
         "//touchcontroller/common/config/holder",
@@ -78,6 +79,7 @@ kt_merge_library(
         "//combine/core/data",
         "//game/26.1:game_client",
         "//game/26.1:game_client_libraries",
+        "//touchcontroller/api",
         "@maven_fabric_26_1//:com_terraformersmc_modmenu",
         "@maven_fabric_26_1//:io_github_llamalad7_mixinextras_fabric",
         "@maven_fabric_26_1//:net_fabricmc_fabric_api_fabric_api",

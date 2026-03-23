@@ -13,13 +13,16 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements
 import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents
 import net.fabricmc.fabric.api.event.client.player.ClientPlayerBlockBreakEvents
+import net.fabricmc.loader.api.FabricLoader
+import net.minecraft.client.KeyMapping
 import net.minecraft.client.Minecraft
 import org.slf4j.LoggerFactory
-import top.fifthlight.combine.data.Identifier
-import net.minecraft.client.KeyMapping
-import top.fifthlight.combine.backend.minecraft.render.v1_21_11.CanvasImpl
 import top.fifthlight.combine.backend.minecraft.identifier.v1_21_11.toMinecraft
+import top.fifthlight.combine.backend.minecraft.render.v1_21_11.CanvasImpl
+import top.fifthlight.combine.data.Identifier
+import top.fifthlight.touchcontroller.api.v1.fabric.TouchControllerApiEntrypoint
 import top.fifthlight.touchcontroller.buildinfo.BuildInfo
+import top.fifthlight.touchcontroller.common.api.TouchControllerApiImpl
 import top.fifthlight.touchcontroller.common.config.data.StatusConfig
 import top.fifthlight.touchcontroller.common.config.holder.GlobalConfigHolder
 import top.fifthlight.touchcontroller.common.event.block.BlockBreakEvents
@@ -44,9 +47,22 @@ class TouchController : ClientModInitializer {
     override fun onInitializeClient() {
         logger.info("Loading TouchController…")
 
+        callEntrypoint()
         initialize()
 
         TouchControllerLoadStatus.isLoaded = true
+    }
+
+    private fun callEntrypoint() {
+        FabricLoader.getInstance()
+            .getEntrypoints("touchcontroller-v1", TouchControllerApiEntrypoint::class.java)
+            .forEach {
+                try {
+                    it.preTouchControllerInitialize(TouchControllerApiImpl)
+                } catch (e: Exception) {
+                    logger.error("Failed to call TouchControllerApiEntrypoint for ${it.javaClass.canonicalName}", e)
+                }
+            }
     }
 
     private fun initialize() {

@@ -47,6 +47,7 @@ kt_merge_library(
     ]),
     merge_deps = [
         "//touchcontroller/buildinfo",
+        "//touchcontroller/common/api",
         "//touchcontroller/common/config",
         "//touchcontroller/common/config/data",
         "//touchcontroller/common/config/holder",
@@ -95,6 +96,7 @@ kt_merge_library(
         "//combine/core/data",
         "//game/1.21.11:game_client_libraries",
         "//game/1.21.11:game_client_named",
+        "//touchcontroller/api",
         "@maven_fabric_1_21_11//:io_github_llamalad7_mixinextras_fabric",
         "@maven_fabric_1_21_11//:net_fabricmc_fabric_loader",
         "@maven_fabric_1_21_11//:net_fabricmc_sponge_mixin",
