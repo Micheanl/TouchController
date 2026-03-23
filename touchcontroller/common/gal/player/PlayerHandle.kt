@@ -12,6 +12,8 @@ import top.fifthlight.touchcontroller.common.config.item.ItemList
 import top.fifthlight.touchcontroller.common.gal.entity.EntityType
 
 interface PlayerHandle {
+    val inner: Any
+
     fun matchesItemOnHand(item: Item): Boolean
     fun hasItemsOnHand(list: ItemList): Boolean
     fun changeLookDirection(deltaYaw: Double, deltaPitch: Double)

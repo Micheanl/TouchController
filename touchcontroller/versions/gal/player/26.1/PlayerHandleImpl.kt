@@ -25,7 +25,7 @@ import top.fifthlight.touchcontroller.extension.v26_1.SyncableGameMode
 import top.fifthlight.touchcontroller.gal.entity.v26_1.EntityTypeImpl
 
 @ActualImpl(PlayerHandle::class)
-class PlayerHandleImpl(val inner: LocalPlayer) : PlayerHandle {
+class PlayerHandleImpl(override val inner: LocalPlayer) : PlayerHandle {
     companion object {
         @JvmStatic
         @ActualConstructor
