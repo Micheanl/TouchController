@@ -24,6 +24,7 @@ touchcontroller_api_license = "Apache-2.0"
 touchcontroller_api_description = "API for TouchController mod."
 
 touchcontroller_fabric_libraries = {
+    "//touchcontroller/api": "touchcontroller-api:=",
     "//combine/theme/blackstone:vanilla_lib": "combine-theme-blackstone:=",
     "@maven//:androidx_compose_runtime_runtime_saveable_desktop": "androidx_compose_runtime_runtime_saveable_desktop:1.10.2",
     "@maven//:androidx_savedstate_savedstate_desktop": "androidx_savedstate_savedstate_desktop:1.3.2",
