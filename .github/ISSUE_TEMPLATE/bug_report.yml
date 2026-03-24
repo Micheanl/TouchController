@@ -56,7 +56,7 @@ body:
       attributes:
           label: "版本 / Version"
           description: "发现此 bug 时使用的项目版本，若涉及，还需提供Minecraft 版本、模组加载器名称及其版本 / Project version used when discovering this bug, if applicable, also provide Minecraft version, mod loader name and version"
-          placeholder: "版本：vx.x.x；Minecraft版本：x.x.x；模组加载器：***，版本：*** / Version: vx.x.x; Minecraft version: x.x.x; mod loader: ***, version: ***"
+          placeholder: "vx.x.x；MC x.x.x；Loader *** v***"
       validations:
           required: true
     - type: textarea
