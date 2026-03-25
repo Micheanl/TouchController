@@ -58,7 +58,7 @@
     "org.jetbrains.compose.material:material-icons-core-desktop": 807184435,
     "org.jetbrains.compose.ui:ui-desktop": 1355439251,
     "org.jetbrains.compose.ui:ui-graphics-desktop": 121106093,
-    "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable": 82957657,
+    "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable": -113555848,
     "org.jetbrains.kotlin:kotlin-stdlib": 52847824,
     "org.jetbrains.kotlin:kotlin-test-junit5": 1682081423,
     "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm": 1304849756,
@@ -370,8 +370,8 @@
     "org.jetbrains.compose.ui:ui-unit-desktop:jar:sources": -837295709,
     "org.jetbrains.compose.ui:ui-util-desktop": 203160386,
     "org.jetbrains.compose.ui:ui-util-desktop:jar:sources": -1646845979,
-    "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable": -965425504,
-    "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable:jar:sources": -479112860,
+    "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable": 466132285,
+    "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable:jar:sources": -2101612717,
     "org.jetbrains.kotlin:kotlin-reflect": -196767604,
     "org.jetbrains.kotlin:kotlin-reflect:jar:sources": -360624647,
     "org.jetbrains.kotlin:kotlin-stdlib": 611564394,
@@ -1500,10 +1500,10 @@
     },
     "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable": {
       "shasums": {
-        "jar": "b6b9c87d05379548034c15d7717ed380e7f6909af4f117150ada746fb7441cfa",
-        "sources": "ab0ac3cd5742081f8ed1fc709e9961033ffdcc0d793a391b6100f2b407fea582"
+        "jar": "e1024c542f1d021e170cd040e4e1730f2fd76ce8ed76fc9e3496988ca643a2e0",
+        "sources": "d961f32a5ae9740149dca1ef6a99a4c5a923f53dff35bd663c1dc1d3561069a5"
       },
-      "version": "2.3.10"
+      "version": "2.3.20"
     },
     "org.jetbrains.kotlin:kotlin-reflect": {
       "shasums": {
