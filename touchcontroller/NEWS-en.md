@@ -1,5 +1,16 @@
 # TouchController NEWS - User visible changes.
 
+## 0.3.1-alpha04
+
+- Added BlazeSDL platform support
+- Fixed an issue where presets failed to load due to order.json errors
+- Added mod runtime state switching functionality
+- Increased the maximum touch sensitivity to 1800
+- Added a "System" section to the settings screen
+- Disabled item selection and data component selection outside the game window
+- Added a break holding time setting for creative mode, defaulting to 10 ticks
+- Added support for 26.1
+
 ## 0.3.1-alpha03
 
 - Fixed the problem that item subclass not working
@@ -84,7 +95,7 @@
 - Added overscroll bounce effect
 - Added basic support for Windows touch keyboard
 - Fixed render overlap of new style DPad
-- Improved buttons in chat screen 
+- Improved buttons in chat screen
 - Fixed text position of touch debug display
 - Made background and content together in config screen when scrolling
 
@@ -106,7 +117,7 @@
 
 ## 0.2.1-beta03
 
-- Added option of custom widget to widget list 
+- Added option of custom widget to widget list
 - Fixed keybinding settings being dropped on Forge and NeoForge after game restart
 - Fixed crash with ImmediatelyFast on 1.21.5
 - Fixed problem with chest boat
