@@ -6,7 +6,7 @@ module(
 )
 
 bazel_dep(name = "rules_java", version = "9.6.1")
-bazel_dep(name = "rules_kotlin", version = "2.3.10")
+bazel_dep(name = "rules_kotlin", version = "2.3.20")
 bazel_dep(name = "rules_jvm_external", version = "6.10")
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "bazel_lib", version = "3.2.2")
@@ -16,11 +16,11 @@ bazel_dep(name = "rules_rust_mdbook", version = "0.69.0")
 bazel_dep(name = "rules_python", version = "1.9.0")
 bazel_dep(name = "rules_jni", version = "0.11.1")
 bazel_dep(name = "rules_cc", version = "0.2.17")
-bazel_dep(name = "rules_shell", version = "0.6.1")
+bazel_dep(name = "rules_shell", version = "0.7.1")
 bazel_dep(name = "hermetic_cc_toolchain", version = "4.1.0")
 bazel_dep(name = "bazel_worker_api", version = "0.0.10")
-bazel_dep(name = "with_cfg.bzl", version = "0.14.4")
-bazel_dep(name = "protobuf", version = "34.0.bcr.1")
+bazel_dep(name = "with_cfg.bzl", version = "0.14.5")
+bazel_dep(name = "protobuf", version = "34.1")
 
 # Our own rules
 bazel_dep(name = "rules_mc", version = "0.0.0")
@@ -138,9 +138,7 @@ include("//module:touchcontroller.MODULE.bazel")
 include("//module:blazesdl.MODULE.bazel")
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
-
 maven.install(
-    known_contributing_modules = ["protobuf"],
     artifacts = [
         # Kotlin
         "org.jetbrains.kotlin:kotlin-stdlib:2.2.21",
@@ -165,6 +163,7 @@ maven.install(
         "org.junit.platform:junit-platform-console:1.12.2",
     ],
     fetch_sources = True,
+    known_contributing_modules = ["protobuf"],
     lock_file = "//:maven_install.json",
     repositories = [
         "https://repo1.maven.org/maven2",
