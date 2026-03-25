@@ -18,7 +18,7 @@ java_binary(
     srcs = [
         "ModrinthTokenSaver.java",
     ],
-    main_class = "top.fifthlight.fabazel.modrinthuploader.ModrinthTokenSaver",
+    main_class = "top.fifthlight.fabazel.tokenhelper.ModrinthTokenSaver",
     deps = [
         ":token_helper",
         "@maven//:ch_qos_logback_logback_classic",

@@ -1,0 +1,19 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+
+java_binary(
+    name = "curseforge_uploader",
+    srcs = glob(["*.java"]),
+    main_class = "top.fifthlight.fabazel.curseforge.CurseForgeUploader",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//:picocli",
+        "//rule/token_helper",
+        "@maven//:ch_qos_logback_logback_classic",
+        "@maven//:com_fasterxml_jackson_core_jackson_annotations",
+        "@maven//:com_fasterxml_jackson_core_jackson_core",
+        "@maven//:com_fasterxml_jackson_core_jackson_databind",
+        "@maven//:com_github_mizosoft_methanol_methanol",
+        "@maven//:org_jspecify_jspecify",
+        "@maven//:org_slf4j_slf4j_api",
+    ],
+)

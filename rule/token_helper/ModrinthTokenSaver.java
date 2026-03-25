@@ -1,4 +1,4 @@
-package top.fifthlight.fabazel.modrinthuploader;
+package top.fifthlight.fabazel.tokenhelper;
 
 import javax.swing.*;
 import java.awt.*;

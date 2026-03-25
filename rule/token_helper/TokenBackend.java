@@ -1,4 +1,4 @@
-package top.fifthlight.fabazel.modrinthuploader;
+package top.fifthlight.fabazel.tokenhelper;
 
 import de.swiesend.secretservice.simple.SimpleCollection;
 import org.slf4j.Logger;
@@ -8,7 +8,7 @@ import wincred.WinCred;
 import java.io.IOException;
 import java.util.Map;
 
-sealed abstract class TokenBackend {
+public sealed abstract class TokenBackend {
     public abstract void saveToken(String tokenId, String tokenSecret) throws IOException;
 
     public abstract String getToken(String tokenId) throws IOException;
