@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
 import net.minecraft.client.KeyMapping
 import net.minecraft.client.gui.screens.Screen
+import net.minecraft.resources.ResourceLocation
 import org.lwjgl.glfw.GLFW
 import top.fifthlight.combine.data.TextFactoryFactory
 import top.fifthlight.combine.layout.Alignment
@@ -32,7 +33,10 @@ import top.fifthlight.combine.widget.ui.Button
 import top.fifthlight.combine.widget.ui.Text
 
 class CalculatorMod: ClientModInitializer, ModMenuApi {
-    private val keyMapping = KeyMapping("combine_calculator", GLFW.GLFW_KEY_H, "combine_example")
+    companion object {
+        private val keyCategory = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath("combine", "example"))
+        private val keyMapping = KeyMapping("combine_calculator", GLFW.GLFW_KEY_H, keyCategory)
+    }
 
     private val themes = listOf(
         "Blackstone" to BlackstoneTheme,

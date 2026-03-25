@@ -177,7 +177,7 @@ fabric_versions = {
     },
     "1.21.9": {
         "api": "0.134.0+1.21.9",
-        "loader": "0.17.0",
+        "loader": "0.17.2",
         "placeholder_api": "2.8.0-rc.1+1.21.9",
         "modmenu": "16.0.0-rc.1",
         "mixin": "0.16.3+mixin.0.8.7",
@@ -185,7 +185,7 @@ fabric_versions = {
     },
     "1.21.10": {
         "api": "0.134.1+1.21.10",
-        "loader": "0.17.0",
+        "loader": "0.17.2",
         "placeholder_api": "2.8.0+1.21.9",
         "modmenu": "16.0.0-rc.1",
         "mixin": "0.16.3+mixin.0.8.7",
