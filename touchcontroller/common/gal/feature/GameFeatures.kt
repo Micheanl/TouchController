@@ -9,7 +9,6 @@ import top.fifthlight.mergetools.api.ExpectFactory
 
 data class GameFeatures(
     val dualWield: Boolean,
-    val entity: EntityFeatures
 )
 
 interface GameFeaturesProvider {
