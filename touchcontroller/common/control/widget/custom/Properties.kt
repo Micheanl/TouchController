@@ -167,8 +167,7 @@ class ButtonTextureProperty<Config : ControllerWidget>(
                         items = ButtonTexture.Type.entries,
                         textProvider = { Text.translatable(it.nameId) },
                         selectedIndex = ButtonTexture.Type.entries.indexOf(value.type),
-                        onItemSelected = {
-                            val item = ButtonTexture.Type.entries[it]
+                        onItemSelected = { item, _ ->
                             if (value.type != item) {
                                 onConfigChanged(
                                     setValue(
@@ -268,8 +267,7 @@ class ButtonActiveTextureProperty<Config : ControllerWidget>(
                         items = ButtonActiveTexture.Type.entries,
                         textProvider = { Text.translatable(it.nameId) },
                         selectedIndex = ButtonActiveTexture.Type.entries.indexOf(value.type),
-                        onItemSelected = {
-                            val item = ButtonActiveTexture.Type.entries[it]
+                        onItemSelected = { item, _ ->
                             if (value.type != item) {
                                 onConfigChanged(
                                     setValue(

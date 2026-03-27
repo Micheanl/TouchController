@@ -4,6 +4,7 @@ kt_merge_library(
     name = "model",
     srcs = glob(["*.kt"]),
     merge_deps = [
+        "//touchcontroller/common/assets",
         "//touchcontroller/common/config/widget",
         "//touchcontroller/common/control",
         "//touchcontroller/common/control/builtin",

@@ -14,8 +14,10 @@ import top.fifthlight.combine.data.Text
 import top.fifthlight.combine.paint.Color
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntSize
+import top.fifthlight.touchcontroller.assets.BuiltInTextureItems
+import top.fifthlight.touchcontroller.assets.BuiltInTextureSets
 import top.fifthlight.touchcontroller.assets.Texts
-import top.fifthlight.touchcontroller.assets.TextureSet
+import top.fifthlight.touchcontroller.common.assets.TextureSet
 import top.fifthlight.touchcontroller.common.control.ControllerWidget
 import top.fifthlight.touchcontroller.common.control.EnumProperty
 import top.fifthlight.touchcontroller.common.control.FloatProperty
@@ -30,22 +32,22 @@ import kotlin.uuid.Uuid
 
 fun Context.BoatButton(
     id: Uuid,
-    classic: Boolean,
+    grayOnActive: Boolean,
     textureSet: TextureSet,
     side: BoatButtonSide,
 ) {
     val (_, clicked) = Button(id) { clicked ->
-        if (classic) {
+        if (grayOnActive) {
             if (clicked) {
-                Texture(textureSet.up, tint = Color(0xFFAAAAAAu))
+                Texture(BuiltInTextureItems.up.get(textureSet), tint = Color(0xFFAAAAAAu))
             } else {
-                Texture(textureSet.up)
+                Texture(BuiltInTextureItems.up.get(textureSet))
             }
         } else {
             if (clicked) {
-                Texture(textureSet.upActive)
+                Texture(BuiltInTextureItems.upActive.get(textureSet))
             } else {
-                Texture(textureSet.up)
+                Texture(BuiltInTextureItems.up.get(textureSet))
             }
         }
     }
@@ -60,7 +62,7 @@ fun Context.BoatButton(
 @Serializable
 @SerialName("boat_button")
 data class BoatButton(
-    val textureSet: TextureSet.TextureSetKey = TextureSet.TextureSetKey.CLASSIC,
+    val textureSet: TextureSet = BuiltInTextureSets.classic,
     val size: Float = 3f,
     val side: BoatButtonSide = BoatButtonSide.LEFT,
     override val id: Uuid = fastRandomUuid(),
@@ -104,19 +106,15 @@ data class BoatButton(
     override val properties
         get() = _properties
 
-    private val textureSize
-        get() = textureSet.textureSet.up.size
+    private val textureSize = BuiltInTextureItems.up.get(textureSet).size
 
     override fun size(): IntSize = (textureSize.toSize() * size).toIntSize()
-
-    val classic =
-        textureSet == TextureSet.TextureSetKey.CLASSIC || textureSet == TextureSet.TextureSetKey.CLASSIC_EXTENSION
 
     override fun layout(context: Context) {
         context.BoatButton(
             id = id,
-            classic = classic,
-            textureSet = textureSet.textureSet,
+            grayOnActive = textureSet.grayWhenActive,
+            textureSet = textureSet,
             side = side,
         )
     }

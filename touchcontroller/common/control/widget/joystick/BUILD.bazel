@@ -4,6 +4,7 @@ kt_merge_library(
     name = "joystick",
     srcs = glob(["*.kt"]),
     merge_deps = [
+        "//touchcontroller/common/assets",
         "//touchcontroller/common/control",
         "//touchcontroller/common/gal/key",
         "//touchcontroller/common/layout",

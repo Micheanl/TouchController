@@ -1,5 +1,9 @@
 # TouchController NEWS - User visible changes.
 
+## 0.3.1-alpha06
+
+- Synchronized the sneak trigger in classic extended texture set with classic texture set's trigger, which requires a double tap to sneak
+
 ## 0.3.1-alpha05
 
 - Added missing native libraries

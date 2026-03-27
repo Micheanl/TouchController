@@ -8,9 +8,11 @@ package top.fifthlight.touchcontroller.common.control.builtin
 import top.fifthlight.combine.data.Identifier
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntPadding
+import top.fifthlight.touchcontroller.assets.BuiltInTextureItems
 import top.fifthlight.touchcontroller.assets.EmptyTexture
 import top.fifthlight.touchcontroller.assets.Texts
-import top.fifthlight.touchcontroller.assets.TextureSet
+import top.fifthlight.touchcontroller.common.assets.TextureItem
+import top.fifthlight.touchcontroller.common.assets.TextureSet
 import top.fifthlight.touchcontroller.common.control.ControllerWidget
 import top.fifthlight.touchcontroller.common.control.action.ButtonTrigger
 import top.fifthlight.touchcontroller.common.control.action.GameActions
@@ -30,23 +32,23 @@ import java.util.concurrent.ConcurrentHashMap
 
 @ConsistentCopyVisibility
 data class BuiltinWidgets private constructor(
-    private val textureSet: TextureSet.TextureSetKey,
+    private val textureSet: TextureSet,
 ) {
     companion object {
         private val keyBindingHandler: KeyBindingHandler = KeyBindingHandlerFactory.of()
 
-        private val cache = ConcurrentHashMap<TextureSet.TextureSetKey, BuiltinWidgets>()
-        operator fun get(textureSet: TextureSet.TextureSetKey): BuiltinWidgets =
+        private val cache = ConcurrentHashMap<TextureSet, BuiltinWidgets>()
+        operator fun get(textureSet: TextureSet): BuiltinWidgets =
             cache.computeIfAbsent(textureSet, ::BuiltinWidgets)
     }
 
-    private fun coordinate(key: TextureSet.TextureKey) = TextureCoordinate(
+    private fun coordinate(key: TextureItem) = TextureCoordinate(
         textureSet = textureSet,
         textureItem = key,
     )
 
     private fun fixed(
-        key: TextureSet.TextureKey,
+        key: TextureItem,
         scale: Float = 2f,
     ) = ButtonTexture.Fixed(
         texture = coordinate(key),
@@ -54,8 +56,6 @@ data class BuiltinWidgets private constructor(
     )
 
     private fun key(type: DefaultKeyBindingType) = keyBindingHandler.mapDefaultType(type)
-
-    private val classic: Boolean = textureSet == TextureSet.TextureSetKey.CLASSIC
 
     private fun customWidget(
         texture: ButtonTexture,
@@ -70,7 +70,7 @@ data class BuiltinWidgets private constructor(
         offset: IntOffset = IntOffset.ZERO,
     ) = CustomWidget(
         normalTexture = texture,
-        activeTexture = if (grayOnClassic && classic) {
+        activeTexture = if (grayOnClassic && textureSet.grayWhenActive) {
             ButtonActiveTexture.Gray
         } else {
             activeTexture?.let(ButtonActiveTexture::Texture) ?: ButtonActiveTexture.Same
@@ -90,7 +90,7 @@ data class BuiltinWidgets private constructor(
         grayOnClassic: Boolean,
     ) = DPadExtraButton.ButtonInfo(
         texture = texture,
-        activeTexture = if (grayOnClassic && classic) {
+        activeTexture = if (grayOnClassic && textureSet.grayWhenActive) {
             DPadExtraButton.ActiveTexture.Gray
         } else {
             activeTexture?.let(DPadExtraButton.ActiveTexture::Texture) ?: DPadExtraButton.ActiveTexture.Same
@@ -98,8 +98,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val jump = customWidget(
-        texture = fixed(TextureSet.TextureKey.Jump),
-        activeTexture = fixed(TextureSet.TextureKey.JumpActive),
+        texture = fixed(BuiltInTextureItems.jump),
+        activeTexture = fixed(BuiltInTextureItems.jumpActive),
         grayOnClassic = true,
         swipeTrigger = true,
         action = ButtonTrigger(
@@ -112,15 +112,15 @@ data class BuiltinWidgets private constructor(
     val dpadJumpButton = DPadExtraButton.SwipeLocking(
         press = key(DefaultKeyBindingType.JUMP),
         info = dpadButtonInfo(
-            texture = coordinate(TextureSet.TextureKey.Jump),
-            activeTexture = coordinate(TextureSet.TextureKey.JumpActive),
+            texture = coordinate(BuiltInTextureItems.jump),
+            activeTexture = coordinate(BuiltInTextureItems.jumpActive),
             grayOnClassic = true,
         ),
     )
 
     val jumpHorse = customWidget(
-        texture = fixed(TextureSet.TextureKey.JumpHorse),
-        activeTexture = fixed(TextureSet.TextureKey.JumpHorseActive),
+        texture = fixed(BuiltInTextureItems.jumpHorse),
+        activeTexture = fixed(BuiltInTextureItems.jumpHorseActive),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -135,13 +135,13 @@ data class BuiltinWidgets private constructor(
             press = key(DefaultKeyBindingType.JUMP),
         ),
         info = dpadButtonInfo(
-            texture = coordinate(TextureSet.TextureKey.Jump),
-            activeTexture = coordinate(TextureSet.TextureKey.JumpActive),
+            texture = coordinate(BuiltInTextureItems.jump),
+            activeTexture = coordinate(BuiltInTextureItems.jumpActive),
             grayOnClassic = true,
         ),
     )
 
-    private val sneakTrigger = if (classic) {
+    private val sneakTrigger = if (textureSet.classic) {
         ButtonTrigger(
             doubleClick = ButtonTrigger.DoubleClickTrigger(
                 action = WidgetTriggerAction.Key.Lock(
@@ -163,8 +163,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val sneak = customWidget(
-        texture = fixed(TextureSet.TextureKey.Sneak),
-        activeTexture = fixed(TextureSet.TextureKey.SneakActive),
+        texture = fixed(BuiltInTextureItems.sneak),
+        activeTexture = fixed(BuiltInTextureItems.sneakActive),
         grayOnClassic = false,
         swipeTrigger = false,
         action = sneakTrigger,
@@ -175,15 +175,15 @@ data class BuiltinWidgets private constructor(
     val dpadSneakButton = DPadExtraButton.Normal(
         trigger = sneakTrigger,
         info = dpadButtonInfo(
-            texture = coordinate(TextureSet.TextureKey.Sneak),
-            activeTexture = coordinate(TextureSet.TextureKey.SneakActive),
+            texture = coordinate(BuiltInTextureItems.sneak),
+            activeTexture = coordinate(BuiltInTextureItems.sneakActive),
             grayOnClassic = false,
         ),
     )
 
     val forward = customWidget(
-        texture = fixed(TextureSet.TextureKey.Up),
-        activeTexture = fixed(TextureSet.TextureKey.UpActive),
+        texture = fixed(BuiltInTextureItems.up),
+        activeTexture = fixed(BuiltInTextureItems.upActive),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -193,7 +193,7 @@ data class BuiltinWidgets private constructor(
         align = Align.RIGHT_BOTTOM,
     )
 
-    private val dismountTrigger = if (classic) {
+    private val dismountTrigger = if (textureSet.classic) {
         ButtonTrigger(
             doubleClick = ButtonTrigger.DoubleClickTrigger(
                 action = WidgetTriggerAction.Key.Click(
@@ -212,8 +212,8 @@ data class BuiltinWidgets private constructor(
     }
 
     val dismount = customWidget(
-        texture = fixed(TextureSet.TextureKey.SneakHorse),
-        activeTexture = fixed(TextureSet.TextureKey.SneakHorseActive),
+        texture = fixed(BuiltInTextureItems.sneakHorse),
+        activeTexture = fixed(BuiltInTextureItems.sneakHorseActive),
         grayOnClassic = true,
         swipeTrigger = false,
         action = dismountTrigger,
@@ -224,15 +224,15 @@ data class BuiltinWidgets private constructor(
     val dpadDismountButton = DPadExtraButton.Normal(
         trigger = dismountTrigger,
         info = dpadButtonInfo(
-            texture = coordinate(TextureSet.TextureKey.Sneak),
-            activeTexture = coordinate(TextureSet.TextureKey.SneakActive),
+            texture = coordinate(BuiltInTextureItems.sneak),
+            activeTexture = coordinate(BuiltInTextureItems.sneakActive),
             grayOnClassic = false,
         ),
     )
 
     val ascendFlying = customWidget(
-        texture = fixed(TextureSet.TextureKey.Ascend),
-        activeTexture = fixed(TextureSet.TextureKey.AscendActive),
+        texture = fixed(BuiltInTextureItems.ascend),
+        activeTexture = fixed(BuiltInTextureItems.ascendActive),
         grayOnClassic = true,
         swipeTrigger = true,
         action = ButtonTrigger(
@@ -243,8 +243,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val descendFlying = customWidget(
-        texture = fixed(TextureSet.TextureKey.Descend),
-        activeTexture = fixed(TextureSet.TextureKey.DescendActive),
+        texture = fixed(BuiltInTextureItems.descend),
+        activeTexture = fixed(BuiltInTextureItems.descendActive),
         grayOnClassic = true,
         swipeTrigger = true,
         action = ButtonTrigger(
@@ -255,8 +255,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val ascendSwimming = customWidget(
-        texture = fixed(TextureSet.TextureKey.AscendSwimming),
-        activeTexture = fixed(TextureSet.TextureKey.AscendSwimmingActive),
+        texture = fixed(BuiltInTextureItems.ascendSwimming),
+        activeTexture = fixed(BuiltInTextureItems.ascendSwimmingActive),
         grayOnClassic = true,
         swipeTrigger = true,
         action = ButtonTrigger(
@@ -267,8 +267,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val descendSwimming = customWidget(
-        texture = fixed(TextureSet.TextureKey.DescendSwimming),
-        activeTexture = fixed(TextureSet.TextureKey.DescendSwimmingActive),
+        texture = fixed(BuiltInTextureItems.descendSwimming),
+        activeTexture = fixed(BuiltInTextureItems.descendSwimmingActive),
         grayOnClassic = true,
         swipeTrigger = true,
         action = ButtonTrigger(
@@ -279,8 +279,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val sprint = customWidget(
-        texture = fixed(TextureSet.TextureKey.Sprint),
-        activeTexture = fixed(TextureSet.TextureKey.SprintActive),
+        texture = fixed(BuiltInTextureItems.sprint),
+        activeTexture = fixed(BuiltInTextureItems.sprintActive),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -292,8 +292,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val attack = customWidget(
-        texture = fixed(TextureSet.TextureKey.Attack),
-        activeTexture = fixed(TextureSet.TextureKey.AttackActive),
+        texture = fixed(BuiltInTextureItems.attack),
+        activeTexture = fixed(BuiltInTextureItems.attackActive),
         grayOnClassic = true,
         swipeTrigger = false,
         grabTrigger = true,
@@ -306,8 +306,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val use = customWidget(
-        texture = fixed(TextureSet.TextureKey.Use),
-        activeTexture = fixed(TextureSet.TextureKey.UseActive),
+        texture = fixed(BuiltInTextureItems.use),
+        activeTexture = fixed(BuiltInTextureItems.useActive),
         grayOnClassic = true,
         swipeTrigger = false,
         grabTrigger = true,
@@ -320,8 +320,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val inventory = customWidget(
-        texture = fixed(TextureSet.TextureKey.Inventory, scale = 1f),
-        activeTexture = fixed(TextureSet.TextureKey.InventoryActive, scale = 1f),
+        texture = fixed(BuiltInTextureItems.inventory, scale = 1f),
+        activeTexture = fixed(BuiltInTextureItems.inventoryActive, scale = 1f),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -336,8 +336,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val chat = customWidget(
-        texture = fixed(TextureSet.TextureKey.Chat, scale = 1f),
-        activeTexture = fixed(TextureSet.TextureKey.ChatActive, scale = 1f),
+        texture = fixed(BuiltInTextureItems.chat, scale = 1f),
+        activeTexture = fixed(BuiltInTextureItems.chatActive, scale = 1f),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -348,8 +348,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val vanillaChat = customWidget(
-        texture = fixed(TextureSet.TextureKey.Chat, scale = 1f),
-        activeTexture = fixed(TextureSet.TextureKey.ChatActive, scale = 1f),
+        texture = fixed(BuiltInTextureItems.chat, scale = 1f),
+        activeTexture = fixed(BuiltInTextureItems.chatActive, scale = 1f),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -360,8 +360,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val pause = customWidget(
-        texture = fixed(TextureSet.TextureKey.Pause, scale = 1f),
-        activeTexture = fixed(TextureSet.TextureKey.PauseActive, scale = 1f),
+        texture = fixed(BuiltInTextureItems.pause, scale = 1f),
+        activeTexture = fixed(BuiltInTextureItems.pauseActive, scale = 1f),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -372,8 +372,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val hideHud = customWidget(
-        texture = fixed(TextureSet.TextureKey.HideHud, scale = 1f),
-        activeTexture = fixed(TextureSet.TextureKey.HideHudActive, scale = 1f),
+        texture = fixed(BuiltInTextureItems.hideHud, scale = 1f),
+        activeTexture = fixed(BuiltInTextureItems.hideHudActive, scale = 1f),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -384,8 +384,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val switchPerspective = customWidget(
-        texture = fixed(TextureSet.TextureKey.Perspective, scale = 1f),
-        activeTexture = fixed(TextureSet.TextureKey.PerspectiveActive, scale = 1f),
+        texture = fixed(BuiltInTextureItems.perspective, scale = 1f),
+        activeTexture = fixed(BuiltInTextureItems.perspectiveActive, scale = 1f),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -396,8 +396,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val playerList = customWidget(
-        texture = fixed(TextureSet.TextureKey.PlayerList, scale = 1f),
-        activeTexture = fixed(TextureSet.TextureKey.PlayerListActive, scale = 1f),
+        texture = fixed(BuiltInTextureItems.playerList, scale = 1f),
+        activeTexture = fixed(BuiltInTextureItems.playerListActive, scale = 1f),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(
@@ -408,8 +408,8 @@ data class BuiltinWidgets private constructor(
     )
 
     val screenshot = customWidget(
-        texture = fixed(TextureSet.TextureKey.Screenshot, scale = 1f),
-        activeTexture = fixed(TextureSet.TextureKey.ScreenshotActive, scale = 1f),
+        texture = fixed(BuiltInTextureItems.screenshot, scale = 1f),
+        activeTexture = fixed(BuiltInTextureItems.screenshotActive, scale = 1f),
         grayOnClassic = true,
         swipeTrigger = false,
         action = ButtonTrigger(

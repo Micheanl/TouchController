@@ -15,8 +15,10 @@ import top.fifthlight.combine.paint.Color
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntSize
+import top.fifthlight.touchcontroller.assets.BuiltInTextureItems
+import top.fifthlight.touchcontroller.assets.BuiltInTextureSets
 import top.fifthlight.touchcontroller.assets.Texts
-import top.fifthlight.touchcontroller.assets.TextureSet
+import top.fifthlight.touchcontroller.common.assets.TextureSet
 import top.fifthlight.touchcontroller.common.control.BooleanProperty
 import top.fifthlight.touchcontroller.common.control.ControllerWidget
 import top.fifthlight.touchcontroller.common.control.FloatProperty
@@ -44,7 +46,7 @@ import kotlin.uuid.Uuid
 @SerialName("dpad")
 @ConsistentCopyVisibility
 data class DPad private constructor(
-    val textureSet: TextureSet.TextureSetKey = TextureSet.TextureSetKey.CLASSIC,
+    val textureSet: TextureSet = BuiltInTextureSets.classic,
     val size: Float = 2f,
     val padding: Int = 4,
     val extraButton: DPadExtraButton,
@@ -115,8 +117,8 @@ data class DPad private constructor(
                     ),
                     info = DPadExtraButton.ButtonInfo(
                         texture = TextureCoordinate(
-                            textureSet = TextureSet.TextureSetKey.CLASSIC,
-                            textureItem = TextureSet.TextureKey.Sneak,
+                            textureSet = BuiltInTextureSets.classic,
+                            textureItem = BuiltInTextureItems.sneak,
                         ),
                         activeTexture = DPadExtraButton.ActiveTexture.Gray,
                     )
@@ -125,9 +127,9 @@ data class DPad private constructor(
         }
 
         fun create(
-            textureSet: TextureSet.TextureSetKey = TextureSet.TextureSetKey.CLASSIC,
+            textureSet: TextureSet = BuiltInTextureSets.classic,
             size: Float = 2f,
-            padding: Int = if (textureSet == TextureSet.TextureSetKey.CLASSIC || textureSet == TextureSet.TextureSetKey.CLASSIC_EXTENSION) 4 else -1,
+            padding: Int = if (textureSet.classic) 4 else -1,
             extraButton: DPadExtraButton = DPadExtraButton.None,
             name: Name = Name.Translatable(Texts.WIDGET_DPAD_NAME),
             align: Align = Align.LEFT_BOTTOM,
@@ -150,7 +152,24 @@ data class DPad private constructor(
     override val properties
         get() = _properties
 
-    fun buttonSize() = IntSize((textureSet.textureSet.up.size.width * size).toInt())
+    private val upTexture = BuiltInTextureItems.up.get(textureSet)
+    private val upActiveTexture = BuiltInTextureItems.upActive.get(textureSet)
+    private val downTexture = BuiltInTextureItems.down.get(textureSet)
+    private val downActiveTexture = BuiltInTextureItems.downActive.get(textureSet)
+    private val leftTexture = BuiltInTextureItems.left.get(textureSet)
+    private val leftActiveTexture = BuiltInTextureItems.leftActive.get(textureSet)
+    private val rightTexture = BuiltInTextureItems.right.get(textureSet)
+    private val rightActiveTexture = BuiltInTextureItems.rightActive.get(textureSet)
+    private val upLeftTexture = BuiltInTextureItems.upLeft.get(textureSet)
+    private val upLeftActiveTexture = BuiltInTextureItems.upLeftActive.get(textureSet)
+    private val upRightTexture = BuiltInTextureItems.upRight.get(textureSet)
+    private val upRightActiveTexture = BuiltInTextureItems.upRightActive.get(textureSet)
+    private val downLeftTexture = BuiltInTextureItems.downLeft.get(textureSet)
+    private val downLeftActiveTexture = BuiltInTextureItems.downLeftActive.get(textureSet)
+    private val downRightTexture = BuiltInTextureItems.downRight.get(textureSet)
+    private val downRightActiveTexture = BuiltInTextureItems.downRightActive.get(textureSet)
+
+    fun buttonSize() = IntSize((upTexture.size.width * size).toInt())
 
     val paddingSize = (padding * size).toInt()
 
@@ -186,7 +205,7 @@ data class DPad private constructor(
     )
 
     fun copy(
-        textureSet: TextureSet.TextureSetKey = this.textureSet,
+        textureSet: TextureSet = this.textureSet,
         size: Float = this.size,
         padding: Int = this.padding,
         extraButton: DPadExtraButton = this.extraButton,
@@ -213,10 +232,9 @@ data class DPad private constructor(
     override fun layout(context: Context): Unit = with(context) {
         val config = this@DPad
         val buttonSize = buttonSize()
-        val smallDisplaySize = IntSize((textureSet.textureSet.upLeft.size.width * config.size).toInt())
+        val smallDisplaySize = IntSize((upLeftTexture.size.width * config.size).toInt())
         val smallButtonOffset = IntOffset(paddingSize)
-        val classicTrigger =
-            textureSet == TextureSet.TextureSetKey.CLASSIC || textureSet == TextureSet.TextureSetKey.CLASSIC_EXTENSION
+        val grayWhenActive = textureSet.grayWhenActive
         val texturePadding = if (padding == -1 && extraButton.info?.size == 22) {
             1
         } else {
@@ -240,23 +258,23 @@ data class DPad private constructor(
                     align = Align.CENTER_TOP,
                     size = buttonSize,
                 ) {
-                    when (Pair(classicTrigger, clicked)) {
+                    when (Pair(grayWhenActive, clicked)) {
                         Pair(true, false) -> Texture(
-                            texture = config.textureSet.textureSet.up,
+                            texture = upTexture,
                         )
 
                         Pair(true, true) -> Texture(
-                            texture = config.textureSet.textureSet.up,
+                            texture = upTexture,
                             tint = Color(0xFFAAAAAAu)
                         )
 
                         Pair(false, false) -> Texture(
-                            texture = config.textureSet.textureSet.up,
+                            texture = upTexture,
                             padding = padding,
                         )
 
                         Pair(false, true) -> Texture(
-                            texture = config.textureSet.textureSet.upActive,
+                            texture = upActiveTexture,
                             padding = padding,
                         )
                     }
@@ -276,20 +294,20 @@ data class DPad private constructor(
                     size = buttonSize,
                 ) {
                     val padding = IntPadding(top = texturePadding)
-                    when (Pair(classicTrigger, clicked)) {
-                        Pair(true, false) -> Texture(texture = config.textureSet.textureSet.down)
+                    when (Pair(grayWhenActive, clicked)) {
+                        Pair(true, false) -> Texture(texture = downTexture)
                         Pair(true, true) -> Texture(
-                            texture = config.textureSet.textureSet.down,
+                            texture = downTexture,
                             tint = Color(0xFFAAAAAAu)
                         )
 
                         Pair(false, false) -> Texture(
-                            texture = config.textureSet.textureSet.down,
+                            texture = downTexture,
                             padding = padding
                         )
 
                         Pair(false, true) -> Texture(
-                            texture = config.textureSet.textureSet.downActive,
+                            texture = downActiveTexture,
                             padding = padding
                         )
                     }
@@ -309,20 +327,20 @@ data class DPad private constructor(
                     size = buttonSize,
                 ) {
                     val padding = IntPadding(right = texturePadding)
-                    when (Pair(classicTrigger, clicked)) {
-                        Pair(true, false) -> Texture(texture = config.textureSet.textureSet.left)
+                    when (Pair(grayWhenActive, clicked)) {
+                        Pair(true, false) -> Texture(texture = leftTexture)
                         Pair(true, true) -> Texture(
-                            texture = config.textureSet.textureSet.left,
+                            texture = leftTexture,
                             tint = Color(0xFFAAAAAAu)
                         )
 
                         Pair(false, false) -> Texture(
-                            texture = config.textureSet.textureSet.left,
+                            texture = leftTexture,
                             padding = padding
                         )
 
                         Pair(false, true) -> Texture(
-                            texture = config.textureSet.textureSet.leftActive,
+                            texture = leftActiveTexture,
                             padding = padding
                         )
                     }
@@ -342,20 +360,20 @@ data class DPad private constructor(
                     size = buttonSize,
                 ) {
                     val padding = IntPadding(left = texturePadding)
-                    when (Pair(classicTrigger, clicked)) {
-                        Pair(true, false) -> Texture(texture = config.textureSet.textureSet.right)
+                    when (Pair(grayWhenActive, clicked)) {
+                        Pair(true, false) -> Texture(texture = rightTexture)
                         Pair(true, true) -> Texture(
-                            texture = config.textureSet.textureSet.right,
+                            texture = rightTexture,
                             tint = Color(0xFFAAAAAAu)
                         )
 
                         Pair(false, false) -> Texture(
-                            texture = config.textureSet.textureSet.right,
+                            texture = rightTexture,
                             padding = padding
                         )
 
                         Pair(false, true) -> Texture(
-                            texture = config.textureSet.textureSet.rightActive,
+                            texture = rightActiveTexture,
                             padding = padding
                         )
                     }
@@ -385,20 +403,20 @@ data class DPad private constructor(
                         size = smallDisplaySize,
                         offset = smallButtonOffset,
                     ) {
-                        when (Pair(classicTrigger, clicked)) {
-                            Pair(true, false) -> Texture(texture = config.textureSet.textureSet.upLeft)
+                        when (Pair(grayWhenActive, clicked)) {
+                            Pair(true, false) -> Texture(texture = upLeftTexture)
                             Pair(true, true) -> Texture(
-                                texture = config.textureSet.textureSet.upLeft,
+                                texture = upLeftTexture,
                                 tint = Color(0xFFAAAAAAu)
                             )
 
                             Pair(false, false) -> Texture(
-                                texture = config.textureSet.textureSet.upLeft,
+                                texture = upLeftTexture,
                                 padding = padding,
                             )
 
                             Pair(false, true) -> Texture(
-                                texture = config.textureSet.textureSet.upLeftActive,
+                                texture = upLeftActiveTexture,
                                 padding = padding,
                             )
                         }
@@ -426,20 +444,20 @@ data class DPad private constructor(
                         size = smallDisplaySize,
                         offset = smallButtonOffset,
                     ) {
-                        when (Pair(classicTrigger, clicked)) {
-                            Pair(true, false) -> Texture(texture = config.textureSet.textureSet.upRight)
+                        when (Pair(grayWhenActive, clicked)) {
+                            Pair(true, false) -> Texture(texture = upRightTexture)
                             Pair(true, true) -> Texture(
-                                texture = config.textureSet.textureSet.upRight,
+                                texture = upRightTexture,
                                 tint = Color(0xFFAAAAAAu)
                             )
 
                             Pair(false, false) -> Texture(
-                                texture = config.textureSet.textureSet.upRight,
+                                texture = upRightTexture,
                                 padding = padding,
                             )
 
                             Pair(false, true) -> Texture(
-                                texture = config.textureSet.textureSet.upRightActive,
+                                texture = upRightActiveTexture,
                                 padding = padding,
                             )
                         }
@@ -467,20 +485,20 @@ data class DPad private constructor(
                         size = smallDisplaySize,
                         offset = smallButtonOffset,
                     ) {
-                        when (Pair(classicTrigger, clicked)) {
-                            Pair(true, false) -> Texture(texture = config.textureSet.textureSet.downLeft)
+                        when (Pair(grayWhenActive, clicked)) {
+                            Pair(true, false) -> Texture(texture = downLeftTexture)
                             Pair(true, true) -> Texture(
-                                texture = config.textureSet.textureSet.downLeft,
+                                texture = downLeftTexture,
                                 tint = Color(0xFFAAAAAAu)
                             )
 
                             Pair(false, false) -> Texture(
-                                texture = config.textureSet.textureSet.downLeft,
+                                texture = downLeftTexture,
                                 padding = padding,
                             )
 
                             Pair(false, true) -> Texture(
-                                texture = config.textureSet.textureSet.downLeftActive,
+                                texture = downLeftActiveTexture,
                                 padding = padding,
                             )
                         }
@@ -508,20 +526,20 @@ data class DPad private constructor(
                         size = smallDisplaySize,
                         offset = smallButtonOffset,
                     ) {
-                        when (Pair(classicTrigger, clicked)) {
-                            Pair(true, false) -> Texture(texture = config.textureSet.textureSet.downRight)
+                        when (Pair(grayWhenActive, clicked)) {
+                            Pair(true, false) -> Texture(texture = downRightTexture)
                             Pair(true, true) -> Texture(
-                                texture = config.textureSet.textureSet.downRight,
+                                texture = downRightTexture,
                                 tint = Color(0xFFAAAAAAu)
                             )
 
                             Pair(false, false) -> Texture(
-                                texture = config.textureSet.textureSet.downRight,
+                                texture = downRightTexture,
                                 padding = padding,
                             )
 
                             Pair(false, true) -> Texture(
-                                texture = config.textureSet.textureSet.downRightActive,
+                                texture = downRightActiveTexture,
                                 padding = padding,
                             )
                         }

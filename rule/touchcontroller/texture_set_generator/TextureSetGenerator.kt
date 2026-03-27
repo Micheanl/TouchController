@@ -1,11 +1,12 @@
 package top.fifthlight.touchcontroller.resources.generator
 
 import com.squareup.kotlinpoet.*
-import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import top.fifthlight.bazel.worker.api.Worker
+import top.fifthlight.mergetools.api.ActualConstructor
+import top.fifthlight.mergetools.api.ActualImpl
 import java.io.PrintWriter
 import java.nio.file.Path
 import kotlin.io.path.readText
@@ -26,6 +27,10 @@ private data class TextureSetInput(
 private data class TextureSetMetadata(
     @SerialName("gray_when_active")
     val grayWhenActive: Boolean = false,
+    @SerialName("classic")
+    val classic: Boolean = false,
+    @SerialName("default")
+    val default: Boolean = false,
     @SerialName("base")
     val base: String? = null,
     @SerialName("fallback")
@@ -55,9 +60,42 @@ private fun parseTextureSets(textureSets: List<TextureSetInput>) =
         )
     }
 
+private fun resolveTextureIdentifier(
+    textureName: String,
+    setId: String,
+    metadataMap: Map<String, TextureSetItem>,
+    visited: Set<Pair<String, String>> = emptySet(),
+): String {
+    val key = textureName to setId
+    check(key !in visited) {
+        "Circular texture reference: $textureName in texture set $setId (visited: $visited)"
+    }
+    val newVisited = visited + key
+    val item = metadataMap[setId]
+        ?: error("Texture set '$setId' not found")
+
+    item.textures[textureName]?.let { return it }
+
+    item.metadata.fallback[textureName]?.let { alias ->
+        return resolveTextureIdentifier(alias, setId, metadataMap, newVisited)
+    }
+
+    item.metadata.base?.let { baseId ->
+        return resolveTextureIdentifier(textureName, baseId, metadataMap, newVisited)
+    }
+
+    if (textureName.endsWith("_active")) {
+        val baseName = textureName.removeSuffix("_active")
+        return resolveTextureIdentifier(baseName, setId, metadataMap, newVisited)
+    }
+
+    error("Cannot resolve texture '$textureName' in texture set '$setId'")
+}
+
 private fun generateTextureSet(
     packageName: String,
-    className: String,
+    textureSetClass: String,
+    textureItemClass: String,
     textPackage: String,
     textClass: String,
     texturePackage: String,
@@ -66,218 +104,157 @@ private fun generateTextureSet(
 ): FileSpec {
     val textClassName = ClassName(textPackage, textClass)
     val textureClassName = ClassName(texturePackage, textureClass)
-    val textureSetClassName = ClassName(packageName, className)
-    val textureTypeName = ClassName("top.fifthlight.combine.paint", "Texture")
-    val identifierTypeName = ClassName("top.fifthlight.combine.data", "Identifier")
+
+    val builtInTextureSetsName = ClassName(packageName, textureSetClass)
+    val textureSetClassName = ClassName("top.fifthlight.touchcontroller.common.assets", "TextureSet")
+    val textureSetsClassName = ClassName("top.fifthlight.touchcontroller.common.assets", "TextureSets")
+    val builtInTextureSetsInitializerName =
+        ClassName("top.fifthlight.touchcontroller.common.assets", "BuiltInTextureSetsInitializer")
+
+    val builtInTextureItemsName = ClassName(packageName, textureItemClass)
+    val textureItemClassName = ClassName("top.fifthlight.touchcontroller.common.assets", "TextureItem")
+    val textureItemsClassName = ClassName("top.fifthlight.touchcontroller.common.assets", "TextureItems")
+    val builtInTextureItemsInitializerName =
+        ClassName("top.fifthlight.touchcontroller.common.assets", "BuiltInTextureItemsInitializer")
+
+    val textureSetBuilder = TypeSpec.objectBuilder(builtInTextureSetsName)
+        .addSuperinterface(builtInTextureSetsInitializerName)
+        .addAnnotation(
+            AnnotationSpec.builder(ActualImpl::class)
+                .addMember("%T::class", builtInTextureSetsInitializerName)
+                .build()
+        )
+        .addFunction(
+            FunSpec.builder("of")
+                .addAnnotation(JvmStatic::class)
+                .addAnnotation(ActualConstructor::class)
+                .returns(builtInTextureSetsName)
+                .addCode("return this")
+                .build()
+        )
+
+    var defaultTextureSet: String? = null
+    for ((id, item) in metadataMap) {
+        val textureSetName = id.snakeToCamelCase()
+
+        textureSetBuilder.addProperty(
+            PropertySpec.builder(textureSetName, textureSetClassName)
+                .initializer(
+                    """%T.register(
+                        |   id = %S,
+                        |   name = %T.TEXTURE_SET_%L_NAME,
+                        |   title = %T.TEXTURE_SET_%L_TITLE,
+                        |   grayWhenActive = %L,
+                        |   classic = %L,
+                        |)""".trimMargin(),
+                    textureSetsClassName,
+                    textureSetName,
+                    textClassName,
+                    id.uppercase(),
+                    textClassName,
+                    id.uppercase(),
+                    item.metadata.grayWhenActive,
+                    item.metadata.classic,
+                )
+                .build()
+        )
+
+        if (item.metadata.default) {
+            check(defaultTextureSet == null) {
+                "Multiple default texture sets: $id vs $defaultTextureSet."
+            }
+            defaultTextureSet = id
+            textureSetBuilder.addFunction(
+                FunSpec.builder("register")
+                    .addModifiers(KModifier.OVERRIDE)
+                    .addCode("%T.registerFallback(%N)", textureSetsClassName, textureSetName)
+                    .build()
+            )
+        }
+    }
 
     val allTextures = metadataMap.values
         .flatMap { it.textures.keys }
         .distinct()
         .sorted()
 
-    val textureSetBuilder = TypeSpec.classBuilder(className)
-        .addModifiers(KModifier.SEALED)
+    val sortedSetIds = metadataMap.keys.sorted()
+
+    val textureItemBuilder = TypeSpec.objectBuilder(builtInTextureItemsName)
+        .addSuperinterface(builtInTextureItemsInitializerName)
+        .addAnnotation(
+            AnnotationSpec.builder(ActualImpl::class)
+                .addMember("%T::class", builtInTextureItemsInitializerName)
+                .build()
+        )
+        .addFunction(
+            FunSpec.builder("of")
+                .addAnnotation(JvmStatic::class)
+                .addAnnotation(ActualConstructor::class)
+                .returns(builtInTextureItemsName)
+                .addCode("return this")
+                .build()
+        )
+        .addFunction(
+            FunSpec.builder("register")
+                .addModifiers(KModifier.OVERRIDE)
+                .build()
+        )
+
+    requireNotNull(defaultTextureSet) { "No default texture set" }
 
     for (texture in allTextures) {
         val propertyName = texture.snakeToCamelCase()
-        PropertySpec.builder(propertyName, textureTypeName).apply {
-            if (propertyName.endsWith("Active")) {
-                addModifiers(KModifier.OPEN)
-                getter(
-                    FunSpec.getterBuilder()
-                        .addCode("return %L", propertyName.removeSuffix("Active"))
-                        .build()
-                )
-            } else {
-                addModifiers(KModifier.ABSTRACT)
-            }
-        }.build().let(textureSetBuilder::addProperty)
-    }
 
-    for ((setId, setItem) in metadataMap.entries.sortedBy { it.key }) {
-        val (metadata, textures) = setItem
-        val classTypeName = setId.snakeToCamelCase(true)
+        textureItemBuilder.addProperty(
+            PropertySpec.builder(propertyName, textureItemClassName)
+                .initializer(
+                    "%T.register(%S, %S, get = %L)",
+                    textureItemsClassName,
+                    texture,
+                    texture,
+                    buildCodeBlock {
+                        beginControlFlow("")
+                        beginControlFlow("when (%N)", "it")
+                        for (setId in sortedSetIds) {
+                            val identifier = resolveTextureIdentifier(texture, setId, metadataMap)
+                            val setPropertyName = setId.snakeToCamelCase()
+                            addStatement(
+                                "%T.%L -> %T.%L",
+                                builtInTextureSetsName,
+                                setPropertyName,
+                                textureClassName,
+                                identifier,
+                            )
+                        }
 
-        val superclass = metadata.base?.let { baseId ->
-            ClassName(packageName, className, baseId.snakeToCamelCase(true))
-        } ?: textureSetClassName
+                        val identifier = resolveTextureIdentifier(texture, defaultTextureSet, metadataMap)
+                        addStatement("else -> %T.%L", textureClassName, identifier)
 
-        val subclassBuilder = TypeSpec.classBuilder(classTypeName)
-            .addModifiers(KModifier.OPEN)
-            .superclass(superclass)
-
-        for ((name, identifier) in textures) {
-            val propertyName = name.snakeToCamelCase()
-            PropertySpec.builder(propertyName, textureTypeName)
-                .addModifiers(KModifier.OVERRIDE)
-                .initializer("%T.%L", textureClassName, identifier)
-                .build()
-                .let(subclassBuilder::addProperty)
-        }
-
-        for ((target, source) in metadata.fallback) {
-            val propertyName = target.snakeToCamelCase()
-            PropertySpec.builder(propertyName, textureTypeName)
-                .addModifiers(KModifier.OVERRIDE)
-                .getter(
-                    FunSpec.getterBuilder()
-                        .addCode("return %L", source.snakeToCamelCase())
-                        .build()
-                )
-                .build()
-                .let(subclassBuilder::addProperty)
-        }
-
-        subclassBuilder.addType(
-            TypeSpec.companionObjectBuilder()
-                .addProperty(
-                    PropertySpec.builder(
-                        "INSTANCE",
-                        ClassName(packageName, className, classTypeName)
-                    ).delegate("lazy { %L() }", classTypeName)
-                        .build()
-                )
-                .addProperty(
-                    PropertySpec.builder(
-                        "key",
-                        ClassName(packageName, className, "TextureSetKey")
-                    ).getter(
-                        FunSpec.getterBuilder()
-                            .addCode("return TextureSetKey.%L", setId.uppercase())
-                            .build()
-                    )
-                        .build()
-                )
-                .build()
-        )
-
-        textureSetBuilder.addType(subclassBuilder.build())
-    }
-
-    val textureKeyBuilder = TypeSpec.classBuilder("TextureKey")
-        .addModifiers(KModifier.SEALED)
-        .addAnnotation(Serializable::class)
-        .addProperty(
-            PropertySpec.builder("name", String::class)
-                .addModifiers(KModifier.ABSTRACT)
-                .build()
-        )
-
-    val getLambdaType = LambdaTypeName.get(
-        parameters = arrayOf(ClassName(packageName, className)),
-        returnType = textureTypeName,
-    )
-    textureKeyBuilder.addProperty(
-        PropertySpec.builder("get", getLambdaType)
-            .addModifiers(KModifier.ABSTRACT)
-            .build()
-    )
-
-    for (texture in allTextures) {
-        val objectName = texture.snakeToCamelCase(true)
-        textureKeyBuilder.addType(
-            TypeSpec.objectBuilder(objectName)
-                .superclass(ClassName(packageName, className, "TextureKey"))
-                .addModifiers(KModifier.DATA)
-                .addAnnotation(Serializable::class)
-                .addAnnotation(
-                    AnnotationSpec.builder(SerialName::class)
-                        .addMember("%S", texture)
-                        .build()
-                )
-                .addProperty(
-                    PropertySpec.builder("name", String::class)
-                        .addModifiers(KModifier.OVERRIDE)
-                        .initializer("%S", texture.snakeToCamelCase(true))
-                        .build()
-                )
-                .addProperty(
-                    PropertySpec.builder("get", getLambdaType)
-                        .addModifiers(KModifier.OVERRIDE)
-                        .initializer("%T::%L", ClassName(packageName, className), texture.snakeToCamelCase())
-                        .build()
+                        endControlFlow()
+                        endControlFlow()
+                    }.toString(), // Call toString() here to workaround KotlinPoet
                 )
                 .build()
         )
     }
 
-    textureKeyBuilder.addType(
-        TypeSpec.companionObjectBuilder()
-            .addProperty(
-                PropertySpec.builder(
-                    "all",
-                    List::class.asClassName().parameterizedBy(ClassName(packageName, className, "TextureKey"))
-                ).delegate("lazy { listOf(%L) }", allTextures.joinToString(",\n") {
-                    it.snakeToCamelCase(true)
-                }).build()
-            )
-            .build()
-    )
-
-    textureSetBuilder.addType(textureKeyBuilder.build())
-
-    val textureSetKeyBuilder = TypeSpec.enumBuilder("TextureSetKey")
-        .addAnnotation(Serializable::class)
-
-    textureSetKeyBuilder.primaryConstructor(
-        FunSpec.constructorBuilder()
-            .addParameter(ParameterSpec.builder("nameText", identifierTypeName).build())
-            .addParameter(ParameterSpec.builder("titleText", identifierTypeName).build())
-            .addParameter(ParameterSpec.builder("textureSet", ClassName(packageName, className)).build())
-            .build()
-    )
-
-    textureSetKeyBuilder.addProperty(
-        PropertySpec.builder("nameText", identifierTypeName)
-            .initializer("nameText")
-            .build()
-    )
-
-    textureSetKeyBuilder.addProperty(
-        PropertySpec.builder("titleText", identifierTypeName)
-            .initializer("titleText")
-            .build()
-    )
-
-    textureSetKeyBuilder.addProperty(
-        PropertySpec.builder("textureSet", ClassName(packageName, className))
-            .initializer("textureSet")
-            .build()
-    )
-
-    for ((setId, _) in metadataMap.entries.sortedBy { it.key }) {
-        val classTypeName = setId.snakeToCamelCase(true)
-        textureSetKeyBuilder.addEnumConstant(
-            setId.uppercase(),
-            TypeSpec.anonymousClassBuilder()
-                .addAnnotation(
-                    AnnotationSpec.builder(SerialName::class)
-                        .addMember("%S", setId)
-                        .build()
-                )
-                .addSuperclassConstructorParameter("%T.TEXTURE_SET_%L_NAME", textClassName, setId.uppercase())
-                .addSuperclassConstructorParameter("%T.TEXTURE_SET_%L_TITLE", textClassName, setId.uppercase())
-                .addSuperclassConstructorParameter("%L.INSTANCE", classTypeName)
-                .build()
-        )
-    }
-
-    textureSetBuilder.addType(textureSetKeyBuilder.build())
-
-    return FileSpec.builder(packageName, className)
+    return FileSpec.builder(packageName, "TextureSets")
         .addAnnotation(
             AnnotationSpec.builder(Suppress::class)
                 .addMember("%S", "RedundantVisibilityModifier")
                 .build()
         )
         .addType(textureSetBuilder.build())
+        .addType(textureItemBuilder.build())
         .build()
 }
 
 private fun run(
     output: Path,
     packageName: String,
-    className: String,
+    textureSetClass: String,
+    textureItemClass: String,
     textPackage: String,
     textClass: String,
     texturePackage: String,
@@ -287,7 +264,8 @@ private fun run(
     val metadataMap = parseTextureSets(textureSets)
     val fileSpec = generateTextureSet(
         packageName = packageName,
-        className = className,
+        textureSetClass = textureSetClass,
+        textureItemClass = textureItemClass,
         textPackage = textPackage,
         textClass = textClass,
         texturePackage = texturePackage,
@@ -305,7 +283,8 @@ fun main(vararg args: String) = object : Worker() {
     ): Int {
         var output: Path? = null
         var packageName: String? = null
-        var className: String? = null
+        var textureSetClassName: String? = null
+        var textureItemClassName: String? = null
         var texturePackage: String? = null
         var textureClass: String? = null
         var textPackage: String? = null
@@ -335,7 +314,8 @@ fun main(vararg args: String) = object : Worker() {
             when (val arg = nextArg()) {
                 "--output" -> output = sandboxDir.resolve(Path.of(nextArg()))
                 "--package" -> packageName = nextArg()
-                "--class_name" -> className = nextArg()
+                "--texture_set_class_name" -> textureSetClassName = nextArg()
+                "--texture_item_class_name" -> textureItemClassName = nextArg()
                 "--texture_package" -> texturePackage = nextArg()
                 "--texture_class" -> textureClass = nextArg()
                 "--text_package" -> textPackage = nextArg()
@@ -361,7 +341,8 @@ fun main(vararg args: String) = object : Worker() {
         run(
             output = requireNotNull(output) { "No output" },
             packageName = requireNotNull(packageName) { "No package name" },
-            className = requireNotNull(className) { "No class name" },
+            textureSetClass = requireNotNull(textureSetClassName) { "No texture set class name" },
+            textureItemClass = requireNotNull(textureItemClassName) { "No texture item class name" },
             textPackage = requireNotNull(textPackage) { "No text package name" },
             textClass = requireNotNull(textClass) { "No text class" },
             texturePackage = requireNotNull(texturePackage) { "No texture package name" },

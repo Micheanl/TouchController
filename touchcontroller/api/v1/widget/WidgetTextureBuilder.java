@@ -6,17 +6,16 @@
 package top.fifthlight.touchcontroller.api.v1.widget;
 
 import org.jetbrains.annotations.ApiStatus;
-import top.fifthlight.touchcontroller.api.v1.draw.Drawable;
 
 @ApiStatus.NonExtendable
 public interface WidgetTextureBuilder {
     WidgetTextureBuilder id(String id);
 
-    WidgetTextureBuilder classic(Drawable drawable);
+    WidgetTextureBuilder classic(String namespace, String path);
 
-    WidgetTextureBuilder classicExtension(Drawable drawable);
+    WidgetTextureBuilder classicExtension(String namespace, String path);
 
-    WidgetTextureBuilder newStyle(Drawable drawable);
+    WidgetTextureBuilder newStyle(String namespace, String path);
 
-    WidgetTextureBuilder newRegression(Drawable drawable);
+    WidgetTextureBuilder newRegression(String namespace, String path);
 }

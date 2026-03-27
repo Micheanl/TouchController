@@ -3,7 +3,10 @@ load("//rule:merge_library.bzl", "kt_merge_library")
 kt_merge_library(
     name = "property",
     srcs = glob(["*.kt"]),
-    merge_deps = ["//touchcontroller/resources/texture:texture_set_lib"],
+    merge_deps = [
+        "//touchcontroller/common/assets",
+        "//touchcontroller/resources/texture:texture_set_lib",
+    ],
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
         "//:kotlin_serialization",

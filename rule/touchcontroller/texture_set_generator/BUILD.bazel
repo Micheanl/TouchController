@@ -7,6 +7,7 @@ kt_jvm_library(
     visibility = ["//visibility:public"],
     deps = [
         "//:kotlin_serialization",
+        "//rule/expect_actual_tools/api",
         "//rule/worker_api",
         "@maven//:com_squareup_kotlinpoet_jvm",
         "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json_jvm",

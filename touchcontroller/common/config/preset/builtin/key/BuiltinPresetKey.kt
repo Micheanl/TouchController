@@ -8,13 +8,14 @@ package top.fifthlight.touchcontroller.common.config.preset.builtin.key
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import top.fifthlight.combine.data.Identifier
+import top.fifthlight.touchcontroller.assets.BuiltInTextureSets
 import top.fifthlight.touchcontroller.assets.Texts
-import top.fifthlight.touchcontroller.assets.TextureSet
+import top.fifthlight.touchcontroller.common.assets.TextureSet
 
 @Serializable
 data class BuiltinPresetKey(
     @SerialName("texture_set")
-    val textureSet: TextureSet.TextureSetKey = TextureSet.TextureSetKey.CLASSIC,
+    val textureSet: TextureSet = BuiltInTextureSets.classic,
     @SerialName("control_style")
     val controlStyle: ControlStyle = ControlStyle.TouchGesture,
     @SerialName("move_method")

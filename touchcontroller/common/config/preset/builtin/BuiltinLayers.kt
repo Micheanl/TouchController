@@ -10,7 +10,7 @@ import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 import top.fifthlight.data.IntOffset
-import top.fifthlight.touchcontroller.assets.TextureSet
+import top.fifthlight.touchcontroller.common.assets.TextureSet
 import top.fifthlight.touchcontroller.common.config.condition.input.BuiltinLayerCondition
 import top.fifthlight.touchcontroller.common.config.condition.BuiltinLayerConditionKey
 import top.fifthlight.touchcontroller.common.config.condition.LayerConditions
@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 @ConsistentCopyVisibility
 data class BuiltinLayers private constructor(
-    private val textureSet: TextureSet.TextureSetKey,
+    private val textureSet: TextureSet,
 ) {
     data class Layers(
         val name: String,
@@ -455,8 +455,8 @@ data class BuiltinLayers private constructor(
     )
 
     companion object {
-        private val cache = ConcurrentHashMap<TextureSet.TextureSetKey, BuiltinLayers>()
-        operator fun get(textureSet: TextureSet.TextureSetKey): BuiltinLayers =
+        private val cache = ConcurrentHashMap<TextureSet, BuiltinLayers>()
+        operator fun get(textureSet: TextureSet): BuiltinLayers =
             cache.computeIfAbsent(textureSet, ::BuiltinLayers)
     }
 }

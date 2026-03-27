@@ -31,8 +31,10 @@ import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntSize
 import top.fifthlight.touchcontroller.assets.Texts
-import top.fifthlight.touchcontroller.assets.TextureSet
 import top.fifthlight.touchcontroller.assets.Textures
+import top.fifthlight.touchcontroller.common.assets.TextureItems
+import top.fifthlight.touchcontroller.common.assets.TextureSet
+import top.fifthlight.touchcontroller.common.assets.TextureSets
 import top.fifthlight.touchcontroller.common.control.action.ButtonTrigger
 import top.fifthlight.touchcontroller.common.control.action.GameActions
 import top.fifthlight.touchcontroller.common.control.action.PlayerActions
@@ -360,8 +362,7 @@ class EnumProperty<Config : ControllerWidget, T>(
                         items = items,
                         textProvider = Pair<T, Text>::second,
                         selectedIndex = selectedIndex,
-                        onItemSelected = {
-                            val item = items[it].first
+                        onItemSelected = { (item, _), _ ->
                             onConfigChanged(setValue(widgetConfig, item))
                             expanded = false
                         }
@@ -377,14 +378,14 @@ class EnumProperty<Config : ControllerWidget, T>(
 }
 
 fun <Config : ControllerWidget> TextureSetProperty(
-    getValue: (Config) -> TextureSet.TextureSetKey,
-    setValue: (Config, TextureSet.TextureSetKey) -> Config,
+    getValue: (Config) -> TextureSet,
+    setValue: (Config, TextureSet) -> Config,
     name: Text,
 ) = EnumProperty(
     getValue = getValue,
     setValue = setValue,
-    items = TextureSet.TextureSetKey.entries.map {
-        Pair(it, Text.translatable(it.nameText))
+    items = TextureSets.registry.map {
+        Pair(it, it.name)
     }.toPersistentList(),
     name = name,
 )
@@ -679,18 +680,17 @@ class TextureCoordinateProperty<Config : ControllerWidget>(
                                     dropDownContent = {
                                         DropdownItemList(
                                             modifier = Modifier.verticalScroll(),
-                                            items = TextureSet.TextureSetKey.entries,
-                                            textProvider = { Text.translatable(it.nameText) },
-                                            selectedIndex = TextureSet.TextureSetKey.entries.indexOf(value.textureSet),
-                                            onItemSelected = {
-                                                val item = TextureSet.TextureSetKey.entries[it]
+                                            items = TextureSets.registry.values(),
+                                            textProvider = TextureSet::name,
+                                            selectedIndex = TextureSets.registry.values().indexOf(value.textureSet),
+                                            onItemSelected = { item, _ ->
                                                 onConfigChanged(setValue(config, value.copy(textureSet = item)))
                                                 expanded = false
                                             }
                                         )
                                     }
                                 ) {
-                                    Text(Text.translatable(value.textureSet.nameText))
+                                    Text(value.textureSet.name)
                                     Spacer(modifier = Modifier.width(8))
                                     SelectIcon(expanded = expanded)
                                 }
@@ -702,7 +702,7 @@ class TextureCoordinateProperty<Config : ControllerWidget>(
                                     .fillMaxWidth()
                                     .verticalScroll()
                             ) {
-                                for (key in TextureSet.TextureKey.all) {
+                                for (key in TextureItems.registry) {
                                     val borderModifier = if (key == value.textureItem) {
                                         Modifier.innerLine(Colors.WHITE)
                                     } else {
@@ -719,8 +719,8 @@ class TextureCoordinateProperty<Config : ControllerWidget>(
                                         horizontalAlignment = Alignment.CenterHorizontally,
                                         verticalArrangement = Arrangement.spacedBy(4),
                                     ) {
-                                        val texture = remember(value.textureSet.textureSet, key) {
-                                            key.get(value.textureSet.textureSet)
+                                        val texture = remember(value.textureSet, key) {
+                                            key.get(value.textureSet)
                                         }
                                         Icon(
                                             modifier = Modifier

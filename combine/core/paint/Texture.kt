@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntRect
+import top.fifthlight.data.IntSize
 import top.fifthlight.data.Offset
 import top.fifthlight.data.Rect
 import top.fifthlight.mergetools.api.ExpectFactory
@@ -18,6 +19,12 @@ interface Texture : Drawable {
             offset = Offset.ZERO,
             size = size.toSize(),
         ),
+    )
+
+    override fun draw(canvas: Canvas, dstRect: IntRect, tint: Color) = draw(
+        canvas = canvas,
+        dstRect = dstRect.toRect(),
+        tint = tint,
     )
 
     fun draw(
@@ -44,6 +51,22 @@ interface Texture : Drawable {
             height: Int,
             padding: IntPadding,
         ): Texture
+    }
+
+    companion object {
+        val empty = object : Texture {
+            override val size: IntSize
+                get() = IntSize(16)
+            override val padding: IntPadding
+                get() = IntPadding.ZERO
+            
+            override fun draw(
+                canvas: Canvas,
+                dstRect: Rect,
+                tint: Color,
+                srcRect: Rect
+            ) = Unit
+        }
     }
 }
 

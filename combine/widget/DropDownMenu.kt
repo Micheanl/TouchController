@@ -33,9 +33,9 @@ fun DropdownMenuScope.DropdownItemList(
         modifier = modifier,
         items = items,
         textProvider = { it.first },
-        onItemSelected = {
-            onItemSelected(it)
-            items[it].second()
+        onItemSelected = { item, index ->
+            onItemSelected(index)
+            item.second()
         },
     )
 }
@@ -44,10 +44,10 @@ fun DropdownMenuScope.DropdownItemList(
 fun <T> DropdownMenuScope.DropdownItemList(
     modifier: Modifier = Modifier,
     drawableSet: SelectDrawableSet = SelectDrawableSet.current,
-    items: List<T>,
+    items: Collection<T>,
     textProvider: (T) -> Text,
     selectedIndex: Int = -1,
-    onItemSelected: (Int) -> Unit = {},
+    onItemSelected: (T, Int) -> Unit = { _, _ ->},
 ) {
     Column(
         modifier = Modifier
@@ -68,7 +68,7 @@ fun <T> DropdownMenuScope.DropdownItemList(
                 modifier = Modifier
                     .border(drawable)
                     .clickable(interactionSource) {
-                        onItemSelected(index)
+                        onItemSelected(item, index)
                     }
                     .focusable(interactionSource)
                     .fillMaxWidth(),

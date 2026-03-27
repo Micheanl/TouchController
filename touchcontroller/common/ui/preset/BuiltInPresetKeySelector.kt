@@ -25,7 +25,7 @@ import top.fifthlight.combine.widget.layout.Row
 import top.fifthlight.combine.widget.ui.*
 import top.fifthlight.data.IntSize
 import top.fifthlight.touchcontroller.assets.Texts
-import top.fifthlight.touchcontroller.assets.TextureSet
+import top.fifthlight.touchcontroller.common.assets.TextureSets
 import top.fifthlight.touchcontroller.common.config.layout.ControllerLayout
 import top.fifthlight.touchcontroller.common.config.preset.builtin.key.BuiltinPresetKey
 import top.fifthlight.touchcontroller.common.control.ControllerWidget
@@ -111,7 +111,7 @@ fun BuiltInPresetKeySelector(
         ) {
             Text(Text.translatable(Texts.SCREEN_MANAGE_CONTROL_PRESET_TEXTURE_STYLE))
             RadioColumn {
-                for (textureSet in TextureSet.TextureSetKey.entries) {
+                for (textureSet in TextureSets.registry.values()) {
                     RadioBoxItem(
                         modifier = itemModifier,
                         value = value.textureSet == textureSet,
@@ -119,7 +119,7 @@ fun BuiltInPresetKeySelector(
                             onValueChanged(value.copy(textureSet = textureSet))
                         },
                     ) {
-                        Text(Text.translatable(textureSet.titleText))
+                        Text(textureSet.title)
                     }
                 }
             }
@@ -350,9 +350,9 @@ fun BuiltInPresetKeySelector(
                             items = BuiltinPresetKey.SprintButtonLocation.entries,
                             textProvider = { Text.translatable(it.nameId) },
                             selectedIndex = selectedIndex,
-                            onItemSelected = { index ->
+                            onItemSelected = { item, _ ->
                                 expanded = false
-                                onValueChanged(value.copy(sprintButtonLocation = BuiltinPresetKey.SprintButtonLocation.entries[index]))
+                                onValueChanged(value.copy(sprintButtonLocation = item))
                             }
                         )
                     }

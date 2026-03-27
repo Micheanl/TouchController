@@ -87,8 +87,7 @@ class DPadActiveTextureProperty<Config : ControllerWidget>(
                         items = DPadExtraButton.ActiveTexture.Type.entries,
                         textProvider = { Text.translatable(it.nameId) },
                         selectedIndex = DPadExtraButton.ActiveTexture.Type.entries.indexOf(value.type),
-                        onItemSelected = {
-                            val item = DPadExtraButton.ActiveTexture.Type.entries[it]
+                        onItemSelected = { item, _ ->
                             if (value.type != item) {
                                 onConfigChanged(
                                     setValue(
@@ -289,8 +288,7 @@ class DPadExtraButtonProperty<Config : ControllerWidget>(
                         items = DPadExtraButton.Type.entries,
                         textProvider = { Text.translatable(it.nameId) },
                         selectedIndex = DPadExtraButton.Type.entries.indexOf(value.type),
-                        onItemSelected = {
-                            val item = DPadExtraButton.Type.entries[it]
+                        onItemSelected = { item, _ ->
                             if (value.type != item) {
                                 onConfigChanged(
                                     setValue(

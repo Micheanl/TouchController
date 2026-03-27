@@ -122,8 +122,10 @@ def _kt_control_texture_set_source_impl(ctx):
     args.add(output_file.path)
     args.add("--package")
     args.add(ctx.attr.package)
-    args.add("--class_name")
-    args.add(ctx.attr.class_name)
+    args.add("--texture_set_class_name")
+    args.add(ctx.attr.texture_sets_class_name)
+    args.add("--texture_item_class_name")
+    args.add(ctx.attr.texture_items_class_name)
     args.add("--texture_package")
     args.add(texture_lib_info.package)
     args.add("--texture_class")
@@ -156,7 +158,7 @@ def _kt_control_texture_set_source_impl(ctx):
         outputs = [output_file],
         executable = ctx.executable._generator_bin,
         arguments = [args],
-        progress_message = "Generating TextureSet.kt for %s.%s" % (ctx.attr.package, ctx.attr.class_name),
+        progress_message = "Generating TextureSet.kt for %s" % ctx.label.name,
         mnemonic = "TextureSetGen",
     )
 
@@ -179,9 +181,13 @@ _kt_control_texture_set_source = rule(
             mandatory = True,
             doc = "Package name for generated TextureSet class",
         ),
-        "class_name": attr.string(
+        "texture_sets_class_name": attr.string(
             mandatory = True,
             doc = "Class name for generated TextureSet class",
+        ),
+        "texture_items_class_name": attr.string(
+            mandatory = True,
+            doc = "Class name for generated TextureItem class",
         ),
         "text_binding_package": attr.string(
             mandatory = True,
@@ -203,11 +209,13 @@ def _kt_control_texture_set_lib_impl(
         texture_lib,
         kt_texture_lib,
         kt_text_binding_lib,
+        _texture_sets_lib,
         control_group,
         text_binding_package,
         text_binding_class_name,
         package,
-        class_name):
+        texture_sets_class_name,
+        texture_items_class_name):
     source_lib = name + "_source"
     _kt_control_texture_set_source(
         name = source_lib,
@@ -216,7 +224,8 @@ def _kt_control_texture_set_lib_impl(
         text_binding_package = text_binding_package,
         text_binding_class_name = text_binding_class_name,
         package = package,
-        class_name = class_name,
+        texture_sets_class_name = texture_sets_class_name,
+        texture_items_class_name = texture_items_class_name,
         tags = ["manual"],
     )
 
@@ -224,9 +233,11 @@ def _kt_control_texture_set_lib_impl(
         name = name,
         srcs = [source_lib],
         visibility = visibility,
+        actual = True,
         merge_deps = [
             kt_texture_lib,
             kt_text_binding_lib,
+            _texture_sets_lib,
         ],
         deps = [
             "//:kotlin_serialization",
@@ -253,6 +264,10 @@ kt_control_texture_set_lib = macro(
             mandatory = True,
             configurable = False,
         ),
+        "_texture_sets_lib": attr.label(
+            default = "//touchcontroller/common/assets",
+            configurable = False,
+        ),
         "control_group": attr.label(
             providers = [ControlTextureSetGroupInfo],
             mandatory = True,
@@ -267,9 +282,13 @@ kt_control_texture_set_lib = macro(
         "package": attr.string(
             mandatory = True,
         ),
-        "class_name": attr.string(
+        "texture_sets_class_name": attr.string(
             mandatory = False,
-            default = "TextureSet",
+            default = "BuiltInTextureSets",
+        ),
+        "texture_items_class_name": attr.string(
+            mandatory = False,
+            default = "BuiltInTextureItems",
         ),
     },
 )

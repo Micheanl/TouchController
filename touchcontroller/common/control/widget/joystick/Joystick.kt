@@ -18,7 +18,9 @@ import top.fifthlight.data.IntSize
 import top.fifthlight.data.Offset
 import top.fifthlight.data.Rect
 import top.fifthlight.touchcontroller.assets.Texts
-import top.fifthlight.touchcontroller.assets.TextureSet
+import top.fifthlight.touchcontroller.assets.BuiltInTextureItems
+import top.fifthlight.touchcontroller.assets.BuiltInTextureSets
+import top.fifthlight.touchcontroller.common.assets.TextureSet
 import top.fifthlight.touchcontroller.common.control.BooleanProperty
 import top.fifthlight.touchcontroller.common.control.ControllerWidget
 import top.fifthlight.touchcontroller.common.control.FloatProperty
@@ -35,7 +37,7 @@ import kotlin.uuid.Uuid
 @Serializable
 @SerialName("joystick")
 data class Joystick(
-    val textureSet: TextureSet.TextureSetKey = TextureSet.TextureSetKey.NEW,
+    val textureSet: TextureSet = BuiltInTextureSets.new,
     val size: Float = 1.5f,
     val stickSize: Float = 1.15f,
     val triggerSprint: Boolean = false,
@@ -94,6 +96,9 @@ data class Joystick(
         get() = _properties
 
     override fun size(): IntSize = IntSize((size * 72).toInt())
+
+    private val padTexture = BuiltInTextureItems.pad.get(textureSet)
+    private val stickTexture = BuiltInTextureItems.stick.get(textureSet)
 
     fun stickSize() = IntSize((stickSize * 48).toInt())
 
@@ -173,7 +178,7 @@ data class Joystick(
             drawQueue.enqueue { canvas ->
                 val color = Color(((0xFF * opacity).toInt() shl 24) or 0xFFFFFF)
                 val size = size
-                layout.textureSet.textureSet.pad.draw(
+                layout.padTexture.draw(
                     canvas = canvas,
                     dstRect = IntRect(size = size),
                     tint = color,
@@ -181,7 +186,7 @@ data class Joystick(
                 val drawOffset = normalizedOffset ?: Offset.ZERO
                 val stickSize = layout.stickSize()
                 val actualOffset = ((drawOffset + 1f) / 2f * size) - stickSize.toSize() / 2f
-                layout.textureSet.textureSet.stick.draw(
+                layout.stickTexture.draw(
                     canvas = canvas,
                     dstRect = Rect(
                         offset = actualOffset,

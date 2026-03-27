@@ -1,5 +1,6 @@
 {
     "gray_when_active": false,
+    "classic": false,
     "fallback": {
         "chat_simple": "chat",
         "emote_simple": "emote",

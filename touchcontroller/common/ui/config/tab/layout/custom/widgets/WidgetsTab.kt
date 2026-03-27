@@ -25,8 +25,9 @@ import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntRect
 import top.fifthlight.data.IntSize
 import top.fifthlight.touchcontroller.assets.Texts
-import top.fifthlight.touchcontroller.assets.TextureSet
 import top.fifthlight.touchcontroller.assets.Textures
+import top.fifthlight.touchcontroller.common.assets.TextureSet
+import top.fifthlight.touchcontroller.common.assets.TextureSets
 import top.fifthlight.touchcontroller.common.control.ControllerWidget
 import top.fifthlight.touchcontroller.common.ui.control.AutoScaleControllerWidget
 import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.tab.CustomTab
@@ -300,23 +301,24 @@ object WidgetsTab : CustomTab() {
                     )
 
                     var expanded by remember { mutableStateOf(false) }
+                    val textureSetEntries = TextureSets.registry.values().toList()
                     Select(
                         expanded = expanded,
                         onExpandedChanged = { expanded = it },
                         dropDownContent = {
                             DropdownItemList(
                                 modifier = Modifier.verticalScroll(),
-                                items = TextureSet.TextureSetKey.entries,
-                                textProvider = { Text.translatable(it.nameText) },
-                                selectedIndex = TextureSet.TextureSetKey.entries.indexOf(dialogState.textureSet),
-                                onItemSelected = { index ->
-                                    tabModel.updateNewWidgetParamsDialog { copy(textureSet = TextureSet.TextureSetKey.entries[index]) }
+                                items = textureSetEntries,
+                                textProvider = TextureSet::name,
+                                selectedIndex = textureSetEntries.indexOf(dialogState.textureSet),
+                                onItemSelected = { item, _ ->
+                                    tabModel.updateNewWidgetParamsDialog { copy(textureSet = item) }
                                     expanded = false
                                 }
                             )
                         }
                     ) {
-                        Text(Text.translatable(dialogState.textureSet.nameText))
+                        Text(dialogState.textureSet.name)
                         SelectIcon(expanded = expanded)
                     }
                 }

@@ -11,9 +11,10 @@ import top.fifthlight.combine.data.Identifier
 import top.fifthlight.combine.paint.Color
 import top.fifthlight.combine.paint.Colors
 import top.fifthlight.data.IntPadding
+import top.fifthlight.touchcontroller.assets.BuiltInTextureItems
+import top.fifthlight.touchcontroller.assets.BuiltInTextureSets
 import top.fifthlight.touchcontroller.assets.EmptyTexture
 import top.fifthlight.touchcontroller.assets.Texts
-import top.fifthlight.touchcontroller.assets.TextureSet
 import top.fifthlight.touchcontroller.common.control.property.TextureCoordinate
 
 @Serializable
@@ -45,8 +46,8 @@ sealed class ButtonTexture {
     @SerialName("fixed")
     data class Fixed(
         val texture: TextureCoordinate = TextureCoordinate(
-            textureSet = TextureSet.TextureSetKey.CLASSIC,
-            textureItem = TextureSet.TextureKey.Up,
+            textureSet = BuiltInTextureSets.classic,
+            textureItem = BuiltInTextureItems.up,
         ),
         val scale: Float = 2f,
     ) : ButtonTexture() {

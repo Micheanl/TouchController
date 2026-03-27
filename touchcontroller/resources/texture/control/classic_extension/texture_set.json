@@ -1,4 +1,5 @@
 {
     "gray_when_active": true,
+    "classic": true,
     "base": "classic"
 }

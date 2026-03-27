@@ -1,5 +1,7 @@
 {
     "gray_when_active": true,
+    "classic": true,
+    "default": true,
     "fallback": {
         "ascend_swimming": "ascend",
         "descend_swimming": "descend",

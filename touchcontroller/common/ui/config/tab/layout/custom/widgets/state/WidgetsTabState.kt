@@ -7,7 +7,8 @@ package top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.widget
 
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
-import top.fifthlight.touchcontroller.assets.TextureSet
+import top.fifthlight.touchcontroller.assets.BuiltInTextureSets
+import top.fifthlight.touchcontroller.common.assets.TextureSet
 import top.fifthlight.touchcontroller.common.control.ControllerWidget
 import top.fifthlight.touchcontroller.common.control.builtin.BuiltinWidgets
 import top.fifthlight.touchcontroller.common.control.widget.boat.BoatButton
@@ -25,7 +26,7 @@ data class WidgetsTabState(
 
     data class NewWidgetParams(
         val opacity: Float = .6f,
-        val textureSet: TextureSet.TextureSetKey = TextureSet.TextureSetKey.CLASSIC,
+        val textureSet: TextureSet = BuiltInTextureSets.classic,
     )
 
     sealed class DialogState {
@@ -33,7 +34,7 @@ data class WidgetsTabState(
 
         data class ChangeNewWidgetParams(
             val opacity: Float = .6f,
-            val textureSet: TextureSet.TextureSetKey = TextureSet.TextureSetKey.CLASSIC,
+            val textureSet: TextureSet = BuiltInTextureSets.classic,
         ) : DialogState() {
             constructor(params: NewWidgetParams) : this(opacity = params.opacity, textureSet = params.textureSet)
 

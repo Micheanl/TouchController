@@ -7,7 +7,8 @@ package top.fifthlight.touchcontroller.common.config.preset.builtin
 
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
-import top.fifthlight.touchcontroller.assets.TextureSet
+import top.fifthlight.touchcontroller.assets.BuiltInTextureItems
+import top.fifthlight.touchcontroller.assets.BuiltInTextureSets
 import top.fifthlight.touchcontroller.common.config.layout.controllerLayoutOf
 import top.fifthlight.touchcontroller.common.config.preset.LayoutPreset
 import top.fifthlight.touchcontroller.common.config.preset.builtin.key.BuiltinPresetKey
@@ -61,7 +62,7 @@ object BuiltinPresetsProviderImpl : BuiltinPresetsProvider {
         ).mapWidgets { widget ->
             when (widget) {
                 is CustomWidget -> {
-                    if ((widget.normalTexture as? ButtonTexture.Fixed)?.texture?.textureItem == TextureSet.TextureKey.Inventory) {
+                    if ((widget.normalTexture as? ButtonTexture.Fixed)?.texture?.textureItem == BuiltInTextureItems.inventory) {
                         return@mapWidgets widget
                     }
 
@@ -87,8 +88,7 @@ object BuiltinPresetsProviderImpl : BuiltinPresetsProvider {
                 }
 
                 is DPad -> run {
-                    val isClassic =
-                        textureSet == TextureSet.TextureSetKey.CLASSIC || textureSet == TextureSet.TextureSetKey.CLASSIC_EXTENSION
+                    val isClassic = textureSet.classic
                     widget.copy(
                         size = widget.size * key.scale,
                         textureSet = textureSet,
