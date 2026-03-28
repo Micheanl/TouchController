@@ -1,0 +1,17 @@
+load("//rule:merge_library.bzl", "kt_merge_library")
+
+kt_merge_library(
+    name = "texture",
+    srcs = glob(["*.kt"]),
+    merge_deps = [
+        "//touchcontroller/common/assets",
+        "//touchcontroller/resources/texture:texture_set_lib",
+    ],
+    visibility = ["//touchcontroller:__subpackages__"],
+    deps = [
+        "//combine/core/data",
+        "//combine/core/paint",
+        "//combine/data",
+        "//touchcontroller/api",
+    ],
+)

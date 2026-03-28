@@ -58,11 +58,11 @@ data class WidgetsTabState(
 
     sealed class ListContent {
         data class BuiltIn(private val builtIn: BuiltinWidgets) : ListContent() {
-            val heroes: PersistentList<ControllerWidget> = persistentListOf<ControllerWidget>(
+            val heroes: PersistentList<ControllerWidget> = persistentListOf(
                 builtIn.dpad,
                 Joystick(),
             )
-            val widgets: PersistentList<ControllerWidget> = persistentListOf<ControllerWidget>(
+            val widgets = persistentListOf(
                 builtIn.jump,
                 builtIn.sneak,
                 builtIn.ascendFlying,

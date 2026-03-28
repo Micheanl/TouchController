@@ -12,13 +12,13 @@ import top.fifthlight.touchcontroller.api.v1.action.PlayerAction
 import top.fifthlight.touchcontroller.api.v1.action.PlayerActionInstance
 import top.fifthlight.touchcontroller.api.v1.text.Text
 import top.fifthlight.touchcontroller.api.v1.widget.BuiltInWidgetBuilder
-import top.fifthlight.touchcontroller.api.v1.widget.BuiltInWidgetTextureProvider
 import top.fifthlight.touchcontroller.api.v1.widget.TopBarWidgetBuilder
-import top.fifthlight.touchcontroller.api.v1.widget.WidgetTexture
 import top.fifthlight.touchcontroller.api.v1.widget.WidgetTextureBuilder
 import top.fifthlight.touchcontroller.api.v1.widget.WidgetTriggerActionProvider
 import top.fifthlight.touchcontroller.common.api.text.ApiTextFactory
 import top.fifthlight.touchcontroller.common.api.text.text
+import top.fifthlight.touchcontroller.common.api.texture.ApiBuiltInWidgetTextureProvider
+import top.fifthlight.touchcontroller.common.api.texture.ApiWidgetTextureBuilder
 import top.fifthlight.touchcontroller.common.control.action.GameActionInstanceImpl
 import top.fifthlight.touchcontroller.common.control.action.GameActions
 import top.fifthlight.touchcontroller.common.control.action.PlayerActionInstanceImpl
@@ -46,13 +46,10 @@ class TouchControllerApiImpl : TouchControllerApi {
         action = { action.action(it) },
     ).also { PlayerActions.registry.register(id, it) }
 
-    override fun getBuiltInWidgetTextureProvider(): BuiltInWidgetTextureProvider {
-        TODO("Not yet implemented")
-    }
+    override fun getBuiltInWidgetTextureProvider() = ApiBuiltInWidgetTextureProvider
 
-    override fun registerWidgetTexture(textureBuilder: Consumer<WidgetTextureBuilder>): WidgetTexture {
-        TODO("Not yet implemented")
-    }
+    override fun registerWidgetTexture(textureBuilder: Consumer<WidgetTextureBuilder>) =
+        ApiWidgetTextureBuilder().also { textureBuilder.accept(it) }.build()
 
     override fun getWidgetTriggerActionProvider(): WidgetTriggerActionProvider {
         TODO("Not yet implemented")
