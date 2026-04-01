@@ -204,6 +204,17 @@ neoforge_versions = {
         "neoforge_sources_sha256": "d0201737c3ed5af2b26a542ba30e150b544d0d10366814dbf7633539a9e3b0f3",
         "neoforge_universal_sha256": "5702b53423c06d56fabfc3bf2e4fb6dae047d5da31f6167206e59ac018239a09",
     },
+    "26.1.1": {
+        "java_target": 25,
+        "version": "26.1.1",
+        "mapping": False,
+        "neoform_version": "26.1.1-1",
+        "neoform_sha256": "c89f910127a0fa99d4e658c2cbc493c8861eea8b10c06cecce15cb45a86dce4b",
+        "neoforge_version": "26.1.1.0-beta",
+        "neoforge_userdev_sha256": "9ee243ad73f0672f708a0d48afca0a60cf24d3b8b761cc10bd6b4d086baec605",
+        "neoforge_sources_sha256": "ae5329fc04d977b735d77d9d13d7d6bb411e83bed6b1997ebd71d541a47a1d85",
+        "neoforge_universal_sha256": "b097ae99e61770096ae611686f78ea4a8b6203ae37b410d7964c87c3124ac407",
+    },
 }
 
 neoform = use_extension("//repo:neoform.bzl", "neoform")
