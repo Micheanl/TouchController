@@ -11,4 +11,4 @@
 *.vmd binary
 *.fbx binary
 
-*.bazel linguist-generated=true
+*.bazel linguist-vendored=true
