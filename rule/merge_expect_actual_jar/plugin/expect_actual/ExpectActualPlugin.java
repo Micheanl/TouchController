@@ -1,28 +1,26 @@
 package top.fifthlight.mergetools.merger.plugin.expectactual;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Opcodes;
 import top.fifthlight.mergetools.merger.api.MergeEntry;
 import top.fifthlight.mergetools.merger.api.Plugin;
 import top.fifthlight.mergetools.merger.api.PreprocessEnvironment;
 import top.fifthlight.mergetools.processor.ActualData;
+import top.fifthlight.mergetools.processor.AspectData;
 import top.fifthlight.mergetools.processor.ExpectData;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.util.Arrays;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.stream.Collectors;
 
-public class ExpectActualPlugin implements Plugin {
+public class ExpectActualPlugin implements Plugin, ExpectActualPluginContext {
     @Override
     public int priority() {
         return 1000;
@@ -30,122 +28,51 @@ public class ExpectActualPlugin implements Plugin {
 
     private static final String expectPrefix = "META-INF/expects/";
     private static final String actualPrefix = "META-INF/actuals/";
+    private static final String aspectManifestPath = "META-INF/aspect.json";
     private final ObjectMapper mapper = new ObjectMapper();
     private final HashMap<String, ExpectData> expectDataMap = new HashMap<>();
     private final HashMap<String, ActualData> actualDataMap = new HashMap<>();
     private final HashSet<String> factoryClasses = new HashSet<>();
 
-    private static String internalNameToPath(String internalName) {
-        if (!internalName.startsWith("L") || !internalName.endsWith(";")) {
-            throw new IllegalArgumentException("Invalid binary name: " + internalName);
-        }
-        return internalName.substring(1, internalName.length() - 1);
+    private boolean aspectMode = false;
+    private String aspectClassName;
+    private final List<AspectData> aspectDependencies = new ArrayList<>();
+
+    @Override
+    public Map<String, ActualData> getActualDataMap() {
+        return actualDataMap;
     }
 
-    private record MethodPair(String parameterTypes, String name) {
-        public MethodPair(ExpectData.Constructor constructor) {
-            this(Arrays.stream(constructor.parameters()).map(ExpectData.Constructor.Parameter::type).collect(Collectors.joining()), constructor.name());
-        }
-
-        public MethodPair(ActualData.Constructor constructor) {
-            this(Arrays.stream(constructor.parameters()).map(ActualData.Constructor.Parameter::type).collect(Collectors.joining()), constructor.name());
-        }
-    }
-
-    private record ExpectManifest(ExpectActualPlugin plugin, String interfaceFullQualifiedName,
-                                  ExpectData expectData) implements MergeEntry {
-        @Override
-        public void write(OutputStream output) throws Exception {
-            var actualData = plugin.actualDataMap.get(this.interfaceFullQualifiedName());
-            var expectBinaryName = expectData.interfaceName();
-            var interfaceTypeName = internalNameToPath(expectBinaryName);
-
-            var expectConstructors = Arrays.stream(expectData.constructors()).collect(Collectors.toMap(
-                    MethodPair::new,
-                    constructor -> constructor,
-                    (a, b) -> {
-                        throw new IllegalStateException("Duplicate expect constructors: " + a + ", " + b);
-                    }
-            ));
-            var actualConstructors = Arrays.stream(actualData.constructors()).collect(Collectors.toMap(
-                    MethodPair::new,
-                    constructor -> constructor,
-                    (a, b) -> {
-                        throw new IllegalStateException("Duplicate actual constructors: " + a + ", " + b);
-                    }
-            ));
-
-            // Time of ASM magic
-            var classWriter = new ClassWriter(0);
-            classWriter.visit(Opcodes.V17, Opcodes.ACC_PUBLIC | Opcodes.ACC_SUPER, interfaceTypeName + "Factory", null, "java/lang/Object", null);
-            for (var expectConstructorPair : expectConstructors.entrySet()) {
-                var methodPair = expectConstructorPair.getKey();
-                var expectConstructor = expectConstructorPair.getValue();
-                var actualConstructor = actualConstructors.get(methodPair);
-                if (actualConstructor == null) {
-                    throw new IllegalStateException("No actual constructor found for method pair " + methodPair);
-                }
-
-                var generatedMethodDescriptor = "(" + methodPair.parameterTypes() + ")" + expectBinaryName;
-                var methodVisitor = classWriter.visitMethod(Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC, expectConstructor.name(), generatedMethodDescriptor, null, null);
-                methodVisitor.visitCode();
-
-                var actualClassName = internalNameToPath(actualData.implementationName());
-                switch (actualConstructor.type()) {
-                    case CONSTRUCTOR -> {
-                        methodVisitor.visitTypeInsn(Opcodes.NEW, actualClassName);
-                        methodVisitor.visitInsn(Opcodes.DUP);
-                    }
-                    case STATIC_METHOD -> {
-                    }
-                }
-
-                var parameters = expectConstructor.parameters();
-                var variableLabels = new Label[parameters.length];
-                for (var i = 0; i < parameters.length; i++) {
-                    var parameter = parameters[i];
-
-                    var label = new Label();
-                    variableLabels[i] = label;
-                    methodVisitor.visitLabel(label);
-
-                    var objType = parameter.type().charAt(0);
-                    switch (objType) {
-                        case 'L' -> methodVisitor.visitVarInsn(Opcodes.ALOAD, i);
-                        case 'Z', 'B', 'S', 'C', 'I' -> methodVisitor.visitVarInsn(Opcodes.ILOAD, i);
-                        case 'J' -> methodVisitor.visitVarInsn(Opcodes.LLOAD, i);
-                        case 'F' -> methodVisitor.visitVarInsn(Opcodes.FLOAD, i);
-                        case 'D' -> methodVisitor.visitVarInsn(Opcodes.DLOAD, i);
-                    }
-                }
-
-                switch (actualConstructor.type()) {
-                    case CONSTRUCTOR -> {
-                        var constructorDescriptor = "(" + methodPair.parameterTypes() + ")V";
-                        methodVisitor.visitMethodInsn(Opcodes.INVOKESPECIAL, actualClassName, "<init>", constructorDescriptor, false);
-                    }
-                    case STATIC_METHOD -> {
-                        var actualMethodDescriptor = "(" + methodPair.parameterTypes() + ")" + actualConstructor.returnType();
-                        methodVisitor.visitMethodInsn(Opcodes.INVOKESTATIC, actualClassName, expectConstructor.name(), actualMethodDescriptor, false);
-                    }
-                }
-                var endLabel = new Label();
-                methodVisitor.visitLabel(endLabel);
-                methodVisitor.visitInsn(Opcodes.ARETURN);
-
-                for (var i = 0; i < parameters.length; i++) {
-                    var parameter = parameters[i];
-                    methodVisitor.visitLocalVariable(parameter.name(), parameter.type(), null, variableLabels[i], endLabel, i);
-                }
-                methodVisitor.visitMaxs(parameters.length + 2, parameters.length);
-
-                methodVisitor.visitEnd();
+    @Override
+    public boolean processArg(String arg, PreprocessEnvironment environment) {
+        try {
+            if ("--aspect-mode".equals(arg)) {
+                aspectMode = Boolean.parseBoolean(environment.readNextArg());
+                return true;
             }
-            classWriter.visitEnd();
-
-            var classData = classWriter.toByteArray();
-            output.write(classData);
+            if ("--aspect-class".equals(arg)) {
+                aspectClassName = ExpectActualUtils.fqnToInternalName(environment.readNextArg());
+                return true;
+            }
+            if ("--aspect".equals(arg)) {
+                var path = environment.resolvePath(Path.of(environment.readNextArg()));
+                try (var jarFile = new JarFile(path.toFile())) {
+                    var entry = jarFile.getJarEntry(aspectManifestPath);
+                    if (entry == null) {
+                        throw new IllegalStateException("Aspect JAR missing " + aspectManifestPath + ": " + path);
+                    }
+                    try (var inputStream = new BufferedInputStream(jarFile.getInputStream(entry));
+                         var reader = new InputStreamReader(inputStream)) {
+                        var aspectData = mapper.readValue(reader, AspectData.class);
+                        aspectDependencies.add(aspectData);
+                    }
+                }
+                return true;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+        return false;
     }
 
     @Override
@@ -156,7 +83,7 @@ public class ExpectActualPlugin implements Plugin {
                  var reader = new InputStreamReader(inputStream)) {
                 var expectData = mapper.readValue(reader, ExpectData.class);
                 var interfaceFullQualifiedName = name.substring(expectPrefix.length(), name.length() - ".json".length());
-                var interfaceClassPath = internalNameToPath(expectData.interfaceName());
+                var interfaceClassPath = ExpectActualUtils.descriptorNameToInternalName(expectData.interfaceName());
                 var interfaceFactoryPath = interfaceClassPath + "Factory.class";
                 expectDataMap.put(interfaceFullQualifiedName, expectData);
                 factoryClasses.add(interfaceFactoryPath);
@@ -183,6 +110,117 @@ public class ExpectActualPlugin implements Plugin {
 
     @Override
     public void preSorting(Map<String, MergeEntry> mergeEntries, Map<String, String> manifestEntries) {
+        if (aspectMode) {
+            preSortingAspectJar(mergeEntries);
+        } else {
+            preSortingConsumer(mergeEntries);
+        }
+    }
+
+    private void preSortingAspectJar(Map<String, MergeEntry> mergeEntries) {
+        // Step 1: Process dependent Aspect JARs
+        for (var aspectData : aspectDependencies) {
+            for (var expectEntry : aspectData.expects()) {
+                var fqn = ExpectActualUtils.internalNameToFqn(ExpectActualUtils.descriptorNameToInternalName(expectEntry.interfaceName()));
+                if (!actualDataMap.containsKey(fqn)) {
+                    throw new IllegalStateException("Aspect expect not satisfied: " + fqn);
+                }
+            }
+            var aspectProviderFqn = ExpectActualUtils.internalNameToFqn(ExpectActualUtils.descriptorNameToInternalName(aspectData.aspectProviderInterface()));
+            var implInternalName = aspectProviderFqn + "Impl";
+            mergeEntries.put(implInternalName + ".class", new AspectProviderImplEntry(this, aspectData.aspectProviderInterface(), aspectData));
+
+            var servicesPath = "META-INF/services/" + aspectProviderFqn;
+            if (mergeEntries.containsKey(servicesPath)) {
+                throw new IllegalStateException("ServiceLoader file for " + aspectProviderFqn + " already exists");
+            }
+            mergeEntries.put(servicesPath, new ServiceLoaderRegistrationEntry(implInternalName));
+        }
+
+        // Step 2: Separate satisfied and unresolved expects
+        var unresolvedExpects = new ArrayList<ExpectData>();
+        for (var expectEntry : expectDataMap.entrySet()) {
+            var key = expectEntry.getKey();
+            if (!actualDataMap.containsKey(key)) {
+                unresolvedExpects.add(expectEntry.getValue());
+            } else {
+                // Step 4: Process satisfied expects (same as consumer mode)
+                var actualData = actualDataMap.get(key);
+                var actualSpiFactoryPath = ExpectActualUtils.descriptorNameToInternalName(actualData.spiFactoryName()) + ".class";
+                mergeEntries.remove(actualSpiFactoryPath);
+                var spiManifestPath = "META-INF/services/" + key + "$Factory";
+                mergeEntries.remove(spiManifestPath);
+            }
+        }
+
+        // Step 3: Verify non-empty
+        if (unresolvedExpects.isEmpty()) {
+            throw new IllegalStateException("Aspect JAR must have unresolved expects");
+        }
+
+        var aspectProviderInterface = ExpectActualUtils.internalNameToDescriptor(aspectClassName);
+        var aspectProviderFactory = ExpectActualUtils.internalNameToDescriptor(aspectClassName + "Factory");
+
+        // Step 5: Generate AspectProvider interface
+        mergeEntries.put(aspectClassName + ".class",
+                new AspectProviderInterfaceEntry(aspectClassName, unresolvedExpects));
+
+        // Step 6: Generate AspectProviderFactory class
+        mergeEntries.put(aspectClassName + "Factory.class",
+                new AspectProviderFactoryEntry(aspectClassName));
+
+        // Step 7: Replace unresolved ExpectManifests with delegate versions
+        for (var expectData : unresolvedExpects) {
+            var interfaceClassPath = ExpectActualUtils.descriptorNameToInternalName(expectData.interfaceName());
+            var factoryPath = interfaceClassPath + "Factory.class";
+            var existing = (ExpectManifest) mergeEntries.get(factoryPath);
+            if (existing != null) {
+                mergeEntries.put(factoryPath, existing.withAspectProvider(aspectProviderInterface, aspectProviderFactory));
+            }
+
+            var spiManifestPath = "META-INF/services/" + interfaceClassPath + "$Factory";
+            mergeEntries.remove(spiManifestPath);
+        }
+
+        // Step 8: Generate aspect.json
+        var aspectExpectEntries = unresolvedExpects.stream()
+                .map(e -> new AspectData.ExpectEntry(e.interfaceName(), e.constructors()))
+                .toArray(AspectData.ExpectEntry[]::new);
+        var aspectData = new AspectData(aspectProviderInterface, aspectProviderFactory, aspectExpectEntries);
+        mergeEntries.put(aspectManifestPath, new AspectManifestEntry(aspectData));
+
+    }
+
+    private void preSortingConsumer(Map<String, MergeEntry> mergeEntries) {
+        // Step 1: Verify aspect coverage
+        for (var aspectData : aspectDependencies) {
+            for (var expectEntry : aspectData.expects()) {
+                var fqn = ExpectActualUtils.internalNameToFqn(ExpectActualUtils.descriptorNameToInternalName(expectEntry.interfaceName()));
+                if (!actualDataMap.containsKey(fqn)) {
+                    throw new IllegalStateException("Aspect expect not satisfied: " + fqn);
+                }
+            }
+        }
+
+        // Step 2: Generate AspectProviderImpl
+        for (var aspectData : aspectDependencies) {
+            var aspectProviderFqn = ExpectActualUtils.descriptorNameToInternalName(aspectData.aspectProviderInterface());
+            var implInternalName = aspectProviderFqn + "Impl";
+            mergeEntries.put(implInternalName + ".class", new AspectProviderImplEntry(this, aspectData.aspectProviderInterface(), aspectData));
+        }
+
+        // Step 3: Generate ServiceLoader registration
+        for (var aspectData : aspectDependencies) {
+            var aspectProviderFqn = ExpectActualUtils.internalNameToFqn(ExpectActualUtils.descriptorNameToInternalName(aspectData.aspectProviderInterface()));
+            var servicesPath = "META-INF/services/" + aspectProviderFqn;
+            if (mergeEntries.containsKey(servicesPath)) {
+                throw new IllegalStateException("ServiceLoader file for " + aspectProviderFqn + " already exists");
+            }
+            var implInternalName = aspectProviderFqn + "Impl";
+            mergeEntries.put(servicesPath, new ServiceLoaderRegistrationEntry(implInternalName));
+        }
+
+        // Step 4: Process internal expect/actual (same as original behavior)
         for (var expectEntry : expectDataMap.entrySet()) {
             var key = expectEntry.getKey();
             var actualData = actualDataMap.get(key);
@@ -190,7 +228,7 @@ public class ExpectActualPlugin implements Plugin {
                 throw new IllegalStateException("Missing actual class for: " + key);
             }
 
-            var actualSpiFactoryPath = internalNameToPath(actualData.spiFactoryName()) + ".class";
+            var actualSpiFactoryPath = ExpectActualUtils.descriptorNameToInternalName(actualData.spiFactoryName()) + ".class";
             if (!mergeEntries.containsKey(actualSpiFactoryPath)) {
                 throw new IllegalStateException("Missing actual spi factory: " + actualSpiFactoryPath);
             }
@@ -201,6 +239,21 @@ public class ExpectActualPlugin implements Plugin {
                 throw new IllegalStateException("Missing spi manifest: " + spiManifestPath);
             }
             mergeEntries.remove(spiManifestPath);
+        }
+
+        // Step 5: Clean up aspect expect intermediate artifacts
+        for (var aspectData : aspectDependencies) {
+            for (var expectEntry : aspectData.expects()) {
+                var fqn = ExpectActualUtils.internalNameToFqn(ExpectActualUtils.descriptorNameToInternalName(expectEntry.interfaceName()));
+                var actualData = actualDataMap.get(fqn);
+                if (actualData == null) {
+                    throw new IllegalStateException("Missing actual class for: " + fqn);
+                }
+                var actualSpiFactoryPath = ExpectActualUtils.descriptorNameToInternalName(actualData.spiFactoryName()) + ".class";
+                mergeEntries.remove(actualSpiFactoryPath);
+                var spiManifestPath = "META-INF/services/" + fqn + "$Factory";
+                mergeEntries.remove(spiManifestPath);
+            }
         }
     }
 }

@@ -34,6 +34,11 @@ MergeLibraryInfo, _ = provider(
     init = _merge_library_info_init,
 )
 
+AspectJarInfo = provider(
+    doc = "Provider for Aspect JAR outputs.",
+    fields = ["jar"],
+)
+
 def _merge_library_group_impl(ctx):
     return [MergeLibraryInfo(
         merge_jars = depset(),
@@ -216,6 +221,9 @@ def _path_to_name(path):
     return ["--strip", path.dirname, "--resource", path.path]
 
 def _merge_library_jar_impl(ctx):
+    if ctx.attr.aspect and not ctx.attr.aspect_class:
+        fail("aspect_class is required when aspect is True")
+
     output_jar = ctx.actions.declare_file(ctx.label.name + ".jar")
 
     merged_deps_depset = depset(transitive = [dep[MergeLibraryInfo].transitive_merge_jars for dep in ctx.attr.deps])
@@ -224,6 +232,15 @@ def _merge_library_jar_impl(ctx):
 
     args = ctx.actions.args()
     args.add(output_jar)
+
+    if ctx.attr.aspect:
+        args.add("--aspect-mode", "true")
+        args.add("--aspect-class", ctx.attr.aspect_class)
+
+    aspect_jar_files = [dep[AspectJarInfo].jar for dep in ctx.attr.aspects]
+    for jar in aspect_jar_files:
+        args.add("--aspect", jar.path)
+
     args.add_all(merged_deps)
     resource_files = []
     for resource in ctx.attr.resources.keys():
@@ -250,7 +267,7 @@ def _merge_library_jar_impl(ctx):
 
     ctx.actions.run(
         inputs = depset(
-            direct = resource_files,
+            direct = resource_files + aspect_jar_files,
             transitive = [merged_deps_depset],
         ),
         outputs = [output_jar],
@@ -281,7 +298,7 @@ def _merge_library_jar_impl(ctx):
             source_jar = ctx.outputs.sources_jar,
         ),
         DefaultInfo(files = depset([output_jar])),
-    ]
+    ] + ([AspectJarInfo(jar = output_jar)] if ctx.attr.aspect else [])
 
 _merge_library_jar = rule(
     implementation = _merge_library_jar_impl,
@@ -307,6 +324,22 @@ _merge_library_jar = rule(
             default = Label("@//rule/merge_expect_actual_jar:expect_actual"),
             executable = True,
             cfg = "exec",
+        ),
+        "aspect": attr.bool(
+            mandatory = False,
+            default = False,
+            doc = "Whether to build this JAR as an Aspect JAR.",
+        ),
+        "aspect_class": attr.string(
+            mandatory = False,
+            default = "",
+            doc = "Dotted fully qualified name of the AspectProvider interface (e.g. 'top.fifthlight.combine.CombineAspectProvider').",
+        ),
+        "aspects": attr.label_list(
+            mandatory = False,
+            providers = [AspectJarInfo],
+            default = [],
+            doc = "External Aspect JARs to consume.",
         ),
     },
     doc = "Merge libraries into a single JAR",

@@ -4,6 +4,7 @@ java_library(
     name = "lib",
     srcs = [
         "ActualData.java",
+        "AspectData.java",
         "ExpectData.java",
     ],
     visibility = ["//visibility:public"],
