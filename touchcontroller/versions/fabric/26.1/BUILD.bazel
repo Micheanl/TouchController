@@ -36,7 +36,6 @@ kt_merge_library(
         "//touchcontroller/versions/gal/key/26.1",
     ],
     merge_runtime_deps = [
-        "//touchcontroller/resources/texture:vanilla_lib",
         "//touchcontroller/versions/fabric/gal/26.1",
         "//touchcontroller/versions/gal/26.1",
         "//touchcontroller/versions/mixin/26.1",
@@ -53,7 +52,11 @@ kt_merge_library(
     ),
     visibility = ["//visibility:public"],
     runtime_deps = [
-        "//combine/theme/blackstone:vanilla_lib_unmerged",
+        "//combine/theme/blackstone:blackstone_common",
+        "//combine/theme/blackstone:blackstone_vanilla",
+        "//touchcontroller/resources/lang",
+        "//touchcontroller/resources/texture:texture_common",
+        "//touchcontroller/resources/texture:texture_vanilla",
     ],
     deps = [
         "//combine/backend/minecraft/identifier/26.1",
@@ -129,7 +132,11 @@ java_binary(
         # Classpath separator
         ":fabric_unmerged",
         "//blazesdl:blazesdl_unmerged",
-        "//combine/backend/minecraft/fabric/26.1:fabric_merged",
+        "//combine",
+        "//combine/backend/minecraft/versions:26.1",
+        "//combine/backend/minecraft/fabric/26.1:meta_jar",
+        "//combine/backend/minecraft/fabric:meta_jar",
+        "//touchcontroller/common",
         "//rule/dev_launch_wrapper",
         "@maven_fabric_26_1//:io_github_llamalad7_mixinextras_fabric",
         "@maven_fabric_26_1//:net_fabricmc_fabric_language_kotlin",

@@ -1,7 +1,7 @@
 """Rules for generating mod information JAR files."""
 
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
-load("@rules_java//java:defs.bzl", "java_library")
+load("//rule:merge_library.bzl", "java_merge_library")
 
 def _mod_info_jar_impl(name, visibility, fabric, neoforge, resource_strip_prefix, substitutions):
     resources = []
@@ -11,7 +11,7 @@ def _mod_info_jar_impl(name, visibility, fabric, neoforge, resource_strip_prefix
             name = fabric_name,
             template = fabric,
             substitutions = substitutions,
-            out = "fabric.mod.json",
+            out = "%s/fabric.mod.json" % name,
         )
         resources.append(fabric_name)
     if neoforge:
@@ -23,15 +23,15 @@ def _mod_info_jar_impl(name, visibility, fabric, neoforge, resource_strip_prefix
             name = neoforge_name,
             template = neoforge,
             substitutions = substitutions,
-            out = "META-INF/neoforge.mods.toml",
+            out = "%s/neoforge.mods.toml" % name,
         )
         resources.append(neoforge_name)
 
-    java_library(
+    java_merge_library(
         name = name,
         visibility = visibility,
         resources = resources,
-        resource_strip_prefix = resource_strip_prefix,
+        resource_strip_prefix = resource_strip_prefix + "/" + name,
     )
 
 mod_info_jar = macro(

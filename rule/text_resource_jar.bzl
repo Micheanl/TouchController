@@ -1,8 +1,9 @@
-load("@rules_java//java:defs.bzl", "JavaInfo")
+load("@rules_java//java:defs.bzl", "JavaInfo", "java_common")
+load("//rule:merge_jar.bzl", "merge_jar_action")
 load("//rule:merge_library.bzl", "MergeLibraryInfo")
 
 def _text_resource_jar_impl(ctx):
-    output_jar = ctx.actions.declare_file(ctx.label.name + ".jar")
+    text_jar = ctx.actions.declare_file(ctx.label.name + "_text.jar")
 
     format = ctx.attr.format
     prefix = ctx.attr.resource_prefix
@@ -35,7 +36,7 @@ def _text_resource_jar_impl(ctx):
 
     jar_args = ctx.actions.args()
     jar_args.add("--output")
-    jar_args.add(output_jar)
+    jar_args.add(text_jar)
 
     for output_file in transformed_files:
         if prefix:
@@ -52,7 +53,7 @@ def _text_resource_jar_impl(ctx):
 
     ctx.actions.run(
         inputs = transformed_files,
-        outputs = [output_jar],
+        outputs = [text_jar],
         executable = ctx.executable._create_jar_executable,
         execution_requirements = {
             "supports-workers": "1",
@@ -62,6 +63,16 @@ def _text_resource_jar_impl(ctx):
         },
         arguments = [jar_args],
         progress_message = "Creating text resource JAR %s" % ctx.label.name,
+    )
+
+    merged_resource_jars = java_common.merge([dep[JavaInfo] for dep in ctx.attr.resource_jars])
+    output_jar = ctx.actions.declare_file(ctx.label.name + ".jar")
+    merge_jar_action(
+        ctx.actions,
+        ctx.executable._merge_jar_executable,
+        output_jar,
+        depset([text_jar], transitive = [merged_resource_jars.full_compile_jars]),
+        ctx.attr.resources,
     )
 
     return [
@@ -91,6 +102,17 @@ text_resource_jar = rule(
             default = "",
             doc = "Prefix to add to resource paths in JAR",
         ),
+        "resources": attr.label_keyed_string_dict(
+            mandatory = False,
+            allow_files = True,
+            default = {},
+            doc = "Resource to be merged, with perfix to strip",
+        ),
+        "resource_jars": attr.label_list(
+            mandatory = False,
+            providers = [JavaInfo],
+            doc = "Resource JARs to be merged",
+        ),
         "_text_transformer": attr.label(
             default = Label("@//rule/text_transformer"),
             executable = True,
@@ -98,6 +120,11 @@ text_resource_jar = rule(
         ),
         "_create_jar_executable": attr.label(
             default = Label("@//rule/create_jar:create_jar_worker"),
+            executable = True,
+            cfg = "exec",
+        ),
+        "_merge_jar_executable": attr.label(
+            default = "@//rule/merge_expect_actual_jar:core",
             executable = True,
             cfg = "exec",
         ),

@@ -6,7 +6,6 @@ kt_merge_library(
     expect = True,
     merge_deps = [
         "//touchcontroller/common/util/registry",
-        "//touchcontroller/resources/lang:text_binding",
     ],
     visibility = ["//visibility:public"],
     deps = [

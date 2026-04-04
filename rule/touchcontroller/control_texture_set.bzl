@@ -235,12 +235,11 @@ def _kt_control_texture_set_lib_impl(
         visibility = visibility,
         actual = True,
         merge_deps = [
-            kt_texture_lib,
             kt_text_binding_lib,
             _texture_sets_lib,
         ],
         deps = [
-            "//:kotlin_serialization",
+            kt_texture_lib,
             "//combine/core/data",
             "//combine/core/paint",
         ],
@@ -458,10 +457,10 @@ def _kt_empty_texture_lib_impl(
         srcs = [source_lib],
         visibility = visibility,
         merge_deps = [
-            kt_texture_lib,
             kt_text_binding_lib,
         ],
         deps = [
+            kt_texture_lib,
             "//:kotlin_serialization",
             "//combine/core/data",
             "//combine/data",

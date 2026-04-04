@@ -1,0 +1,25 @@
+{
+    "schemaVersion": 1,
+    "id": "touchcontroller-lang-modern",
+    "version": "${version}",
+    "name": "TouchController Languages",
+    "description": "Language files for TouchController.",
+    "authors": "language_authors_array",
+    "contact": {
+        "homepage": "${home_page}",
+        "sources": "${sources_page}",
+        "issues": "${issue_tracker}"
+    },
+    "license": "${license}",
+    "icon": "assets/touchcontroller/textures/icon.png",
+    "environment": "client",
+    "depends": {
+        "minecraft": ">=1.13"
+    },
+    "custom": {
+        "modmenu": {
+            "parent": "touchcontroller",
+            "badges": ["library"]
+        }
+    }
+}

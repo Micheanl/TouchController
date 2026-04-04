@@ -31,9 +31,7 @@ merge_library_jar(
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
         "//touchcontroller/common",
-        "//touchcontroller/resources/lang",
         "//touchcontroller/resources/texture:icon_jar",
-        "//touchcontroller/resources/texture:vanilla_pack",
     ],
 )
 
@@ -42,12 +40,16 @@ fabric_merge_jij(
     input = ":fabric_unmerged",
     visibility = ["//visibility:public"],
     deps = {
-        "//touchcontroller/api": "touchcontroller-api:=",
-        "//combine/theme/blackstone:vanilla_lib": "combine-theme-blackstone:=",
+        "//combine/theme/blackstone:blackstone_common": "combine-theme-blackstone:=",
+        "//combine/theme/blackstone:blackstone_vanilla": "combine-theme-blackstone-vanilla:=",
         "//combine/backend/minecraft/fabric:fabric_unmerged": "combine:=",
         "//combine/backend/minecraft/fabric/1.21.10": "combine-1-21-10:=",
         "//combine/backend/minecraft/fabric/1.21.11": "combine-1-21-11:=",
         "//combine/backend/minecraft/fabric/26.1": "combine-26.1:=",
+        "//touchcontroller/api": "touchcontroller-api:=",
+        "//touchcontroller/resources/lang": "touchcontroller-lang-modern:=",
+        "//touchcontroller/resources/texture:texture_common": "touchcontroller-texture:=",
+        "//touchcontroller/resources/texture:texture_vanilla": "touchcontroller-texture-vanilla:=",
         "//touchcontroller/versions/fabric/1.21.10": "touchcontroller-1-21-10:=",
         "//touchcontroller/versions/fabric/1.21.11": "touchcontroller-1-21-11:=",
         "//touchcontroller/versions/fabric/26.1": "touchcontroller-26.1:=",

@@ -31,8 +31,9 @@ def _impl(ctx):
                 dirname = dirname[1:]
 
             basename = ctx.attr.resource_rename.get(file.basename, file.basename)
-
-            jar_entry_path = dirname + "/" + basename
+            jar_entry_path = basename
+            if dirname:
+                jar_entry_path = dirname + "/" + jar_entry_path
 
             args.add("--entry")
             args.add(jar_entry_path)

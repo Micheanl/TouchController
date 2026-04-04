@@ -1,5 +1,7 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("//rule:text_resource_jar.bzl", "text_resource_jar")
 load("//rule/touchcontroller:text_binding.bzl", "kt_text_binding_lib")
+load("//touchcontroller:properties.bzl", "touchcontroller_homepage", "touchcontroller_issue_tracker", "touchcontroller_language_authors", "touchcontroller_license", "touchcontroller_source", "touchcontroller_version")
 
 kt_text_binding_lib(
     name = "text_binding",
@@ -9,11 +11,31 @@ kt_text_binding_lib(
     visibility = ["//touchcontroller:__subpackages__"],
 )
 
+expand_template(
+    name = "fabric_mod_json_modern",
+    out = "modern_expanded/fabric.mod.json",
+    substitutions = {
+        "${version}": touchcontroller_version,
+        "${license}": touchcontroller_license,
+        "${home_page}": touchcontroller_homepage,
+        "${sources_page}": touchcontroller_source,
+        "${issue_tracker}": touchcontroller_issue_tracker,
+        '"language_authors_array"': json.encode(touchcontroller_language_authors),
+    },
+    template = "modern/fabric.mod.json",
+)
+
 text_resource_jar(
     name = "lang",
     srcs = glob(["*.json"]),
     format = "json",
+    resource_jars = [
+        "//touchcontroller/resources/texture:icon_jar",
+    ],
     resource_prefix = "assets/touchcontroller/lang",
+    resources = {
+        ":fabric_mod_json_modern": "touchcontroller/resources/lang/modern_expanded",
+    },
     visibility = ["//touchcontroller:__subpackages__"],
 )
 

@@ -1,5 +1,6 @@
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("//combine:properties.bzl", "combine_description", "combine_fabric_libraries", "combine_home_page", "combine_issue_tracker", "combine_license", "combine_sources_page", "combine_version")
+load("//rule:jar.bzl", "jar")
 load("//rule:merge_library.bzl", "merge_library_jar")
 load("//rule/fabric:merge_jij.bzl", "fabric_merge_jij")
 
@@ -17,16 +18,22 @@ expand_template(
     template = "resources/fabric.mod.json",
 )
 
+jar(
+    name = "meta_jar",
+    resources = [":fabric_mod_json"],
+    visibility = ["//visibility:public"],
+)
+
 merge_library_jar(
     name = "fabric_unmerged",
     aspect = True,
     aspect_class = "top.fifthlight.combine.AspectProvider",
     resources = {
-        ":fabric_mod_json": "combine/backend/minecraft/fabric",
         "//combine/resources:icon": ".",
     },
     visibility = ["//visibility:public"],
     deps = [
+        ":meta_jar",
         "//combine",
         "//combine/item",
     ],

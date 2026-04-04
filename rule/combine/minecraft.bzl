@@ -1,6 +1,7 @@
 """Rules for Minecraft-specific build targets."""
 
 load("@rules_java//java:defs.bzl", "JavaInfo")
+load("//rule:merge_jar.bzl", "merge_jar_action")
 load("//rule:merge_library.bzl", "MergeLibraryInfo", "kt_merge_library")
 load("//rule/combine:texture.bzl", "TextureLibraryInfo")
 
@@ -171,7 +172,7 @@ _kt_vanilla_source = rule(
     },
 )
 
-def _kt_vanilla_lib_impl(name, visibility, pack, dep, resource_jars):
+def _kt_vanilla_lib_impl(name, visibility, pack, dep, resources, resource_strip_prefix, resource_jars):
     source_lib = name + "_source"
     _kt_vanilla_source(
         name = source_lib,
@@ -189,6 +190,8 @@ def _kt_vanilla_lib_impl(name, visibility, pack, dep, resource_jars):
             "//combine/core/paint",
             dep,
         ],
+        resources = resources,
+        resource_strip_prefix = resource_strip_prefix,
         resource_jars = resource_jars,
     )
 
@@ -203,6 +206,17 @@ kt_vanilla_lib = macro(
             providers = [JavaInfo],
             mandatory = False,
             configurable = False,
+        ),
+        "resources": attr.label_list(
+            mandatory = False,
+            allow_files = True,
+            default = [],
+            doc = "Resources to be packed into JAR",
+        ),
+        "resource_strip_prefix": attr.label(
+            mandatory = False,
+            doc = "Prefix to strip from resource paths.",
+            allow_single_file = True,
         ),
         "resource_jars": attr.label_list(
             allow_files = [".jar"],

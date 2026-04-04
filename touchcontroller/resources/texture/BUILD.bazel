@@ -1,8 +1,11 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("//rule:jar.bzl", "jar")
+load("//rule:merge_library.bzl", "merge_library_jar")
 load("//rule/combine:library.bzl", "kt_texture_lib")
 load("//rule/combine:minecraft.bzl", "atlas_pack", "kt_vanilla_lib", "vanilla_pack")
 load("//rule/combine:texture.bzl", "texture", "texture_group", "texture_lib")
 load("//rule/touchcontroller:control_texture_set.bzl", "kt_control_texture_set_lib", "kt_empty_texture_lib")
+load("//touchcontroller:properties.bzl", "touchcontroller_homepage", "touchcontroller_issue_tracker", "touchcontroller_license", "touchcontroller_source", "touchcontroller_texture_authors", "touchcontroller_version")
 
 texture(
     name = "icon_texture",
@@ -39,6 +42,32 @@ kt_texture_lib(
     name = "texture_lib",
     dep = ":texture",
     visibility = ["//touchcontroller:__subpackages__"],
+)
+
+expand_template(
+    name = "fabric_mod_json",
+    out = "expanded/fabric.mod.json",
+    substitutions = {
+        "${version}": touchcontroller_version,
+        "${license}": touchcontroller_license,
+        "${home_page}": touchcontroller_homepage,
+        "${sources_page}": touchcontroller_source,
+        "${issue_tracker}": touchcontroller_issue_tracker,
+        '"texture_authors_array"': json.encode(touchcontroller_texture_authors),
+    },
+    template = "resources/fabric.mod.json",
+)
+
+merge_library_jar(
+    name = "texture_common",
+    aspect = True,
+    aspect_class = "top.fifthlight.touchcontroller.assets.AspectProvider",
+    resources = {":fabric_mod_json": "."},
+    visibility = ["//touchcontroller:__subpackages__"],
+    deps = [
+        ":icon_jar",
+        ":texture_lib",
+    ],
 )
 
 kt_control_texture_set_lib(
@@ -79,8 +108,36 @@ kt_vanilla_lib(
     name = "vanilla_lib",
     dep = ":texture_lib",
     pack = ":vanilla_pack",
-    resource_jars = [":vanilla_pack"],
+    resource_jars = [
+        ":icon_jar",
+        ":vanilla_pack",
+    ],
     visibility = ["//touchcontroller:__subpackages__"],
+)
+
+expand_template(
+    name = "fabric_mod_json_vanilla",
+    out = "vanilla_expanded/fabric.mod.json",
+    substitutions = {
+        "${version}": touchcontroller_version,
+        "${license}": touchcontroller_license,
+        "${home_page}": touchcontroller_homepage,
+        "${sources_page}": touchcontroller_source,
+        "${issue_tracker}": touchcontroller_issue_tracker,
+        '"texture_authors_array"': json.encode(touchcontroller_texture_authors),
+    },
+    template = "resources/fabric.mod.vanilla.json",
+)
+
+merge_library_jar(
+    name = "texture_vanilla",
+    aspects = [":texture_common"],
+    resources = {":fabric_mod_json_vanilla": "."},
+    visibility = ["//touchcontroller:__subpackages__"],
+    deps = [
+        ":icon_jar",
+        ":vanilla_lib",
+    ],
 )
 
 atlas_pack(

@@ -22,7 +22,6 @@ import top.fifthlight.combine.modifier.placement.height
 import top.fifthlight.combine.modifier.placement.padding
 import top.fifthlight.combine.modifier.scroll.verticalScroll
 import top.fifthlight.combine.paint.Colors
-import top.fifthlight.combine.theme.blackstone.BlackstoneTextures
 import top.fifthlight.combine.widget.layout.Column
 import top.fifthlight.combine.widget.layout.Row
 import top.fifthlight.combine.widget.ui.Link
@@ -35,9 +34,9 @@ import top.fifthlight.touchcontroller.common.ui.config.tab.Tab
 import top.fifthlight.touchcontroller.common.ui.config.tab.TabGroup
 import top.fifthlight.touchcontroller.common.ui.config.tab.TabOptions
 import top.fifthlight.touchcontroller.common.ui.config.tab.about.model.AboutScreenModel
-import top.fifthlight.touchcontroller.common.ui.widget.raw.RawTextureIcon
 import top.fifthlight.touchcontroller.common.ui.screen.LicenseScreen
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
+import top.fifthlight.touchcontroller.common.ui.widget.raw.RawTextureIcon
 
 object AboutTab : Tab() {
     override val options = TabOptions(
@@ -117,7 +116,7 @@ object AboutTab : Tab() {
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .border(BlackstoneTextures.widget_tab_tab),
+                                .border(LocalTouchControllerTheme.current.tabButtonDrawablesUnchecked.normal),
                             verticalArrangement = Arrangement.spacedBy(4),
                         ) {
                             Row(

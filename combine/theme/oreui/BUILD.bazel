@@ -1,64 +1,20 @@
-load("//combine/theme:theme_info_jar.bzl", "theme_info_jar")
-load("//rule:merge_library.bzl", "kt_merge_library", "merge_library_jar")
-load("//rule/combine:library.bzl", "kt_texture_lib")
-load("//rule/combine:minecraft.bzl", "atlas_pack", "kt_vanilla_lib", "vanilla_pack")
+load("//combine/theme:texture_theme.bzl", "combine_theme")
 
-kt_texture_lib(
-    name = "texture_lib",
-    dep = "//combine/theme/oreui/texture",
-)
-
-kt_merge_library(
+combine_theme(
     name = "oreui",
     srcs = glob(["*.kt"]),
-    merge_deps = [
-        ":texture_lib",
-    ],
-    visibility = ["//visibility:public"],
-    deps = [
-        "//combine/core/paint",
-        "//combine/data",
-        "//combine/style",
-        "//combine/theme/base",
-    ],
-)
-
-vanilla_pack(
-    name = "vanilla_pack",
-    dep = "//combine/theme/oreui/texture",
-    namespace = "combine",
-)
-
-atlas_pack(
-    name = "atlas_pack",
-    dep = "//combine/theme/oreui/texture",
-    namespace = "combine",
-)
-
-theme_info_jar(
-    name = "mod_info_json",
+    aspect_class = "top.fifthlight.combine.theme.oreui.AspectProvider",
+    mod_id = "combine-theme-oreui",
     substitutions = {
         "${mod_id}": "combine-theme-oreui",
-        "${name}": "Combine theme oreui",
-        "${description}": "Ore UI theme for Combine.",
+        "${name}": "Combine Theme OreUI",
+        "${description}": "OreUI theme for Combine.",
+        "${name-vanilla}": "Combine Theme OreUI Vanilla",
+        "${description-vanilla}": "OreUI theme for Combine. This mod contains assets for Minecraft >=1.21.2.",
     },
-)
-
-kt_vanilla_lib(
-    name = "vanilla_lib_unmerged",
-    dep = ":texture_lib",
-    pack = ":vanilla_pack",
-    resource_jars = [
-        ":mod_info_json",
-        ":vanilla_pack",
-    ],
+    texture = "//combine/theme/oreui/texture",
     visibility = ["//visibility:public"],
-)
-
-merge_library_jar(
-    name = "vanilla_lib",
     deps = [
-        ":oreui",
-        ":vanilla_lib_unmerged",
+        "//combine/data",
     ],
 )

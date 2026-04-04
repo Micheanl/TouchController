@@ -1,0 +1,22 @@
+{
+    "schemaVersion": 1,
+    "id": "touchcontroller-texture",
+    "version": "${version}",
+    "name": "TouchController Textures",
+    "description": "Common textures definitions for TouchController.",
+    "authors": "texture_authors_array",
+    "license": "${license}",
+    "icon": "assets/touchcontroller/textures/icon.png",
+    "contact": {
+        "homepage": "${home_page}",
+        "sources": "${sources_page}",
+        "issues": "${issue_tracker}"
+    },
+    "environment": "client",
+    "custom": {
+        "modmenu": {
+            "parent": "touchcontroller",
+            "badges": ["library"]
+        }
+    }
+}

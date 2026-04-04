@@ -8,8 +8,10 @@ kt_jvm_library(
     resources = glob(["resources/**"]),
     visibility = ["//visibility:public"],
     runtime_deps = [
-        "//combine/theme/blackstone:vanilla_lib_unmerged",
-        "//combine/theme/oreui:vanilla_lib_unmerged",
+        "//combine/theme/blackstone:blackstone_common",
+        "//combine/theme/blackstone:blackstone_vanilla",
+        "//combine/theme/oreui:oreui_common",
+        "//combine/theme/oreui:oreui_vanilla",
     ],
     deps = [
         "//:compose",
@@ -67,7 +69,10 @@ java_binary(
         "//game/26.1:game_client_libraries",
         # Classpath separator
         ":widget_factory",
-        "//combine/backend/minecraft/fabric/26.1:fabric_merged",
+        "//blazesdl:blazesdl_unmerged",
+        "//combine/backend/minecraft/versions:26.1",
+        "//combine/backend/minecraft/fabric/26.1",
+        "//combine/backend/minecraft/fabric:meta_jar",
         "//rule/dev_launch_wrapper",
         "@maven_fabric_26_1//:io_github_llamalad7_mixinextras_fabric",
         "@maven_fabric_26_1//:net_fabricmc_fabric_language_kotlin",

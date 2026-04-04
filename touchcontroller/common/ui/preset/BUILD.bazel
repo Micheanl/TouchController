@@ -15,7 +15,6 @@ kt_merge_library(
         "//touchcontroller/common/ui/control",
         "//touchcontroller/common/ui/theme",
         "//touchcontroller/resources/lang:text_binding",
-        "//touchcontroller/resources/texture:texture_set_lib",
     ],
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [

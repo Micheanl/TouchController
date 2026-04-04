@@ -12,7 +12,6 @@ kt_merge_library(
         "//touchcontroller/common/ui/config/tab/layout/custom/widgets/state",
         "//touchcontroller/common/ui/model",
         "//touchcontroller/common/util/state",
-        "//touchcontroller/resources/texture:texture_set_lib",
     ],
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [

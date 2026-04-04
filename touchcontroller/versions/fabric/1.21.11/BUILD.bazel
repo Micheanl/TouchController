@@ -51,7 +51,6 @@ kt_merge_library(
         "//touchcontroller/versions/gal/key/1.21.11",
     ],
     merge_runtime_deps = [
-        "//touchcontroller/resources/texture:vanilla_lib",
         "//touchcontroller/versions/fabric/gal/1.21.11",
         "//touchcontroller/versions/gal/1.21.11",
         "//touchcontroller/versions/mixin/1.21.11",
@@ -68,7 +67,11 @@ kt_merge_library(
     ),
     visibility = ["//visibility:public"],
     runtime_deps = [
-        "//combine/theme/blackstone:vanilla_lib_unmerged",
+        "//combine/theme/blackstone:blackstone_common",
+        "//combine/theme/blackstone:blackstone_vanilla",
+        "//touchcontroller/resources/lang",
+        "//touchcontroller/resources/texture:texture_common",
+        "//touchcontroller/resources/texture:texture_vanilla",
     ],
     deps = [
         ":remapped_deps",
@@ -150,7 +153,11 @@ java_binary(
         "//game/1.21.11:game_mapping_jar",
         ":fabric_unmapped_unmerged",
         ":remapped_deps",
-        "//combine/backend/minecraft/fabric/1.21.11:fabric_unmapped_merged",
+        "//combine",
+        "//combine/backend/minecraft/versions:1.21.11",
+        "//combine/backend/minecraft/fabric/1.21.11:meta_jar",
+        "//combine/backend/minecraft/fabric:meta_jar",
+        "//touchcontroller/common",
         "//rule/dev_launch_wrapper",
         "@maven_fabric_1_21_11//:net_fabricmc_fabric_language_kotlin",
         "@maven_fabric_1_21_11//:net_fabricmc_fabric_loader",

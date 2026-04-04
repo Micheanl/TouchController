@@ -8,6 +8,14 @@ touchcontroller_homepage = "https://github.com/TouchController/TouchController"
 touchcontroller_source = "https://github.com/TouchController/TouchController"
 touchcontroller_issue_tracker = "https://github.com/TouchController/TouchController/issues"
 touchcontroller_authors = ["fifth_light", "bukeyu"]
+touchcontroller_texture_authors = ["fengzhou0w0", "APX201"]
+touchcontroller_language_authors = [
+    "fifth_light",
+    "white_elephant",
+    "StarmanMine142",
+    "Xaerfly",
+    "LanYun2022",
+]
 touchcontroller_contributors = [
     "fengzhou0w0",
     "white_elephant",

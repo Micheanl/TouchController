@@ -8,8 +8,10 @@ kt_jvm_library(
     resource_strip_prefix = "combine/example/calculator/resources",
     resources = glob(["resources/**"]),
     runtime_deps = [
-        "//combine/theme/blackstone:vanilla_lib_unmerged",
-        "//combine/theme/oreui:vanilla_lib_unmerged",
+        "//combine/theme/blackstone:blackstone_common",
+        "//combine/theme/blackstone:blackstone_vanilla",
+        "//combine/theme/oreui:oreui_common",
+        "//combine/theme/oreui:oreui_vanilla",
     ],
     deps = [
         "//:compose",
@@ -72,7 +74,9 @@ java_binary(
         "//game/1.21.10:game_client_libraries",
         # Classpath separator
         "//game/1.21.10:game_mapping_jar",
-        "//combine/backend/minecraft/fabric/1.21.10:fabric_unmapped_merged",
+        "//combine/backend/minecraft/versions:1.21.10",
+        "//combine/backend/minecraft/fabric/1.21.10:meta_jar",
+        "//combine/backend/minecraft/fabric:meta_jar",
         ":calculator_unmapped",
         "//rule/dev_launch_wrapper",
         "@maven_fabric_1_21_10//:io_github_llamalad7_mixinextras_fabric",

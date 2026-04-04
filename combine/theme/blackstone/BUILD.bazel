@@ -1,68 +1,18 @@
-load("//combine/theme:theme_info_jar.bzl", "theme_info_jar")
-load("//rule:merge_library.bzl", "kt_merge_library", "merge_library_jar")
-load("//rule/combine:library.bzl", "kt_texture_lib")
-load("//rule/combine:minecraft.bzl", "atlas_pack", "kt_vanilla_lib", "vanilla_pack")
+load("//combine/theme:texture_theme.bzl", "combine_theme")
 
-kt_texture_lib(
-    name = "texture_lib",
-    dep = "//combine/theme/blackstone/texture",
-    visibility = ["//visibility:public"],
-)
-
-kt_merge_library(
+combine_theme(
     name = "blackstone",
     srcs = glob(["*.kt"]),
-    merge_deps = [
-        ":texture_lib",
-    ],
-    visibility = ["//visibility:public"],
-    deps = [
-        "//combine/core/paint",
-        "//combine/style",
-        "//combine/theme/base",
-    ],
-)
-
-vanilla_pack(
-    name = "vanilla_pack",
-    dep = "//combine/theme/blackstone/texture",
-    namespace = "combine",
-)
-
-atlas_pack(
-    name = "atlas_pack",
-    dep = "//combine/theme/blackstone/texture",
-    namespace = "combine",
-)
-
-theme_info_jar(
-    name = "mod_info_json",
+    aspect_class = "top.fifthlight.combine.theme.blackstone.AspectProvider",
+    icon = "icon.png",
+    mod_id = "combine-theme-blackstone",
     substitutions = {
         "${mod_id}": "combine-theme-blackstone",
         "${name}": "Combine theme blackstone",
         "${description}": "Blackstone theme for Combine.",
+        "${name-vanilla}": "Combine Theme Blackstone Vanilla",
+        "${description-vanilla}": "Blackstone theme for Combine. This mod contains assets for Minecraft >=1.21.2.",
     },
-)
-
-kt_vanilla_lib(
-    name = "vanilla_lib_unmerged",
-    dep = ":texture_lib",
-    pack = ":vanilla_pack",
-    resource_jars = [
-        ":mod_info_json",
-        ":vanilla_pack",
-    ],
+    texture = "//combine/theme/blackstone/texture",
     visibility = ["//visibility:public"],
-)
-
-merge_library_jar(
-    name = "vanilla_lib",
-    resources = {
-        "icon.png": ".",
-    },
-    visibility = ["//visibility:public"],
-    deps = [
-        ":blackstone",
-        ":vanilla_lib_unmerged",
-    ],
 )

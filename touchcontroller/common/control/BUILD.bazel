@@ -17,8 +17,6 @@ kt_merge_library(
         "//touchcontroller/common/ui/widget/navigation",
         "//touchcontroller/common/util/uuid",
         "//touchcontroller/resources/lang:text_binding",
-        "//touchcontroller/resources/texture:texture_lib",
-        "//touchcontroller/resources/texture:texture_set_lib",
     ],
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
@@ -35,6 +33,7 @@ kt_merge_library(
         "//combine/core/widget/layout",
         "//combine/data",
         "//combine/widget",
+        "//touchcontroller/resources/texture:texture_lib",
         "@maven//:androidx_compose_runtime_runtime_annotation_jvm",
         "@maven//:org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm",
     ],

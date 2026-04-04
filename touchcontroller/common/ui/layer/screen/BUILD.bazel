@@ -19,7 +19,6 @@ kt_merge_library(
         "//touchcontroller/common/ui/widget",
         "//touchcontroller/common/ui/widget/navigation",
         "//touchcontroller/resources/lang:text_binding",
-        "//touchcontroller/resources/texture:texture_lib",
     ],
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
@@ -37,6 +36,7 @@ kt_merge_library(
         "//combine/item/widget",
         "//combine/style",
         "//combine/widget",
+        "//touchcontroller/resources/texture:texture_lib",
         "@maven//:cafe_adriel_voyager_voyager_core_desktop",
         "@maven//:cafe_adriel_voyager_voyager_navigator_desktop",
         "@maven//:cafe_adriel_voyager_voyager_screenmodel_desktop",

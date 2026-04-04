@@ -21,6 +21,5 @@ kt_merge_library(
         "//:kotlin_serialization",
         "//combine/core/data",
         "//touchcontroller/api",
-        "@maven//:org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm",
     ],
 )
