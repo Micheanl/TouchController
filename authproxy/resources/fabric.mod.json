@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "authproxy",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"name": "Authproxy",
 	"description": "Make authlib use your proxy.",
 	"authors": ["fifth_light"],
@@ -11,7 +11,15 @@
 	"icon": "icon.png",
 	"depends": {
 		"fabricloader": "*",
-		"minecraft": "*",
+		"minecraft": [
+            ">=1.16",
+            ">=1.17",
+            ">=1.18",
+            ">=1.19",
+            ">=1.20",
+            ">=1.21",
+            ">=26.1"
+		],
 		"java": ">=8"
 	}
 }
