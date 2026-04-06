@@ -68,11 +68,11 @@
     "touchcontroller.screen.manage_control_preset.sprint.none": "無",
     "touchcontroller.screen.manage_control_preset.sprint.right_top": "右上角",
     "touchcontroller.screen.manage_control_preset.sprint.right": "右側",
-  "touchcontroller.screen.manage_control_preset.customize_top_bar": "",
-  "touchcontroller.screen.top_bar_customize.title": "",
-  "touchcontroller.screen.top_bar_customize.no_widget_selected": "",
-  "touchcontroller.screen.top_bar_customize.no_more_widget_to_add": "",
-  "touchcontroller.screen.top_bar_customize.list_add": "新增 +",
+    "touchcontroller.screen.manage_control_preset.customize_top_bar": "",
+    "touchcontroller.screen.top_bar_customize.title": "",
+    "touchcontroller.screen.top_bar_customize.no_widget_selected": "",
+    "touchcontroller.screen.top_bar_customize.no_more_widget_to_add": "",
+    "touchcontroller.screen.top_bar_customize.list_add": "新增 +",
     "touchcontroller.screen.config.layout.custom_control_layout": "自訂模式",
     "touchcontroller.screen.custom_control_layout.title": "自訂佈局",
     "touchcontroller.screen.custom_control_layout.switch.message": "是否要啟用自訂模式？在預設模式中的設定將被丟棄！",
@@ -406,5 +406,7 @@
     "touchcontroller.screen.config.status.status.only_view.click_to_interact.description": "",
     "touchcontroller.screen.custom_control_layout.layers.conditions.selecting_entity_item": "",
     "touchcontroller.screen.config.status.platform": "",
-    "touchcontroller.screen.config.platform.blazesdl.vibration_strength.title": ""
+    "touchcontroller.screen.config.platform.blazesdl.vibration_strength.title": "",
+    "touchcontroller.widget.forward_button.name": "",
+    "touchcontroller.widget.vanilla_chat_button.name": ""
 }
