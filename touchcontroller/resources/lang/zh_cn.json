@@ -408,5 +408,5 @@
     "touchcontroller.widget.trigger.layer_condition.condition.empty": "空",
     "touchcontroller.widget.double_trigger.interval": "触发间隔",
     "touchcontroller.widget.double_trigger.action": "触发行为",
-    "touchcontroller.screen.config.percent": ""
+    "touchcontroller.screen.config.percent": "Wayland"
 }
