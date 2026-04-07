@@ -101,9 +101,9 @@
     "armorstand.vmc.start": "Запустить",
     "armorstand.vmc.stop": "Остановить",
     "armorstand.vmc.port": "Порт:",
-    "armorstand.config.hide_player_armor": "",
-    "armorstand.metadata.license_description": "",
-    "armorstand.metadata.author.contact": "",
+    "armorstand.config.hide_player_armor": "Спрятать броню от игроков",
+    "armorstand.metadata.license_description": "Лицензия: %s",
+    "armorstand.metadata.author.contact": "%s: %s",
     "armorstand.metadata.link_donate": "",
     "armorstand.metadata.link_home": ""
 }
