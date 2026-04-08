@@ -31,6 +31,7 @@ REPIN=1 bazel run @maven_fabric_1_21_10//:pin
 REPIN=1 bazel run @maven_fabric_1_21_11//:pin
 REPIN=1 bazel run @maven_fabric_26_1//:pin
 REPIN=1 bazel run @maven_fabric_26_1_1//:pin
+REPIN=1 bazel run @maven_fabric_26_1_2//:pin
 REPIN=1 bazel run @maven_fabric_26_2//:pin
 bazel run @modrinth_pin//:pin
 bazel run @neoforge_pin//:pin
