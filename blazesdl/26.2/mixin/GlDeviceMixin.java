@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(GlDevice.class)
-public class GLDeviceMixin {
+public class GlDeviceMixin {
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwMakeContextCurrent(J)V"))
     private void wrapMakeContextCurrent(long window) {
         // no-op, because is made current previously
