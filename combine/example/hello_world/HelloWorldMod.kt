@@ -71,10 +71,10 @@ class HelloWorldMod : ClientModInitializer, ModMenuApi {
             if (!keyMapping.isDown) {
                 return@register
             }
-            if (client.screen != null) {
+            if (client.gui.screen() != null) {
                 return@register
             }
-            client.setScreen(createScreen(null))
+            client.gui.setScreen(createScreen(null))
         }
     }
 }
