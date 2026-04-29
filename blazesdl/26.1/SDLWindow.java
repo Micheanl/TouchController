@@ -65,10 +65,10 @@ public class SDLWindow extends Window {
         var altImages = new ArrayList<NativeImage>(icons.size() - 1);
         var altSurfaces = new ArrayList<SDL_Surface>(icons.size() - 1);
         try {
-            mainImage = NativeImage.read(icons.getFirst().get());
+            mainImage = NativeImage.read(icons.getLast().get());
             mainSurface = createSDLSurface(mainImage);
 
-            for (var i = 1; i < icons.size(); i++) {
+            for (var i = icons.size() - 1; i >= 0; i--) {
                 var altImage = NativeImage.read(icons.get(i).get());
                 altImages.add(altImage);
                 var altSurface = createSDLSurface(altImage);
