@@ -121,6 +121,7 @@ include("//module:neoforge.MODULE.bazel")
 include("//module:fabric.MODULE.bazel")
 
 # third party
+include("//module/third_party:jkeychain.MODULE.bazel")
 include("//module/third_party:sodium.MODULE.bazel")
 include("//module/third_party:iris.MODULE.bazel")
 include("//module/third_party:mocha.MODULE.bazel")

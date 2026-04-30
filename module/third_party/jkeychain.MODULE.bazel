@@ -1,0 +1,10 @@
+"MODULE.bazel jkeychain part"
+
+git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+git_repository(
+    name = "jkeychain",
+    build_file = "@//third_party/jkeychain:BUILD.jkeychain.bazel",
+    commit = "5a67c65ff71ba8da7230ec4a5c74fe94406ab061",
+    remote = "https://github.com/XioResearchInterGalactic/jkeychain.git",
+)

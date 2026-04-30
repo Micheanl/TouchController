@@ -1,0 +1,13 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+java_library(
+    name = "linux",
+    srcs = ["LinuxSecretServiceBackend.java"],
+    resource_strip_prefix = "rule/token_helper/backend/linux/resources",
+    resources = glob(["resources/**"]),
+    visibility = ["//rule/token_helper:__pkg__"],
+    deps = [
+        "//rule/token_helper",
+        "@maven//:de_swiesend_secret_service",
+    ],
+)

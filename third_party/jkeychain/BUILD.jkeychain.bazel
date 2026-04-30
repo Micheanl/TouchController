@@ -1,0 +1,61 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library", "cc_shared_library")
+load("@rules_java//java:defs.bzl", "java_library")
+
+cc_binary(
+    name = "generator",
+    srcs = ["src/main/c/generate_enums.c"],
+    target_compatible_with = ["@platforms//os:macos"],
+    linkopts = [
+        "-framework",
+        "CoreFoundation",
+        "-framework",
+        "Security",
+    ],
+)
+
+genrule(
+    name = "generate_enums",
+    outs = [
+        "OSXKeychainAuthenticationType.java",
+        "OSXKeychainProtocolType.java",
+    ],
+    tools = [":generator"],
+    cmd = "$(location :generator) $(location OSXKeychainAuthenticationType.java) $(location OSXKeychainProtocolType.java)",
+    target_compatible_with = ["@platforms//os:macos"],
+)
+
+cc_library(
+    name = "osxkeychain",
+    srcs = [
+        "src/main/c/pt_davidafsilva_apple_OSXKeychain.c",
+        "src/main/c/pt_davidafsilva_apple_OSXKeychain.h",
+    ],
+    copts = ["-std=c99", "-pedantic", "-Wall"],
+    linkopts = [
+        "-framework",
+        "CoreFoundation",
+        "-framework",
+        "Security",
+    ],
+    deps = ["@rules_jni//jni"],
+    target_compatible_with = ["@platforms//os:macos"],
+)
+
+cc_shared_library(
+    name = "osxkeychain_shared",
+    deps = [":osxkeychain"],
+    shared_lib_name = "osxkeychain.dylib",
+    target_compatible_with = ["@platforms//os:macos"],
+)
+
+java_library(
+    name = "jkeychain",
+    srcs = [
+        "src/main/java/pt/davidafsilva/apple/OSXKeychain.java",
+        "src/main/java/pt/davidafsilva/apple/OSXKeychainException.java",
+        ":generate_enums",
+    ],
+    resources = [":osxkeychain_shared"],
+    target_compatible_with = ["@platforms//os:macos"],
+    visibility = ["//visibility:public"],
+)

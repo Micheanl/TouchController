@@ -1,0 +1,15 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+java_library(
+    name = "windows",
+    srcs = ["WindowsCredentialBackend.java"],
+    resource_strip_prefix = "rule/token_helper/backend/windows/resources",
+    resources = glob(["resources/**"]),
+    target_compatible_with = ["@platforms//os:windows"],
+    visibility = ["//rule/token_helper:__pkg__"],
+    deps = [
+        "//rule/token_helper",
+        "//rule/token_helper/wincred",
+        "@maven//:org_slf4j_slf4j_api",
+    ],
+)

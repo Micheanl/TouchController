@@ -7,7 +7,7 @@ import com.github.mizosoft.methanol.MediaType;
 import com.github.mizosoft.methanol.MultipartBodyPublisher;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
-import top.fifthlight.fabazel.tokenhelper.TokenBackend;
+import top.fifthlight.fabazel.tokenhelper.TokenBackends;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -73,7 +73,7 @@ public class CurseForgeUploader implements Callable<Integer> {
         var changelog = Files.readString(changelogFile);
 
         // Acquire token to access version list
-        var tokenBackend = TokenBackend.getDefault();
+        var tokenBackend = TokenBackends.getDefault();
         var token = tokenBackend.getToken(tokenSecretId);
         if (token == null) {
             throw new IllegalArgumentException("Token " + tokenSecretId + " not found");

@@ -2,10 +2,11 @@ package top.fifthlight.fabazel.tokenhelper;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 public class ModrinthTokenSaver {
     public static void main(String... args) {
+        var tokenBackend = TokenBackends.getDefault();
+
         SwingUtilities.invokeLater(() -> {
             var frame = new JFrame("Modrinth Token Saver");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,7 +32,6 @@ public class ModrinthTokenSaver {
                     }
 
                     try {
-                        var tokenBackend = TokenBackend.getDefault();
                         tokenBackend.saveToken(tokenId, tokenSecret);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);

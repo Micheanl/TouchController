@@ -7,7 +7,7 @@ import com.github.mizosoft.methanol.MediaType;
 import com.github.mizosoft.methanol.MoreBodyPublishers;
 import com.github.mizosoft.methanol.MultipartBodyPublisher;
 import org.slf4j.LoggerFactory;
-import top.fifthlight.fabazel.tokenhelper.TokenBackend;
+import top.fifthlight.fabazel.tokenhelper.TokenBackends;
 
 import java.io.IOException;
 import java.net.URI;
@@ -112,7 +112,7 @@ public class ModrinthUploader {
                 throw new IllegalArgumentException("Token is not set in environment variable MODRINTH_TOKEN");
             }
         } else {
-            var tokenBackend = TokenBackend.getDefault();
+            var tokenBackend = TokenBackends.getDefault();
             token = tokenBackend.getToken(tokenSecretId);
             if (token == null) {
                 throw new IllegalArgumentException("Token " + tokenSecretId + " not found");
