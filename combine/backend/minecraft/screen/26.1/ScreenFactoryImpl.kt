@@ -23,12 +23,7 @@ import top.fifthlight.combine.input.pointer.PointerEventType
 import top.fifthlight.combine.input.pointer.PointerType
 import top.fifthlight.combine.input.text.LocalClipboard
 import top.fifthlight.combine.node.CombineOwner
-import top.fifthlight.combine.screen.CloseHandler
-import top.fifthlight.combine.screen.LocalCloseHandler
-import top.fifthlight.combine.screen.LocalOnDismissRequestDispatcher
-import top.fifthlight.combine.screen.LocalScreenFactory
-import top.fifthlight.combine.screen.OnDismissRequestDispatcher
-import top.fifthlight.combine.screen.ScreenFactory
+import top.fifthlight.combine.screen.*
 import top.fifthlight.combine.sound.LocalSoundManager
 import top.fifthlight.data.IntSize
 import top.fifthlight.data.Offset
@@ -192,11 +187,13 @@ class CombineScreen(
         owner.onTextInput(string)
     }
 
-    override fun extractRenderState(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun extractBackground(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, a: Float) {
         if (renderBackground) {
-            super.extractBackground(graphics, mouseX, mouseY, delta)
+            super.extractBackground(graphics, mouseX, mouseY, a)
         }
+    }
 
+    override fun extractRenderState(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, delta: Float) {
         owner.render(
             size = IntSize(width, height),
             cursorPos = Offset(mouseX.toFloat(), mouseY.toFloat()),

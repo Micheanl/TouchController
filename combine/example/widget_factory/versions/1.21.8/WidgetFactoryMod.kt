@@ -21,6 +21,7 @@ class WidgetFactoryMod : ClientModInitializer, ModMenuApi {
     override fun getModConfigScreenFactory() = ConfigScreenFactory { parent ->
         ScreenFactoryFactory.of().getScreen(
             parent = parent,
+            renderBackground = true,
             title = TextFactoryFactory.of().literal("Widget Factory"),
         ) {
             WidgetFactory()

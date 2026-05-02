@@ -187,11 +187,13 @@ class CombineScreen(
         owner.onTextInput(string)
     }
 
-    override fun extractRenderState(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun extractBackground(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, a: Float) {
         if (renderBackground) {
-            super.extractBackground(graphics, mouseX, mouseY, delta)
+            super.extractBackground(graphics, mouseX, mouseY, a)
         }
+    }
 
+    override fun extractRenderState(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, delta: Float) {
         owner.render(
             size = IntSize(width, height),
             cursorPos = Offset(mouseX.toFloat(), mouseY.toFloat()),

@@ -46,6 +46,7 @@ class CalculatorMod: ClientModInitializer, ModMenuApi {
 
     private fun createScreen(parent: Screen? = null) = ScreenFactoryFactory.of().getScreen(
         parent = parent,
+        renderBackground = true,
         title = TextFactoryFactory.of().literal("Combine Calculator")
     ) {
         var themeIndex by remember { mutableStateOf(0) }
