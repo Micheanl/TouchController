@@ -44,6 +44,8 @@ def _remap_jar_impl(ctx):
         args = ctx.actions.args()
         if ctx.attr.mixin:
             args.add("--mixin")
+        if ctx.attr.inline_refmap:
+            args.add("--inline_refmap")
         if ctx.attr.fix_package_access:
             args.add("--fix_package_access")
         if ctx.attr.remap_access_widener:
@@ -135,6 +137,10 @@ remap_jar = rule(
         "mixin": attr.bool(
             default = False,
             doc = "Handle mixin mappings",
+        ),
+        "inline_refmap": attr.bool(
+            default = False,
+            doc = "Inline mixin refmap JSON into annotation bytecode and strip refmap files",
         ),
         "fix_package_access": attr.bool(
             default = False,

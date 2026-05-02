@@ -86,6 +86,7 @@ public class TinyRemapperWorker extends Worker implements AutoCloseable {
             var fixPackageAccess = false;
             var remapAccessWidener = false;
             var removeJarInJar = false;
+            var inlineRefmap = false;
             String accessWidenerSourceNamespace = null;
 
             for (var parameter : parameters) {
@@ -107,6 +108,9 @@ public class TinyRemapperWorker extends Worker implements AutoCloseable {
                         break;
                     case "remove_jar_in_jar":
                         removeJarInJar = true;
+                        break;
+                    case "inline_refmap":
+                        inlineRefmap = true;
                         break;
                 }
             }
@@ -149,6 +153,11 @@ public class TinyRemapperWorker extends Worker implements AutoCloseable {
                     .invalidLvNamePattern(MC_LV_PATTERN)
                     .resolveMissing(true)
                     .inferNameFromSameLvIndex(true);
+            MixinRefmapInliner refmapInliner = null;
+            if (inlineRefmap) {
+                refmapInliner = new MixinRefmapInliner();
+                builder.extension(refmapInliner);
+            }
             if (mixin) {
                 builder.extension(new MixinExtension());
             }
@@ -170,6 +179,9 @@ public class TinyRemapperWorker extends Worker implements AutoCloseable {
                 var nonClassFilesProcessors = new ArrayList<OutputConsumerPath.ResourceRemapper>();
                 if (removeJarInJar) {
                     nonClassFilesProcessors.add(JarInJarRemover.INSTANCE);
+                }
+                if (refmapInliner != null) {
+                    nonClassFilesProcessors.add(refmapInliner.createResourceRemapper());
                 }
                 nonClassFilesProcessors.addAll(NonClassCopyMode.FIX_META_INF.remappers);
                 if (remapAccessWidener) {
