@@ -11,6 +11,8 @@ combine_theme(
         "${description}": "OreUI theme for Combine.",
         "${name-vanilla}": "Combine Theme OreUI Vanilla",
         "${description-vanilla}": "OreUI theme for Combine. This mod contains assets for Minecraft >=1.21.2.",
+        "${name-atlas}": "Combine Theme OreUI Atlas",
+        "${description-atlas}": "OreUI theme for Combine. This mod contains assets for Minecraft <1.21.2.",
     },
     texture = "//combine/theme/oreui/texture",
     visibility = ["//visibility:public"],

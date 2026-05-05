@@ -55,7 +55,6 @@ kt_merge_library(
         "//touchcontroller/versions/fabric/gal/1.21.10",
         "//touchcontroller/versions/gal/1.21.10",
         "//touchcontroller/versions/mixin/1.21.10",
-        "//touchcontroller/versions/widget/1.21.10",
     ],
     resource_jars = [
         ":fabric_mod_json",

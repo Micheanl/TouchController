@@ -51,3 +51,23 @@ theme_vanilla_info_jar = macro(
     },
     implementation = _theme_vanilla_info_jar_impl,
 )
+
+def _theme_atlas_info_jar_impl(name, visibility, substitutions):
+    mod_info_jar(
+        name = name,
+        visibility = visibility,
+        fabric = "//combine/theme:resources/fabric.mod.atlas.json",
+        resource_strip_prefix = native.package_name(),
+        substitutions = predefined_substitutions | substitutions,
+    )
+
+theme_atlas_info_jar = macro(
+    attrs = {
+        "substitutions": attr.string_dict(
+            mandatory = True,
+            configurable = False,
+            doc = "A dictionary mapping strings to their substitutions.",
+        ),
+    },
+    implementation = _theme_atlas_info_jar_impl,
+)

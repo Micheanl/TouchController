@@ -8,9 +8,9 @@ package top.fifthlight.touchcontroller.common.ui.config.tab.about
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
-import top.fifthlight.combine.data.Identifier
 import top.fifthlight.combine.data.Text
 import top.fifthlight.combine.layout.Alignment
 import top.fifthlight.combine.layout.Arrangement
@@ -22,10 +22,13 @@ import top.fifthlight.combine.modifier.placement.height
 import top.fifthlight.combine.modifier.placement.padding
 import top.fifthlight.combine.modifier.scroll.verticalScroll
 import top.fifthlight.combine.paint.Colors
+import top.fifthlight.combine.paint.TextureFactory
 import top.fifthlight.combine.widget.layout.Column
 import top.fifthlight.combine.widget.layout.Row
+import top.fifthlight.combine.widget.ui.Icon
 import top.fifthlight.combine.widget.ui.Link
 import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntSize
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.buildinfo.BuildInfo
@@ -36,7 +39,6 @@ import top.fifthlight.touchcontroller.common.ui.config.tab.TabOptions
 import top.fifthlight.touchcontroller.common.ui.config.tab.about.model.AboutScreenModel
 import top.fifthlight.touchcontroller.common.ui.screen.LicenseScreen
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
-import top.fifthlight.touchcontroller.common.ui.widget.raw.RawTextureIcon
 
 object AboutTab : Tab() {
     override val options = TabOptions(
@@ -64,8 +66,16 @@ object AboutTab : Tab() {
                     .height(iconSize),
                 horizontalArrangement = Arrangement.spacedBy(8),
             ) {
-                RawTextureIcon(
-                    identifier = Identifier.of("touchcontroller", "textures/icon.png"),
+                Icon(
+                    drawable = remember {
+                        TextureFactory.create(
+                            "touchcontroller",
+                            "textures/icon.png",
+                            iconSize,
+                            iconSize,
+                            IntPadding.ZERO
+                        )
+                    },
                     size = IntSize(iconSize),
                 )
                 Column(

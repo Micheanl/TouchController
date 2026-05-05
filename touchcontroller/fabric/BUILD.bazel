@@ -43,7 +43,9 @@ fabric_merge_jij(
     deps = {
         "//combine/theme/blackstone:blackstone_common": "combine-theme-blackstone:=",
         "//combine/theme/blackstone:blackstone_vanilla": "combine-theme-blackstone-vanilla:=",
+        "//combine/theme/blackstone:blackstone_atlas": "combine-theme-blackstone-atlas:=",
         "//combine/backend/minecraft/fabric:fabric_unmerged": "combine:=",
+        "//combine/backend/minecraft/fabric/1.21.1": "combine-1-21-1:=",
         "//combine/backend/minecraft/fabric/1.21.10": "combine-1-21-10:=",
         "//combine/backend/minecraft/fabric/1.21.11": "combine-1-21-11:=",
         "//combine/backend/minecraft/fabric/26.1": "combine-26.1:=",
@@ -51,6 +53,8 @@ fabric_merge_jij(
         "//touchcontroller/resources/lang": "touchcontroller-lang-modern:=",
         "//touchcontroller/resources/texture:texture_common": "touchcontroller-texture:=",
         "//touchcontroller/resources/texture:texture_vanilla": "touchcontroller-texture-vanilla:=",
+        "//touchcontroller/resources/texture:texture_atlas": "touchcontroller-texture-atlas:=",
+        "//touchcontroller/versions/fabric/1.21.1": "touchcontroller-1-21-1:=",
         "//touchcontroller/versions/fabric/1.21.10": "touchcontroller-1-21-10:=",
         "//touchcontroller/versions/fabric/1.21.11": "touchcontroller-1-21-11:=",
         "//touchcontroller/versions/fabric/26.1": "touchcontroller-26.1:=",

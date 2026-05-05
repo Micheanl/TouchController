@@ -47,7 +47,7 @@ fun main(vararg args: String) = object : Worker() {
 
         var i = 5
         while (i < args.size) {
-            if (args.size - i < 3) {
+            if (args.size - i < 4) {
                 out.println("Bad texture entry")
                 return 1
             }
@@ -55,9 +55,11 @@ fun main(vararg args: String) = object : Worker() {
             val identifier = args[i + 1]
             when (val type = args[i]) {
                 "--texture" -> {
-                    val metadata = Json.decodeFromString<Metadata>(
-                        (sandboxDir?.resolve(Path.of(args[i + 3])) ?: Path.of(args[i + 3])).readText()
-                    )
+                    var metadataPath = Path.of(args[i + 3])
+                    if (sandboxDir != null) {
+                        metadataPath = sandboxDir.resolve(metadataPath)
+                    }
+                    val metadata = Json.decodeFromString<Metadata>(metadataPath.readText())
                     if (metadata.background) {
                         classSpecBuilder.addProperty(
                             PropertySpec.builder(
@@ -77,7 +79,7 @@ fun main(vararg args: String) = object : Worker() {
                                 identifier,
                                 ClassName("top.fifthlight.combine.paint", "Texture")
                             ).addModifiers(KModifier.OVERRIDE).initializer(
-                                "TextureFactory.create(%S, %S, %L, %L, IntPadding.ZERO)",
+                                "TextureFactory.createSprite(%S, %S, %L, %L, IntPadding.ZERO)",
                                 namespace,
                                 "$prefix/$identifier",
                                 metadata.size.width,
@@ -89,15 +91,17 @@ fun main(vararg args: String) = object : Worker() {
                 }
 
                 "--ninepatch" -> {
-                    val metadata = Json.decodeFromString<NinePatchMetadata>(
-                        (sandboxDir?.resolve(Path.of(args[i + 3])) ?: Path.of(args[i + 3])).readText()
-                    )
+                    var metadataPath = Path.of(args[i + 3])
+                    if (sandboxDir != null) {
+                        metadataPath = sandboxDir.resolve(metadataPath)
+                    }
+                    val metadata = Json.decodeFromString<NinePatchMetadata>(metadataPath.readText())
                     classSpecBuilder.addProperty(
                         PropertySpec
                             .builder(identifier, ClassName("top.fifthlight.combine.paint", "Texture"))
                             .addModifiers(KModifier.OVERRIDE)
                             .initializer(
-                                "TextureFactory.create(%S, %S, %L, %L, IntPadding(%L, %L, %L, %L))",
+                                "TextureFactory.createSprite(%S, %S, %L, %L, IntPadding(%L, %L, %L, %L))",
                                 namespace,
                                 "$prefix/$identifier",
                                 metadata.size.width,

@@ -13,7 +13,7 @@ def _nine_patch_texture_to_arg(texture):
 
 AtlasPackInfo = provider(
     doc = "Information about a Minecraft atlas pack including namespace, JAR file, and metadata.",
-    fields = ["namespace", "atlas_jar", "atlas_metadata"],
+    fields = ["namespace", "atlas_jar", "atlas_metadata", "texture_lib"],
 )
 
 def _atlas_pack_impl(ctx):
@@ -47,6 +47,7 @@ def _atlas_pack_impl(ctx):
             namespace = ctx.attr.namespace,
             atlas_jar = output_file,
             atlas_metadata = metadata_file,
+            texture_lib = texture_info,
         ),
     ]
 
@@ -200,6 +201,108 @@ kt_vanilla_lib = macro(
     attrs = {
         "pack": attr.label(
             providers = [VanillaPackInfo],
+            mandatory = True,
+        ),
+        "dep": attr.label(
+            providers = [JavaInfo],
+            mandatory = False,
+            configurable = False,
+        ),
+        "resources": attr.label_list(
+            mandatory = False,
+            allow_files = True,
+            default = [],
+            doc = "Resources to be packed into JAR",
+        ),
+        "resource_strip_prefix": attr.label(
+            mandatory = False,
+            doc = "Prefix to strip from resource paths.",
+            allow_single_file = True,
+        ),
+        "resource_jars": attr.label_list(
+            allow_files = [".jar"],
+            default = [],
+            doc = "Resource JARs to be merged into the output JAR.",
+        ),
+    },
+)
+
+def _background_texture_to_arg(texture):
+    return ["--texture", texture.identifier, texture.texture.path, texture.metadata.path]
+
+def _kt_atlas_source_impl(ctx):
+    pack_info = ctx.attr.pack[AtlasPackInfo]
+    texture_info = pack_info.texture_lib
+    output_file = ctx.actions.declare_file(ctx.attr.name + ".kt")
+
+    background_textures = [t for t in texture_info.textures if t.background]
+
+    args = ctx.actions.args()
+    args.add(output_file.path)
+    args.add(texture_info.package)
+    args.add(texture_info.class_name)
+    args.add(texture_info.prefix)
+    args.add(pack_info.namespace)
+    args.add(pack_info.atlas_metadata)
+    args.add_all(background_textures, map_each = _background_texture_to_arg)
+
+    args.use_param_file("@%s")
+    args.set_param_file_format("multiline")
+
+    ctx.actions.run(
+        inputs = depset([pack_info.atlas_metadata], transitive = [texture_info.files]),
+        outputs = [output_file],
+        executable = ctx.executable._generator_bin,
+        arguments = [args],
+    )
+
+    return [DefaultInfo(files = depset([output_file]))]
+
+_kt_atlas_source = rule(
+    implementation = _kt_atlas_source_impl,
+    attrs = {
+        "pack": attr.label(
+            providers = [AtlasPackInfo],
+            mandatory = True,
+        ),
+        "_generator_bin": attr.label(
+            default = Label("//rule/combine/minecraft/library/atlas"),
+            cfg = "exec",
+            executable = True,
+        ),
+    },
+)
+
+def _kt_atlas_lib_impl(name, visibility, pack, dep, resources, resource_strip_prefix, resource_jars):
+    source_lib = name + "_source"
+    _kt_atlas_source(
+        name = source_lib,
+        pack = pack,
+        tags = ["manual"],
+    )
+
+    kt_merge_library(
+        name = name,
+        srcs = [source_lib],
+        visibility = visibility,
+        actual = True,
+        deps = [
+            "//combine/data",
+            "//combine/core/paint",
+            "//combine/core/util/atlas",
+            "//combine/core/util/ninepatch",
+            dep,
+        ],
+        resources = resources,
+        resource_strip_prefix = resource_strip_prefix,
+        resource_jars = resource_jars,
+    )
+
+kt_atlas_lib = macro(
+    implementation = _kt_atlas_lib_impl,
+    attrs = {
+        "pack": attr.label(
+            providers = [AtlasPackInfo],
             mandatory = True,
         ),
         "dep": attr.label(

@@ -110,7 +110,7 @@ fun main(vararg args: String) = object : Worker() {
                                 image = image,
                             )
                         } else {
-                            outStream.putNextEntry(entry("assets/$namespace/textures/gui/background/$prefix/$identifier.png"))
+                            outStream.putNextEntry(entry("assets/$namespace/textures/gui/$prefix/$identifier.png"))
                             pngFile.inputStream().use { it.transferTo(outStream) }
                             outStream.closeEntry()
                         }

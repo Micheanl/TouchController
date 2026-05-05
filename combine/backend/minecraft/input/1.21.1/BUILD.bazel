@@ -1,0 +1,13 @@
+load("//rule:merge_library.bzl", "kt_merge_library")
+
+kt_merge_library(
+    name = "1.21.1",
+    srcs = ["DefaultInputHandlerImpl.kt"],
+    actual = True,
+    visibility = ["//visibility:public"],
+    deps = [
+        "//combine/core/input/text",
+        "//combine/data",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm",
+    ],
+)

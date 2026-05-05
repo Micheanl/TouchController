@@ -10,7 +10,7 @@ import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
 
 @ActualImpl(VanillaDrawableProvider::class)
-object VanillaDrawableProviderImpl: VanillaDrawableProvider {
+object VanillaDrawableProviderImpl : VanillaDrawableProvider {
     @ActualConstructor
     @JvmStatic
     fun of() = this
@@ -18,18 +18,21 @@ object VanillaDrawableProviderImpl: VanillaDrawableProvider {
     override val buttonDrawableSet = DrawableSet(
         normal = TextureImpl(
             resourceLocation = ResourceLocation.withDefaultNamespace("widget/button"),
+            sprite = true,
             size = IntSize(150, 20),
-            padding = top.fifthlight.data.IntPadding(2),
+            padding = IntPadding(2),
         ),
         focus = TextureImpl(
             resourceLocation = ResourceLocation.withDefaultNamespace("widget/button_highlighted"),
+            sprite = true,
             size = IntSize(150, 20),
             padding = IntPadding(2),
         ),
         disabled = TextureImpl(
             resourceLocation = ResourceLocation.withDefaultNamespace("widget/button_disabled"),
+            sprite = true,
             size = IntSize(150, 20),
-            padding = top.fifthlight.data.IntPadding(2),
+            padding = IntPadding(2),
         ),
     )
 }

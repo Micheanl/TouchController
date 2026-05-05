@@ -12,6 +12,8 @@ combine_theme(
         "${description}": "Blackstone theme for Combine.",
         "${name-vanilla}": "Combine Theme Blackstone Vanilla",
         "${description-vanilla}": "Blackstone theme for Combine. This mod contains assets for Minecraft >=1.21.2.",
+        "${name-atlas}": "Combine Theme Blackstone Atlas",
+        "${description-atlas}": "Blackstone theme for Combine. This mod contains assets for Minecraft <1.21.2.",
     },
     texture = "//combine/theme/blackstone/texture",
     visibility = ["//visibility:public"],

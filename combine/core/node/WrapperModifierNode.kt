@@ -11,8 +11,11 @@ internal fun <T: Modifier> WrapperFactory<T>.unsafeCreateWrapper(node: LayoutNod
     createWrapper(node, children, modifier as T)
 
 fun <T: Modifier> WrapperFactory<in T>.chain(outer: WrapperFactory<in T>) = WrapperFactory<T> { node, children, modifier ->
-    val wrapper = createWrapper(node, children, modifier)
-    outer.createWrapper(node, wrapper, modifier)
+    val innerWrapper = createWrapper(node, children, modifier)
+    val outerWrapper = outer.createWrapper(node, innerWrapper, modifier)
+    check(innerWrapper != outerWrapper) { "WrapperFactory reused wrapper node" }
+    innerWrapper.parent = outerWrapper
+    outerWrapper
 }
 
 operator fun <T: Modifier> WrapperFactory<in T>.plus(outer: WrapperFactory<in T>) = this.chain(outer)

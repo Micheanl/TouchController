@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}-atlas",
+  "version": "${version}",
+  "name": "${name-atlas}",
+  "description": "${description-atlas}",
+  "authors": [
+    "fifth_light"
+  ],
+  "license": "${license}",
+  "icon": "icon.png",
+  "contact": {
+    "homepage": "${home_page}",
+    "sources": "${sources_page}",
+    "issues": "${issue_tracker}"
+  },
+  "environment": "client",
+  "depends": {
+    "minecraft": "<1.21.3"
+  },
+  "custom": {
+    "modmenu": {
+      "parent": "${mod_id}",
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+load("//rule:merge_library.bzl", "kt_merge_library")
+
+kt_merge_library(
+    name = "atlas",
+    srcs = glob(["*.kt"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//combine/core/data",
+        "//combine/core/paint",
+        "//combine/data",
+    ],
+)

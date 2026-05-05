@@ -6,9 +6,7 @@ kt_merge_library(
     visibility = ["//combine/example/widget_factory:__subpackages__"],
     runtime_deps = [
         "//combine/theme/blackstone:blackstone_common",
-        "//combine/theme/blackstone:blackstone_vanilla",
         "//combine/theme/oreui:oreui_common",
-        "//combine/theme/oreui:oreui_vanilla",
     ],
     deps = [
         "//:compose",

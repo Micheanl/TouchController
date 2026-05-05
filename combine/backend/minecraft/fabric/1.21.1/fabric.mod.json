@@ -1,0 +1,35 @@
+{
+    "schemaVersion": 1,
+    "id": "combine-1-21-1",
+    "version": "${version}",
+    "name": "Combine 1.21.1 implementation",
+    "description": "${description}",
+    "authors": [
+        "fifth_light"
+    ],
+    "license": "${license}",
+    "environment": "client",
+    "contact": {
+        "homepage": "${home_page}",
+        "sources": "${sources_page}",
+        "issues": "${issue_tracker}"
+    },
+    "icon": "icon.png",
+    "mixins": [
+        "combine.mixins.render.json"
+    ],
+    "depends": {
+        "minecraft": "1.21.1",
+        "java": ">=21",
+        "fabric-language-kotlin": "*"
+    },
+    "accessWidener": "combine.accesswidener",
+    "custom": {
+        "modmenu": {
+            "parent": "combine",
+            "badges": [
+                "library"
+            ]
+        }
+    }
+}

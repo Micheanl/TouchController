@@ -66,6 +66,5 @@ merge_library_group(
         "//touchcontroller/common/ui/theme",
         "//touchcontroller/common/ui/widget",
         "//touchcontroller/common/ui/widget/navigation",
-        "//touchcontroller/common/ui/widget/raw",
     ],
 )

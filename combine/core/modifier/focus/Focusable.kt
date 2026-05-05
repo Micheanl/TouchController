@@ -8,6 +8,7 @@ import top.fifthlight.combine.input.pointer.PointerEventType
 import top.fifthlight.combine.layout.measure.Placeable
 import top.fifthlight.combine.modifier.Modifier
 import top.fifthlight.combine.modifier.pointer.PointerInputModifierNode
+import top.fifthlight.combine.node.AttachListenerModifierNode
 import top.fifthlight.combine.node.LayoutNode
 import top.fifthlight.combine.node.plus
 
@@ -26,7 +27,8 @@ fun Modifier.focusable(
 
 data class FocusableModifierNode(
     val interactionSource: MutableInteractionSource?,
-) : Modifier.Node<FocusableModifierNode>, FocusStateListenerModifierNode, PointerInputModifierNode {
+) : Modifier.Node<FocusableModifierNode>, FocusStateListenerModifierNode, PointerInputModifierNode,
+    AttachListenerModifierNode {
     override fun onFocusStateChanged(focused: Boolean) {
         interactionSource?.tryEmit(if (focused) FocusInteraction.Focus else FocusInteraction.Blur)
     }
@@ -45,12 +47,13 @@ data class FocusableModifierNode(
         return false
     }
 
+    override fun onAttachedToNode(node: LayoutNode) {
+        node.focusable = true
+    }
+
     companion object {
         private val wrapperFactory =
-            PointerInputModifierNode.wrapperFactory + FocusStateListenerModifierNode.wrapperFactory + { node, children, _ ->
-                node.focusable = true
-                children
-            }
+            PointerInputModifierNode.wrapperFactory + FocusStateListenerModifierNode.wrapperFactory
     }
 
     override val wrapperFactory

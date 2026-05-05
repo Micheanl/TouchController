@@ -133,6 +133,7 @@ class CanvasImpl(val guiGraphics: GuiGraphicsExtractor) : ItemCanvas {
     }
 
     override fun pushClip(absoluteArea: IntRect, relativeArea: IntRect) {
+        // TODO: size cannot be 0
         guiGraphics.enableScissor(relativeArea.left, relativeArea.top, relativeArea.right, relativeArea.bottom)
     }
 

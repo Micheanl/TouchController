@@ -1,0 +1,12 @@
+load("//rule:merge_library.bzl", "kt_merge_library")
+
+kt_merge_library(
+    name = "1.21.1",
+    srcs = ["TextImpl.kt"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//combine/backend/minecraft/game/1.21.1",
+        "//combine/core/data",
+        "//game/1.21.1:game_client_libraries",
+    ],
+)

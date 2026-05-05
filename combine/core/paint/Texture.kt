@@ -1,12 +1,7 @@
 package top.fifthlight.combine.paint
 
 import androidx.compose.runtime.Immutable
-import top.fifthlight.data.IntOffset
-import top.fifthlight.data.IntPadding
-import top.fifthlight.data.IntRect
-import top.fifthlight.data.IntSize
-import top.fifthlight.data.Offset
-import top.fifthlight.data.Rect
+import top.fifthlight.data.*
 import top.fifthlight.mergetools.api.ExpectFactory
 
 @Immutable
@@ -15,13 +10,28 @@ interface Texture : Drawable {
         canvas: Canvas,
         dstRect: Rect,
         tint: Color = Colors.WHITE,
-        srcRect: Rect = Rect(
+    ) = draw(
+        canvas = canvas,
+        dstRect = dstRect,
+        tint = tint,
+        srcRect = Rect(
             offset = Offset.ZERO,
             size = size.toSize(),
-        ),
+        )
     )
 
-    override fun draw(canvas: Canvas, dstRect: IntRect, tint: Color) = draw(
+    fun draw(
+        canvas: Canvas,
+        dstRect: Rect,
+        tint: Color = Colors.WHITE,
+        srcRect: Rect,
+    )
+
+    override fun draw(
+        canvas: Canvas,
+        dstRect: IntRect,
+        tint: Color,
+    ) = draw(
         canvas = canvas,
         dstRect = dstRect.toRect(),
         tint = tint,
@@ -31,10 +41,7 @@ interface Texture : Drawable {
         canvas: Canvas,
         dstRect: IntRect,
         tint: Color = Colors.WHITE,
-        srcRect: IntRect = IntRect(
-            offset = IntOffset.ZERO,
-            size = size,
-        ),
+        srcRect: IntRect,
     ) = draw(
         canvas = canvas,
         dstRect = dstRect.toRect(),
@@ -51,6 +58,14 @@ interface Texture : Drawable {
             height: Int,
             padding: IntPadding,
         ): Texture
+
+        fun createSprite(
+            namespace: String,
+            id: String,
+            width: Int,
+            height: Int,
+            padding: IntPadding,
+        ): Texture
     }
 
     companion object {
@@ -59,7 +74,7 @@ interface Texture : Drawable {
                 get() = IntSize(16)
             override val padding: IntPadding
                 get() = IntPadding.ZERO
-            
+
             override fun draw(
                 canvas: Canvas,
                 dstRect: Rect,

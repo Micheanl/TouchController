@@ -98,10 +98,11 @@ private data class BlitRenderState(
 @ActualImpl(Texture::class)
 data class TextureImpl(
     val resourceLocation: ResourceLocation,
+    val sprite: Boolean,
     override val size: IntSize,
     override val padding: IntPadding = IntPadding.ZERO,
-): Texture {
-    companion object: Texture.Factory {
+) : Texture {
+    companion object : Texture.Factory {
         @ActualConstructor
         @JvmStatic
         override fun create(
@@ -112,6 +113,22 @@ data class TextureImpl(
             padding: IntPadding,
         ): Texture = TextureImpl(
             resourceLocation = ResourceLocation.fromNamespaceAndPath(namespace, id),
+            sprite = false,
+            size = IntSize(width, height),
+            padding = padding,
+        )
+
+        @ActualConstructor
+        @JvmStatic
+        override fun createSprite(
+            namespace: String,
+            id: String,
+            width: Int,
+            height: Int,
+            padding: IntPadding,
+        ): Texture = TextureImpl(
+            resourceLocation = ResourceLocation.fromNamespaceAndPath(namespace, id),
+            sprite = true,
             size = IntSize(width, height),
             padding = padding,
         )
@@ -125,27 +142,48 @@ data class TextureImpl(
     ) {
         val guiGraphics = (canvas as CanvasImpl).guiGraphics
         val client = Minecraft.getInstance()
-        val sprite = guiGraphics.getSprite(resourceLocation)
-        val atlasLocation = sprite.atlasLocation()
-        val gpuTextureView = client.textureManager.getTexture(atlasLocation).getTextureView()
+        if (sprite) {
+            val sprite = guiGraphics.getSprite(resourceLocation)
+            val atlasLocation = sprite.atlasLocation()
+            val gpuTextureView = client.textureManager.getTexture(atlasLocation).getTextureView()
 
-        guiGraphics.submitElement(
-            BlitRenderState(
-                pipeline = RenderPipelines.GUI_TEXTURED,
-                textureSetup = TextureSetup.singleTexture(gpuTextureView),
-                pose = Matrix3x2f(guiGraphics.pose()),
-                x0 = dstRect.offset.x,
-                y0 = dstRect.offset.y,
-                x1 = dstRect.offset.x + dstRect.size.width,
-                y1 = dstRect.offset.y + dstRect.size.height,
-                u0 = sprite.getU(srcRect.offset.x / sprite.contents().width()),
-                u1 = sprite.getU((srcRect.offset.x + srcRect.size.width) / sprite.contents().width()),
-                v0 = sprite.getV(srcRect.offset.y / sprite.contents().height()),
-                v1 = sprite.getV((srcRect.offset.y + srcRect.size.height) / sprite.contents().height()),
-                color = tint.value,
-                screenRectangle = guiGraphics.peekScissorStack(),
+            guiGraphics.submitElement(
+                BlitRenderState(
+                    pipeline = RenderPipelines.GUI_TEXTURED,
+                    textureSetup = TextureSetup.singleTexture(gpuTextureView),
+                    pose = Matrix3x2f(guiGraphics.pose()),
+                    x0 = dstRect.offset.x,
+                    y0 = dstRect.offset.y,
+                    x1 = dstRect.offset.x + dstRect.size.width,
+                    y1 = dstRect.offset.y + dstRect.size.height,
+                    u0 = sprite.getU(srcRect.offset.x / sprite.contents().width()),
+                    u1 = sprite.getU((srcRect.offset.x + srcRect.size.width) / sprite.contents().width()),
+                    v0 = sprite.getV(srcRect.offset.y / sprite.contents().height()),
+                    v1 = sprite.getV((srcRect.offset.y + srcRect.size.height) / sprite.contents().height()),
+                    color = tint.value,
+                    screenRectangle = guiGraphics.peekScissorStack(),
+                )
             )
-        )
+        } else {
+            val gpuTextureView = client.textureManager.getTexture(resourceLocation).getTextureView()
+            guiGraphics.submitElement(
+                BlitRenderState(
+                    pipeline = RenderPipelines.GUI_TEXTURED,
+                    textureSetup = TextureSetup.singleTexture(gpuTextureView),
+                    pose = Matrix3x2f(guiGraphics.pose()),
+                    x0 = dstRect.offset.x,
+                    y0 = dstRect.offset.y,
+                    x1 = dstRect.offset.x + dstRect.size.width,
+                    y1 = dstRect.offset.y + dstRect.size.height,
+                    u0 = srcRect.offset.x / size.width,
+                    u1 = (srcRect.offset.x + srcRect.size.width) / size.width,
+                    v0 = srcRect.offset.y / size.height,
+                    v1 = (srcRect.offset.y + srcRect.size.height) / size.height,
+                    color = tint.value,
+                    screenRectangle = guiGraphics.peekScissorStack(),
+                )
+            )
+        }
     }
 
     override fun draw(
@@ -154,15 +192,31 @@ data class TextureImpl(
         tint: Color,
     ) {
         val guiGraphics = (canvas as CanvasImpl).guiGraphics
-        guiGraphics.blitSprite(
-            RenderPipelines.GUI_TEXTURED,
-            resourceLocation,
-            dstRect.offset.x,
-            dstRect.offset.y,
-            dstRect.size.width,
-            dstRect.size.height,
-            tint.value,
-        )
+        if (sprite) {
+            guiGraphics.blitSprite(
+                RenderPipelines.GUI_TEXTURED,
+                resourceLocation,
+                dstRect.offset.x,
+                dstRect.offset.y,
+                dstRect.size.width,
+                dstRect.size.height,
+                tint.value,
+            )
+        } else {
+            guiGraphics.blit(
+                RenderPipelines.GUI_TEXTURED,
+                resourceLocation,
+                dstRect.offset.x,
+                dstRect.offset.y,
+                0f,
+                0f,
+                dstRect.size.width,
+                dstRect.size.height,
+                size.width,
+                size.height,
+                tint.value,
+            )
+        }
     }
 }
 
