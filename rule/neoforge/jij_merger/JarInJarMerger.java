@@ -91,7 +91,7 @@ public class JarInJarMerger extends Worker {
                         manifest = new Manifest();
                     }
                     if (!jijEntry.fmlType().isBlank()) {
-                        manifest.getMainAttributes().putValue("FMLType", jijEntry.fmlType());
+                        manifest.getMainAttributes().putValue("FMLModType", jijEntry.fmlType());
                     }
                     try (var entryOutputStream = new ZipOutputStream(entryByteOutputStream)) {
                         var entry = new JarEntry("META-INF/MANIFEST.MF");
