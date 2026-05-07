@@ -9,6 +9,6 @@ java_library(
     visibility = ["//rule/token_helper:__pkg__"],
     deps = [
         "//rule/token_helper",
-        "@jkeychain//:jkeychain",
+        "@jkeychain",
     ],
 )

@@ -1,7 +1,6 @@
 load("@bazel_lib//lib:copy_file.bzl", "COPY_FILE_TOOLCHAINS", "copy_file_action")
-load("@rules_cc//cc:defs.bzl", "cc_library", "cc_shared_library")
+load("@rules_cc//cc:defs.bzl", "cc_shared_library")
 load("@rules_java//java:defs.bzl", "java_library")
-load("@rules_rust//rust:defs.bzl", "rust_shared_library")
 load("//platforms:platforms.bzl", "select_current_cpu", "select_current_os")
 
 # Most logic come from rules_jni

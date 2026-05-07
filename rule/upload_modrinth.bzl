@@ -118,7 +118,7 @@ def _upload_modrinth_impl(ctx):
     else:
         output_executable = ctx.actions.declare_file(ctx.attr.name + ".sh")
         runfiles = ctx.runfiles(
-            files = [input_file]  + ([changelog_file] if changelog_file else []),
+            files = [input_file] + ([changelog_file] if changelog_file else []),
         ).merge_all([
             ctx.attr._modrinth_uploader_binary[DefaultInfo].default_runfiles,
             ctx.attr._rlocation_library[DefaultInfo].default_runfiles,

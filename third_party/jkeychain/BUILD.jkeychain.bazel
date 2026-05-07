@@ -4,13 +4,13 @@ load("@rules_java//java:defs.bzl", "java_library")
 cc_binary(
     name = "generator",
     srcs = ["src/main/c/generate_enums.c"],
-    target_compatible_with = ["@platforms//os:macos"],
     linkopts = [
         "-framework",
         "CoreFoundation",
         "-framework",
         "Security",
     ],
+    target_compatible_with = ["@platforms//os:macos"],
 )
 
 genrule(
@@ -19,9 +19,9 @@ genrule(
         "OSXKeychainAuthenticationType.java",
         "OSXKeychainProtocolType.java",
     ],
-    tools = [":generator"],
     cmd = "$(location :generator) $(location OSXKeychainAuthenticationType.java) $(location OSXKeychainProtocolType.java)",
     target_compatible_with = ["@platforms//os:macos"],
+    tools = [":generator"],
 )
 
 cc_library(
@@ -30,22 +30,26 @@ cc_library(
         "src/main/c/pt_davidafsilva_apple_OSXKeychain.c",
         "src/main/c/pt_davidafsilva_apple_OSXKeychain.h",
     ],
-    copts = ["-std=c99", "-pedantic", "-Wall"],
+    copts = [
+        "-std=c99",
+        "-pedantic",
+        "-Wall",
+    ],
     linkopts = [
         "-framework",
         "CoreFoundation",
         "-framework",
         "Security",
     ],
-    deps = ["@rules_jni//jni"],
     target_compatible_with = ["@platforms//os:macos"],
+    deps = ["@rules_jni//jni"],
 )
 
 cc_shared_library(
     name = "osxkeychain_shared",
-    deps = [":osxkeychain"],
     shared_lib_name = "osxkeychain.dylib",
     target_compatible_with = ["@platforms//os:macos"],
+    deps = [":osxkeychain"],
 )
 
 java_library(

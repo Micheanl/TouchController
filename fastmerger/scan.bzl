@@ -1,3 +1,5 @@
+load("@rules_java//java/common:java_info.bzl", "JavaInfo")
+
 BdepsInfo = provider(fields = {
     "bdeps": ".bdeps files",
     "bdeps_pairs": "Array of jar -> bdeps pair",

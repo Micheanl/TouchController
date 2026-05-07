@@ -1,5 +1,4 @@
 load("@rules_java//java:defs.bzl", "java_library")
-load("//rule:jar.bzl", "jar")
 load("//rule/antlr:antlr.bzl", "AntlrInfo")
 
 def _java_antlr_library_sources_impl(ctx):

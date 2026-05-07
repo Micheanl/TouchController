@@ -86,17 +86,17 @@ toolchains = {
     (
         llvm_mingw.toolchain(
             name = "llvm_mingw_toolchain_%s" % name,
+            binary_extension = toolchain.get("binary_extension", ""),
+            exec_compatible_with = toolchain["exec_compatible_with"],
+            sha256 = toolchain["sha256"],
+            strip_prefix = toolchain["strip_prefix"],
             targets = {
                 "x86_64": "x86_64-w64-mingw32",
                 "x86_32": "i686-w64-mingw32",
                 "aarch64": "aarch64-w64-mingw32",
             },
-            url = toolchain["url"],
-            sha256 = toolchain["sha256"],
-            strip_prefix = toolchain["strip_prefix"],
             type = toolchain["type"],
-            exec_compatible_with = toolchain["exec_compatible_with"],
-            binary_extension = toolchain.get("binary_extension", ""),
+            url = toolchain["url"],
             use_wrapper = toolchain.get("use_wrapper", True),
         ),
         use_repo(llvm_mingw, "llvm_mingw_toolchain_%s" % name),

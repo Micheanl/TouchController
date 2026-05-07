@@ -347,7 +347,7 @@
     "//repo:llvm_mingw.bzl%llvm_mingw": {
       "general": {
         "bzlTransitiveDigest": "JuARQ9nevK0XZrDDlUagtolYaCbX846zP7XZj9hih9U=",
-        "usagesDigest": "oBdMN5D9HUehj5Wqr9XQO1LdBdp7UWC8K+80m5FAE9w=",
+        "usagesDigest": "qzQ7B9q68gPwRk2c2UEeUOr8uiH0HPCqw14fGXL71dg=",
         "recordedInputs": [
           "REPO_MAPPING:,platforms platforms"
         ],
@@ -791,7 +791,7 @@
     },
     "//repo:neoforge.bzl%neoforge": {
       "general": {
-        "bzlTransitiveDigest": "DyIqdp23FIgOA6msOuESfvCebDn5Q9GH33Wd5HM/+z8=",
+        "bzlTransitiveDigest": "bpH3EZBcjunpuraZu9Y0BuB6KG0jS7Rdv4++I5mm2Yk=",
         "usagesDigest": "5gFeg6dQMtXcs1CyycF0doTPRjJzNPkPzvL1E9t4/o4=",
         "recordedInputs": [
           "REPO_MAPPING:, ",

@@ -82,8 +82,8 @@ java_binary(
     runtime_deps = [
         ":widget_factory_unmerged",
         "//blazesdl/26.2:blazesdl_unmerged",
-        "//combine/backend/minecraft/fabric/26.2",
         "//combine/backend/minecraft/fabric:meta_jar",
+        "//combine/backend/minecraft/fabric/26.2",
         "//combine/backend/minecraft/versions:26.2",
         "//game/26.2:game_client",
         "//game/26.2:game_client_libraries",

@@ -5,7 +5,6 @@ load("@rules_java//java:defs.bzl", "java_library")
 load("@rules_java//java/common:java_info.bzl", "JavaInfo")
 load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
 load("//rule:merge_jar.bzl", "merge_jar_action")
-load("//rule:merge_library.bzl", "kt_merge_library")
 
 _SH_TOOLCHAIN_TYPE = "@rules_shell//shell:toolchain_type"
 
@@ -287,7 +286,7 @@ def kt_jvm_export(**kwargs):
 
     args = {key: value for key, value in kwargs.items() if key != "coordinates" and key != "tags"}
     tags = kwargs["tags"] if "tags" in kwargs else []
-    tags += ["maven_coordinates=%s" % kwargs["coordinates"]]
+    tags.append("maven_coordinates=%s" % kwargs["coordinates"])
     kt_jvm_library(
         tags = tags,
         **args
@@ -305,7 +304,7 @@ def java_export(**kwargs):
 
     args = {key: value for key, value in kwargs.items() if key != "coordinates" and key != "tags"}
     tags = kwargs["tags"] if "tags" in kwargs else []
-    tags += ["maven_coordinates=%s" % kwargs["coordinates"]]
+    tags.append("maven_coordinates=%s" % kwargs["coordinates"])
     java_library(
         tags = tags,
         **args

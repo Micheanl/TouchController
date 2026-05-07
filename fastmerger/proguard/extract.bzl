@@ -1,3 +1,5 @@
+load("@rules_java//java/common:java_info.bzl", "JavaInfo")
+
 ProguardExtractionInfo = provider(fields = {
     "rules": "depset of extracted .pro files",
 })

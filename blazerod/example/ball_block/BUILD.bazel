@@ -1,8 +1,6 @@
-load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+load("@rules_java//java:defs.bzl", "java_library")
 load("//rule:apply_access_widener.bzl", "apply_access_widener")
-load("//rule:decompile_jar.bzl", "decompile_jar")
 load("//rule:extract_access_widener.bzl", "extract_access_widener")
-load("//rule:generate_remap_classpath.bzl", "generate_remap_classpath")
 load("//rule:remap_jar.bzl", "remap_jar")
 load("//rule/fabric:merge_jij.bzl", "fabric_merge_jij")
 

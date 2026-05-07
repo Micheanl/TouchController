@@ -1,5 +1,3 @@
-load("//rule:apply_access_widener.bzl", "apply_access_widener")
-load("//rule:extract_access_widener.bzl", "extract_access_widener")
 load("//rule:remap_jar.bzl", "remap_jar")
 
 remap_jar(
@@ -19,4 +17,3 @@ remap_jar(
     to_namespace = "named",
     visibility = ["//combine/example:__subpackages__"],
 )
-

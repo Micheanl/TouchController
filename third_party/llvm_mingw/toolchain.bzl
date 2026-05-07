@@ -1,7 +1,7 @@
 """Filegroups generation macro - only generates filegroups."""
 
-load(":config.bzl", "config")
 load("@rules_cc//cc/toolchains:cc_toolchain.bzl", "cc_toolchain")
+load(":config.bzl", "config")
 
 def _llvm_mingw_toolchain_impl(name, visibility, include_files, bin_files, lib_files, triple, target_cpu_name, execroot, binary_extension, use_wrapper):
     wrapper_files = ["//:wrapper_files"] if use_wrapper else []

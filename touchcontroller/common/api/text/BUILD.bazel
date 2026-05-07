@@ -5,7 +5,7 @@ kt_merge_library(
     srcs = glob(["*.kt"]),
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
-        "//touchcontroller/api",
         "//combine/core/data",
+        "//touchcontroller/api",
     ],
 )

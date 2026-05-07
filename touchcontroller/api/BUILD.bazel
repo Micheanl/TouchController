@@ -1,7 +1,6 @@
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("//rule:maven_publish.bzl", "java_export")
-load("//rule:mod_info_jar.bzl", "mod_info_jar")
 load("//touchcontroller:properties.bzl", "touchcontroller_api_description", "touchcontroller_api_license", "touchcontroller_api_version", "touchcontroller_homepage", "touchcontroller_issue_tracker", "touchcontroller_source")
 
 substitutions = {
@@ -52,7 +51,10 @@ java_export(
     name = "api",
     srcs = glob(["**/*.java"]),
     coordinates = "top.fifthlight.touchcontroller:api:%s" % touchcontroller_api_version,
-    javacopts = ["--release=8", "-Xlint:-options"],
+    javacopts = [
+        "--release=8",
+        "-Xlint:-options",
+    ],
     resource_strip_prefix = "touchcontroller/api",
     resources = [
         ":fabric_mod_json",

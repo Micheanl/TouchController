@@ -2,7 +2,6 @@
 
 load("@rules_java//java:defs.bzl", _JavaInfo = "JavaInfo")
 load("@rules_java//java/bazel/rules:bazel_java_library.bzl", _java_library = "java_library")
-load("@rules_java//java/common:java_common.bzl", "java_common")
 load("@rules_kotlin//kotlin:jvm.bzl", _kt_jvm_library = "kt_jvm_library")
 load("@rules_kotlin//src/main/starlark/core/compile:common.bzl", _KtJvmInfo = "KtJvmInfo")
 load("//rule:merge_jar.bzl", "merge_jar_action")

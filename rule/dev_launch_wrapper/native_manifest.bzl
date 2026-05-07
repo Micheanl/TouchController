@@ -1,4 +1,4 @@
-load("@rules_mc//minecraft:defs.bzl", "EextractLibInfo")
+load("@rules_mc//minecraft:defs.bzl", "ExtractLibInfo")
 
 def _extract_manifest_impl(ctx):
     output_file = ctx.actions.declare_file(ctx.label.name + ".txt")

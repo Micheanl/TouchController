@@ -1,7 +1,7 @@
 """Configuration for LLVM-MinGW toolchain."""
 
 load("@rules_cc//cc:action_names.bzl", "ALL_CC_LINK_ACTION_NAMES", "ALL_CPP_COMPILE_ACTION_NAMES")
-load("@rules_cc//cc:cc_toolchain_config_lib.bzl", "feature", "flag_group", "flag_set", "tool_path", "with_feature_set", "artifact_name_pattern")
+load("@rules_cc//cc:cc_toolchain_config_lib.bzl", "artifact_name_pattern", "feature", "flag_group", "flag_set", "tool_path", "with_feature_set")
 load("@rules_cc//cc:defs.bzl", "CcToolchainConfigInfo")
 load("@rules_cc//cc/common:cc_common.bzl", "cc_common")
 
@@ -150,7 +150,7 @@ def _impl(ctx):
                 prefix = "",
                 extension = ".exe",
             ),
-        ]
+        ],
     )
 
 config = rule(

@@ -1,7 +1,6 @@
 """Rules for Minecraft-specific build targets."""
 
 load("@rules_java//java:defs.bzl", "JavaInfo")
-load("//rule:merge_jar.bzl", "merge_jar_action")
 load("//rule:merge_library.bzl", "MergeLibraryInfo", "kt_merge_library")
 load("//rule/combine:texture.bzl", "TextureLibraryInfo")
 

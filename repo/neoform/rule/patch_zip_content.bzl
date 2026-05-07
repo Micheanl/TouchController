@@ -1,5 +1,4 @@
 load("@//repo/neoform:java_source_info.bzl", "JavaSourceInfo")
-load("@rules_java//java:defs.bzl", "JavaInfo")
 
 PatchZipInfo = provider(
     doc = "Contains both the patched and rejected JARs",

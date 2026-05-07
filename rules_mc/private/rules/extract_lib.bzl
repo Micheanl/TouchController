@@ -1,7 +1,5 @@
 """Rules to extract native libraris for Minecraft versions using LWJGL2."""
 
-load("@rules_java//java/common:java_info.bzl", "JavaInfo")
-
 ExtractLibInfo = provider(
     "Provider for JAR to be extracted with exclude patterns",
     fields = ["jar_file", "excludes"],

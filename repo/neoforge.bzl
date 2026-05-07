@@ -2,7 +2,6 @@
 
 load("@//private:maven_coordinate.bzl", _convert_maven_coordinate = "convert_maven_coordinate", _convert_maven_coordinate_to_repo = "convert_maven_coordinate_to_repo", _convert_maven_coordinate_to_url = "convert_maven_coordinate_to_url")
 load("@//private:pin_file.bzl", _parse_pin_file = "parse_pin_file")
-load("@//private:snake_case.bzl", _camel_case_to_snake_case = "camel_case_to_snake_case")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_jar")
 
 _neoforge_repository_url = "https://maven.neoforged.net/releases"
@@ -166,7 +165,7 @@ def _neoforge_repo_impl(rctx):
         build_file_contents += [
             "alias(",
             '    name = "%s",' % _convert_maven_coordinate("%s:%s" % (items[0], items[1])),
-            '    actual = %s,' % label,
+            "    actual = %s," % label,
             ")",
         ]
 

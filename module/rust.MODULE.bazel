@@ -1,7 +1,10 @@
 "MODULE.bazel Rust part"
 
 rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
-rust.toolchain(edition = "2024", versions = ["1.93.1"])
+rust.toolchain(
+    edition = "2024",
+    versions = ["1.93.1"],
+)
 
 rust_host_tools = use_extension("@rules_rust//rust:extensions.bzl", "rust_host_tools")
 rust_host_tools.host_tools(
