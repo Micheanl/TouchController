@@ -267,7 +267,7 @@ maven_publish = rule(
             default = "@platforms//os:windows",
         ),
         "_merge_jar_executable": attr.label(
-            default = "@//rule/merge_expect_actual_jar:core",
+            default = "@//rule/mergetool:core",
             executable = True,
             cfg = "exec",
         ),

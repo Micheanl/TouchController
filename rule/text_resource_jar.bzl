@@ -124,7 +124,7 @@ text_resource_jar = rule(
             cfg = "exec",
         ),
         "_merge_jar_executable": attr.label(
-            default = "@//rule/merge_expect_actual_jar:core",
+            default = "@//rule/mergetool:core",
             executable = True,
             cfg = "exec",
         ),

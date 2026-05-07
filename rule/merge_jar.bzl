@@ -79,7 +79,7 @@ merge_jar = rule(
             doc = "Resource to be merged, with perfix to strip",
         ),
         "_merge_jar_executable": attr.label(
-            default = "@//rule/merge_expect_actual_jar:core",
+            default = "@//rule/mergetool:core",
             executable = True,
             cfg = "exec",
         ),

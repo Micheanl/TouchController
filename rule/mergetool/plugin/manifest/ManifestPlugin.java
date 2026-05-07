@@ -1,4 +1,4 @@
-package top.fifthlight.mergetools.merger.plugin.core;
+package top.fifthlight.mergetools.merger.plugin.manifest;
 
 import top.fifthlight.mergetools.merger.api.MergeEntry;
 import top.fifthlight.mergetools.merger.api.Plugin;

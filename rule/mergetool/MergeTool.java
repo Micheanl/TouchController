@@ -19,7 +19,7 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ExpectActualMerger implements AutoCloseable {
+public class MergeTool implements AutoCloseable {
     private static final long DOS_EPOCH = 315532800000L;
 
     private static void setZipEntryTime(ZipEntry entry) {
@@ -29,7 +29,7 @@ public class ExpectActualMerger implements AutoCloseable {
         entry.setTimeLocal(LocalDateTime.ofEpochSecond(DOS_EPOCH / 1000, 0, ZoneOffset.UTC));
     }
 
-    private ExpectActualMerger() {
+    private MergeTool() {
     }
 
     private final ArrayList<JarFile> jarFiles = new ArrayList<>();
@@ -50,7 +50,7 @@ public class ExpectActualMerger implements AutoCloseable {
     }
 
     public static void process(@Nullable Path sandboxDir, String[] args) throws Exception {
-        try (var instance = new ExpectActualMerger();) {
+        try (var instance = new MergeTool();) {
             var environment = instance.preprocess(sandboxDir, args);
             for (var plugin : instance.plugins) {
                 plugin.preSorting(environment.getMergeEntries(), environment.getManifestEntries());

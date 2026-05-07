@@ -1,0 +1,13 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+java_library(
+    name = "manifest",
+    srcs = glob(["*.java"]),
+    resource_strip_prefix = "rule/mergetool/plugin/manifest/resources",
+    resources = glob(["resources/**"]),
+    visibility = ["//rule/mergetool:__pkg__"],
+    deps = [
+        "//rule/mergetool/api",
+        "@maven//:org_jetbrains_annotations",
+    ],
+)

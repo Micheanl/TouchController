@@ -60,7 +60,7 @@ merge_library_group = rule(
             mandatory = True,
         ),
         "_empty_jar": attr.label(
-            default = "//rule/merge_expect_actual_jar:empty_jar",
+            default = "//rule/mergetool:empty_jar",
             allow_single_file = True,
         ),
     },
@@ -271,7 +271,7 @@ def _merge_library_jar_impl(ctx):
             transitive = [merged_deps_depset],
         ),
         outputs = [output_jar],
-        executable = ctx.executable._merge_expect_actual_jar_executable,
+        executable = ctx.executable._mergetool_executable,
         execution_requirements = {
             "supports-workers": "1",
             "supports-multiplex-workers": "1",
@@ -286,7 +286,7 @@ def _merge_library_jar_impl(ctx):
 
     merge_jar_action(
         ctx.actions,
-        ctx.executable._merge_expect_actual_jar_executable,
+        ctx.executable._mergetool_executable,
         ctx.outputs.sources_jar,
         merged_srcs_depset,
     )
@@ -320,8 +320,8 @@ _merge_library_jar = rule(
             doc = "Manifest entries to be include in final JAR.",
         ),
         "sources_jar": attr.output(),
-        "_merge_expect_actual_jar_executable": attr.label(
-            default = Label("@//rule/merge_expect_actual_jar:expect_actual"),
+        "_mergetool_executable": attr.label(
+            default = Label("@//rule/mergetool:expect_actual"),
             executable = True,
             cfg = "exec",
         ),
