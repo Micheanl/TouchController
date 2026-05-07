@@ -73,6 +73,7 @@ def _combine_theme_impl(
     merge_library_jar(
         name = name + "_vanilla",
         aspects = [":" + name + "_common"],
+        aspect_impl_package_suffix = name + ".vanilla",
         visibility = visibility,
         resources = icon_resources,
         deps = [
@@ -103,6 +104,7 @@ def _combine_theme_impl(
     merge_library_jar(
         name = name + "_atlas",
         aspects = [":" + name + "_common"],
+        aspect_impl_package_suffix = name + ".atlas",
         visibility = visibility,
         resources = icon_resources,
         deps = [

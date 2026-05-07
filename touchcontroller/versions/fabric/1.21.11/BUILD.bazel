@@ -103,6 +103,7 @@ kt_merge_library(
 
 merge_library_jar(
     name = "fabric_unmapped",
+    aspect_impl_package_suffix = "fabric.v1_21_11",
     aspects = ["//touchcontroller/fabric:fabric_unmerged"],
     deps = [":fabric_unmapped_unmerged"],
 )

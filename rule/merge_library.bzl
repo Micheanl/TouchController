@@ -223,6 +223,9 @@ def _path_to_name(path):
 def _merge_library_jar_impl(ctx):
     if ctx.attr.aspect and not ctx.attr.aspect_class:
         fail("aspect_class is required when aspect is True")
+    if ctx.attr.aspects and not ctx.attr.aspect_impl_package_suffix:
+        fail("aspect_impl_package_suffix is required when consuming aspect JARs (aspects is non-empty)")
+
     output_jar = ctx.actions.declare_file(ctx.label.name + ".jar")
 
     merged_deps_depset = depset(transitive = [dep[MergeLibraryInfo].transitive_merge_jars for dep in ctx.attr.deps])
@@ -239,6 +242,9 @@ def _merge_library_jar_impl(ctx):
     aspect_jar_files = [dep[AspectJarInfo].jar for dep in ctx.attr.aspects]
     for jar in aspect_jar_files:
         args.add("--aspect", jar.path)
+    if ctx.attr.aspect_impl_package_suffix:
+        args.add("--aspect-impl-package-suffix", ctx.attr.aspect_impl_package_suffix)
+
     args.add_all(merged_deps)
     resource_files = []
     for resource in ctx.attr.resources.keys():
@@ -338,6 +344,11 @@ _merge_library_jar = rule(
             providers = [AspectJarInfo],
             default = [],
             doc = "External Aspect JARs to consume.",
+        ),
+        "aspect_impl_package_suffix": attr.string(
+            mandatory = False,
+            default = "",
+            doc = "Package suffix for generated AspectProviderImpl class (required when aspects is non-empty). Avoids split-package across Java modules.",
         ),
     },
     doc = "Merge libraries into a single JAR",

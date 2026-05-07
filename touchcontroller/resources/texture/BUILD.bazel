@@ -131,6 +131,7 @@ expand_template(
 
 merge_library_jar(
     name = "texture_vanilla",
+    aspect_impl_package_suffix = "vanilla",
     aspects = [":texture_common"],
     resources = {":fabric_mod_json_vanilla": "."},
     visibility = ["//touchcontroller:__subpackages__"],
@@ -176,6 +177,7 @@ expand_template(
 
 merge_library_jar(
     name = "texture_atlas",
+    aspect_impl_package_suffix = "atlas",
     aspects = [":texture_common"],
     resources = {":fabric_mod_json_atlas": "."},
     visibility = ["//touchcontroller:__subpackages__"],

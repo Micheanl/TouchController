@@ -15,10 +15,13 @@ public class AspectProviderImplEntry implements MergeEntry {
     private final ExpectActualPluginContext context;
     private final String aspectProviderDescriptor;
     private final AspectData aspectData;
-    public AspectProviderImplEntry(ExpectActualPluginContext context, String aspectProviderDescriptor, AspectData aspectData) {
+    private final String targetInternalName;
+
+    public AspectProviderImplEntry(ExpectActualPluginContext context, String aspectProviderDescriptor, AspectData aspectData, String targetInternalName) {
         this.context = context;
         this.aspectProviderDescriptor = aspectProviderDescriptor;
         this.aspectData = aspectData;
+        this.targetInternalName = targetInternalName;
     }
 
     private record MethodPair(String parameterTypes, String name) {
@@ -33,10 +36,9 @@ public class AspectProviderImplEntry implements MergeEntry {
 
     @Override
     public void write(OutputStream output) throws Exception {
-        var className = ExpectActualUtils.descriptorNameToInternalName(aspectProviderDescriptor) + "Impl";
         var classWriter = new ClassWriter(0);
         var aspectProviderInternalName = ExpectActualUtils.descriptorNameToInternalName(aspectProviderDescriptor);
-        classWriter.visit(Opcodes.V1_8, Opcodes.ACC_PUBLIC | Opcodes.ACC_SUPER, className, null, "java/lang/Object", new String[]{aspectProviderInternalName});
+        classWriter.visit(Opcodes.V1_8, Opcodes.ACC_PUBLIC | Opcodes.ACC_SUPER, targetInternalName, null, "java/lang/Object", new String[]{aspectProviderInternalName});
 
         {
             var methodVisitor = classWriter.visitMethod(Opcodes.ACC_PUBLIC, "<init>", "()V", null, null);

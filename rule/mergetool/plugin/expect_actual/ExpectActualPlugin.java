@@ -37,6 +37,7 @@ public class ExpectActualPlugin implements Plugin, ExpectActualPluginContext {
 
     private boolean aspectMode = false;
     private String aspectClassName;
+    private String aspectImplPackageSuffix = null;
     private final List<AspectData> aspectDependencies = new ArrayList<>();
 
     @Override
@@ -53,6 +54,10 @@ public class ExpectActualPlugin implements Plugin, ExpectActualPluginContext {
             }
             if ("--aspect-class".equals(arg)) {
                 aspectClassName = ExpectActualUtils.fqnToInternalName(environment.readNextArg());
+                return true;
+            }
+            if ("--aspect-impl-package-suffix".equals(arg)) {
+                aspectImplPackageSuffix = environment.readNextArg();
                 return true;
             }
             if ("--aspect".equals(arg)) {
@@ -118,6 +123,21 @@ public class ExpectActualPlugin implements Plugin, ExpectActualPluginContext {
         }
     }
 
+    private String computeImplInternalName(String aspectProviderInternalName) {
+        if (aspectImplPackageSuffix == null || aspectImplPackageSuffix.isEmpty()) {
+            return aspectProviderInternalName + "Impl";
+        }
+        var lastSlash = aspectProviderInternalName.lastIndexOf('/');
+        var basePath = aspectProviderInternalName.substring(0, lastSlash);
+        var shortName = aspectProviderInternalName.substring(lastSlash + 1);
+        var suffixPath = aspectImplPackageSuffix.replace('.', '/');
+        return basePath + "/" + suffixPath + "/" + shortName + "Impl";
+    }
+
+    private String computeImplFqn(String aspectProviderInternalName) {
+        return ExpectActualUtils.internalNameToFqn(computeImplInternalName(aspectProviderInternalName));
+    }
+
     private void preSortingAspectJar(Map<String, MergeEntry> mergeEntries) {
         // Step 1: Process dependent Aspect JARs
         for (var aspectData : aspectDependencies) {
@@ -129,7 +149,7 @@ public class ExpectActualPlugin implements Plugin, ExpectActualPluginContext {
             }
             var aspectProviderFqn = ExpectActualUtils.internalNameToFqn(ExpectActualUtils.descriptorNameToInternalName(aspectData.aspectProviderInterface()));
             var implInternalName = aspectProviderFqn + "Impl";
-            mergeEntries.put(implInternalName + ".class", new AspectProviderImplEntry(this, aspectData.aspectProviderInterface(), aspectData));
+            mergeEntries.put(implInternalName + ".class", new AspectProviderImplEntry(this, aspectData.aspectProviderInterface(), aspectData, ExpectActualUtils.fqnToInternalName(implInternalName)));
 
             var servicesPath = "META-INF/services/" + aspectProviderFqn;
             if (mergeEntries.containsKey(servicesPath)) {
@@ -206,18 +226,20 @@ public class ExpectActualPlugin implements Plugin, ExpectActualPluginContext {
         // Step 2: Generate AspectProviderImpl
         for (var aspectData : aspectDependencies) {
             var aspectProviderFqn = ExpectActualUtils.descriptorNameToInternalName(aspectData.aspectProviderInterface());
-            var implInternalName = aspectProviderFqn + "Impl";
-            mergeEntries.put(implInternalName + ".class", new AspectProviderImplEntry(this, aspectData.aspectProviderInterface(), aspectData));
+            var implInternalName = computeImplInternalName(aspectProviderFqn);
+            mergeEntries.put(implInternalName + ".class", new AspectProviderImplEntry(this, aspectData.aspectProviderInterface(), aspectData, implInternalName));
         }
 
         // Step 3: Generate ServiceLoader registration
         for (var aspectData : aspectDependencies) {
-            var aspectProviderFqn = ExpectActualUtils.internalNameToFqn(ExpectActualUtils.descriptorNameToInternalName(aspectData.aspectProviderInterface()));
+            var aspectProviderInternalName = ExpectActualUtils.descriptorNameToInternalName(aspectData.aspectProviderInterface());
+            var aspectProviderFqn = ExpectActualUtils.internalNameToFqn(aspectProviderInternalName);
             var servicesPath = "META-INF/services/" + aspectProviderFqn;
             if (mergeEntries.containsKey(servicesPath)) {
                 throw new IllegalStateException("ServiceLoader file for " + aspectProviderFqn + " already exists");
             }
-            mergeEntries.put(servicesPath, new ServiceLoaderRegistrationEntry(aspectProviderFqn + "Impl"));
+            var implFqn = computeImplFqn(aspectProviderInternalName);
+            mergeEntries.put(servicesPath, new ServiceLoaderRegistrationEntry(implFqn));
         }
 
         // Step 4: Process internal expect/actual (same as original behavior)
