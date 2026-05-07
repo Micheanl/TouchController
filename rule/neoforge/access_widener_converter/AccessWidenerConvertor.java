@@ -19,7 +19,7 @@ public class AccessWidenerConvertor extends Worker {
         @NotNull
         @Override
         public AccessWidenerVisitor visitAccessWidener(String owner) {
-            var name = owner.replace('/', '.');
+            var className = owner.replace('/', '.');
             return new AccessWidenerVisitor() {
                 @Override
                 public void visitClass(AccessWidenerVisitor.AccessType access, boolean transitive) {
@@ -30,7 +30,7 @@ public class AccessWidenerConvertor extends Worker {
                             case MUTABLE -> throw new IllegalArgumentException("Bad access for class: " + access);
                         }
                         writer.write(' ');
-                        writer.write(name);
+                        writer.write(className);
                         writer.write('\n');
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -38,7 +38,7 @@ public class AccessWidenerConvertor extends Worker {
                 }
 
                 @Override
-                public void visitMethod(String owner, String descriptor, AccessWidenerVisitor.AccessType access, boolean transitive) {
+                public void visitMethod(String name, String descriptor, AccessWidenerVisitor.AccessType access, boolean transitive) {
                     try {
                         switch (access) {
                             case ACCESSIBLE -> writer.write("public");
@@ -46,7 +46,7 @@ public class AccessWidenerConvertor extends Worker {
                             case MUTABLE -> throw new IllegalArgumentException("Bad access for method: " + access);
                         }
                         writer.write(' ');
-                        writer.write(owner.replace('/', '.'));
+                        writer.write(className);
                         writer.write(' ');
                         writer.write(name);
                         writer.write(descriptor);
@@ -57,7 +57,7 @@ public class AccessWidenerConvertor extends Worker {
                 }
 
                 @Override
-                public void visitField(String owner, String descriptor, AccessWidenerVisitor.AccessType access, boolean transitive) {
+                public void visitField(String name, String descriptor, AccessWidenerVisitor.AccessType access, boolean transitive) {
                     try {
                         switch (access) {
                             case ACCESSIBLE -> writer.write("public");
@@ -65,7 +65,7 @@ public class AccessWidenerConvertor extends Worker {
                             case MUTABLE -> writer.write("public-f");
                         }
                         writer.write(' ');
-                        writer.write(owner.replace('/', '.'));
+                        writer.write(className);
                         writer.write(' ');
                         writer.write(name);
                         writer.write('\n');
