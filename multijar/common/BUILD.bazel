@@ -1,0 +1,12 @@
+load("//rule:merge_library.bzl", "java_merge_library")
+
+java_merge_library(
+    name = "common",
+    srcs = ["MultiJarManifest.java"],
+    javacopts = ["--release=8"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:org_jspecify_jspecify",
+    ],
+)

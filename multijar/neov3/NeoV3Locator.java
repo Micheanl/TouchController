@@ -1,0 +1,120 @@
+package top.fifthlight.multijar.neov3;
+
+import cpw.mods.jarhandling.JarContents;
+import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.jarjar.nio.layzip.LayeredZipFileSystemProvider;
+import net.neoforged.neoforgespi.language.IModInfo;
+import net.neoforged.neoforgespi.locating.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import top.fifthlight.multijar.common.MultiJarManifest;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+public class NeoV3Locator implements IDependencyLocator {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NeoV3Locator.class);
+    private final ModFileDiscoveryAttributes attributes;
+
+    @SuppressWarnings("ReturnValueIgnored")
+    public NeoV3Locator() throws NoSuchMethodException, NoSuchFieldException {
+        IDependencyLocator.class.getMethod("scanMods", List.class, IDiscoveryPipeline.class);
+        IModFile.class.getMethod("findResource", String[].class);
+        IModFile.class.getMethod("getSecureJar");
+        IModFile.class.getMethod("getModInfos");
+        IModInfo.class.getMethod("getModId");
+        IModInfo.class.getMethod("getVersion");
+        JarContents.class.getMethod("of", Path.class);
+        JarContents.class.getMethod("findFile", String.class);
+        IDiscoveryPipeline.class.getMethod("readModFile", JarContents.class, ModFileDiscoveryAttributes.class);
+        IDiscoveryPipeline.class.getMethod("addModFile", IModFile.class);
+        ModFileDiscoveryAttributes.class.getField("DEFAULT");
+        LayeredZipFileSystemProvider.class.getField("SCHEME");
+
+        attributes = ModFileDiscoveryAttributes.DEFAULT.withDependencyLocator(this);
+    }
+
+    private static Optional<IModInfo> findModInfo(List<IModFile> loadedMods, String modId) {
+        return loadedMods.stream()
+                .flatMap(file -> file.getModInfos().stream())
+                .filter(info -> Objects.equals(info.getModId(), modId))
+                .findFirst();
+    }
+
+    @Override
+    public void scanMods(List<IModFile> loadedMods, IDiscoveryPipeline pipeline) {
+        var minecraftInfo = findModInfo(loadedMods, "minecraft");
+        if (minecraftInfo.isEmpty()) {
+            LOGGER.error("Could not find minecraft mod!");
+            return;
+        }
+        var minecraftVersionStr = minecraftInfo.get().getVersion().toString();
+        var gameDirectory = FMLPaths.GAMEDIR.get();
+
+        LOGGER.info("MultiJar loader on Minecraft {} in directory {}", minecraftVersionStr, gameDirectory);
+
+        var modsDir = gameDirectory.resolve(FMLPaths.MODSDIR.relative()).toAbsolutePath().normalize();
+        if (!Files.exists(modsDir)) {
+            // Skip if the mods dir doesn't exist yet.
+            return;
+        }
+
+        try (var walk = Files.walk(modsDir, 1)) {
+            walk.forEach(path -> {
+                if (!Files.isRegularFile(path)) return;
+                if (!path.toString().endsWith(".jar")) return;
+                try {
+                    if (Files.size(path) == 0) return;
+                } catch (IOException ignored) {}
+
+                try (var contents = JarContents.of(path)) {
+                    var manifestUri = contents.findFile(MultiJarManifest.NEOFORGE_MANIFEST_PATH);
+                    if (manifestUri.isEmpty()) {
+                        return;
+                    }
+                    var manifestPath = Path.of(manifestUri.get());
+
+                    MultiJarManifest manifest;
+                    try (var reader = Files.newBufferedReader(manifestPath)) {
+                        manifest = MultiJarManifest.fromJson(reader);
+                    } catch (FileNotFoundException | NoSuchFileException e) {
+                        return;
+                    } catch (Exception e) {
+                        LOGGER.warn("Failed to parse loader manifest for mod {}", path, e);
+                        return;
+                    }
+
+                    LOGGER.info("Loading mod {}", path);
+
+                    var jars = manifest.jars(minecraftVersionStr);
+                    for (var jar : jars) {
+                        var jij = contents.findFile(jar);
+                        if (jij.isEmpty()) {
+                            LOGGER.warn("Failed to find jar {} for mod {}", jar, path);
+                            continue;
+                        }
+                        var jijPath = Path.of(jij.get());
+                        LOGGER.info("Loading jar {} for mod {}", jijPath, path);
+                        var jijModFile = pipeline.readModFile(JarContents.of(jijPath), attributes);
+                        pipeline.addModFile(jijModFile);
+                    }
+                } catch (IOException e) {
+                    LOGGER.warn("Failed to read mod {}", path);
+                }
+            });
+        } catch (IOException ex) {
+            LOGGER.warn("Failed to scan mods directory {}", modsDir);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "MultiJar NeoV3";
+    }
+}

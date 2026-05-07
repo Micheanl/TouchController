@@ -1,0 +1,9 @@
+load("//rule:merge_library.bzl", "merge_library_jar")
+
+merge_library_jar(
+    name = "multijar",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//multijar/neov3",
+    ],
+)
