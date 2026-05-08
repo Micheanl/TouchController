@@ -4,6 +4,7 @@ merge_library_jar(
     name = "multijar",
     visibility = ["//visibility:public"],
     deps = [
+        "//multijar/neov10",
         "//multijar/neov3",
     ],
 )

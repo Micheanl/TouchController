@@ -1,0 +1,22 @@
+load("//rule:merge_library.bzl", "java_merge_library")
+
+java_merge_library(
+    name = "neov10",
+    srcs = [
+        "NeoV10Locator.java",
+        "NeoV10ModReader.java",
+    ],
+    javacopts = ["--release=21"],
+    merge_deps = [
+        "//multijar/common",
+    ],
+    resource_strip_prefix = "multijar/neov10/resources",
+    resources = glob(["resources/**"]),
+    visibility = ["//multijar:__pkg__"],
+    deps = [
+        "@maven//:org_jspecify_jspecify",
+        "@maven//:org_slf4j_slf4j_api",
+        "@neoforge_1_21_11//:net_neoforged_fancymodloader_loader",
+        "@neoforge_1_21_11//:org_apache_maven_maven_artifact",
+    ],
+)
