@@ -18,6 +18,7 @@
     "PreferredGraphicsApiMixin",
     "RenderSystemMixin",
     "ScreenManagerMixin",
+    "VKMixin",
     "VulkanBackendMixin",
     "VulkanInstanceMixin",
     "VulkanPhysicalDeviceMixin",

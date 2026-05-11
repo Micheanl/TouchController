@@ -20,6 +20,8 @@ public abstract class NativeLibrariesBootstrapMixin {
     private static void redirectLoadGlfw(Supplier<String> debugCapture, String name, Runnable loader) {
         if ("GLFW".equals(name)) {
             loadLibrary(debugCapture, "GLFW", () -> Objects.requireNonNull(SDL.getLibrary(), "SDL"));
+        } else if ("OpenGL".equals(name)) {
+            // Skip this, because it will be loaded by SDL
         } else {
             loadLibrary(debugCapture, name, loader);
         }
