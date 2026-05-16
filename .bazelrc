@@ -1,5 +1,11 @@
 common --enable_platform_specific_config
 
+# Sandboxing
+build --worker_sandboxing
+build --nosandbox_default_allow_network
+build --sandbox_fake_hostname
+build --sandbox_fake_username
+
 # Release builds
 build:opt --copt -flto --copt -Os
 build:opt --linkopt -flto
