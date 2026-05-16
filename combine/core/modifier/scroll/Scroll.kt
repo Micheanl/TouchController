@@ -70,7 +70,7 @@ class ScrollState(private val tweenManager: TweenManager) {
         val maxProgress = (contentHeight - viewportHeight).takeIf { it > 0 }
 
         // calculate actualProgress and overscroll
-        val needAnimation = if (progress < 0) {
+        val needAnimation = if (maxProgress != null && progress < 0) {
             _actualProgress.value = 0
             _overscroll.value = progress
             _renderProgress.value = progress
@@ -102,7 +102,7 @@ fun rememberScrollState() = run {
     val state = remember { ScrollState(tweenManager) }
     DisposableEffect(state) {
         onDispose {
-            // ?
+            state.stopAnimation()
         }
     }
     state

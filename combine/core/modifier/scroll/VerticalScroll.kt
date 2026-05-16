@@ -71,7 +71,8 @@ private data class VerticalScrollNode(
                 scrollState.startPointerPosition = null
                 scrollState.scrolling = false
                 scrollState.stopAnimation()
-                false
+                children(event)
+                true
             }
 
             PointerEventType.Cancel, PointerEventType.Release -> {
