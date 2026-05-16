@@ -36,7 +36,7 @@ public class SDLGlBackend extends GlBackend {
     }
 
     @Override
-    public @NonNull GpuDevice createDevice(long window, @NonNull ShaderSource defaultShaderSource, @NonNull GpuDebugOptions debugOptions) {
+    public @NonNull GpuDevice createDevice(long window, @NonNull ShaderSource defaultShaderSource, @NonNull GpuDebugOptions debugOptions, @NonNull Runnable criticalShaderLoader) {
         GL.create(SDLVideo::SDL_GL_GetProcAddress);
 
         var context = SDLVideo.SDL_GL_CreateContext(window);
@@ -48,6 +48,6 @@ public class SDLGlBackend extends GlBackend {
             throw SDLError.handleError("SDL_GL_MakeCurrent");
         }
 
-        return new GpuDevice(new SDLGlDevice(window, context, defaultShaderSource, debugOptions));
+        return new GpuDevice(new SDLGlDevice(window, context, defaultShaderSource, debugOptions), criticalShaderLoader);
     }
 }

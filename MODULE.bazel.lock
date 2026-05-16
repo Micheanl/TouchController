@@ -5148,7 +5148,7 @@
     "@@rules_mc+//:extensions.bzl%minecraft": {
       "general": {
         "bzlTransitiveDigest": "JORE55QXdJ2BLGPka8Jyrbuv+WCHUhu1+f3lcBzVL0I=",
-        "usagesDigest": "bM4UDXcjveCiVIl/fnu9tP//ya5hEwqmohriq+jo25Q=",
+        "usagesDigest": "0uNDJLmuLlO2ZmaZ2z/3hymdPva5N0UXwDnq16TkGBI=",
         "recordedInputs": [
           "REPO_MAPPING:rules_mc+,bazel_tools bazel_tools"
         ],
@@ -5977,19 +5977,19 @@
               "downloaded_file_path": "server.jar"
             }
           },
-          "minecraft_26_2-snapshot-6_client": {
+          "minecraft_26_2-snapshot-7_client": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
             "attributes": {
-              "url": "https://piston-data.mojang.com/v1/objects/7926cea1792ec1065f006056dbd29d842a58c827/client.jar",
-              "integrity": "sha1-eSbOoXkuwQZfAGBW29KdhCpYyCc=",
+              "url": "https://piston-data.mojang.com/v1/objects/8a35666eb5c6d625dd90662bdb7259ec67aaf26f/client.jar",
+              "integrity": "sha1-ijVmbrXG1iXdkGYr23JZ7Geq8m8=",
               "downloaded_file_path": "client.jar"
             }
           },
-          "minecraft_26_2-snapshot-6_server": {
+          "minecraft_26_2-snapshot-7_server": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
             "attributes": {
-              "url": "https://piston-data.mojang.com/v1/objects/8bdae5a048cd361668da1df06e81c4e590a36064/server.jar",
-              "integrity": "sha1-i9rloEjNNhZo2h3wboHE5ZCjYGQ=",
+              "url": "https://piston-data.mojang.com/v1/objects/64ec8e321dc8b1608ecf7b4a33cf12d328595641/server.jar",
+              "integrity": "sha1-ZOyOMh3IsWCOz3tKM88S0yhZVkE=",
               "downloaded_file_path": "server.jar"
             }
           },
@@ -10661,6 +10661,14 @@
               "path": "org/lwjgl/lwjgl/3.4.1/lwjgl-3.4.1-natives-windows-x86.jar"
             }
           },
+          "minecraft_com_mojang_authlib_7_0_72_default": {
+            "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
+            "attributes": {
+              "url": "https://libraries.minecraft.net/com/mojang/authlib/7.0.72/authlib-7.0.72.jar",
+              "sha1": "9a13a92cf8b0a00b8dd32600aade72b89d5ed15a",
+              "path": "com/mojang/authlib/7.0.72/authlib-7.0.72.jar"
+            }
+          },
           "minecraft_com_mojang_datafixerupper_10_0_21_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
@@ -10675,6 +10683,62 @@
               "url": "https://libraries.minecraft.net/com/mojang/text2speech/1.19.12/text2speech-1.19.12.jar",
               "sha1": "2e517a75c79d34d32de2b5d68422150836c2133e",
               "path": "com/mojang/text2speech/1.19.12/text2speech-1.19.12.jar"
+            }
+          },
+          "minecraft_dev_onvoid_webrtc_webrtc_java_0_14_0_default": {
+            "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
+            "attributes": {
+              "url": "https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0.jar",
+              "sha1": "52c7b44ba257efcb920740444cde57a4dace622e",
+              "path": "dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0.jar"
+            }
+          },
+          "minecraft_dev_onvoid_webrtc_webrtc_java_0_14_0_linux_aarch32_default": {
+            "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
+            "attributes": {
+              "url": "https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-aarch32.jar",
+              "sha1": "b58f4f1a42eef82841304f1e00ad7c3803dc0af3",
+              "path": "dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-aarch32.jar"
+            }
+          },
+          "minecraft_dev_onvoid_webrtc_webrtc_java_0_14_0_linux_aarch64_default": {
+            "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
+            "attributes": {
+              "url": "https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-aarch64.jar",
+              "sha1": "fee7e97c57fe82dcc95ce0d71b082c80f569b508",
+              "path": "dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-aarch64.jar"
+            }
+          },
+          "minecraft_dev_onvoid_webrtc_webrtc_java_0_14_0_linux_x86_64_default": {
+            "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
+            "attributes": {
+              "url": "https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-x86_64.jar",
+              "sha1": "1138d7c9d4be59216de7bfd720753044610b3143",
+              "path": "dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-x86_64.jar"
+            }
+          },
+          "minecraft_dev_onvoid_webrtc_webrtc_java_0_14_0_macos_aarch64_default": {
+            "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
+            "attributes": {
+              "url": "https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-macos-aarch64.jar",
+              "sha1": "af44674c348f234fa1499a74595d09133ada218f",
+              "path": "dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-macos-aarch64.jar"
+            }
+          },
+          "minecraft_dev_onvoid_webrtc_webrtc_java_0_14_0_macos_x86_64_default": {
+            "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
+            "attributes": {
+              "url": "https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-macos-x86_64.jar",
+              "sha1": "03c22bbf9e617007405060c74b7ce60a54abf747",
+              "path": "dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-macos-x86_64.jar"
+            }
+          },
+          "minecraft_dev_onvoid_webrtc_webrtc_java_0_14_0_windows_x86_64_default": {
+            "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
+            "attributes": {
+              "url": "https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-windows-x86_64.jar",
+              "sha1": "e7bc2183ece16289bae04095ca9930399df8f82c",
+              "path": "dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-windows-x86_64.jar"
             }
           },
           "minecraft_org_lwjgl_lwjgl_shaderc_3_4_1_default": {
@@ -11038,7 +11102,7 @@
                   "client#file",
                   "server#file"
                 ],
-                "26.2-snapshot-6": [
+                "26.2-snapshot-7": [
                   "client#file",
                   "server#file"
                 ]
@@ -13421,7 +13485,7 @@
                   "org.lwjgl:lwjgl:3.4.1:natives-windows-x86",
                   "org.slf4j:slf4j-api:2.0.17"
                 ],
-                "26.2-snapshot-6": [
+                "26.2-snapshot-7": [
                   "at.yawk.lz4:lz4-java:1.10.1",
                   "ca.weblite:java-objc-bridge:1.1",
                   "com.azure:azure-json:1.4.0",
@@ -13431,7 +13495,7 @@
                   "com.google.guava:guava:33.5.0-jre",
                   "com.ibm.icu:icu4j:77.1",
                   "com.microsoft.azure:msal4j:1.23.1",
-                  "com.mojang:authlib:7.0.63",
+                  "com.mojang:authlib:7.0.72",
                   "com.mojang:blocklist:1.0.10",
                   "com.mojang:brigadier:1.3.10",
                   "com.mojang:datafixerupper:10.0.21",
@@ -13445,6 +13509,13 @@
                   "com.mojang:text2speech:1.19.12",
                   "commons-codec:commons-codec:1.19.0",
                   "commons-io:commons-io:2.20.0",
+                  "dev.onvoid.webrtc:webrtc-java:0.14.0",
+                  "dev.onvoid.webrtc:webrtc-java:0.14.0:linux-aarch32",
+                  "dev.onvoid.webrtc:webrtc-java:0.14.0:linux-aarch64",
+                  "dev.onvoid.webrtc:webrtc-java:0.14.0:linux-x86_64",
+                  "dev.onvoid.webrtc:webrtc-java:0.14.0:macos-aarch64",
+                  "dev.onvoid.webrtc:webrtc-java:0.14.0:macos-x86_64",
+                  "dev.onvoid.webrtc:webrtc-java:0.14.0:windows-x86_64",
                   "io.netty:netty-buffer:4.2.7.Final",
                   "io.netty:netty-codec-base:4.2.7.Final",
                   "io.netty:netty-codec-compression:4.2.7.Final",
@@ -15232,11 +15303,35 @@
                 "org.lwjgl:lwjgl:3.4.1:natives-windows-x86": [
                   "default#struct(path = \"org/lwjgl/lwjgl/3.4.1/lwjgl-3.4.1-natives-windows-x86.jar\", sha1 = \"65de43bd52507e108a58247c0da57a50ce3ee6f6\", url = \"https://libraries.minecraft.net/org/lwjgl/lwjgl/3.4.1/lwjgl-3.4.1-natives-windows-x86.jar\")"
                 ],
+                "com.mojang:authlib:7.0.72": [
+                  "default#struct(path = \"com/mojang/authlib/7.0.72/authlib-7.0.72.jar\", sha1 = \"9a13a92cf8b0a00b8dd32600aade72b89d5ed15a\", url = \"https://libraries.minecraft.net/com/mojang/authlib/7.0.72/authlib-7.0.72.jar\")"
+                ],
                 "com.mojang:datafixerupper:10.0.21": [
                   "default#struct(path = \"com/mojang/datafixerupper/10.0.21/datafixerupper-10.0.21.jar\", sha1 = \"b6b2ae770c02e0c1eb90f9985b151e9085a38d0b\", url = \"https://libraries.minecraft.net/com/mojang/datafixerupper/10.0.21/datafixerupper-10.0.21.jar\")"
                 ],
                 "com.mojang:text2speech:1.19.12": [
                   "default#struct(path = \"com/mojang/text2speech/1.19.12/text2speech-1.19.12.jar\", sha1 = \"2e517a75c79d34d32de2b5d68422150836c2133e\", url = \"https://libraries.minecraft.net/com/mojang/text2speech/1.19.12/text2speech-1.19.12.jar\")"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0": [
+                  "default#struct(path = \"dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0.jar\", sha1 = \"52c7b44ba257efcb920740444cde57a4dace622e\", url = \"https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0.jar\")"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:linux-aarch32": [
+                  "default#struct(path = \"dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-aarch32.jar\", sha1 = \"b58f4f1a42eef82841304f1e00ad7c3803dc0af3\", url = \"https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-aarch32.jar\")"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:linux-aarch64": [
+                  "default#struct(path = \"dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-aarch64.jar\", sha1 = \"fee7e97c57fe82dcc95ce0d71b082c80f569b508\", url = \"https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-aarch64.jar\")"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:linux-x86_64": [
+                  "default#struct(path = \"dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-x86_64.jar\", sha1 = \"1138d7c9d4be59216de7bfd720753044610b3143\", url = \"https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-linux-x86_64.jar\")"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:macos-aarch64": [
+                  "default#struct(path = \"dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-macos-aarch64.jar\", sha1 = \"af44674c348f234fa1499a74595d09133ada218f\", url = \"https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-macos-aarch64.jar\")"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:macos-x86_64": [
+                  "default#struct(path = \"dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-macos-x86_64.jar\", sha1 = \"03c22bbf9e617007405060c74b7ce60a54abf747\", url = \"https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-macos-x86_64.jar\")"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:windows-x86_64": [
+                  "default#struct(path = \"dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-windows-x86_64.jar\", sha1 = \"e7bc2183ece16289bae04095ca9930399df8f82c\", url = \"https://libraries.minecraft.net/dev/onvoid/webrtc/webrtc-java/0.14.0/webrtc-java-0.14.0-windows-x86_64.jar\")"
                 ],
                 "org.lwjgl:lwjgl-shaderc:3.4.1": [
                   "default#struct(path = \"org/lwjgl/lwjgl-shaderc/3.4.1/lwjgl-shaderc-3.4.1.jar\", sha1 = \"5c02c88f0d879529014c78463b76f43fdecfd272\", url = \"https://libraries.minecraft.net/org/lwjgl/lwjgl-shaderc/3.4.1/lwjgl-shaderc-3.4.1.jar\")"
@@ -16993,11 +17088,35 @@
                 "org.lwjgl:lwjgl:3.4.1:natives-windows-x86": [
                   "windows#default"
                 ],
+                "com.mojang:authlib:7.0.72": [
+                  "common#default"
+                ],
                 "com.mojang:datafixerupper:10.0.21": [
                   "common#default"
                 ],
                 "com.mojang:text2speech:1.19.12": [
                   "common#default"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0": [
+                  "common#default"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:linux-aarch32": [
+                  "linux#default"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:linux-aarch64": [
+                  "linux#default"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:linux-x86_64": [
+                  "linux#default"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:macos-aarch64": [
+                  "osx#default"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:macos-x86_64": [
+                  "osx#default"
+                ],
+                "dev.onvoid.webrtc:webrtc-java:0.14.0:windows-x86_64": [
+                  "windows#default"
                 ],
                 "org.lwjgl:lwjgl-shaderc:3.4.1": [
                   "common#default"
@@ -17120,18 +17239,18 @@
                 "1.17": "f425401a00adf0112fde624ee80c66333530f8a1",
                 "1.18": "d31a2e85ae149dd1b1a7070b22cb8887892fda6c",
                 "1.19": "a9c8b05a8082a65678beda6dfa2b8f21fa627bce",
-                "5": "484cb832217b640bfa699aeb5cf82ec32c0959b2",
-                "12": "6ec316c1566b6bfbc88e4f56f7f6bbccf2506681",
-                "16": "947ffddf0c6e13a8040e018efa4e81d52f0a9eaf",
-                "17": "df984c572f5ffea48d9ae1bc1a5d2041396d7579",
-                "18": "ac89d24419b045a8ecbd7f6f147634c7ccb94e0b",
-                "19": "403e877fab17476a060afbfffeab0f2ae8ea800a",
-                "24": "d149d019e6ebd41e91866659186f95fe6b9c3c92",
-                "26": "8be895b2d291b7e488b1e496620799ea0636415d",
-                "27": "f64eb9c32ce509d84bae0e5a05b85b2a789dc958",
-                "29": "9dbc455d4b00e38c9ca81386f7abd6eee8d800c0",
-                "30": "a9b936e91ea337a5c7487463a2f05b4b0e653362",
-                "31": "b03ac790282feea77c6a9cc9be7f76ce137c66ad"
+                "5": "a0898a5ff1ffaa6ae37a85977c7ff6a14cd96483",
+                "12": "ccc5971b3a0da00484a54ca6615038f9cddec2dc",
+                "16": "58e97505e282eda435e4ad8eea0fa9c4d9be503b",
+                "17": "90d06ea9a02cad948892cbf5bc4d1fa5b01f596c",
+                "18": "73387dde8a5a22c0eb00b87d0843ecec845e518f",
+                "19": "30bc8c2040e2963f938cfe2c8921764aa2d841d9",
+                "24": "bb5899a60e4bb36f42bb7e4ede023644ae8af411",
+                "26": "6432cedf9862a6fa335cec2b74307ed83425bd2f",
+                "27": "8a9ec7a7bee7c2a2c614dd112729ece0828acdf1",
+                "29": "e3c08e311e0826eb9373f902fa7997b43d0067d0",
+                "30": "9672f7185226f6be5662bccd8b685c4dc0abdf3c",
+                "31": "b9058b7cb138b3778d3fb5b0ffadf31328295afa"
               },
               "asset_urls": {
                 "pre-1.6": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json",
@@ -17144,18 +17263,18 @@
                 "1.17": "https://piston-meta.mojang.com/v1/packages/f425401a00adf0112fde624ee80c66333530f8a1/1.17.json",
                 "1.18": "https://piston-meta.mojang.com/v1/packages/d31a2e85ae149dd1b1a7070b22cb8887892fda6c/1.18.json",
                 "1.19": "https://piston-meta.mojang.com/v1/packages/a9c8b05a8082a65678beda6dfa2b8f21fa627bce/1.19.json",
-                "5": "https://piston-meta.mojang.com/v1/packages/484cb832217b640bfa699aeb5cf82ec32c0959b2/5.json",
-                "12": "https://piston-meta.mojang.com/v1/packages/6ec316c1566b6bfbc88e4f56f7f6bbccf2506681/12.json",
-                "16": "https://piston-meta.mojang.com/v1/packages/947ffddf0c6e13a8040e018efa4e81d52f0a9eaf/16.json",
-                "17": "https://piston-meta.mojang.com/v1/packages/df984c572f5ffea48d9ae1bc1a5d2041396d7579/17.json",
-                "18": "https://piston-meta.mojang.com/v1/packages/ac89d24419b045a8ecbd7f6f147634c7ccb94e0b/18.json",
-                "19": "https://piston-meta.mojang.com/v1/packages/403e877fab17476a060afbfffeab0f2ae8ea800a/19.json",
-                "24": "https://piston-meta.mojang.com/v1/packages/d149d019e6ebd41e91866659186f95fe6b9c3c92/24.json",
-                "26": "https://piston-meta.mojang.com/v1/packages/8be895b2d291b7e488b1e496620799ea0636415d/26.json",
-                "27": "https://piston-meta.mojang.com/v1/packages/f64eb9c32ce509d84bae0e5a05b85b2a789dc958/27.json",
-                "29": "https://piston-meta.mojang.com/v1/packages/9dbc455d4b00e38c9ca81386f7abd6eee8d800c0/29.json",
-                "30": "https://piston-meta.mojang.com/v1/packages/a9b936e91ea337a5c7487463a2f05b4b0e653362/30.json",
-                "31": "https://piston-meta.mojang.com/v1/packages/b03ac790282feea77c6a9cc9be7f76ce137c66ad/31.json"
+                "5": "https://piston-meta.mojang.com/v1/packages/a0898a5ff1ffaa6ae37a85977c7ff6a14cd96483/5.json",
+                "12": "https://piston-meta.mojang.com/v1/packages/ccc5971b3a0da00484a54ca6615038f9cddec2dc/12.json",
+                "16": "https://piston-meta.mojang.com/v1/packages/58e97505e282eda435e4ad8eea0fa9c4d9be503b/16.json",
+                "17": "https://piston-meta.mojang.com/v1/packages/90d06ea9a02cad948892cbf5bc4d1fa5b01f596c/17.json",
+                "18": "https://piston-meta.mojang.com/v1/packages/73387dde8a5a22c0eb00b87d0843ecec845e518f/18.json",
+                "19": "https://piston-meta.mojang.com/v1/packages/30bc8c2040e2963f938cfe2c8921764aa2d841d9/19.json",
+                "24": "https://piston-meta.mojang.com/v1/packages/bb5899a60e4bb36f42bb7e4ede023644ae8af411/24.json",
+                "26": "https://piston-meta.mojang.com/v1/packages/6432cedf9862a6fa335cec2b74307ed83425bd2f/26.json",
+                "27": "https://piston-meta.mojang.com/v1/packages/8a9ec7a7bee7c2a2c614dd112729ece0828acdf1/27.json",
+                "29": "https://piston-meta.mojang.com/v1/packages/e3c08e311e0826eb9373f902fa7997b43d0067d0/29.json",
+                "30": "https://piston-meta.mojang.com/v1/packages/9672f7185226f6be5662bccd8b685c4dc0abdf3c/30.json",
+                "31": "https://piston-meta.mojang.com/v1/packages/b9058b7cb138b3778d3fb5b0ffadf31328295afa/31.json"
               },
               "version_assets": {
                 "b1.7.3": "pre-1.6",
@@ -17189,7 +17308,7 @@
                 "26.1": "30",
                 "26.1.1": "30",
                 "26.1.2": "30",
-                "26.2-snapshot-6": "31"
+                "26.2-snapshot-7": "31"
               }
             }
           }
