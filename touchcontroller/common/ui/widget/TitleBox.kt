@@ -7,14 +7,14 @@ package top.fifthlight.touchcontroller.common.ui.widget
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.border
-import top.fifthlight.combine.modifier.placement.padding
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.border
+import top.fifthlight.combine.core.modifier.placement.padding
+import top.fifthlight.combine.core.widget.layout.Box
+import top.fifthlight.combine.core.widget.layout.BoxScope
 import top.fifthlight.combine.ui.style.ColorTheme
 import top.fifthlight.combine.ui.style.LocalColorTheme
-import top.fifthlight.combine.widget.layout.Box
-import top.fifthlight.combine.widget.layout.BoxScope
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
 
 @Composable

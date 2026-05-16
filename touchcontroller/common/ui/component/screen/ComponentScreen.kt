@@ -10,16 +10,16 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.border
-import top.fifthlight.combine.modifier.placement.*
-import top.fifthlight.combine.modifier.scroll.verticalScroll
-import top.fifthlight.combine.widget.layout.Box
-import top.fifthlight.combine.widget.layout.Column
-import top.fifthlight.combine.widget.layout.Row
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.border
+import top.fifthlight.combine.core.modifier.placement.*
+import top.fifthlight.combine.core.modifier.scroll.verticalScroll
+import top.fifthlight.combine.core.widget.layout.Box
+import top.fifthlight.combine.core.widget.layout.Column
+import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.widget.ui.EditText
 import top.fifthlight.combine.widget.ui.Icon
 import top.fifthlight.combine.widget.ui.IconButton
@@ -29,11 +29,13 @@ import top.fifthlight.touchcontroller.assets.Textures
 import top.fifthlight.touchcontroller.common.gal.gamestate.GameState
 import top.fifthlight.touchcontroller.common.gal.item.ItemDataComponentType
 import top.fifthlight.touchcontroller.common.gal.item.ItemDataComponentTypeProviderFactory
-import top.fifthlight.touchcontroller.common.ui.widget.*
 import top.fifthlight.touchcontroller.common.ui.component.model.ComponentScreenModel
+import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
+import top.fifthlight.touchcontroller.common.ui.widget.ItemShower
+import top.fifthlight.touchcontroller.common.ui.widget.ListButton
+import top.fifthlight.touchcontroller.common.ui.widget.Scaffold
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.AppBar
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.BackButton
-import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
 
 class ComponentScreen(
     private val initialValue: PersistentList<ItemDataComponentType>,

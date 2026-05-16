@@ -1,7 +1,7 @@
-package top.fifthlight.combine.modifier.placement
+package top.fifthlight.combine.core.modifier.placement
 
-import top.fifthlight.combine.layout.measure.Placeable
-import top.fifthlight.combine.modifier.Modifier
+import top.fifthlight.combine.core.layout.measure.Placeable
+import top.fifthlight.combine.core.modifier.Modifier
 
 fun Modifier.onPlaced(onPlaced: (Placeable) -> Unit) = then(OnPlacedNode(onPlaced))
 

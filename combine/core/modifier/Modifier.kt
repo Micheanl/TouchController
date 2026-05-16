@@ -1,4 +1,4 @@
-package top.fifthlight.combine.modifier
+package top.fifthlight.combine.core.modifier
 
 /**
  * An ordered, immutable collection of [modifier elements][Modifier.Node] that decorate or add

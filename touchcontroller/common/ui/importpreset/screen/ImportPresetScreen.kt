@@ -11,9 +11,9 @@ import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.placement.fillMaxWidth
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.placement.fillMaxWidth
 import top.fifthlight.combine.widget.ui.Button
 import top.fifthlight.combine.widget.ui.Text
 import top.fifthlight.touchcontroller.assets.Texts

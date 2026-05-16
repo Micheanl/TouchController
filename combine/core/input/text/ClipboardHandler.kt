@@ -1,4 +1,4 @@
-package top.fifthlight.combine.input.text
+package top.fifthlight.combine.core.input.text
 
 import androidx.compose.runtime.staticCompositionLocalOf
 

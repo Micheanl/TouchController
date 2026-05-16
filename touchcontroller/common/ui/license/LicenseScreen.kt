@@ -7,19 +7,19 @@ package top.fifthlight.touchcontroller.common.ui.screen
 
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.screen.Screen
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.background
-import top.fifthlight.combine.modifier.placement.fillMaxWidth
-import top.fifthlight.combine.modifier.placement.padding
-import top.fifthlight.combine.modifier.scroll.verticalScroll
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.background
+import top.fifthlight.combine.core.modifier.placement.fillMaxWidth
+import top.fifthlight.combine.core.modifier.placement.padding
+import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.widget.ui.Text
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.common.about.License
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
+import top.fifthlight.touchcontroller.common.ui.widget.Scaffold
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.AppBar
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.BackButton
-import top.fifthlight.touchcontroller.common.ui.widget.Scaffold
 
 class LicenseScreen(
     val license: License,

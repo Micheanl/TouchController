@@ -9,9 +9,9 @@ import net.minecraft.client.KeyMapping
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.resources.Identifier
 import org.lwjgl.glfw.GLFW
-import top.fifthlight.combine.data.TextFactoryFactory
+import top.fifthlight.combine.core.data.TextFactoryFactory
+import top.fifthlight.combine.core.screen.ScreenFactoryFactory
 import top.fifthlight.combine.example.helloworld.common.HelloWorld
-import top.fifthlight.combine.screen.ScreenFactoryFactory
 
 class HelloWorldMod : ClientModInitializer, ModMenuApi {
     companion object {

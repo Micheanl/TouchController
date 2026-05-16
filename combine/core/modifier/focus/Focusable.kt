@@ -1,16 +1,16 @@
-package top.fifthlight.combine.modifier.focus
+package top.fifthlight.combine.core.modifier.focus
 
-import top.fifthlight.combine.input.Interaction
-import top.fifthlight.combine.input.MutableInteractionSource
-import top.fifthlight.combine.input.focus.LocalFocusManager
-import top.fifthlight.combine.input.pointer.PointerEvent
-import top.fifthlight.combine.input.pointer.PointerEventType
-import top.fifthlight.combine.layout.measure.Placeable
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.pointer.PointerInputModifierNode
-import top.fifthlight.combine.node.AttachListenerModifierNode
-import top.fifthlight.combine.node.LayoutNode
-import top.fifthlight.combine.node.plus
+import top.fifthlight.combine.core.input.focus.LocalFocusManager
+import top.fifthlight.combine.core.input.interaction.Interaction
+import top.fifthlight.combine.core.input.interaction.MutableInteractionSource
+import top.fifthlight.combine.core.input.pointer.PointerEvent
+import top.fifthlight.combine.core.input.pointer.PointerEventType
+import top.fifthlight.combine.core.layout.measure.Placeable
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.pointer.PointerInputModifierNode
+import top.fifthlight.combine.core.node.AttachListenerModifierNode
+import top.fifthlight.combine.core.node.LayoutNode
+import top.fifthlight.combine.core.node.plus
 
 sealed class FocusInteraction : Interaction {
     data object Blur : FocusInteraction()

@@ -1,4 +1,4 @@
-package top.fifthlight.combine.input.text
+package top.fifthlight.combine.core.input.text
 
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow

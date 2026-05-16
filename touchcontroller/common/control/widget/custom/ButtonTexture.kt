@@ -7,9 +7,9 @@ package top.fifthlight.touchcontroller.common.control.widget.custom
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
 import top.fifthlight.data.IntPadding
 import top.fifthlight.touchcontroller.assets.BuiltInTextureItems
 import top.fifthlight.touchcontroller.assets.BuiltInTextureSets

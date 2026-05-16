@@ -1,7 +1,7 @@
 package top.fifthlight.combine.item.data
 
 import androidx.compose.runtime.Immutable
-import top.fifthlight.combine.data.Identifier
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.mergetools.api.ExpectFactory
 
 @Immutable

@@ -12,10 +12,10 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.data.TextFactory
-import top.fifthlight.combine.modifier.Modifier
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.data.TextFactory
+import top.fifthlight.combine.core.modifier.Modifier
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntSize
 import top.fifthlight.touchcontroller.assets.Texts

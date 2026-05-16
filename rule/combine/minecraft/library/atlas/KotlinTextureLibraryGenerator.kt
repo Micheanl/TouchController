@@ -67,7 +67,7 @@ fun main(vararg args: String) = object : Worker() {
             )
 
         classSpecBuilder.addProperty(
-            PropertySpec.builder("atlasTexture", ClassName("top.fifthlight.combine.paint", "Texture"))
+            PropertySpec.builder("atlasTexture", ClassName("top.fifthlight.combine.core.paint", "Texture"))
                 .initializer(
                     "TextureFactory.create(%S, %S, %L, %L, IntPadding.ZERO)",
                     namespace,
@@ -78,7 +78,7 @@ fun main(vararg args: String) = object : Worker() {
                 .build()
         )
         classSpecBuilder.addProperty(
-            PropertySpec.builder("atlas", ClassName("top.fifthlight.combine.util.atlas", "AtlasTexture"))
+            PropertySpec.builder("atlas", ClassName("top.fifthlight.combine.core.util.atlas", "AtlasTexture"))
                 .initializer("AtlasTexture(atlasTexture)")
                 .build()
         )
@@ -86,7 +86,7 @@ fun main(vararg args: String) = object : Worker() {
         for ((_, placed) in atlasMetadata.textures) {
             val propertySpec = if (placed.ninePatch != null) {
                 PropertySpec
-                    .builder(placed.identifier, ClassName("top.fifthlight.combine.paint", "Texture"))
+                    .builder(placed.identifier, ClassName("top.fifthlight.combine.core.paint", "Texture"))
                     .addModifiers(KModifier.OVERRIDE)
                     .initializer(
                         """%T(
@@ -101,7 +101,7 @@ fun main(vararg args: String) = object : Worker() {
                           |    ),
                           |)
                         """.trimMargin(),
-                        ClassName("top.fifthlight.combine.util.ninepatch", "NinePatchTexture"),
+                        ClassName("top.fifthlight.combine.core.util.ninepatch", "NinePatchTexture"),
                         placed.position.x, placed.position.y,
                         placed.size.width, placed.size.height,
                         placed.ninePatch.padding.left, placed.ninePatch.padding.top,
@@ -112,7 +112,7 @@ fun main(vararg args: String) = object : Worker() {
                     .build()
             } else {
                 PropertySpec
-                    .builder(placed.identifier, ClassName("top.fifthlight.combine.paint", "Texture"))
+                    .builder(placed.identifier, ClassName("top.fifthlight.combine.core.paint", "Texture"))
                     .addModifiers(KModifier.OVERRIDE)
                     .initializer(
                         "atlas.createPart(IntOffset(%L, %L), IntSize(%L, %L))",
@@ -142,7 +142,7 @@ fun main(vararg args: String) = object : Worker() {
                     classSpecBuilder.addProperty(
                         PropertySpec.builder(
                             identifier,
-                            ClassName("top.fifthlight.combine.paint", "BackgroundTexture")
+                            ClassName("top.fifthlight.combine.core.paint", "BackgroundTexture")
                         ).addModifiers(KModifier.OVERRIDE).initializer(
                             "BackgroundTextureFactory.create(%S, %S, %L, %L)",
                             namespace,
@@ -169,10 +169,10 @@ fun main(vararg args: String) = object : Worker() {
                     .addMember("%S", "RedundantVisibilityModifier")
                     .build()
             )
-            .addImport("top.fifthlight.combine.paint", "BackgroundTextureFactory")
-            .addImport("top.fifthlight.combine.paint", "TextureFactory")
-            .addImport("top.fifthlight.combine.util.atlas", "AtlasTexture")
-            .addImport("top.fifthlight.combine.util.ninepatch", "NinePatchTexture")
+            .addImport("top.fifthlight.combine.core.paint", "BackgroundTextureFactory")
+            .addImport("top.fifthlight.combine.core.paint", "TextureFactory")
+            .addImport("top.fifthlight.combine.core.util.atlas", "AtlasTexture")
+            .addImport("top.fifthlight.combine.core.util.ninepatch", "NinePatchTexture")
             .addImport("top.fifthlight.data", "IntOffset")
             .addImport("top.fifthlight.data", "IntPadding")
             .addImport("top.fifthlight.data", "IntRect")

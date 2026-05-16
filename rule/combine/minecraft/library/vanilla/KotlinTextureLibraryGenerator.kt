@@ -64,7 +64,7 @@ fun main(vararg args: String) = object : Worker() {
                         classSpecBuilder.addProperty(
                             PropertySpec.builder(
                                 identifier,
-                                ClassName("top.fifthlight.combine.paint", "BackgroundTexture")
+                                ClassName("top.fifthlight.combine.core.paint", "BackgroundTexture")
                             ).addModifiers(KModifier.OVERRIDE).initializer(
                                 "BackgroundTextureFactory.create(%S, %S, %L, %L)",
                                 namespace,
@@ -77,7 +77,7 @@ fun main(vararg args: String) = object : Worker() {
                         classSpecBuilder.addProperty(
                             PropertySpec.builder(
                                 identifier,
-                                ClassName("top.fifthlight.combine.paint", "Texture")
+                                ClassName("top.fifthlight.combine.core.paint", "Texture")
                             ).addModifiers(KModifier.OVERRIDE).initializer(
                                 "TextureFactory.createSprite(%S, %S, %L, %L, IntPadding.ZERO)",
                                 namespace,
@@ -98,7 +98,7 @@ fun main(vararg args: String) = object : Worker() {
                     val metadata = Json.decodeFromString<NinePatchMetadata>(metadataPath.readText())
                     classSpecBuilder.addProperty(
                         PropertySpec
-                            .builder(identifier, ClassName("top.fifthlight.combine.paint", "Texture"))
+                            .builder(identifier, ClassName("top.fifthlight.combine.core.paint", "Texture"))
                             .addModifiers(KModifier.OVERRIDE)
                             .initializer(
                                 "TextureFactory.createSprite(%S, %S, %L, %L, IntPadding(%L, %L, %L, %L))",
@@ -131,8 +131,8 @@ fun main(vararg args: String) = object : Worker() {
                     .addMember("%S", "RedundantVisibilityModifier")
                     .build()
             )
-            .addImport("top.fifthlight.combine.paint", "TextureFactory")
-            .addImport("top.fifthlight.combine.paint", "BackgroundTextureFactory")
+            .addImport("top.fifthlight.combine.core.paint", "TextureFactory")
+            .addImport("top.fifthlight.combine.core.paint", "BackgroundTextureFactory")
             .addImport("top.fifthlight.data", "IntPadding")
             .addType(classSpecBuilder.build())
             .build()

@@ -1,7 +1,7 @@
 package top.fifthlight.combine.backend.minecraft.clipboard.v1_21_11
 
 import net.minecraft.client.Minecraft
-import top.fifthlight.combine.input.text.ClipboardHandler
+import top.fifthlight.combine.core.input.text.ClipboardHandler
 
 object ClipboardHandlerImpl : ClipboardHandler {
     private val client by lazy { Minecraft.getInstance() }

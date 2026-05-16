@@ -1,8 +1,8 @@
-package top.fifthlight.combine.screen
+package top.fifthlight.combine.core.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.mergetools.api.ExpectFactory
 
 val LocalScreenFactory = staticCompositionLocalOf<ScreenFactory> { error("No ScreenFactory in context") }

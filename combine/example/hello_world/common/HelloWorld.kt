@@ -1,15 +1,15 @@
 package top.fifthlight.combine.example.helloworld.common
 
 import androidx.compose.runtime.*
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.placement.fillMaxSize
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.placement.fillMaxSize
+import top.fifthlight.combine.core.widget.layout.Box
+import top.fifthlight.combine.core.widget.layout.Column
+import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.theme.invoke
 import top.fifthlight.combine.theme.vanilla.VanillaTheme
-import top.fifthlight.combine.widget.layout.Box
-import top.fifthlight.combine.widget.layout.Column
-import top.fifthlight.combine.widget.layout.Row
 import top.fifthlight.combine.widget.ui.Button
 import top.fifthlight.combine.widget.ui.Text
 

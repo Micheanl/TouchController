@@ -27,7 +27,7 @@ private class Generator : CliktCommand() {
                 for (texture in textures) {
                     addProperty(
                         PropertySpec
-                            .builder(texture, ClassName("top.fifthlight.combine.paint", "Texture"))
+                            .builder(texture, ClassName("top.fifthlight.combine.core.paint", "Texture"))
                             .addModifiers(KModifier.ABSTRACT)
                             .build()
                     )
@@ -35,7 +35,7 @@ private class Generator : CliktCommand() {
                 for (ninePatch in ninePatches) {
                     addProperty(
                         PropertySpec
-                            .builder(ninePatch, ClassName("top.fifthlight.combine.paint", "Texture"))
+                            .builder(ninePatch, ClassName("top.fifthlight.combine.core.paint", "Texture"))
                             .addModifiers(KModifier.ABSTRACT)
                             .build()
                     )
@@ -43,7 +43,7 @@ private class Generator : CliktCommand() {
                 for (background in backgrounds) {
                     addProperty(
                         PropertySpec
-                            .builder(background, ClassName("top.fifthlight.combine.paint", "BackgroundTexture"))
+                            .builder(background, ClassName("top.fifthlight.combine.core.paint", "BackgroundTexture"))
                             .addModifiers(KModifier.ABSTRACT)
                             .build()
                     )

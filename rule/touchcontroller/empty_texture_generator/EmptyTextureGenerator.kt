@@ -19,8 +19,8 @@ private fun generateEmptyTexture(
 ): FileSpec {
     val textClassName = ClassName(textPackage, textClass)
     val textureClassName = ClassName(texturePackage, textureClass)
-    val textureTypeName = ClassName("top.fifthlight.combine.paint", "Texture")
-    val identifierTypeName = ClassName("top.fifthlight.combine.data", "Identifier")
+    val textureTypeName = ClassName("top.fifthlight.combine.core.paint", "Texture")
+    val identifierTypeName = ClassName("top.fifthlight.combine.core.data", "Identifier")
 
     val emptyTextureType = TypeSpec.enumBuilder(className)
         .addAnnotation(Serializable::class)

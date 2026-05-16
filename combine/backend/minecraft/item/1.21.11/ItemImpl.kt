@@ -4,7 +4,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.Item
 import top.fifthlight.combine.backend.minecraft.identifier.v1_21_11.toCombine
 import top.fifthlight.combine.backend.minecraft.identifier.v1_21_11.toMinecraft
-import top.fifthlight.combine.data.Identifier
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
 import kotlin.jvm.optionals.getOrNull

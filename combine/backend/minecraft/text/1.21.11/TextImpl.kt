@@ -4,9 +4,9 @@ import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Style
-import top.fifthlight.combine.data.TextColor
-import top.fifthlight.combine.data.TextStyle
-import top.fifthlight.combine.data.Text as CombineText
+import top.fifthlight.combine.core.data.TextColor
+import top.fifthlight.combine.core.data.TextStyle
+import top.fifthlight.combine.core.data.Text as CombineText
 
 fun TextColor.toFormatting() = when (this) {
     TextColor.BLACK -> ChatFormatting.BLACK

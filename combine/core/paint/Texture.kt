@@ -1,4 +1,4 @@
-package top.fifthlight.combine.paint
+package top.fifthlight.combine.core.paint
 
 import androidx.compose.runtime.Immutable
 import top.fifthlight.data.*

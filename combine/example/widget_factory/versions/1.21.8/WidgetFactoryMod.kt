@@ -8,9 +8,9 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
 import net.minecraft.client.KeyMapping
 import net.minecraft.client.gui.screens.Screen
 import org.lwjgl.glfw.GLFW
-import top.fifthlight.combine.data.TextFactoryFactory
+import top.fifthlight.combine.core.data.TextFactoryFactory
+import top.fifthlight.combine.core.screen.ScreenFactoryFactory
 import top.fifthlight.combine.example.widgetfactory.common.WidgetFactory
-import top.fifthlight.combine.screen.ScreenFactoryFactory
 
 class WidgetFactoryMod : ClientModInitializer, ModMenuApi {
     companion object {

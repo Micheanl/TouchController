@@ -1,4 +1,4 @@
-package top.fifthlight.combine.sound
+package top.fifthlight.combine.core.sound
 
 import androidx.compose.runtime.staticCompositionLocalOf
 

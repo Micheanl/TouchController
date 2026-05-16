@@ -1,4 +1,4 @@
-package top.fifthlight.combine.input
+package top.fifthlight.combine.core.input.interaction
 
 import androidx.compose.runtime.Stable
 import kotlinx.coroutines.channels.BufferOverflow

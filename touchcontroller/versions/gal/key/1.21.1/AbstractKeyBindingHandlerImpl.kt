@@ -10,7 +10,7 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.Options
 import net.minecraft.network.chat.Component
 import top.fifthlight.combine.backend.minecraft.text.v1_21_1.TextImpl
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.touchcontroller.common.gal.key.DefaultKeyBindingType
 import top.fifthlight.touchcontroller.common.gal.key.KeyBindingHandler
 import top.fifthlight.touchcontroller.common.gal.key.KeyBindingState

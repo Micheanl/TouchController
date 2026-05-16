@@ -1,6 +1,6 @@
 package top.fifthlight.combine.backend.minecraft.input.v1_21_11
 
-import top.fifthlight.combine.input.text.InputHandler
+import top.fifthlight.combine.core.input.text.InputHandler
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
 

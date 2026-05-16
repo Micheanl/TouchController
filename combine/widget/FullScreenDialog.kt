@@ -1,8 +1,8 @@
 package top.fifthlight.combine.widget.ui
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.screen.DismissHandler
-import top.fifthlight.combine.widget.Popup
+import top.fifthlight.combine.core.screen.DismissHandler
+import top.fifthlight.combine.core.widget.Popup
 
 @Composable
 fun FullScreenDialog(

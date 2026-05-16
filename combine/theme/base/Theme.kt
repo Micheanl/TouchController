@@ -3,7 +3,7 @@ package top.fifthlight.combine.theme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
-import top.fifthlight.combine.paint.Drawable
+import top.fifthlight.combine.core.paint.Drawable
 import top.fifthlight.combine.ui.style.ColorTheme
 import top.fifthlight.combine.ui.style.DrawableSet
 import top.fifthlight.combine.ui.style.TextureSet

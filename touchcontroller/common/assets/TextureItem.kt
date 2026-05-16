@@ -6,7 +6,7 @@
 package top.fifthlight.touchcontroller.common.assets
 
 import kotlinx.serialization.Serializable
-import top.fifthlight.combine.paint.Texture
+import top.fifthlight.combine.core.paint.Texture
 import top.fifthlight.touchcontroller.common.util.registry.RegistrySerializer
 
 @Serializable(with = TextureItemSerializer::class)

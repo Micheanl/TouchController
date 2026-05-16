@@ -2,11 +2,11 @@ package top.fifthlight.combine.widget.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonSkippableComposable
-import top.fifthlight.combine.modifier.Modifier
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.widget.layout.BoxScope
 import top.fifthlight.combine.theme.LocalTheme
 import top.fifthlight.combine.ui.style.ColorTheme
 import top.fifthlight.combine.ui.style.DrawableSet
-import top.fifthlight.combine.widget.layout.BoxScope
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntSize
 

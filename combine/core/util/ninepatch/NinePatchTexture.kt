@@ -1,8 +1,8 @@
-package top.fifthlight.combine.util.ninepatch
+package top.fifthlight.combine.core.util.ninepatch
 
-import top.fifthlight.combine.paint.Canvas
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Texture
+import top.fifthlight.combine.core.paint.Canvas
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Texture
 import top.fifthlight.data.*
 
 data class NinePatchTexture(

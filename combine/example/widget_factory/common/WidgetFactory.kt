@@ -4,24 +4,24 @@ import androidx.compose.runtime.*
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.collections.immutable.toPersistentList
-import top.fifthlight.combine.data.TextFactoryFactory
-import top.fifthlight.combine.data.TextStyle
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.background
-import top.fifthlight.combine.modifier.placement.*
-import top.fifthlight.combine.modifier.scroll.verticalScroll
-import top.fifthlight.combine.paint.Color
+import top.fifthlight.combine.core.data.TextFactoryFactory
+import top.fifthlight.combine.core.data.TextStyle
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.background
+import top.fifthlight.combine.core.modifier.placement.*
+import top.fifthlight.combine.core.modifier.scroll.verticalScroll
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.widget.layout.Box
+import top.fifthlight.combine.core.widget.layout.Column
+import top.fifthlight.combine.core.widget.layout.Row
+import top.fifthlight.combine.core.widget.layout.Spacer
 import top.fifthlight.combine.theme.LocalTheme
 import top.fifthlight.combine.theme.blackstone.BlackstoneTheme
 import top.fifthlight.combine.theme.invoke
 import top.fifthlight.combine.theme.oreui.OreUITheme
 import top.fifthlight.combine.theme.vanilla.VanillaTheme
-import top.fifthlight.combine.widget.layout.Box
-import top.fifthlight.combine.widget.layout.Column
-import top.fifthlight.combine.widget.layout.Row
-import top.fifthlight.combine.widget.layout.Spacer
 import top.fifthlight.combine.widget.ui.*
 
 private val themes =

@@ -5,14 +5,11 @@
 
 package top.fifthlight.touchcontroller.common.event.connection
 
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.data.TextFactory
-import top.fifthlight.combine.data.TextFactoryFactory
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.common.config.data.StatusConfig
 import top.fifthlight.touchcontroller.common.config.holder.GlobalConfigHolder
 import top.fifthlight.touchcontroller.common.gal.action.GameAction
-import top.fifthlight.touchcontroller.common.gal.action.GameActionFactory
 import top.fifthlight.touchcontroller.common.platform.provider.PlatformProvider
 import top.fifthlight.touchcontroller.common.platform.proxy.ProxyPlatform
 import top.fifthlight.touchcontroller.common.platform.warning.WarningProvider

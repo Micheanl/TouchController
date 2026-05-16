@@ -7,7 +7,7 @@ package top.fifthlight.touchcontroller.common.control.action
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import top.fifthlight.combine.data.Identifier
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.common.gal.key.KeyBindingHandler
 import top.fifthlight.touchcontroller.common.gal.key.KeyBindingHandlerFactory

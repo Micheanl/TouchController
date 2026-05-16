@@ -6,11 +6,11 @@
 package top.fifthlight.touchcontroller.common.ui.widget
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.placement.fillMaxHeight
-import top.fifthlight.combine.modifier.placement.fillMaxSize
-import top.fifthlight.combine.widget.layout.Column
-import top.fifthlight.combine.widget.layout.Row
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.placement.fillMaxHeight
+import top.fifthlight.combine.core.modifier.placement.fillMaxSize
+import top.fifthlight.combine.core.widget.layout.Column
+import top.fifthlight.combine.core.widget.layout.Row
 
 @Composable
 fun Scaffold(

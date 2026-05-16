@@ -3,14 +3,14 @@ package top.fifthlight.combine.item.widget
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import top.fifthlight.combine.input.MutableInteractionSource
+import top.fifthlight.combine.core.input.interaction.MutableInteractionSource
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.background
+import top.fifthlight.combine.core.modifier.pointer.clickable
+import top.fifthlight.combine.core.paint.Colors
+import top.fifthlight.combine.core.sound.LocalSoundManager
+import top.fifthlight.combine.core.sound.SoundKind
 import top.fifthlight.combine.item.data.ItemStack
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.background
-import top.fifthlight.combine.modifier.pointer.clickable
-import top.fifthlight.combine.paint.Colors
-import top.fifthlight.combine.sound.LocalSoundManager
-import top.fifthlight.combine.sound.SoundKind
 import top.fifthlight.combine.widget.ui.WidgetState
 import top.fifthlight.combine.widget.ui.widgetState
 

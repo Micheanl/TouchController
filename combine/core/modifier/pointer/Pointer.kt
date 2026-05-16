@@ -1,9 +1,9 @@
-package top.fifthlight.combine.modifier.pointer
+package top.fifthlight.combine.core.modifier.pointer
 
-import top.fifthlight.combine.input.pointer.PointerEvent
-import top.fifthlight.combine.layout.measure.Placeable
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.node.LayoutNode
+import top.fifthlight.combine.core.input.pointer.PointerEvent
+import top.fifthlight.combine.core.layout.measure.Placeable
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.node.LayoutNode
 
 fun Modifier.onPointerInput(receiver: Placeable.(PointerEvent) -> Boolean) =
     then(PointerInputReceiverModifierNode(receiver))

@@ -1,4 +1,4 @@
-package top.fifthlight.combine.input.focus
+package top.fifthlight.combine.core.input.focus
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import kotlinx.coroutines.flow.MutableStateFlow

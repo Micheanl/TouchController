@@ -10,10 +10,10 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.plus
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
-import top.fifthlight.combine.text.TextMeasurer
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
+import top.fifthlight.combine.core.text.TextMeasurer
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntRect

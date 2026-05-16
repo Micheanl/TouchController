@@ -14,25 +14,20 @@ import top.fifthlight.combine.backend.minecraft.keycode.v1_21_8.mapModifier
 import top.fifthlight.combine.backend.minecraft.render.v1_21_8.CanvasImpl
 import top.fifthlight.combine.backend.minecraft.sound.v1_21_8.SoundManagerImpl
 import top.fifthlight.combine.backend.minecraft.text.v1_21_8.toMinecraft
-import top.fifthlight.combine.input.key.KeyEvent
-import top.fifthlight.combine.input.pointer.PointerButton
-import top.fifthlight.combine.input.pointer.PointerEvent
-import top.fifthlight.combine.input.pointer.PointerEventType
-import top.fifthlight.combine.input.pointer.PointerType
-import top.fifthlight.combine.input.text.LocalClipboard
-import top.fifthlight.combine.node.CombineOwner
-import top.fifthlight.combine.screen.CloseHandler
-import top.fifthlight.combine.screen.LocalCloseHandler
-import top.fifthlight.combine.screen.LocalOnDismissRequestDispatcher
-import top.fifthlight.combine.screen.LocalScreenFactory
-import top.fifthlight.combine.screen.OnDismissRequestDispatcher
-import top.fifthlight.combine.screen.ScreenFactory
-import top.fifthlight.combine.sound.LocalSoundManager
+import top.fifthlight.combine.core.input.key.KeyEvent
+import top.fifthlight.combine.core.input.pointer.PointerButton
+import top.fifthlight.combine.core.input.pointer.PointerEvent
+import top.fifthlight.combine.core.input.pointer.PointerEventType
+import top.fifthlight.combine.core.input.pointer.PointerType
+import top.fifthlight.combine.core.input.text.LocalClipboard
+import top.fifthlight.combine.core.node.CombineOwner
+import top.fifthlight.combine.core.screen.*
+import top.fifthlight.combine.core.sound.LocalSoundManager
 import top.fifthlight.data.IntSize
 import top.fifthlight.data.Offset
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
-import top.fifthlight.combine.data.Text as CombineText
+import top.fifthlight.combine.core.data.Text as CombineText
 
 class CombineScreen(
     title: Component,

@@ -5,9 +5,9 @@
 
 package top.fifthlight.touchcontroller.common.layout.widget.game
 
-import top.fifthlight.combine.paint.Colors
-import top.fifthlight.combine.paint.drawCenteredText
-import top.fifthlight.combine.paint.withTranslate
+import top.fifthlight.combine.core.paint.Colors
+import top.fifthlight.combine.core.paint.drawCenteredText
+import top.fifthlight.combine.core.paint.withTranslate
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntSize
 import top.fifthlight.touchcontroller.common.layout.Context

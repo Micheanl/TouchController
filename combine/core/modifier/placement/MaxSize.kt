@@ -1,11 +1,11 @@
-package top.fifthlight.combine.modifier.placement
+package top.fifthlight.combine.core.modifier.placement
 
-import top.fifthlight.combine.layout.constraints.Constraints
-import top.fifthlight.combine.layout.measure.Measurable
-import top.fifthlight.combine.layout.measure.MeasureResult
-import top.fifthlight.combine.layout.measure.MeasureScope
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.LayoutModifierNode
+import top.fifthlight.combine.core.layout.constraints.Constraints
+import top.fifthlight.combine.core.layout.measure.Measurable
+import top.fifthlight.combine.core.layout.measure.MeasureResult
+import top.fifthlight.combine.core.layout.measure.MeasureScope
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.LayoutModifierNode
 
 fun Modifier.maxSize(width: Int, height: Int): Modifier = then(MaxSizeNode(width = width, height = height))
 

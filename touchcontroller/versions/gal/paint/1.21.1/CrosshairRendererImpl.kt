@@ -13,8 +13,8 @@ import com.mojang.blaze3d.vertex.Tesselator
 import com.mojang.blaze3d.vertex.VertexFormat
 import net.minecraft.client.renderer.GameRenderer
 import top.fifthlight.combine.backend.minecraft.render.v1_21_1.CanvasImpl
-import top.fifthlight.combine.paint.Canvas
-import top.fifthlight.combine.paint.Colors
+import top.fifthlight.combine.core.paint.Canvas
+import top.fifthlight.combine.core.paint.Colors
 import top.fifthlight.data.Offset
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl

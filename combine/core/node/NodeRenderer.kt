@@ -1,7 +1,7 @@
-package top.fifthlight.combine.node
+package top.fifthlight.combine.core.node
 
-import top.fifthlight.combine.layout.measure.Placeable
-import top.fifthlight.combine.paint.Canvas
+import top.fifthlight.combine.core.layout.measure.Placeable
+import top.fifthlight.combine.core.paint.Canvas
 
 fun interface NodeRenderer {
     fun render(canvas: Canvas, node: Placeable)

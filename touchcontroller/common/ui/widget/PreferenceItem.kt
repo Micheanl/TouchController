@@ -6,23 +6,19 @@
 package top.fifthlight.touchcontroller.common.ui.widget
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.placement.fillMaxWidth
-import top.fifthlight.combine.modifier.placement.minHeight
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
-import top.fifthlight.combine.widget.layout.Column
-import top.fifthlight.combine.widget.layout.ColumnScope
-import top.fifthlight.combine.widget.layout.Row
-import top.fifthlight.combine.widget.layout.RowScope
-import top.fifthlight.combine.widget.ui.ColorPicker
-import top.fifthlight.combine.widget.ui.IntSlider
-import top.fifthlight.combine.widget.ui.Slider
-import top.fifthlight.combine.widget.ui.Switch
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.placement.fillMaxWidth
+import top.fifthlight.combine.core.modifier.placement.minHeight
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
+import top.fifthlight.combine.core.widget.layout.Column
+import top.fifthlight.combine.core.widget.layout.ColumnScope
+import top.fifthlight.combine.core.widget.layout.Row
+import top.fifthlight.combine.core.widget.layout.RowScope
+import top.fifthlight.combine.widget.ui.*
 import top.fifthlight.touchcontroller.assets.Texts
 
 @Composable

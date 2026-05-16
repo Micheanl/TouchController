@@ -5,9 +5,9 @@ import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.ClickEvent
 import top.fifthlight.combine.backend.minecraft.text.v1_21_10.toMinecraft
 import top.fifthlight.combine.backend.minecraft.textmeasurer.v1_21_10.TextMeasurerImpl
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.text.TextHitTestProvider
-import top.fifthlight.combine.text.TextHitTestResult
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.text.TextHitTestProvider
+import top.fifthlight.combine.core.text.TextHitTestResult
 import top.fifthlight.data.IntOffset
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl

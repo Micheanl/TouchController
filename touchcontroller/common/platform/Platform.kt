@@ -5,7 +5,7 @@
 
 package top.fifthlight.touchcontroller.common.platform
 
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.touchcontroller.proxy.message.ProxyMessage
 
 interface Platform {

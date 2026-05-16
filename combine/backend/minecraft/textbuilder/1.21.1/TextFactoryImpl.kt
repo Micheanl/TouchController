@@ -2,12 +2,12 @@ package top.fifthlight.combine.backend.minecraft.textbuilder.v1_21_1
 
 import net.minecraft.network.chat.Component
 import top.fifthlight.combine.backend.minecraft.text.v1_21_1.TextImpl
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.data.TextBuilder
-import top.fifthlight.combine.data.TextFactory
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.data.TextBuilder
+import top.fifthlight.combine.core.data.TextFactory
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
-import top.fifthlight.combine.data.Text as CombineText
+import top.fifthlight.combine.core.data.Text as CombineText
 
 @ActualImpl(TextFactory::class)
 object TextFactoryImpl : TextFactory {

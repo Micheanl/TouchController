@@ -1,4 +1,4 @@
-package top.fifthlight.combine.input.focus
+package top.fifthlight.combine.core.input.focus
 
 interface FocusStateListener {
     fun onFocusStateChanged(focused: Boolean)

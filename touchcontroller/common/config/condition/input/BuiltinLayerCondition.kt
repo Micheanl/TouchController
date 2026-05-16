@@ -7,7 +7,7 @@ package top.fifthlight.touchcontroller.common.config.condition.input
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import top.fifthlight.combine.data.Identifier
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.touchcontroller.assets.Texts
 
 @Serializable

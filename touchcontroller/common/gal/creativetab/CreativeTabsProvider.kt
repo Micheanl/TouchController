@@ -6,7 +6,7 @@
 package top.fifthlight.touchcontroller.common.gal.creativetab
 
 import kotlinx.collections.immutable.PersistentList
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.combine.item.data.ItemStack
 import top.fifthlight.mergetools.api.ExpectFactory
 import top.fifthlight.touchcontroller.common.gal.player.PlayerHandle

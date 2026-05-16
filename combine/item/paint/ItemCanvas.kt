@@ -1,7 +1,7 @@
 package top.fifthlight.combine.item.paint
 
+import top.fifthlight.combine.core.paint.Canvas
 import top.fifthlight.combine.item.data.ItemStack
-import top.fifthlight.combine.paint.Canvas
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntSize
 

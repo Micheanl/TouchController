@@ -14,7 +14,7 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.serialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import top.fifthlight.combine.data.*
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.combine.item.data.Item
 import top.fifthlight.touchcontroller.common.gal.item.ItemDataComponentType
 import top.fifthlight.touchcontroller.common.gal.item.ItemDataComponentTypeFactory

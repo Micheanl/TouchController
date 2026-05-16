@@ -1,8 +1,8 @@
-package top.fifthlight.combine.modifier.input
+package top.fifthlight.combine.core.modifier.input
 
-import top.fifthlight.combine.input.text.TextInputReceiver
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.node.WrapperFactory
+import top.fifthlight.combine.core.input.text.TextInputReceiver
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.node.WrapperFactory
 
 fun Modifier.textInput(handler: TextInputReceiver) = then(TextInputReceiverModifierNode(handler))
 

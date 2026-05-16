@@ -12,7 +12,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.entity.EntityType
 import top.fifthlight.combine.backend.minecraft.identifier.v1_21_1.toCombine
 import top.fifthlight.combine.backend.minecraft.text.v1_21_1.TextImpl
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
 import top.fifthlight.touchcontroller.common.gal.entity.EntityTypeProvider

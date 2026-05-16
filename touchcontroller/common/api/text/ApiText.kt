@@ -6,8 +6,8 @@
 package top.fifthlight.touchcontroller.common.api.text
 
 import top.fifthlight.touchcontroller.api.v1.text.Text
-import top.fifthlight.combine.data.Text as CombineText
-import top.fifthlight.combine.data.TextFactory as CombineTextFactory
+import top.fifthlight.combine.core.data.Text as CombineText
+import top.fifthlight.combine.core.data.TextFactory as CombineTextFactory
 
 sealed interface ApiText : Text {
     val text: CombineText

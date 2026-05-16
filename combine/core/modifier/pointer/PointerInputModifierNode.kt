@@ -1,14 +1,14 @@
-package top.fifthlight.combine.modifier.pointer
+package top.fifthlight.combine.core.modifier.pointer
 
-import top.fifthlight.combine.input.focus.FocusStateListener
-import top.fifthlight.combine.input.key.KeyEventReceiver
-import top.fifthlight.combine.input.pointer.PointerEvent
-import top.fifthlight.combine.input.text.TextInputReceiver
-import top.fifthlight.combine.layout.measure.Placeable
-import top.fifthlight.combine.node.LayoutNode
-import top.fifthlight.combine.node.WrapperFactory
-import top.fifthlight.combine.node.WrapperLayoutNode
-import top.fifthlight.combine.node.WrapperModifierNode
+import top.fifthlight.combine.core.input.focus.FocusStateListener
+import top.fifthlight.combine.core.input.key.KeyEventReceiver
+import top.fifthlight.combine.core.input.pointer.PointerEvent
+import top.fifthlight.combine.core.input.text.TextInputReceiver
+import top.fifthlight.combine.core.layout.measure.Placeable
+import top.fifthlight.combine.core.node.LayoutNode
+import top.fifthlight.combine.core.node.WrapperFactory
+import top.fifthlight.combine.core.node.WrapperLayoutNode
+import top.fifthlight.combine.core.node.WrapperModifierNode
 
 interface PointerInputModifierNode: WrapperModifierNode {
     fun onPointerEvent(

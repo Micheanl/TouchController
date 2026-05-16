@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.getAndUpdate
 import kotlinx.coroutines.launch
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
 import top.fifthlight.touchcontroller.common.config.holder.GlobalConfigHolder
 import top.fifthlight.touchcontroller.common.gal.chat.ChatMessageProvider
 import top.fifthlight.touchcontroller.common.gal.chat.ChatMessageProviderFactory

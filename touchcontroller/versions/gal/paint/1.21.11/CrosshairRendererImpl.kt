@@ -18,12 +18,12 @@ import net.minecraft.client.gui.navigation.ScreenRectangle
 import net.minecraft.client.gui.render.TextureSetup
 import net.minecraft.client.gui.render.state.GuiElementRenderState
 import org.joml.Matrix3x2f
+import top.fifthlight.combine.backend.minecraft.identifier.v1_21_11.toMinecraft
 import top.fifthlight.combine.backend.minecraft.render.v1_21_11.CanvasImpl
 import top.fifthlight.combine.backend.minecraft.render.v1_21_11.extension.SubmittableGuiGraphics
-import top.fifthlight.combine.backend.minecraft.identifier.v1_21_11.toMinecraft
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.paint.Canvas
-import top.fifthlight.combine.paint.Colors
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.paint.Canvas
+import top.fifthlight.combine.core.paint.Colors
 import top.fifthlight.data.Offset
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl

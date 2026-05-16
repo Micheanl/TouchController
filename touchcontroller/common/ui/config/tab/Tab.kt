@@ -7,8 +7,8 @@ package top.fifthlight.touchcontroller.common.ui.config.tab
 
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.screen.Screen
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.touchcontroller.common.config.GlobalConfig
 
 typealias OnResetHandler = GlobalConfig.() -> GlobalConfig

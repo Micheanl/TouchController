@@ -1,6 +1,6 @@
 package top.fifthlight.combine.ui.style
 
-import top.fifthlight.combine.paint.Color
+import top.fifthlight.combine.core.paint.Color
 
 data class ColorSet(
     val normal: Color,

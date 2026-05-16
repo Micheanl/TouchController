@@ -6,9 +6,9 @@
 package top.fifthlight.touchcontroller.common.ui.layer.tab.ridingentity
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.border
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.border
 import top.fifthlight.combine.widget.ui.Icon
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.assets.Textures

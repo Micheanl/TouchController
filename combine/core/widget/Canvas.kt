@@ -1,10 +1,10 @@
-package top.fifthlight.combine.widget
+package top.fifthlight.combine.core.widget
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.layout.Layout
-import top.fifthlight.combine.layout.measure.MeasurePolicy
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.node.NodeRenderer
+import top.fifthlight.combine.core.layout.Layout
+import top.fifthlight.combine.core.layout.measure.MeasurePolicy
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.node.NodeRenderer
 
 private val canvasDefaultMeasurePolicy = MeasurePolicy { _, constraints ->
     layout(

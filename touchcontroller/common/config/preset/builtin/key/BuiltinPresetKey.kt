@@ -12,7 +12,7 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.*
-import top.fifthlight.combine.data.Identifier
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.touchcontroller.assets.BuiltInTextureSets
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.common.assets.TextureSet

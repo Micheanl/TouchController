@@ -5,7 +5,7 @@
 
 package top.fifthlight.touchcontroller.common.layout.queue
 
-import top.fifthlight.combine.paint.Canvas
+import top.fifthlight.combine.core.paint.Canvas
 
 typealias DrawCall = (Canvas) -> Unit
 

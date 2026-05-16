@@ -1,10 +1,8 @@
-package top.fifthlight.combine.data
+package top.fifthlight.combine.core.data
 
 import androidx.compose.runtime.Immutable
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.descriptors.PrimitiveKind
-import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.serialDescriptor
 import kotlinx.serialization.encoding.Decoder
@@ -40,7 +38,7 @@ fun Identifier(string: String): Identifier {
 
 class IdentifierSerializer : KSerializer<Identifier> {
     override val descriptor: SerialDescriptor = SerialDescriptor(
-        serialName = "top.fifthlight.combine.data.Identifier",
+        serialName = "top.fifthlight.combine.core.data.Identifier",
         original = serialDescriptor<String>(),
     )
 

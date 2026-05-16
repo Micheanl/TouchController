@@ -8,21 +8,21 @@ package top.fifthlight.touchcontroller.common.ui.config.tab.general
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.placement.fillMaxSize
-import top.fifthlight.combine.modifier.placement.padding
-import top.fifthlight.combine.modifier.scroll.verticalScroll
-import top.fifthlight.combine.widget.layout.Column
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.placement.fillMaxSize
+import top.fifthlight.combine.core.modifier.placement.padding
+import top.fifthlight.combine.core.modifier.scroll.verticalScroll
+import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.common.config.data.DebugConfig
 import top.fifthlight.touchcontroller.common.ui.config.model.LocalConfigScreenModel
-import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
-import top.fifthlight.touchcontroller.common.ui.widget.SwitchPreferenceItem
 import top.fifthlight.touchcontroller.common.ui.config.tab.Tab
 import top.fifthlight.touchcontroller.common.ui.config.tab.TabGroup
 import top.fifthlight.touchcontroller.common.ui.config.tab.TabOptions
+import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
+import top.fifthlight.touchcontroller.common.ui.widget.SwitchPreferenceItem
 
 object DebugTab : Tab() {
     override val options = TabOptions(

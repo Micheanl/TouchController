@@ -1,6 +1,6 @@
 package top.fifthlight.combine.ui.style
 
-import top.fifthlight.combine.paint.Drawable
+import top.fifthlight.combine.core.paint.Drawable
 
 data class DrawableSet(
     val normal: Drawable = Drawable.Empty,

@@ -1,10 +1,10 @@
-package top.fifthlight.combine.modifier.focus
+package top.fifthlight.combine.core.modifier.focus
 
-import top.fifthlight.combine.input.focus.FocusStateListener
-import top.fifthlight.combine.input.key.KeyEventReceiver
-import top.fifthlight.combine.input.pointer.PointerEventReceiver
-import top.fifthlight.combine.input.text.TextInputReceiver
-import top.fifthlight.combine.node.*
+import top.fifthlight.combine.core.input.focus.FocusStateListener
+import top.fifthlight.combine.core.input.key.KeyEventReceiver
+import top.fifthlight.combine.core.input.pointer.PointerEventReceiver
+import top.fifthlight.combine.core.input.text.TextInputReceiver
+import top.fifthlight.combine.core.node.*
 
 interface FocusStateListenerModifierNode : FocusStateListener, AttachListenerModifierNode, WrapperModifierNode {
     override fun onAttachedToNode(node: LayoutNode) = Unit

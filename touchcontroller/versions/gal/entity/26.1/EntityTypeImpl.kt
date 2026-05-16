@@ -8,11 +8,10 @@ package top.fifthlight.touchcontroller.gal.entity.v26_1
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.tags.EntityTypeTags
 import net.minecraft.world.entity.EntityType
-import top.fifthlight.combine.backend.minecraft.text.v26_1.TextImpl
 import top.fifthlight.combine.backend.minecraft.identifier.v26_1.toCombine
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.backend.minecraft.text.v26_1.TextImpl
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
 import top.fifthlight.touchcontroller.common.gal.entity.EntityTypeProvider

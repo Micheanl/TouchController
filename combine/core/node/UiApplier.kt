@@ -1,4 +1,4 @@
-package top.fifthlight.combine.node
+package top.fifthlight.combine.core.node
 
 import androidx.compose.runtime.AbstractApplier
 

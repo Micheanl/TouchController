@@ -31,7 +31,7 @@ fun main(vararg args: String) = object : Worker() {
 
             textsBuilder.addProperty(
                 PropertySpec
-                    .builder(transformedKey, ClassName("top.fifthlight.combine.data", "Identifier"))
+                    .builder(transformedKey, ClassName("top.fifthlight.combine.core.data", "Identifier"))
                     .addKdoc("Translation text: %L", value)
                     .initializer("Identifier.Namespaced(%S, %S)", "touchcontroller", strippedKey)
                     .build()

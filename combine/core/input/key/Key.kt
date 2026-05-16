@@ -1,4 +1,4 @@
-package top.fifthlight.combine.input.key
+package top.fifthlight.combine.core.input.key
 
 import androidx.compose.runtime.Immutable
 

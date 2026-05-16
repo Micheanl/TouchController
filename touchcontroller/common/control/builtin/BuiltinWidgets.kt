@@ -5,7 +5,7 @@
 
 package top.fifthlight.touchcontroller.common.control.builtin
 
-import top.fifthlight.combine.data.Identifier
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntPadding
 import top.fifthlight.touchcontroller.assets.BuiltInTextureItems

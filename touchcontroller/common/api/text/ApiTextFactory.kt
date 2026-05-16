@@ -6,7 +6,7 @@
 package top.fifthlight.touchcontroller.common.api.text
 
 import top.fifthlight.touchcontroller.api.v1.text.TextFactory
-import top.fifthlight.combine.data.TextFactory as CombineTextFactory
+import top.fifthlight.combine.core.data.TextFactory as CombineTextFactory
 
 object ApiTextFactory : TextFactory {
     override fun literal(text: String) = ApiText.Literal(text)

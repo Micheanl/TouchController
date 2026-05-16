@@ -1,6 +1,6 @@
 package top.fifthlight.combine.ui.style
 
-import top.fifthlight.combine.paint.Texture
+import top.fifthlight.combine.core.paint.Texture
 
 data class TextureSet(
     val normal: Texture? = null,

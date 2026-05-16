@@ -1,8 +1,8 @@
 package top.fifthlight.combine.backend.minecraft.keycode.v26_1
 
 import org.lwjgl.glfw.GLFW
-import top.fifthlight.combine.input.key.Key
-import top.fifthlight.combine.input.key.KeyModifier
+import top.fifthlight.combine.core.input.key.Key
+import top.fifthlight.combine.core.input.key.KeyModifier
 
 fun mapKeyCode(code: Int) = when (code) {
     GLFW.GLFW_KEY_BACKSPACE -> Key.BACKSPACE

@@ -5,7 +5,7 @@
 
 package top.fifthlight.touchcontroller.common.platform.warning
 
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.common.platform.provider.PlatformProvider
 

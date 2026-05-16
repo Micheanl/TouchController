@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Runnable
 import net.minecraft.client.Minecraft
-import top.fifthlight.combine.util.dispatcher.GameDispatcherProvider
+import top.fifthlight.combine.core.util.dispatcher.GameDispatcherProvider
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
 import kotlin.coroutines.CoroutineContext

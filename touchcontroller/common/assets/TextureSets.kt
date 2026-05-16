@@ -5,8 +5,8 @@
 
 package top.fifthlight.touchcontroller.common.assets
 
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.mergetools.api.ExpectFactory
 import top.fifthlight.touchcontroller.common.util.registry.SimpleRegistry
 

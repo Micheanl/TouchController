@@ -1,8 +1,8 @@
-package top.fifthlight.combine.paint
+package top.fifthlight.combine.core.paint
 
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.input.pointer.PointerIcon
-import top.fifthlight.combine.text.TextMeasurer
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.input.pointer.PointerIcon
+import top.fifthlight.combine.core.text.TextMeasurer
 import top.fifthlight.data.*
 import kotlin.math.max
 import kotlin.math.min

@@ -1,4 +1,4 @@
-package top.fifthlight.combine.data
+package top.fifthlight.combine.core.data
 
 import androidx.compose.runtime.Composable
 import top.fifthlight.mergetools.api.ExpectFactory

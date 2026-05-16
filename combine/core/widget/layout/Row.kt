@@ -1,13 +1,13 @@
-package top.fifthlight.combine.widget.layout
+package top.fifthlight.combine.core.widget.layout
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.layout.Layout
-import top.fifthlight.combine.layout.constraints.Constraints
-import top.fifthlight.combine.layout.measure.*
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.ParentDataModifierNode
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.layout.Layout
+import top.fifthlight.combine.core.layout.constraints.Constraints
+import top.fifthlight.combine.core.layout.measure.*
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.ParentDataModifierNode
 
 interface RowScope {
     fun Modifier.weight(weight: Float) = then(RowModifier(weight))

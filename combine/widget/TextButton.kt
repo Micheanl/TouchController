@@ -1,23 +1,23 @@
 package top.fifthlight.combine.widget.ui
 
 import androidx.compose.runtime.*
-import top.fifthlight.combine.input.MutableInteractionSource
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.background
-import top.fifthlight.combine.modifier.focus.focusable
-import top.fifthlight.combine.modifier.placement.minSize
-import top.fifthlight.combine.modifier.placement.padding
-import top.fifthlight.combine.modifier.pointer.clickable
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
-import top.fifthlight.combine.sound.LocalSoundManager
-import top.fifthlight.combine.sound.SoundKind
+import top.fifthlight.combine.core.input.interaction.MutableInteractionSource
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.background
+import top.fifthlight.combine.core.modifier.focus.focusable
+import top.fifthlight.combine.core.modifier.placement.minSize
+import top.fifthlight.combine.core.modifier.placement.padding
+import top.fifthlight.combine.core.modifier.pointer.clickable
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
+import top.fifthlight.combine.core.sound.LocalSoundManager
+import top.fifthlight.combine.core.sound.SoundKind
+import top.fifthlight.combine.core.widget.layout.Box
+import top.fifthlight.combine.core.widget.layout.BoxScope
 import top.fifthlight.combine.ui.style.ColorSet
 import top.fifthlight.combine.ui.style.ColorTheme
 import top.fifthlight.combine.ui.style.LocalColorTheme
-import top.fifthlight.combine.widget.layout.Box
-import top.fifthlight.combine.widget.layout.BoxScope
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntSize
 

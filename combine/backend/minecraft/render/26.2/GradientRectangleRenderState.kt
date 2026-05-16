@@ -6,7 +6,7 @@ import net.minecraft.client.gui.navigation.ScreenRectangle
 import net.minecraft.client.gui.render.TextureSetup
 import net.minecraft.client.renderer.state.gui.GuiElementRenderState
 import org.joml.Matrix3x2f
-import top.fifthlight.combine.paint.Color
+import top.fifthlight.combine.core.paint.Color
 
 internal data class GradientRectangleRenderState(
     val pipeline: RenderPipeline,

@@ -17,10 +17,10 @@ import org.joml.Quaternionf
 import top.fifthlight.combine.backend.minecraft.item.v1_21_1.toVanilla
 import top.fifthlight.combine.backend.minecraft.render.v1_21_1.mixin.GuiGraphicsAccessor
 import top.fifthlight.combine.backend.minecraft.text.v1_21_1.toMinecraft
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.paint.Color
 import top.fifthlight.combine.item.data.ItemStack
 import top.fifthlight.combine.item.paint.ItemCanvas
-import top.fifthlight.combine.paint.Color
 import top.fifthlight.data.*
 import java.util.function.Supplier
 

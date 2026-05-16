@@ -19,7 +19,7 @@ import net.minecraft.client.Minecraft
 import org.slf4j.LoggerFactory
 import top.fifthlight.combine.backend.minecraft.identifier.v1_21_10.toMinecraft
 import top.fifthlight.combine.backend.minecraft.render.v1_21_10.CanvasImpl
-import top.fifthlight.combine.data.Identifier
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.touchcontroller.api.v1.fabric.TouchControllerApiEntrypoint
 import top.fifthlight.touchcontroller.buildinfo.BuildInfo
 import top.fifthlight.touchcontroller.common.api.TouchControllerApiImpl

@@ -7,18 +7,15 @@ package top.fifthlight.touchcontroller.common.ui.config.tab.component
 
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.navigator.LocalNavigator
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.border
-import top.fifthlight.combine.modifier.placement.fillMaxWidth
-import top.fifthlight.combine.modifier.placement.height
-import top.fifthlight.combine.modifier.placement.padding
-import top.fifthlight.combine.modifier.placement.width
-import top.fifthlight.combine.modifier.scroll.verticalScroll
-import top.fifthlight.combine.widget.layout.Column
-import top.fifthlight.combine.widget.layout.Spacer
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.border
+import top.fifthlight.combine.core.modifier.placement.fillMaxWidth
+import top.fifthlight.combine.core.modifier.placement.padding
+import top.fifthlight.combine.core.modifier.placement.width
+import top.fifthlight.combine.core.modifier.scroll.verticalScroll
+import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.widget.ui.Text
-import top.fifthlight.touchcontroller.assets.Textures
 import top.fifthlight.touchcontroller.common.ui.config.tab.Tab
 import top.fifthlight.touchcontroller.common.ui.config.tab.TabGroup
 import top.fifthlight.touchcontroller.common.ui.config.tab.TabOptions

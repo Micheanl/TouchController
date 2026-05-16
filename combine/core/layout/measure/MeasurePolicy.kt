@@ -1,7 +1,7 @@
-package top.fifthlight.combine.layout.measure
+package top.fifthlight.combine.core.layout.measure
 
 import androidx.compose.runtime.Stable
-import top.fifthlight.combine.layout.constraints.Constraints
+import top.fifthlight.combine.core.layout.constraints.Constraints
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntSize
 import top.fifthlight.data.Offset

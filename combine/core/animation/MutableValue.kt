@@ -1,8 +1,8 @@
-package top.fifthlight.combine.animation
+package top.fifthlight.combine.core.animation
 
 import androidx.compose.runtime.*
 import aurelienribon.tweenengine.Tween
-import top.fifthlight.combine.paint.Color
+import top.fifthlight.combine.core.paint.Color
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntSize
 import top.fifthlight.data.Offset

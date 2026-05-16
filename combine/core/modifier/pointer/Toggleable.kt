@@ -1,8 +1,8 @@
-package top.fifthlight.combine.modifier.pointer
+package top.fifthlight.combine.core.modifier.pointer
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.input.MutableInteractionSource
-import top.fifthlight.combine.modifier.Modifier
+import top.fifthlight.combine.core.input.interaction.MutableInteractionSource
+import top.fifthlight.combine.core.modifier.Modifier
 
 @Composable
 fun Modifier.toggleable(

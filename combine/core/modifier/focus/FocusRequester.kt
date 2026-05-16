@@ -1,10 +1,10 @@
-package top.fifthlight.combine.modifier.focus
+package top.fifthlight.combine.core.modifier.focus
 
-import top.fifthlight.combine.input.focus.FocusManager
-import top.fifthlight.combine.input.focus.LocalFocusManager
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.node.AttachListenerModifierNode
-import top.fifthlight.combine.node.LayoutNode
+import top.fifthlight.combine.core.input.focus.FocusManager
+import top.fifthlight.combine.core.input.focus.LocalFocusManager
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.node.AttachListenerModifierNode
+import top.fifthlight.combine.core.node.LayoutNode
 
 class FocusRequester {
     internal var focusManager: FocusManager? = null

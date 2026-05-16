@@ -1,8 +1,8 @@
-package top.fifthlight.combine.widget.layout
+package top.fifthlight.combine.core.widget.layout
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.layout.Layout
-import top.fifthlight.combine.modifier.Modifier
+import top.fifthlight.combine.core.layout.Layout
+import top.fifthlight.combine.core.modifier.Modifier
 import top.fifthlight.data.IntOffset
 import kotlin.math.max
 

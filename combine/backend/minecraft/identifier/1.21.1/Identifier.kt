@@ -1,7 +1,7 @@
 package top.fifthlight.combine.backend.minecraft.identifier.v1_21_1
 
 import net.minecraft.resources.ResourceLocation
-import top.fifthlight.combine.data.Identifier as CombineIdentifier
+import top.fifthlight.combine.core.data.Identifier as CombineIdentifier
 
 fun CombineIdentifier.toMinecraft(): ResourceLocation = when (this) {
     is CombineIdentifier.Vanilla -> ResourceLocation.withDefaultNamespace(id)

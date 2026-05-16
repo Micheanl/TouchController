@@ -1,8 +1,8 @@
-package top.fifthlight.combine.modifier.key
+package top.fifthlight.combine.core.modifier.key
 
-import top.fifthlight.combine.input.key.KeyEvent
-import top.fifthlight.combine.input.key.KeyEventReceiver
-import top.fifthlight.combine.modifier.Modifier
+import top.fifthlight.combine.core.input.key.KeyEvent
+import top.fifthlight.combine.core.input.key.KeyEventReceiver
+import top.fifthlight.combine.core.modifier.Modifier
 
 fun Modifier.onKeyEvent(handler: KeyEventReceiver) = then(KeyEventReceiverModifierNode(handler))
 

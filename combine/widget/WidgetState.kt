@@ -1,10 +1,10 @@
 package top.fifthlight.combine.widget.ui
 
 import androidx.compose.runtime.*
-import top.fifthlight.combine.input.InteractionSource
-import top.fifthlight.combine.modifier.focus.FocusInteraction
-import top.fifthlight.combine.modifier.pointer.ClickInteraction
-import top.fifthlight.combine.modifier.pointer.DragInteraction
+import top.fifthlight.combine.core.input.interaction.InteractionSource
+import top.fifthlight.combine.core.modifier.focus.FocusInteraction
+import top.fifthlight.combine.core.modifier.pointer.ClickInteraction
+import top.fifthlight.combine.core.modifier.pointer.DragInteraction
 import top.fifthlight.combine.ui.style.ColorSet
 import top.fifthlight.combine.ui.style.DrawableSet
 import top.fifthlight.combine.ui.style.TextureSet

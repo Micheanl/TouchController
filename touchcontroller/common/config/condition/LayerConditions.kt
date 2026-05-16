@@ -10,7 +10,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import top.fifthlight.combine.data.Identifier
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.common.config.condition.input.LayerConditionInput
 import top.fifthlight.touchcontroller.common.config.condition.serializer.LayerConditionsSerializer

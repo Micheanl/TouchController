@@ -1,12 +1,12 @@
-package top.fifthlight.combine.modifier.pointer
+package top.fifthlight.combine.core.modifier.pointer
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.input.focus.LocalFocusManager
-import top.fifthlight.combine.input.pointer.PointerEvent
-import top.fifthlight.combine.input.pointer.PointerEventType
-import top.fifthlight.combine.layout.measure.Placeable
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.node.LayoutNode
+import top.fifthlight.combine.core.input.focus.LocalFocusManager
+import top.fifthlight.combine.core.input.pointer.PointerEvent
+import top.fifthlight.combine.core.input.pointer.PointerEventType
+import top.fifthlight.combine.core.layout.measure.Placeable
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.node.LayoutNode
 
 @Composable
 fun Modifier.consumePress(blur: Boolean = true, onPress: () -> Unit = {}) =

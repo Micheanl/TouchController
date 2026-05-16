@@ -1,12 +1,12 @@
-package top.fifthlight.combine.modifier.placement
+package top.fifthlight.combine.core.modifier.placement
 
-import top.fifthlight.combine.layout.constraints.Constraints
-import top.fifthlight.combine.layout.constraints.offset
-import top.fifthlight.combine.layout.measure.Measurable
-import top.fifthlight.combine.layout.measure.MeasureResult
-import top.fifthlight.combine.layout.measure.MeasureScope
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.LayoutModifierNode
+import top.fifthlight.combine.core.layout.constraints.Constraints
+import top.fifthlight.combine.core.layout.constraints.offset
+import top.fifthlight.combine.core.layout.measure.Measurable
+import top.fifthlight.combine.core.layout.measure.MeasureResult
+import top.fifthlight.combine.core.layout.measure.MeasureScope
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.LayoutModifierNode
 import top.fifthlight.data.IntPadding
 
 fun Modifier.padding(size: IntPadding): Modifier = padding(size.left, size.top, size.right, size.bottom)

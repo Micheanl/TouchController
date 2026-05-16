@@ -6,11 +6,12 @@
 package top.fifthlight.touchcontroller.common.ui.control
 
 import androidx.compose.runtime.*
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.placement.onPlaced
-import top.fifthlight.combine.modifier.placement.size
-import top.fifthlight.combine.paint.*
-import top.fifthlight.combine.widget.Canvas
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.placement.onPlaced
+import top.fifthlight.combine.core.modifier.placement.size
+import top.fifthlight.combine.core.paint.withScale
+import top.fifthlight.combine.core.paint.withTranslate
+import top.fifthlight.combine.core.widget.Canvas
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntSize
 import top.fifthlight.touchcontroller.common.control.ControllerWidget

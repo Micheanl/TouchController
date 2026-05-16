@@ -1,7 +1,7 @@
 package top.fifthlight.touchcontroller.common.control.action
 
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.common.control.action.provider.ChatScreenProvider
 import top.fifthlight.touchcontroller.common.gal.action.GameAction

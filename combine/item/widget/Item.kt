@@ -2,12 +2,12 @@ package top.fifthlight.combine.item.widget
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.placement.size
+import top.fifthlight.combine.core.widget.Canvas
 import top.fifthlight.combine.item.data.Item
 import top.fifthlight.combine.item.data.ItemStack
 import top.fifthlight.combine.item.paint.item
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.placement.size
-import top.fifthlight.combine.widget.Canvas
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntSize
 

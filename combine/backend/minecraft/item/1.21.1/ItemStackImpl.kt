@@ -5,8 +5,8 @@ import net.minecraft.world.item.ItemStack
 import top.fifthlight.combine.backend.minecraft.identifier.v1_21_1.toCombine
 import top.fifthlight.combine.backend.minecraft.identifier.v1_21_1.toMinecraft
 import top.fifthlight.combine.backend.minecraft.text.v1_21_1.TextImpl
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.combine.item.data.Item
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl

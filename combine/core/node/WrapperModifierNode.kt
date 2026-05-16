@@ -1,6 +1,6 @@
-package top.fifthlight.combine.node
+package top.fifthlight.combine.core.node
 
-import top.fifthlight.combine.modifier.Modifier
+import top.fifthlight.combine.core.modifier.Modifier
 
 fun interface WrapperFactory<T: Modifier> {
     fun createWrapper(node: LayoutNode, children: WrapperLayoutNode, modifier: T): WrapperLayoutNode

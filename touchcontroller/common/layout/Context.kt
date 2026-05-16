@@ -5,8 +5,8 @@
 
 package top.fifthlight.touchcontroller.common.layout
 
-import top.fifthlight.combine.paint.Canvas
-import top.fifthlight.combine.paint.withTranslate
+import top.fifthlight.combine.core.paint.Canvas
+import top.fifthlight.combine.core.paint.withTranslate
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntRect
 import top.fifthlight.data.IntSize

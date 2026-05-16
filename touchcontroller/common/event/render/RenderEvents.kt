@@ -7,9 +7,9 @@ package top.fifthlight.touchcontroller.common.event.render
 
 import kotlinx.collections.immutable.toPersistentSet
 import org.slf4j.LoggerFactory
-import top.fifthlight.combine.input.text.TextInputState
-import top.fifthlight.combine.input.text.TextRange
-import top.fifthlight.combine.paint.Canvas
+import top.fifthlight.combine.core.input.text.TextInputState
+import top.fifthlight.combine.core.input.text.TextRange
+import top.fifthlight.combine.core.paint.Canvas
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.Offset
 import top.fifthlight.touchcontroller.common.config.condition.input.BuiltinLayerCondition
@@ -19,18 +19,15 @@ import top.fifthlight.touchcontroller.common.config.preset.LayoutPreset
 import top.fifthlight.touchcontroller.common.config.preset.info.PresetControlInfo
 import top.fifthlight.touchcontroller.common.event.window.WindowEvents
 import top.fifthlight.touchcontroller.common.gal.gamestate.GameState
-import top.fifthlight.touchcontroller.common.gal.player.PlayerHandleFactory
-import top.fifthlight.touchcontroller.common.gal.gamestate.GameStateProvider
-import top.fifthlight.touchcontroller.common.gal.gamestate.GameStateProviderFactory
 import top.fifthlight.touchcontroller.common.gal.key.DefaultKeyBindingType
 import top.fifthlight.touchcontroller.common.gal.key.KeyBindingHandler
 import top.fifthlight.touchcontroller.common.gal.key.KeyBindingHandlerFactory
+import top.fifthlight.touchcontroller.common.gal.player.PlayerHandleFactory
 import top.fifthlight.touchcontroller.common.gal.view.CrosshairTarget
 import top.fifthlight.touchcontroller.common.gal.view.ViewActionProvider
 import top.fifthlight.touchcontroller.common.gal.view.ViewActionProviderFactory
 import top.fifthlight.touchcontroller.common.gal.window.WindowHandle
 import top.fifthlight.touchcontroller.common.gal.window.WindowHandleFactory
-import top.fifthlight.touchcontroller.common.offset.fixAspectRadio
 import top.fifthlight.touchcontroller.common.input.InputManager
 import top.fifthlight.touchcontroller.common.layout.Context
 import top.fifthlight.touchcontroller.common.layout.config.GlobalContextConfig
@@ -39,6 +36,7 @@ import top.fifthlight.touchcontroller.common.layout.queue.DrawQueue
 import top.fifthlight.touchcontroller.common.layout.widget.game.Hud
 import top.fifthlight.touchcontroller.common.model.ControllerHudModel
 import top.fifthlight.touchcontroller.common.model.TouchStateModel
+import top.fifthlight.touchcontroller.common.offset.fixAspectRadio
 import top.fifthlight.touchcontroller.common.platform.capabilities.PlatformCapabilitiesHolder
 import top.fifthlight.touchcontroller.common.platform.provider.PlatformProvider
 import top.fifthlight.touchcontroller.proxy.client.PlatformCapability

@@ -1,7 +1,7 @@
 package top.fifthlight.touchcontroller.common.api.texture
 
-import top.fifthlight.combine.paint.Texture
-import top.fifthlight.combine.paint.TextureFactory
+import top.fifthlight.combine.core.paint.Texture
+import top.fifthlight.combine.core.paint.TextureFactory
 import top.fifthlight.data.IntPadding
 import top.fifthlight.touchcontroller.api.v1.widget.WidgetTextureBuilder
 import top.fifthlight.touchcontroller.assets.BuiltInTextureSets

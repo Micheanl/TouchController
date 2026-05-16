@@ -5,7 +5,7 @@
 
 package top.fifthlight.touchcontroller.common.layout.widget.game
 
-import top.fifthlight.combine.paint.*
+import top.fifthlight.combine.core.paint.withTranslate
 import top.fifthlight.touchcontroller.common.gal.paint.CrosshairRenderer
 import top.fifthlight.touchcontroller.common.gal.paint.CrosshairRendererFactory
 import top.fifthlight.touchcontroller.common.layout.Context

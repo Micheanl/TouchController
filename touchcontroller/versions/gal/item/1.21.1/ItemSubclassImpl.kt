@@ -12,7 +12,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.*
 import top.fifthlight.combine.backend.minecraft.item.v1_21_1.toVanilla
 import top.fifthlight.combine.backend.minecraft.text.v1_21_1.TextImpl
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.combine.item.data.Item
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl

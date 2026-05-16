@@ -6,10 +6,10 @@
 package top.fifthlight.touchcontroller.common.ui.widget
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.modifier.Modifier
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.widget.layout.BoxScope
 import top.fifthlight.combine.ui.style.ColorTheme
 import top.fifthlight.combine.ui.style.DrawableSet
-import top.fifthlight.combine.widget.layout.BoxScope
 import top.fifthlight.combine.widget.ui.Button
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntSize

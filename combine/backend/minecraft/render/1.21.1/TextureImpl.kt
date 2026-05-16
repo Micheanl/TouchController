@@ -2,10 +2,10 @@ package top.fifthlight.combine.backend.minecraft.render.v1_21_1
 
 import com.mojang.blaze3d.systems.RenderSystem
 import net.minecraft.resources.ResourceLocation
-import top.fifthlight.combine.paint.BackgroundTexture
-import top.fifthlight.combine.paint.Canvas
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Texture
+import top.fifthlight.combine.core.paint.BackgroundTexture
+import top.fifthlight.combine.core.paint.Canvas
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Texture
 import top.fifthlight.data.*
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl

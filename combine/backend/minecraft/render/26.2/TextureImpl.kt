@@ -12,10 +12,10 @@ import net.minecraft.resources.Identifier
 import org.joml.Matrix3x2f
 import top.fifthlight.combine.backend.minecraft.render.v26_2.extension.SpriteAccessibleGuiGraphics
 import top.fifthlight.combine.backend.minecraft.render.v26_2.extension.SubmittableGuiGraphics
-import top.fifthlight.combine.paint.BackgroundTexture
-import top.fifthlight.combine.paint.Canvas
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Texture
+import top.fifthlight.combine.core.paint.BackgroundTexture
+import top.fifthlight.combine.core.paint.Canvas
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Texture
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntRect
 import top.fifthlight.data.IntSize

@@ -7,10 +7,9 @@ package top.fifthlight.touchcontroller.common.gal.key
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.data.TextFactoryFactory
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.data.TextFactoryFactory
 import top.fifthlight.mergetools.api.ExpectFactory
-import java.awt.event.KeyEvent
 import kotlin.uuid.Uuid
 
 @Serializable

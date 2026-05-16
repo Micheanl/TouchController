@@ -7,7 +7,7 @@ package top.fifthlight.touchcontroller.common.layout.align
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import top.fifthlight.combine.layout.Alignment
+import top.fifthlight.combine.core.layout.Alignment
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntSize
 

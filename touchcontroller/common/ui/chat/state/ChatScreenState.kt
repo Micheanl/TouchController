@@ -5,8 +5,8 @@
 
 package top.fifthlight.touchcontroller.common.ui.chat.state
 
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
 
 data class ChatScreenState(
     val text: String = "",

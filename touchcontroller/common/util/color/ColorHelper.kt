@@ -5,8 +5,8 @@
 
 package top.fifthlight.touchcontroller.common.util.color
 
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
 
 object ColorHelper {
     fun opacityTint(opacity: Float) = if (opacity == 1f) {

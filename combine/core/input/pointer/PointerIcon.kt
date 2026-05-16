@@ -1,4 +1,4 @@
-package top.fifthlight.combine.input.pointer
+package top.fifthlight.combine.core.input.pointer
 
 @JvmInline
 value class PointerIcon private constructor(internal val value: Int) {

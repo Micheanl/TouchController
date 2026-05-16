@@ -1,4 +1,4 @@
-package top.fifthlight.combine.util.math
+package top.fifthlight.combine.core.util.math
 
 infix fun Int.ceilDiv(other: Int) = if (this % other == 0) {
     this / other

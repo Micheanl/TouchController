@@ -1,4 +1,4 @@
-package top.fifthlight.combine.layout.constraints
+package top.fifthlight.combine.core.layout.constraints
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable

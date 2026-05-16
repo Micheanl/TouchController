@@ -11,10 +11,10 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import top.fifthlight.combine.input.text.InputHandler
-import top.fifthlight.combine.input.text.InputHandlerFactory
-import top.fifthlight.combine.input.text.TextInputState
-import top.fifthlight.combine.util.dispatcher.GameDispatcherProviderFactory
+import top.fifthlight.combine.core.input.text.InputHandler
+import top.fifthlight.combine.core.input.text.InputHandlerFactory
+import top.fifthlight.combine.core.input.text.TextInputState
+import top.fifthlight.combine.core.util.dispatcher.GameDispatcherProviderFactory
 import top.fifthlight.data.IntRect
 import top.fifthlight.touchcontroller.common.gal.window.WindowHandle
 import top.fifthlight.touchcontroller.common.gal.window.WindowHandleFactory

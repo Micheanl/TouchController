@@ -1,9 +1,9 @@
 package top.fifthlight.combine.theme.oreui
 
-import top.fifthlight.combine.paint.Canvas
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
-import top.fifthlight.combine.paint.Drawable
+import top.fifthlight.combine.core.paint.Canvas
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
+import top.fifthlight.combine.core.paint.Drawable
 import top.fifthlight.combine.theme.Theme
 import top.fifthlight.combine.ui.style.ColorTheme
 import top.fifthlight.combine.ui.style.DrawableSet

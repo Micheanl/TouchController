@@ -9,23 +9,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.model.rememberScreenModel
-import top.fifthlight.combine.data.Identifier
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.placement.*
-import top.fifthlight.combine.modifier.scroll.verticalScroll
-import top.fifthlight.combine.widget.layout.Column
-import top.fifthlight.combine.widget.layout.Row
+import top.fifthlight.combine.core.data.Identifier
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.placement.*
+import top.fifthlight.combine.core.modifier.scroll.verticalScroll
+import top.fifthlight.combine.core.widget.layout.Column
+import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.widget.ui.*
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.assets.Textures
 import top.fifthlight.touchcontroller.common.config.condition.CustomLayerConditionKey
 import top.fifthlight.touchcontroller.common.ui.layer.tab.LayerConditionTab
 import top.fifthlight.touchcontroller.common.ui.layer.tab.LocalLayerConditionTabContext
-import top.fifthlight.touchcontroller.common.ui.widget.ListButton
 import top.fifthlight.touchcontroller.common.ui.layer.tab.custom.model.CustomTabModel
+import top.fifthlight.touchcontroller.common.ui.widget.ListButton
 
 object CustomTab : LayerConditionTab() {
     @Composable

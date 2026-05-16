@@ -1,4 +1,4 @@
-package top.fifthlight.combine.paint
+package top.fifthlight.combine.core.paint
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -198,7 +198,7 @@ fun HsvColor(h: Float, s: Float, v: Float) = HsvColor(255, h, s, v)
 
 class ColorSerializer : KSerializer<Color> {
     override val descriptor: SerialDescriptor =
-        PrimitiveSerialDescriptor("top.fifthlight.combine.paint.Color", PrimitiveKind.INT)
+        PrimitiveSerialDescriptor("top.fifthlight.combine.core.paint.Color", PrimitiveKind.INT)
 
     override fun serialize(encoder: Encoder, value: Color) = encoder.encodeInt(value.value)
     override fun deserialize(decoder: Decoder) = Color(decoder.decodeInt())

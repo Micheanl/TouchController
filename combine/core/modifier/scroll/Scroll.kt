@@ -1,4 +1,4 @@
-package top.fifthlight.combine.modifier.scroll
+package top.fifthlight.combine.core.modifier.scroll
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -10,7 +10,7 @@ import aurelienribon.tweenengine.equations.Quint
 import kotlinx.coroutines.ExperimentalForInheritanceCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import top.fifthlight.combine.animation.LocalTweenManager
+import top.fifthlight.combine.core.animation.LocalTweenManager
 import top.fifthlight.data.Offset
 
 class ScrollState(private val tweenManager: TweenManager) {

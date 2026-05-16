@@ -1,4 +1,4 @@
-package top.fifthlight.combine.screen
+package top.fifthlight.combine.core.screen
 
 import kotlinx.coroutines.CoroutineScope
 

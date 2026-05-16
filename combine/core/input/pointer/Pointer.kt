@@ -1,4 +1,4 @@
-package top.fifthlight.combine.input.pointer
+package top.fifthlight.combine.core.input.pointer
 
 import androidx.compose.runtime.Immutable
 import top.fifthlight.data.Offset

@@ -1,4 +1,4 @@
-package top.fifthlight.combine.screen
+package top.fifthlight.combine.core.screen
 
 import androidx.compose.runtime.staticCompositionLocalOf
 

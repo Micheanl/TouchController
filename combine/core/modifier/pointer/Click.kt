@@ -1,20 +1,20 @@
-package top.fifthlight.combine.modifier.pointer
+package top.fifthlight.combine.core.modifier.pointer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import top.fifthlight.combine.input.Interaction
-import top.fifthlight.combine.input.MutableInteractionSource
-import top.fifthlight.combine.input.pointer.PointerEvent
-import top.fifthlight.combine.input.pointer.PointerEventType
-import top.fifthlight.combine.input.pointer.PointerIcon
-import top.fifthlight.combine.layout.measure.Placeable
-import top.fifthlight.combine.layout.measure.contains
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.DrawModifierNode
-import top.fifthlight.combine.node.LayoutNode
-import top.fifthlight.combine.node.WrapperFactory
-import top.fifthlight.combine.node.plus
-import top.fifthlight.combine.paint.Canvas
+import top.fifthlight.combine.core.input.interaction.Interaction
+import top.fifthlight.combine.core.input.interaction.MutableInteractionSource
+import top.fifthlight.combine.core.input.pointer.PointerEvent
+import top.fifthlight.combine.core.input.pointer.PointerEventType
+import top.fifthlight.combine.core.input.pointer.PointerIcon
+import top.fifthlight.combine.core.layout.measure.Placeable
+import top.fifthlight.combine.core.layout.measure.contains
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.DrawModifierNode
+import top.fifthlight.combine.core.node.LayoutNode
+import top.fifthlight.combine.core.node.WrapperFactory
+import top.fifthlight.combine.core.node.plus
+import top.fifthlight.combine.core.paint.Canvas
 import top.fifthlight.data.Offset
 
 sealed class ClickInteraction : Interaction {

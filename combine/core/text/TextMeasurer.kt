@@ -1,6 +1,6 @@
-package top.fifthlight.combine.text
+package top.fifthlight.combine.core.text
 
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.data.IntSize
 import top.fifthlight.mergetools.api.ExpectFactory
 

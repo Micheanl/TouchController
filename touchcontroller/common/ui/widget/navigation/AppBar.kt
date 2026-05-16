@@ -6,16 +6,16 @@
 package top.fifthlight.touchcontroller.common.ui.widget.navigation
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.border
-import top.fifthlight.combine.modifier.placement.fillMaxHeight
-import top.fifthlight.combine.modifier.placement.height
-import top.fifthlight.combine.modifier.placement.padding
-import top.fifthlight.combine.widget.layout.Box
-import top.fifthlight.combine.widget.layout.Row
-import top.fifthlight.combine.widget.layout.RowScope
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.border
+import top.fifthlight.combine.core.modifier.placement.fillMaxHeight
+import top.fifthlight.combine.core.modifier.placement.height
+import top.fifthlight.combine.core.modifier.placement.padding
+import top.fifthlight.combine.core.widget.layout.Box
+import top.fifthlight.combine.core.widget.layout.Row
+import top.fifthlight.combine.core.widget.layout.RowScope
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
 
 @Composable

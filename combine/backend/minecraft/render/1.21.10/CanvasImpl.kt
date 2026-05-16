@@ -13,11 +13,11 @@ import org.joml.Matrix3x2f
 import top.fifthlight.combine.backend.minecraft.item.v1_21_10.toVanilla
 import top.fifthlight.combine.backend.minecraft.render.v1_21_10.extension.SubmittableGuiGraphics
 import top.fifthlight.combine.backend.minecraft.text.v1_21_10.toMinecraft
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.input.pointer.PointerIcon
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.input.pointer.PointerIcon
+import top.fifthlight.combine.core.paint.Color
 import top.fifthlight.combine.item.data.ItemStack
 import top.fifthlight.combine.item.paint.ItemCanvas
-import top.fifthlight.combine.paint.Color
 import top.fifthlight.data.*
 
 class CanvasImpl(val guiGraphics: GuiGraphics) : ItemCanvas {

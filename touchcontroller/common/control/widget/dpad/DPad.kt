@@ -10,8 +10,8 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.plus
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.paint.Color
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.paint.Color
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntSize
@@ -19,11 +19,7 @@ import top.fifthlight.touchcontroller.assets.BuiltInTextureItems
 import top.fifthlight.touchcontroller.assets.BuiltInTextureSets
 import top.fifthlight.touchcontroller.assets.Texts
 import top.fifthlight.touchcontroller.common.assets.TextureSet
-import top.fifthlight.touchcontroller.common.control.BooleanProperty
-import top.fifthlight.touchcontroller.common.control.ControllerWidget
-import top.fifthlight.touchcontroller.common.control.FloatProperty
-import top.fifthlight.touchcontroller.common.control.IntProperty
-import top.fifthlight.touchcontroller.common.control.TextureSetProperty
+import top.fifthlight.touchcontroller.common.control.*
 import top.fifthlight.touchcontroller.common.control.action.ButtonTrigger
 import top.fifthlight.touchcontroller.common.control.action.WidgetTriggerAction
 import top.fifthlight.touchcontroller.common.control.property.TextureCoordinate

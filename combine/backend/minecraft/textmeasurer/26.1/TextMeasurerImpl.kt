@@ -5,8 +5,8 @@ import net.minecraft.client.gui.Font
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.FormattedText
 import top.fifthlight.combine.backend.minecraft.text.v26_1.toMinecraft
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.text.TextMeasurer
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.text.TextMeasurer
 import top.fifthlight.data.IntSize
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl

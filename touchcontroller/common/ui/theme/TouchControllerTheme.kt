@@ -8,9 +8,9 @@ package top.fifthlight.touchcontroller.common.ui.theme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
-import top.fifthlight.combine.node.LocalInputHandler
-import top.fifthlight.combine.paint.BackgroundTexture
-import top.fifthlight.combine.paint.Drawable
+import top.fifthlight.combine.core.node.LocalInputHandler
+import top.fifthlight.combine.core.paint.BackgroundTexture
+import top.fifthlight.combine.core.paint.Drawable
 import top.fifthlight.combine.theme.LocalTheme
 import top.fifthlight.combine.theme.Theme
 import top.fifthlight.combine.theme.blackstone.BlackstoneTextures

@@ -6,7 +6,7 @@
 package top.fifthlight.touchcontroller.common.gal.chat
 
 import kotlinx.collections.immutable.PersistentList
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.mergetools.api.ExpectFactory
 
 data class ChatMessage(

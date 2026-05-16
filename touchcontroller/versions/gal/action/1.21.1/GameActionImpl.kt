@@ -8,7 +8,7 @@ package top.fifthlight.touchcontroller.gal.action.v1_21_1
 import net.minecraft.client.Minecraft
 import net.minecraft.client.Screenshot
 import top.fifthlight.combine.backend.minecraft.text.v1_21_1.toMinecraft
-import top.fifthlight.combine.data.Text
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
 import top.fifthlight.touchcontroller.common.gal.action.GameAction

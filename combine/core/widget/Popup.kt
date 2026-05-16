@@ -1,7 +1,7 @@
-package top.fifthlight.combine.widget
+package top.fifthlight.combine.core.widget
 
 import androidx.compose.runtime.*
-import top.fifthlight.combine.node.LocalCombineOwner
+import top.fifthlight.combine.core.node.LocalCombineOwner
 
 @Composable
 fun Popup(

@@ -1,25 +1,25 @@
 package top.fifthlight.combine.widget.ui
 
 import androidx.compose.runtime.*
-import top.fifthlight.combine.animation.animateFloatAsState
-import top.fifthlight.combine.layout.Alignment
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.drawing.background
-import top.fifthlight.combine.modifier.drawing.border
-import top.fifthlight.combine.modifier.drawing.clip
-import top.fifthlight.combine.modifier.placement.offset
-import top.fifthlight.combine.modifier.placement.padding
-import top.fifthlight.combine.modifier.pointer.consumePress
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
-import top.fifthlight.combine.paint.Drawable
+import top.fifthlight.combine.core.animation.animateFloatAsState
+import top.fifthlight.combine.core.layout.Alignment
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.drawing.background
+import top.fifthlight.combine.core.modifier.drawing.border
+import top.fifthlight.combine.core.modifier.drawing.clip
+import top.fifthlight.combine.core.modifier.placement.offset
+import top.fifthlight.combine.core.modifier.placement.padding
+import top.fifthlight.combine.core.modifier.pointer.consumePress
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
+import top.fifthlight.combine.core.paint.Drawable
+import top.fifthlight.combine.core.widget.Dialog
+import top.fifthlight.combine.core.widget.layout.Column
+import top.fifthlight.combine.core.widget.layout.ColumnScope
+import top.fifthlight.combine.core.widget.layout.Row
+import top.fifthlight.combine.core.widget.layout.RowScope
 import top.fifthlight.combine.theme.LocalTheme
-import top.fifthlight.combine.widget.Dialog
-import top.fifthlight.combine.widget.layout.Column
-import top.fifthlight.combine.widget.layout.ColumnScope
-import top.fifthlight.combine.widget.layout.Row
-import top.fifthlight.combine.widget.layout.RowScope
 
 @Composable
 fun AlertDialog(

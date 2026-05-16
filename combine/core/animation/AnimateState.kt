@@ -1,4 +1,4 @@
-package top.fifthlight.combine.animation
+package top.fifthlight.combine.core.animation
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue

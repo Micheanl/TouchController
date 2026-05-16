@@ -6,13 +6,13 @@
 package top.fifthlight.touchcontroller.common.control.widget.dpad
 
 import androidx.compose.runtime.*
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.layout.Arrangement
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.modifier.placement.fillMaxWidth
-import top.fifthlight.combine.modifier.scroll.verticalScroll
-import top.fifthlight.combine.widget.layout.Column
-import top.fifthlight.combine.widget.layout.Spacer
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.layout.Arrangement
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.modifier.placement.fillMaxWidth
+import top.fifthlight.combine.core.modifier.scroll.verticalScroll
+import top.fifthlight.combine.core.widget.layout.Column
+import top.fifthlight.combine.core.widget.layout.Spacer
 import top.fifthlight.combine.widget.ui.DropdownItemList
 import top.fifthlight.combine.widget.ui.Select
 import top.fifthlight.combine.widget.ui.SelectIcon

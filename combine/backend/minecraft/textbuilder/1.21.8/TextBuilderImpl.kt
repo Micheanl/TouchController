@@ -8,10 +8,10 @@ import top.fifthlight.combine.backend.minecraft.text.v1_21_8.TextImpl
 import top.fifthlight.combine.backend.minecraft.text.v1_21_8.toFormatting
 import top.fifthlight.combine.backend.minecraft.text.v1_21_8.toMinecraft
 import top.fifthlight.combine.backend.minecraft.text.v1_21_8.toVanilla
-import top.fifthlight.combine.data.TextBuilder
-import top.fifthlight.combine.data.TextColor
-import top.fifthlight.combine.data.TextStyle
-import top.fifthlight.combine.data.Text as CombineText
+import top.fifthlight.combine.core.data.TextBuilder
+import top.fifthlight.combine.core.data.TextColor
+import top.fifthlight.combine.core.data.TextStyle
+import top.fifthlight.combine.core.data.Text as CombineText
 
 class TextBuilderImpl(
     private val text: MutableComponent = Component.empty(),

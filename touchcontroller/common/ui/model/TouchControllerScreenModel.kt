@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
-import top.fifthlight.combine.util.dispatcher.GameDispatcherProviderFactory
+import top.fifthlight.combine.core.util.dispatcher.GameDispatcherProviderFactory
 
 abstract class TouchControllerScreenModel : ScreenModel {
     private val gameDispatcher: CoroutineDispatcher = GameDispatcherProviderFactory.of().gameDispatcher

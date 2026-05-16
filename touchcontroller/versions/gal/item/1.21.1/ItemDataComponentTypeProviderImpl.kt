@@ -13,7 +13,7 @@ import top.fifthlight.combine.backend.minecraft.identifier.v1_21_1.toCombine
 import top.fifthlight.combine.backend.minecraft.identifier.v1_21_1.toMinecraft
 import top.fifthlight.combine.backend.minecraft.item.v1_21_1.toCombine
 import top.fifthlight.combine.backend.minecraft.item.v1_21_1.toVanilla
-import top.fifthlight.combine.data.Identifier
+import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.combine.item.data.Item
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl

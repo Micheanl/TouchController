@@ -1,8 +1,8 @@
 package top.fifthlight.combine.ui.style
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import top.fifthlight.combine.paint.Color
-import top.fifthlight.combine.paint.Colors
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.paint.Colors
 
 val LocalColorTheme = staticCompositionLocalOf { ColorTheme.dark }
 

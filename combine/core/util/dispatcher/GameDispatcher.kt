@@ -1,4 +1,4 @@
-package top.fifthlight.combine.util.dispatcher
+package top.fifthlight.combine.core.util.dispatcher
 
 import kotlinx.coroutines.CoroutineDispatcher
 import top.fifthlight.mergetools.api.ExpectFactory

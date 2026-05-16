@@ -1,4 +1,4 @@
-package top.fifthlight.combine.animation
+package top.fifthlight.combine.core.animation
 
 import aurelienribon.tweenengine.Tween
 import aurelienribon.tweenengine.TweenEquation

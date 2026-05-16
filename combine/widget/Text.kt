@@ -1,14 +1,14 @@
 package top.fifthlight.combine.widget.ui
 
 import androidx.compose.runtime.Composable
-import top.fifthlight.combine.data.Text
-import top.fifthlight.combine.data.TextFactory
-import top.fifthlight.combine.data.TextStyle
-import top.fifthlight.combine.modifier.Modifier
-import top.fifthlight.combine.paint.Color
+import top.fifthlight.combine.core.data.Text
+import top.fifthlight.combine.core.data.TextFactory
+import top.fifthlight.combine.core.data.TextStyle
+import top.fifthlight.combine.core.modifier.Modifier
+import top.fifthlight.combine.core.paint.Color
+import top.fifthlight.combine.core.widget.BaseText
 import top.fifthlight.combine.ui.style.LocalColorTheme
 import top.fifthlight.combine.ui.style.LocalTextStyle
-import top.fifthlight.combine.widget.BaseText
 
 @Composable
 fun Text(

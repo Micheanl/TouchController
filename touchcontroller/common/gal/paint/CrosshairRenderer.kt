@@ -5,7 +5,7 @@
 
 package top.fifthlight.touchcontroller.common.gal.paint
 
-import top.fifthlight.combine.paint.Canvas
+import top.fifthlight.combine.core.paint.Canvas
 import top.fifthlight.mergetools.api.ExpectFactory
 
 interface CrosshairRenderer {
