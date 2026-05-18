@@ -265,7 +265,7 @@ def _generate_jar_list_args_code(function_name, placeholder_types, jar_output):
         result_code.append('    %s = "_neoform_%s/" + ctx.label.name + "_%s_libraries.txt"' % (input_paths_path_name, function_name, name))
         result_code.append("    %s = []" % input_depsets_name)
         result_code.append("    for attr in ctx.attr.%s:" % name)
-        result_code.append("        %s.append(attr[JavaInfo].compile_jars)" % input_depsets_name)
+        result_code.append("        %s.append(attr[JavaInfo].full_compile_jars)" % input_depsets_name)
         result_code.append("    %s = depset(transitive = %s).to_list()" % (input_files_name, input_depsets_name))
         if jar_output:
             result_code.append("    input_libraries += %s" % input_files_name)
@@ -478,7 +478,7 @@ def _generate_task_build_file(rctx, version_info, config_data, task_name, side_n
             task_def.append('    patches = "//:neoform",')
         else:
             fail("Bad patch type: %s" % type(patches))
-    elif step_type == "split":
+    elif step_type == "strip":
         name = step.get("name", step_type)
         if name == "stripClient":
             task_def.append("    generate_manifest = True,")
@@ -488,13 +488,13 @@ def _generate_task_build_file(rctx, version_info, config_data, task_name, side_n
                 task_def.append('    other_dist_jar = "//tasks/server_extract_server",')
             else:
                 task_def.append('    other_dist_jar = "%s",' % rctx.attr.server_jar)
-            task_def.append('    mappings = "//tasks/client_merge_mappings')
+            task_def.append('    mappings = "//tasks/client_merge_mappings",')
         elif name == "stripServer":
             task_def.append("    generate_manifest = True,")
             task_def.append('    dist_id = "server",')
             task_def.append('    other_dist_id = "client",')
             task_def.append('    other_dist_jar = "%s",' % rctx.attr.client_jar)
-            task_def.append('    mappings = "//tasks/server_merge_mappings')
+            task_def.append('    mappings = "//tasks/server_merge_mappings",')
 
     for item_key in step:
         if item_key == "type" or item_key == "name":

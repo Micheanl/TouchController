@@ -81,6 +81,8 @@ def _neoforge_repo_impl(rctx):
         'load("@//repo/neoform/rule:patch_zip_content.bzl", "patch_zip_content")',
         'load("@//repo/neoform/rule:import_source_info.bzl", "import_source_info")',
         'load("@//repo/neoform/rule:inject_zip_content.bzl", "inject_zip_content")',
+        'load("@//repo/neoform/rule:jar_import.bzl", "jar_import")',
+        'load("@//repo/neoform/rule:split_resources.bzl", "strip_resources_file")',
         'load("@rules_java//java:defs.bzl", "java_library", "java_import")',
         "",
         "alias(",
@@ -151,6 +153,17 @@ def _neoforge_repo_impl(rctx):
         '    deps = [":neoforge_universal"],',
         ")",
         "",
+        "strip_resources_file(",
+        '    name = "strip_resources",',
+        '    src = "%s",' % rctx.attr.joined_strip_client,
+        ")",
+        "",
+        "jar_import(",
+        '    name = "neoforge",',
+        '    jar = ":compiled_with_neoforge",',
+        '    runtime_deps = [":strip_resources"],',
+        ")",
+        "",
         "java_merge(",
         '    name = "neoforge_deps",',
         "    deps = [",
@@ -202,6 +215,10 @@ _neoforge_repo = repository_rule(
         "joined_patched_sources": attr.label(
             doc = "Joined patched sources, usually come from NeoForm",
             allow_single_file = [".jar"],
+            mandatory = True,
+        ),
+        "joined_strip_client": attr.label(
+            doc = "Strip client task from NeoForm pipeline, providing SplitResourceInfo",
             mandatory = True,
         ),
     },
@@ -277,6 +294,10 @@ version = tag_class(
             allow_single_file = [".jar"],
             mandatory = True,
         ),
+        "joined_strip_client": attr.label(
+            doc = "Strip client task from NeoForm pipeline, providing SplitResourceInfo",
+            mandatory = True,
+        ),
     },
 )
 
@@ -311,6 +332,8 @@ def _neoforge_impl(mctx):
                     fail("NeoForm version %s already exists with a different sources SHA-256" % version.version)
                 elif versions[version.version].joined_patched_sources != version.joined_patched_sources:
                     fail("NeoForm version %s already exists with a different joined patched sources" % version.version)
+                elif versions[version.version].joined_strip_client != version.joined_strip_client:
+                    fail("NeoForm version %s already exists with a different joined strip client" % version.version)
                 elif versions[version.version].java_target != version.java_target:
                     fail("NeoForm version %s already exists with a different java target" % version.version)
             else:
@@ -322,6 +345,7 @@ def _neoforge_impl(mctx):
                     "universal_sha256": version.universal_sha256,
                     "sources_sha256": version.sources_sha256,
                     "joined_patched_sources": version.joined_patched_sources,
+                    "joined_strip_client": version.joined_strip_client,
                 }
     versions = versions.values()
 
@@ -364,6 +388,7 @@ def _neoforge_impl(mctx):
             universal_sha256 = version["universal_sha256"],
             sources_sha256 = version["sources_sha256"],
             joined_patched_sources = version["joined_patched_sources"],
+            joined_strip_client = version["joined_strip_client"],
         )
 
         config_data = json.decode(mctx.read("%s/config.json" % output_prefix))

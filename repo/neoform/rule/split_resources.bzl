@@ -92,3 +92,25 @@ split_resources = rule(
     },
     doc = "Splits a JAR file into classes and resources, optionally generating a distribution manifest",
 )
+
+def _strip_resources_file_impl(ctx):
+    resources_jar = ctx.attr.src[SplitResourceInfo].resources_jar
+    return [
+        JavaInfo(
+            output_jar = resources_jar,
+            compile_jar = resources_jar,
+        ),
+        DefaultInfo(files = depset([resources_jar])),
+    ]
+
+strip_resources_file = rule(
+    implementation = _strip_resources_file_impl,
+    attrs = {
+        "src": attr.label(
+            providers = [SplitResourceInfo],
+            mandatory = True,
+            doc = "Target providing SplitResourceInfo from split_resources",
+        ),
+    },
+    doc = "Extracts the resources JAR from a split_resources target, wrapping it as JavaInfo for use as a runtime_dep",
+)
