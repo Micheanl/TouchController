@@ -1,0 +1,18 @@
+"MODULE.bazel KotlinForForge part"
+
+modrinth = use_extension("//repo:modrinth.bzl", "modrinth")
+
+kotlinforforge_versions = {
+    "neoforge_1_21_11": "K2lpyV17",
+}
+
+[
+    (
+        modrinth.version(
+            name = "kotlinforforge_" + version_name,
+            version_id = version_id,
+        ),
+        use_repo(modrinth, "kotlinforforge_" + version_name),
+    )
+    for version_name, version_id in kotlinforforge_versions.items()
+]

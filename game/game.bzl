@@ -28,7 +28,8 @@ def _game_version_impl(
         intermediary,
         yarn,
         sodium_intermediary,
-        iris_intermediary):
+        iris_intermediary,
+        kotlinforforge):
     intermediary_mapping = name + "_intermediary_mapping"
     intermediary_input = name + "_intermediary_input"
     yarn_mapping = name + "_yarn_mapping"
@@ -212,6 +213,13 @@ def _game_version_impl(
         native.alias(
             name = client_neoforge,
             actual = neoforge,
+            visibility = visibility,
+        )
+
+    if kotlinforforge:
+        native.alias(
+            name = name + "_kotlinforforge",
+            actual = kotlinforforge,
             visibility = visibility,
         )
 
@@ -407,6 +415,11 @@ game_version = macro(
         "iris_intermediary": attr.label(
             mandatory = False,
             doc = "Sodium to be remapped from intermediary",
+            configurable = False,
+        ),
+        "kotlinforforge": attr.label(
+            mandatory = False,
+            doc = "KotlinForForge mod JAR from Modrinth",
             configurable = False,
         ),
     },
