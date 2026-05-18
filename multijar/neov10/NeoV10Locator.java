@@ -1,7 +1,9 @@
 package top.fifthlight.multijar.neov10;
 
 import net.neoforged.fml.jarcontents.JarContents;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.fml.util.ClasspathResourceUtils;
 import net.neoforged.neoforgespi.language.IModInfo;
 import net.neoforged.neoforgespi.locating.IDependencyLocator;
 import net.neoforged.neoforgespi.locating.IDiscoveryPipeline;
@@ -62,6 +64,18 @@ public class NeoV10Locator implements IDependencyLocator {
 
         LOGGER.info("MultiJar loader on Minecraft {} in directory {}", minecraftVersionStr, gameDirectory);
 
+        if (!FMLEnvironment.isProduction()) {
+            for (var path : ClasspathResourceUtils.findFileSystemRootsOfFileOnClasspath(
+                    MultiJarManifest.NEOFORGE_MANIFEST_PATH)) {
+                if (!Files.isRegularFile(path)) continue;
+                try (var contents = JarContents.ofPath(path)) {
+                    processJar(contents, minecraftVersionStr, pipeline);
+                } catch (IOException e) {
+                    LOGGER.warn("Failed to read mod {} in classpath", path);
+                }
+            }
+        }
+
         var modsDir = gameDirectory.resolve(FMLPaths.MODSDIR.relative()).toAbsolutePath().normalize();
         if (!Files.exists(modsDir)) {
             return;
@@ -86,68 +100,72 @@ public class NeoV10Locator implements IDependencyLocator {
             }
 
             try (var contents = JarContents.ofPath(path)) {
-                var manifestStream = contents.openFile(MultiJarManifest.NEOFORGE_MANIFEST_PATH);
-                if (manifestStream == null) {
-                    continue;
-                }
-
-                MultiJarManifest manifest;
-                try (var reader = new BufferedReader(new InputStreamReader(manifestStream))) {
-                    manifest = MultiJarManifest.fromJson(reader);
-                } catch (Exception e) {
-                    LOGGER.warn("Failed to parse loader manifest for mod {}", path, e);
-                    continue;
-                }
-
-                LOGGER.info("Loading mod {}", path);
-
-                var jars = manifest.jars(minecraftVersionStr);
-                for (var jar : jars) {
-                    var jij = contents.findFile(jar);
-                    if (jij.isEmpty()) {
-                        LOGGER.warn("Failed to find jar {} for mod {}", jar, path);
-                        continue;
-                    }
-                    LOGGER.info("Loading jar {} for mod {}", jar, path);
-
-                    var jijCacheDir = FMLPaths.JIJ_CACHEDIR.get();
-                    Path tempFile;
-                    try {
-                        tempFile = Files.createTempFile(jijCacheDir, "_jij", ".tmp");
-                    } catch (IOException e) {
-                        LOGGER.error("Failed to create temp file in {}: {}", jijCacheDir, e);
-                        continue;
-                    }
-
-                    var filename = jar.substring(jar.lastIndexOf('/') + 1);
-                    Path finalPath;
-                    try {
-                        var checksum = extractEmbeddedJarFile(contents, jar, tempFile);
-                        finalPath = jijCacheDir.resolve(checksum + "/" + filename);
-                        if (!Files.isRegularFile(finalPath)) {
-                            moveExtractedFileIntoPlace(tempFile, finalPath);
-                        }
-                    } finally {
-                        try {
-                            Files.deleteIfExists(tempFile);
-                        } catch (IOException e) {
-                            LOGGER.error("Failed to remove temp file {}: {}", tempFile, e);
-                        }
-                    }
-
-                    JarContents jijContents;
-                    try {
-                        jijContents = JarContents.ofPath(finalPath);
-                    } catch (IOException e) {
-                        LOGGER.error("Failed to read JiJ file {} from mod {} to {}", jar, path, finalPath, e);
-                        continue;
-                    }
-                    var jijModFile = pipeline.readModFile(jijContents, attributes);
-                    pipeline.addModFile(jijModFile);
-                }
+                processJar(contents, minecraftVersionStr, pipeline);
             } catch (IOException e) {
                 LOGGER.warn("Failed to read mod {}", path);
             }
+        }
+    }
+
+    private void processJar(JarContents contents, String minecraftVersionStr, IDiscoveryPipeline pipeline) throws IOException {
+        var manifestStream = contents.openFile(MultiJarManifest.NEOFORGE_MANIFEST_PATH);
+        if (manifestStream == null) {
+            return;
+        }
+
+        MultiJarManifest manifest;
+        try (var reader = new BufferedReader(new InputStreamReader(manifestStream))) {
+            manifest = MultiJarManifest.fromJson(reader);
+        } catch (Exception e) {
+            LOGGER.warn("Failed to parse loader manifest for mod {}", contents.getPrimaryPath(), e);
+            return;
+        }
+
+        LOGGER.info("Loading mod {}", contents.getPrimaryPath());
+
+        var jars = manifest.jars(minecraftVersionStr);
+        for (var jar : jars) {
+            var jij = contents.findFile(jar);
+            if (jij.isEmpty()) {
+                LOGGER.warn("Failed to find jar {} for mod {}", jar, contents.getPrimaryPath());
+                continue;
+            }
+            LOGGER.info("Loading jar {} for mod {}", jar, contents.getPrimaryPath());
+
+            var jijCacheDir = FMLPaths.JIJ_CACHEDIR.get();
+            Path tempFile;
+            try {
+                tempFile = Files.createTempFile(jijCacheDir, "_jij", ".tmp");
+            } catch (IOException e) {
+                LOGGER.error("Failed to create temp file in {}: {}", jijCacheDir, e);
+                continue;
+            }
+
+            var filename = jar.substring(jar.lastIndexOf('/') + 1);
+            Path finalPath;
+            try {
+                var checksum = extractEmbeddedJarFile(contents, jar, tempFile);
+                finalPath = jijCacheDir.resolve(checksum + "/" + filename);
+                if (!Files.isRegularFile(finalPath)) {
+                    moveExtractedFileIntoPlace(tempFile, finalPath);
+                }
+            } finally {
+                try {
+                    Files.deleteIfExists(tempFile);
+                } catch (IOException e) {
+                    LOGGER.error("Failed to remove temp file {}: {}", tempFile, e);
+                }
+            }
+
+            JarContents jijContents;
+            try {
+                jijContents = JarContents.ofPath(finalPath);
+            } catch (IOException e) {
+                LOGGER.error("Failed to read JiJ file {} from mod {} to {}", jar, contents.getPrimaryPath(), finalPath, e);
+                continue;
+            }
+            var jijModFile = pipeline.readModFile(jijContents, attributes);
+            pipeline.addModFile(jijModFile);
         }
     }
 
