@@ -8,13 +8,13 @@ def _neoforge_mod_toml_jar_impl(name, visibility, src, resource_strip_prefix, su
         name = name + "_expanded",
         template = src,
         substitutions = substitutions,
-        out = "META-INF/neoforge.mods.toml",
+        out = name + "/META-INF/neoforge.mods.toml",
     )
     java_library(
         name = name,
         visibility = visibility,
         resources = [name + "_expanded"],
-        resource_strip_prefix = resource_strip_prefix,
+        resource_strip_prefix = resource_strip_prefix + "/" + name,
     )
 
 neoforge_mod_toml_jar = macro(

@@ -8,13 +8,13 @@ def _fabric_mod_json_jar_impl(name, visibility, src, resource_strip_prefix, subs
         name = name + "_expanded",
         template = src,
         substitutions = substitutions,
-        out = "fabric.mod.json",
+        out = name + "/fabric.mod.json",
     )
     java_library(
         name = name,
         visibility = visibility,
         resources = [name + "_expanded"],
-        resource_strip_prefix = resource_strip_prefix,
+        resource_strip_prefix = resource_strip_prefix + "/" + name,
     )
 
 fabric_mod_json_jar = macro(
