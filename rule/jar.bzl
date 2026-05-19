@@ -3,6 +3,10 @@
 load("@rules_java//java:defs.bzl", "JavaInfo")
 load("//rule:merge_library.bzl", "MergeLibraryInfo")
 
+def _resource_path_entry_to_arg(entry):
+    (file, path) = entry
+    return ["--resource-path", path, file.path]
+
 def _impl(ctx):
     output_jar = ctx.actions.declare_file(ctx.label.name + ".jar")
 
@@ -28,10 +32,11 @@ def _impl(ctx):
     for label in ctx.attr.resources:
         files = label.files
         input_file_depsets.append(label.files)
+        args.add_all(files, before_each = "--resource")
 
-        for file in sorted(files.to_list(), key = lambda f: f.path):
-            args.add("--resource")
-            args.add(file)
+    for (label, path) in ctx.attr.resource_paths.items():
+        input_file_depsets.append(label.files)
+        args.add_all([(file, path) for file in label.files.to_list()], map_each = _resource_path_entry_to_arg)
 
     args.use_param_file("@%s", use_always = True)
     args.set_param_file_format("multiline")
@@ -68,6 +73,12 @@ jar = rule(
             allow_files = True,
             default = [],
             doc = "Resource files to include in JAR",
+        ),
+        "resource_paths": attr.label_keyed_string_dict(
+            mandatory = False,
+            allow_files = True,
+            default = {},
+            doc = "Resource files to include in JAR, as final paths",
         ),
         "resource_strip_prefix": attr.string(
             mandatory = False,
