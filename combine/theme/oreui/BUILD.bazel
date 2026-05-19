@@ -4,6 +4,7 @@ combine_theme(
     name = "oreui",
     srcs = glob(["*.kt"]),
     aspect_class = "top.fifthlight.combine.theme.oreui.AspectProvider",
+    atlas_package = "top.fifthlight.combine.theme.oreui.atlas",
     mod_id = "combine-theme-oreui",
     substitutions = {
         "${mod_id}": "combine-theme-oreui",
@@ -15,6 +16,7 @@ combine_theme(
         "${description-atlas}": "OreUI theme for Combine. This mod contains assets for Minecraft <1.21.2.",
     },
     texture = "//combine/theme/oreui/texture",
+    vanilla_package = "top.fifthlight.combine.theme.oreui.vanilla",
     visibility = ["//visibility:public"],
     deps = [
         "//combine/data",

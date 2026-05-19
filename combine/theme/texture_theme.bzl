@@ -14,7 +14,9 @@ def _combine_theme_impl(
         texture,
         namespace,
         deps,
-        icon):
+        icon,
+        vanilla_package,
+        atlas_package):
     kt_texture_lib(
         name = name + "_texture_lib",
         dep = texture,
@@ -63,6 +65,7 @@ def _combine_theme_impl(
         pack = ":" + name + "_vanilla_pack",
         resource_jars = [":" + name + "_vanilla_pack"],
         visibility = visibility,
+        package = vanilla_package,
     )
 
     theme_vanilla_info_jar(
@@ -94,6 +97,7 @@ def _combine_theme_impl(
         pack = ":" + name + "_atlas_pack",
         resource_jars = [":" + name + "_atlas_pack"],
         visibility = visibility,
+        package = atlas_package,
     )
 
     theme_atlas_info_jar(
@@ -132,6 +136,8 @@ combine_theme = macro(
         "namespace": attr.string(default = "combine", configurable = False),
         "deps": attr.label_list(default = [], configurable = False),
         "icon": attr.label(allow_single_file = True, configurable = False),
+        "vanilla_package": attr.string(mandatory = False),
+        "atlas_package": attr.string(mandatory = False),
     },
     implementation = _combine_theme_impl,
 )

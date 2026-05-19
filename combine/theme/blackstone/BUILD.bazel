@@ -4,6 +4,7 @@ combine_theme(
     name = "blackstone",
     srcs = glob(["*.kt"]),
     aspect_class = "top.fifthlight.combine.theme.blackstone.AspectProvider",
+    atlas_package = "top.fifthlight.combine.theme.blackstone.atlas",
     icon = "icon.png",
     mod_id = "combine-theme-blackstone",
     substitutions = {
@@ -16,5 +17,6 @@ combine_theme(
         "${description-atlas}": "Blackstone theme for Combine. This mod contains assets for Minecraft <1.21.2.",
     },
     texture = "//combine/theme/blackstone/texture",
+    vanilla_package = "top.fifthlight.combine.theme.blackstone.vanilla",
     visibility = ["//visibility:public"],
 )
