@@ -17,7 +17,6 @@ def _theme_info_jar_impl(name, visibility, substitutions):
         visibility = visibility,
         fabric = "//combine/theme:resources/fabric.mod.json",
         neoforge = "//combine/theme:resources/META-INF/neoforge.mods.toml",
-        resource_strip_prefix = native.package_name(),
         substitutions = predefined_substitutions | substitutions,
     )
 
@@ -37,7 +36,7 @@ def _theme_vanilla_info_jar_impl(name, visibility, substitutions):
         name = name,
         visibility = visibility,
         fabric = "//combine/theme:resources/fabric.mod.vanilla.json",
-        resource_strip_prefix = native.package_name(),
+        neoforge = "//combine/theme:resources/META-INF/neoforge.mods.vanilla.toml",
         substitutions = predefined_substitutions | substitutions,
     )
 
@@ -57,7 +56,6 @@ def _theme_atlas_info_jar_impl(name, visibility, substitutions):
         name = name,
         visibility = visibility,
         fabric = "//combine/theme:resources/fabric.mod.atlas.json",
-        resource_strip_prefix = native.package_name(),
         substitutions = predefined_substitutions | substitutions,
     )
 
