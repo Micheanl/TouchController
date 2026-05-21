@@ -116,6 +116,8 @@
     "https://bcr.bazel.build/modules/libffi/3.4.7.bcr.4/MODULE.bazel": "adece04128b95bdfe7811a25f48341c11fdf1705a9e59c98ca007f8fc46a0822",
     "https://bcr.bazel.build/modules/libffi/3.4.7.bcr.4/source.json": "dd63be13678c61409cbc3e821e92b78e252399618759aabbf413515c8782dfb9",
     "https://bcr.bazel.build/modules/libpfm/4.11.0/MODULE.bazel": "45061ff025b301940f1e30d2c16bea596c25b176c8b6b3087e92615adbd52902",
+    "https://bcr.bazel.build/modules/libpng/1.6.54/MODULE.bazel": "cf5f59921a82e705c4faaee7d61a3892733e7029c5aa7af1e68458a3d9e2f8a1",
+    "https://bcr.bazel.build/modules/libpng/1.6.54/source.json": "5a5158d1e62d73ad102d0e36af5e7f79113c91aa387d3ec1796454d857c3c0bf",
     "https://bcr.bazel.build/modules/libx11/1.8.12.bcr.3/MODULE.bazel": "6717a9aeb95ffe068842babd809f07dced00b161ceda230331d8ba662144908c",
     "https://bcr.bazel.build/modules/libx11/1.8.12.bcr.4/MODULE.bazel": "2e07da9ff3306e0f544d309cd7c59d3432975e5879082d8ea8f0711c4bab1aa4",
     "https://bcr.bazel.build/modules/libx11/1.8.12.bcr.4/source.json": "0f4618e1bda2a4eeaadc99b52fccd1c1b2e067d4a1ca814c8c394cc29a2be3fc",
@@ -339,8 +341,9 @@
     "https://bcr.bazel.build/modules/zlib/1.2.12/MODULE.bazel": "3b1a8834ada2a883674be8cbd36ede1b6ec481477ada359cd2d3ddc562340b27",
     "https://bcr.bazel.build/modules/zlib/1.3.1.bcr.5/MODULE.bazel": "eec517b5bbe5492629466e11dae908d043364302283de25581e3eb944326c4ca",
     "https://bcr.bazel.build/modules/zlib/1.3.1.bcr.8/MODULE.bazel": "772c674bb78a0342b8caf32ab5c25085c493ca4ff08398208dcbe4375fe9f776",
-    "https://bcr.bazel.build/modules/zlib/1.3.1.bcr.8/source.json": "cf377d76800dfc3d3b71e9dd4a8c53a62837cbce37cc4f25e6207b15fc1e8f2b",
-    "https://bcr.bazel.build/modules/zlib/1.3.1/MODULE.bazel": "751c9940dcfe869f5f7274e1295422a34623555916eb98c174c1e945594bf198"
+    "https://bcr.bazel.build/modules/zlib/1.3.1/MODULE.bazel": "751c9940dcfe869f5f7274e1295422a34623555916eb98c174c1e945594bf198",
+    "https://bcr.bazel.build/modules/zlib/1.3.2/MODULE.bazel": "7303cb87d80e438f313194fc640e38475a8d337b8c70ff6a0725f55236566a33",
+    "https://bcr.bazel.build/modules/zlib/1.3.2/source.json": "8f35ed65174ee2ad9630baeccd243cadf482b72d2ab32b57f9d84dc30ab076e0"
   },
   "selectedYankedVersions": {},
   "moduleExtensions": {

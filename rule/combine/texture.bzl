@@ -1,5 +1,12 @@
 """Rules for texture generation and processing."""
 
+load("//rule:pngcrush.bzl", "pngcrush_action")
+
+_OPTIMIZE_DEFAULT = select({
+    "//:config_release": True,
+    "//conditions:default": False,
+})
+
 TextureInfo = provider(
     doc = "Information about a texture.",
     fields = ["identifier", "metadata", "texture", "background"],
@@ -116,6 +123,12 @@ def _ninepatch_texture_impl(ctx):
     output_files = []
     for src in ctx.files.srcs:
         metadata_file, compressed_file = generate_ninepatch_texture(ctx.actions, ctx.executable._texture_generator, src)
+
+        if ctx.attr.optimize:
+            optimized = ctx.actions.declare_file("pngcrush/%s" % src.basename, sibling = src)
+            pngcrush_action(ctx.actions, ctx.executable._pngcrush, compressed_file, optimized)
+            compressed_file = optimized
+
         output_files.append(metadata_file)
         output_files.append(compressed_file)
 
@@ -136,7 +149,7 @@ def _ninepatch_texture_impl(ctx):
         files = files,
     ), DefaultInfo(files = files)]
 
-ninepatch_texture = rule(
+_ninepatch_texture = rule(
     implementation = _ninepatch_texture_impl,
     provides = [TextureGroupInfo],
     attrs = {
@@ -149,8 +162,18 @@ ninepatch_texture = rule(
             mandatory = False,
             default = ".",
         ),
+        "optimize": attr.bool(
+            mandatory = False,
+            default = False,
+            doc = "Optimize PNG files with pngcrush",
+        ),
         "_texture_generator": attr.label(
             default = "//rule/combine/metadata/generator",
+            executable = True,
+            cfg = "exec",
+        ),
+        "_pngcrush": attr.label(
+            default = "@pngcrush//:pngcrush",
             executable = True,
             cfg = "exec",
         ),
@@ -167,6 +190,12 @@ def _texture_impl(ctx):
     for src in ctx.files.srcs:
         background = ctx.attr.background
         metadata_file, texture_file = generate_texture(ctx.actions, ctx.executable._texture_generator, src, background)
+
+        if ctx.attr.optimize:
+            optimized = ctx.actions.declare_file("pngcrush/%s" % src.basename, sibling = src)
+            pngcrush_action(ctx.actions, ctx.executable._pngcrush, texture_file, optimized)
+            texture_file = optimized
+
         output_files.append(texture_file)
         output_files.append(metadata_file)
 
@@ -188,7 +217,7 @@ def _texture_impl(ctx):
         files = files,
     ), DefaultInfo(files = files)]
 
-texture = rule(
+_texture = rule(
     implementation = _texture_impl,
     provides = [TextureGroupInfo],
     attrs = {
@@ -200,19 +229,35 @@ texture = rule(
         "background": attr.bool(
             mandatory = False,
             default = False,
-            doc = "Specify whether this texture is a background texture. Background texture will not be packed in an altas.",
+            doc = "Specify whether this is a background texture. Background texture will not be packed in an altas.",
         ),
         "strip_prefix": attr.string(
             mandatory = False,
             default = ".",
+        ),
+        "optimize": attr.bool(
+            mandatory = False,
+            default = False,
+            doc = "Optimize PNG files with pngcrush",
         ),
         "_texture_generator": attr.label(
             default = "//rule/combine/metadata/generator",
             executable = True,
             cfg = "exec",
         ),
+        "_pngcrush": attr.label(
+            default = "@pngcrush//:pngcrush",
+            executable = True,
+            cfg = "exec",
+        ),
     },
 )
+
+def texture(name, optimize = _OPTIMIZE_DEFAULT, **kwargs):
+    _texture(name = name, optimize = optimize, **kwargs)
+
+def ninepatch_texture(name, optimize = _OPTIMIZE_DEFAULT, **kwargs):
+    _ninepatch_texture(name = name, optimize = optimize, **kwargs)
 
 def merge_texture_group_info(groups):
     """Merge multiple texture group info objects into one.

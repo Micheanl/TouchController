@@ -1,0 +1,4 @@
+exports_files([
+    "patches/ignore_PNG_IGNORE_ADLER32.patch",
+    "patches/local_version_skew_warning_only_if_verbose.diff",
+])

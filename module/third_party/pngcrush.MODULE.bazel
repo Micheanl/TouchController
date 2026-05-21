@@ -1,0 +1,24 @@
+"MODULE.bazel pngcrush part"
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "pngcrush_debian",
+    build_file = "@//third_party/pngcrush:BUILD.debian_patches.bazel",
+    sha256 = "b3d9588bffd4f724d943f1da7dacc750a02313324e0e071c91a4cc074f7dd15b",
+    strip_prefix = "debian",
+    url = "http://deb.debian.org/debian/pool/main/p/pngcrush/pngcrush_1.8.13-4.debian.tar.xz",
+)
+
+http_archive(
+    name = "pngcrush",
+    build_file = "@//third_party/pngcrush:BUILD.pngcrush.bazel",
+    patch_strip = 1,
+    patches = [
+        "@pngcrush_debian//:patches/ignore_PNG_IGNORE_ADLER32.patch",
+        "@pngcrush_debian//:patches/local_version_skew_warning_only_if_verbose.diff",
+    ],
+    sha256 = "3b4eac8c5c69fe0894ad63534acedf6375b420f7038f7fc003346dd352618350",
+    strip_prefix = "pngcrush-1.8.13-nolib",
+    url = "http://deb.debian.org/debian/pool/main/p/pngcrush/pngcrush_1.8.13.orig.tar.xz",
+)
