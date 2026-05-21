@@ -4,20 +4,12 @@
 
 > 参见 [#4](https://github.com/TouchController/TouchController/issues/4)
 
-- 1.12.2 (Forge)
-- 1.16.5 (Forge, Fabric)
-- 1.20.1 (Forge, Fabric)
-- 1.20.4 (Forge, NeoForge, Fabric)
-- 1.20.6 (Forge, NeoForge, Fabric)
-- 1.21   (Forge, NeoForge, Fabric)
-- 1.21.1 (Forge, NeoForge, Fabric)
-- 1.21.3 (Forge, NeoForge, Fabric)
-- 1.21.4 (Forge, NeoForge, Fabric)
-- 1.21.5 (Forge, NeoForge, Fabric)
-- 1.21.6 (Forge, NeoForge, Fabric)
-- 1.21.7 (Forge, NeoForge, Fabric)
-- 1.21.8 (Forge, NeoForge, Fabric)
+- 1.21.1  (Fabric)
+- 1.21.10 (Fabric)
 - 1.21.11 (Fabric)
+- 26.1    (Fabric)
+- 26.1.1  (Fabric)
+- 26.1.2  (Fabric)
 
 ## 支持平台
 
@@ -53,7 +45,7 @@
 
 ## 游玩
 
-目前 [GUI 控件](../widget/gui-widget.md)功能仍在开发中，关闭物品栏、呼出游戏菜单等 `Escape` 按键的功能可以由 **Android** 系统中的**返回**所替代。
+目前 GUI 内图层仍在开发中，关闭物品栏、呼出游戏菜单等 `Escape` 按键的功能可以由 **Android** 系统中的**返回**所替代。
 
 ### 隐藏启动器的控件
 
@@ -61,11 +53,11 @@
 
 ### 设置界面
 
-您可以通过多种方法进入 TouchController 的设置界面。关于如何设置，请参考[设置界面](../gui/config-screen.md)及其子页面。
+您可以通过多种方法进入 TouchController 的设置界面。关于如何自定义设置，请参考[设置界面](../gui/config-screen.md)及其子页面中的介绍。
 
 #### 通过模组菜单
 
-- 打开模组菜单。如果使用 Fabric 加载器，需要安装[模组菜单](https://modrinth.com/mod/modmenu)，不过 Forge 自带模组菜单。
+- 打开模组菜单。如果使用 Fabric 加载器，需要安装[模组菜单](https://modrinth.com/mod/modmenu)，Forge 加载器自带模组菜单。
 - 在模组菜单中找到 TouchController，便可以进入设置页面。
 
 #### 通过游戏菜单
@@ -130,10 +122,6 @@
 > 条件状态
 
 {{#include ../mechanism/custom-layout/layer-system.md:p4}}
-
-> 预置条件
-
-{{#include ../mechanism/custom-layout/layer-system.md:p5}}
 
 > 自定义图层条件
 

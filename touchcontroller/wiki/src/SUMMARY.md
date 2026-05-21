@@ -36,7 +36,6 @@
     - [子页面](./gui/config-screen/sub-pages.md)
         - [管理控件预设](./gui/config-screen/sub-pages/manage-widget-preset.md)
         - [自定义控件布局](./gui/config-screen/sub-pages/custom-widget-layout.md)
-        - [GUI 控件布局](./gui/config-screen/sub-pages/gui-widget-layout.md)
         - [物品列表](./gui/config-screen/sub-pages/item-list.md)
         - [组件列表](./gui/config-screen/sub-pages/widget-list.md)
 - [聊天界面](./gui/chat-screen.md)
@@ -45,7 +44,6 @@
 
 - [控件样式](./widget/widget-style.md)
 - [游戏内控件](./widget/in-game-widget.md)
-- [GUI 控件](./widget/gui-widget.md)
 
 ---
 
