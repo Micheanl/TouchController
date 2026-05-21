@@ -28,6 +28,7 @@
 - [设置界面](./gui/config-screen.md)
     - [标签页](./gui/config-screen/tab.md)
         - [关于](./gui/config-screen/tab/about.md)
+        - [状态](./gui/config-screen/tab/status.md)
         - [常规](./gui/config-screen/tab/general.md)
         - [控制](./gui/config-screen/tab/control.md)
         - [触控圈](./gui/config-screen/tab/touch-ring.md)
