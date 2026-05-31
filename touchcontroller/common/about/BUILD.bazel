@@ -4,7 +4,7 @@ kt_merge_library(
     name = "about",
     srcs = glob(["*.kt"]),
     expect = True,
-    visibility = ["//touchcontroller:__subpackages__"],
+    visibility = ["//visibility:public"],
     deps = [
         "//:kotlin_serialization",
     ],

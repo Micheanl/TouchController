@@ -1,0 +1,10 @@
+load("//rule:jar.bzl", "jar")
+
+jar(
+    name = "about",
+    resource_paths = {
+        "aboutlibraries.json": "aboutlibraries.json",
+        "//touchcontroller:license": "LICENSE_TouchController",
+    },
+    visibility = ["//touchcontroller:__subpackages__"],
+)

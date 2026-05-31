@@ -1,9 +1,9 @@
-load("@rules_java//java:defs.bzl", "java_binary")
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary")
 
-java_binary(
-    name = "maven_publisher",
-    srcs = ["MavenPublisher.java"],
-    main_class = "top.fifthlight.fabazel.mavenpublisher.MavenPublisher",
+kt_jvm_binary(
+    name = "aboutlibraries_generator",
+    srcs = glob(["*.kt"]),
+    main_class = "top.fifthlight.aboutlibraries.generator.AboutLibrariesGeneratorKt",
     visibility = ["//visibility:public"],
     runtime_deps = [
         "@maven//:org_apache_maven_maven_resolver_provider",
@@ -13,26 +13,22 @@ java_binary(
         "@maven//:org_apache_maven_resolver_maven_resolver_transport_http",
     ],
     deps = [
-        "//:picocli",
+        "//:kotlin_serialization",
+        "//touchcontroller/common/about",
+        "@aboutlibraries//:spdx_license",
         "@maven//:ch_qos_logback_logback_classic",
+        "@maven//:com_github_ajalt_clikt_clikt_core_jvm",
+        "@maven//:com_github_ajalt_clikt_clikt_jvm",
         "@maven//:com_google_inject_guice",
         "@maven//:javax_inject_javax_inject",
+        "@maven//:org_apache_maven_maven_model",
+        "@maven//:org_apache_maven_maven_model_builder",
         "@maven//:org_apache_maven_resolver_maven_resolver_api",
         "@maven//:org_apache_maven_resolver_maven_resolver_spi",
         "@maven//:org_apache_maven_resolver_maven_resolver_util",
         "@maven//:org_eclipse_sisu_org_eclipse_sisu_inject",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json_jvm",
         "@maven//:org_slf4j_slf4j_api",
     ],
-)
-
-filegroup(
-    name = "maven_publisher_wrapper",
-    srcs = ["maven_publisher_wrapper.bash"],
-    visibility = ["//visibility:public"],
-)
-
-filegroup(
-    name = "pom_template",
-    srcs = ["pom_template.pom"],
-    visibility = ["//visibility:public"],
 )

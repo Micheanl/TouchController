@@ -1,6 +1,12 @@
 load("//rule:extract_update_log.bzl", "extract_update_log")
 load("//touchcontroller:properties.bzl", "touchcontroller_version")
 
+alias(
+    name = "license",
+    actual = "LICENSE",
+    visibility = ["//touchcontroller:__subpackages__"],
+)
+
 extract_update_log(
     name = "update_log",
     inputs = [

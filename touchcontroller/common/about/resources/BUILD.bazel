@@ -8,6 +8,9 @@ kt_merge_library(
         "//touchcontroller/buildinfo",
         "//touchcontroller/common/about",
     ],
+    resource_jars = [
+        "//touchcontroller/resources/about",
+    ],
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
         "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json_jvm",

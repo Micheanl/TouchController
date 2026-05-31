@@ -1,0 +1,10 @@
+"MODULE.bazel AboutLibraries part"
+
+git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+git_repository(
+    name = "aboutlibraries",
+    build_file = "@//third_party/aboutlibraries:BUILD.aboutlibraries.bazel",
+    commit = "89542f83b69773e595b619b165bc644c7811e591",
+    remote = "https://github.com/mikepenz/AboutLibraries.git",
+)

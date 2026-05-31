@@ -1,15 +1,15 @@
 package top.fifthlight.fabazel.mavenpublisher;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import org.eclipse.aether.DefaultRepositorySystemSession;
 import org.eclipse.aether.RepositorySystem;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.artifact.DefaultArtifact;
 import org.eclipse.aether.deployment.DeployRequest;
+import org.eclipse.aether.repository.LocalRepository;
 import org.eclipse.aether.repository.RemoteRepository;
+import org.eclipse.aether.spi.localrepo.LocalRepositoryManagerFactory;
 import org.eclipse.aether.util.repository.AuthenticationBuilder;
 import org.eclipse.sisu.Parameters;
 import org.eclipse.sisu.launch.Main;
@@ -18,6 +18,9 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +32,14 @@ public class MavenPublisher {
     private RepositorySystem repositorySystem;
 
     @Inject
+    private LocalRepositoryManagerFactory localRepositoryManagerFactory;
+
+    @Inject
     @Parameters
     private String[] args;
 
     public int run() {
-        var cli = new Cli(repositorySystem);
+        var cli = new Cli(repositorySystem, localRepositoryManagerFactory);
         return new CommandLine(cli).execute(args);
     }
 
@@ -48,6 +54,7 @@ public class MavenPublisher {
     @Command(name = "maven-publisher", mixinStandardHelpOptions = true, description = "Publishes artifacts to a Maven repository")
     private static class Cli implements Callable<Integer> {
         private final RepositorySystem repositorySystem;
+        private final LocalRepositoryManagerFactory localRepositoryManagerFactory;
 
         @Option(names = {"--groupId"}, description = "Maven coordinate groupId", required = true)
         private String groupId;
@@ -62,10 +69,11 @@ public class MavenPublisher {
         private List<String> artifacts = new ArrayList<>();
 
         @Option(names = {"--pom"}, description = "POM file path")
-        private Path pomFile;
+        private File pomFile;
 
-        private Cli(RepositorySystem repositorySystem) {
+        private Cli(RepositorySystem repositorySystem, LocalRepositoryManagerFactory localRepositoryManagerFactory) {
             this.repositorySystem = repositorySystem;
+            this.localRepositoryManagerFactory = localRepositoryManagerFactory;
         }
 
         private RemoteRepository createRepository(String url, String username, String password) {
@@ -82,7 +90,7 @@ public class MavenPublisher {
         }
 
         @Override
-        public Integer call() {
+        public Integer call() throws Exception {
             var repoUrl = System.getenv("MAVEN_REPO_URL");
             if (repoUrl == null || repoUrl.isEmpty()) {
                 System.err.println("Error: MAVEN_REPO_URL environment variable is required");
@@ -92,16 +100,15 @@ public class MavenPublisher {
             var username = System.getenv("MAVEN_USER");
             var password = System.getenv("MAVEN_PASSWORD");
 
-            var localRepoDirectory = Path.of(System.getProperty("user.home"), ".m2", "repository");
-            var session = repositorySystem.createSessionBuilder()
-                    .withLocalRepositoryBaseDirectories(localRepoDirectory)
-                    .build();
+            var localRepoDirectory = Path.of(System.getProperty("user.home"), ".m2", "repository").toFile();
+            var session = new DefaultRepositorySystemSession();
+            session.setLocalRepositoryManager(localRepositoryManagerFactory.newInstance(session, new LocalRepository(localRepoDirectory)));
             var repository = createRepository(repoUrl, username, password);
 
             var aetherArtifacts = new ArrayList<Artifact>();
 
             if (pomFile != null) {
-                var pomArtifact = new DefaultArtifact(groupId, artifactId, "pom", version).setPath(pomFile);
+                var pomArtifact = new DefaultArtifact(groupId, artifactId, "pom", version).setFile(pomFile);
                 aetherArtifacts.add(pomArtifact);
             }
 
@@ -128,13 +135,13 @@ public class MavenPublisher {
                     }
                 }
 
-                var artifactPath = Path.of(filePath);
-                if (!artifactPath.toFile().exists()) {
+                var artifactFile = new File(filePath);
+                if (!artifactFile.exists()) {
                     System.err.println("Error: Artifact file does not exist: " + filePath);
                     return 1;
                 }
 
-                var artifact = new DefaultArtifact(groupId, artifactId, classifier, extension, version).setPath(artifactPath);
+                var artifact = new DefaultArtifact(groupId, artifactId, classifier, extension, version).setFile(artifactFile);
                 aetherArtifacts.add(artifact);
             }
 
