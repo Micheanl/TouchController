@@ -35,7 +35,6 @@ def do_merge_neoforge_jij(ctx, input_jar, output_jar, deps, executable, label):
         group = parts[0]
         artifact = parts[1]
         version = parts[2]
-        fml_type = parts[3] if len(parts) > 3 else ""
         id = group + "_" + artifact + "_" + version
 
         args.add("--jar-in-jar")

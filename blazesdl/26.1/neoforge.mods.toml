@@ -1,0 +1,23 @@
+license = "LGPL-3.0-or-later"
+
+[[mods]]
+modId = "blazesdl"
+version = "${version}"
+displayName = "BlazeSDL"
+description = "Make Minecraft use SDL3 instead of GLFW."
+logoFile = "assets/blazesdl/icon.png"
+license = "LGPL-3.0-or-later"
+authors = "fifth_light"
+
+[[mixins]]
+config = "blazesdl.mixins.json"
+
+[[accessTransformers]]
+file = "access_transformer.cfg"
+
+[[dependencies.blazesdl]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[26.1]"
+ordering = "NONE"
+side = "CLIENT"

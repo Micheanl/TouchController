@@ -2,15 +2,22 @@ load("@//rule:upload_modrinth.bzl", "upload_modrinth")
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
-load("//blazesdl:properties.bzl", "blazesdl_26_1_version")
+load("//blazesdl:properties.bzl", "blazesdl_26_1_version", "blazesdl_api_version")
 load("//rule:apply_access_widener.bzl", "apply_access_widener")
-load("//rule/fabric:merge_jij.bzl", "fabric_merge_jij")
+load("//rule:unified_jij.bzl", "unified_jij")
+load("//rule/neoforge:convert_access_widener.bzl", "convert_access_widener")
 
 apply_access_widener(
     name = "game_access_widened",
     srcs = ["resources/blazesdl.classtweaker"],
     input = "//game/26.1.2:game_client",
     neverlink = True,
+)
+
+convert_access_widener(
+    name = "access_transformer",
+    src = "resources/blazesdl.classtweaker",
+    output_name = "resources/access_transformer.cfg",
 )
 
 copy_file(
@@ -28,13 +35,24 @@ expand_template(
     template = "fabric.mod.json",
 )
 
+expand_template(
+    name = "neoforge_mods_toml",
+    out = "resources/META-INF/neoforge.mods.toml",
+    substitutions = {
+        "${version}": blazesdl_26_1_version,
+    },
+    template = "neoforge.mods.toml",
+)
+
 java_library(
     name = "blazesdl_unmerged",
     srcs = glob(["**/*.java"]),
     resource_strip_prefix = "blazesdl/26.1/resources",
     resources = glob(["resources/**"]) + [
+        ":access_transformer",
         ":fabric_mod_json",
         ":icon",
+        ":neoforge_mods_toml",
     ],
     visibility = ["//visibility:public"],
     runtime_deps = [
@@ -56,23 +74,24 @@ java_library(
         "@maven_blazesdl//:org_lwjgl_lwjgl_sdl",
         "@maven_fabric_26_1//:io_github_llamalad7_mixinextras_fabric",
         "@maven_fabric_26_1//:net_fabricmc_sponge_mixin",
+        "@neoforge_26_1//:net_neoforged_fancymodloader_loader",
     ],
 )
 
-fabric_merge_jij(
+unified_jij(
     name = "blazesdl",
     input = ":blazesdl_unmerged",
     deps = {
-        "//blazesdl/api": "blazesdl-api:=",
-        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl": "org_lwjgl_lwjgl_sdl:3.4.1",
-        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_windows": "org_lwjgl_lwjgl_sdl_natives_windows:3.4.1",
-        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_windows_x86": "org_lwjgl_lwjgl_sdl_natives_windows_x86:3.4.1",
-        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_windows_arm64": "org_lwjgl_lwjgl_sdl_natives_windows_arm64:3.4.1",
-        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_linux_arm32": "org_lwjgl_lwjgl_sdl_natives_linux_arm32:3.4.1",
-        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_linux_arm64": "org_lwjgl_lwjgl_sdl_natives_linux_arm64:3.4.1",
-        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_linux": "org_lwjgl_lwjgl_sdl_natives_linux:3.4.1",
-        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_macos": "org_lwjgl_lwjgl_sdl_natives_macos:3.4.1",
-        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_macos_arm64": "org_lwjgl_lwjgl_sdl_natives_macos_arm64:3.4.1",
+        "//blazesdl/api": "top.fifthlight.blazesdl:blazesdl-api:%s:=" % blazesdl_api_version,
+        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl": "org.lwjgl:lwjgl-sdl:3.4.1:GAMELIBRARY",
+        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_windows": "org.lwjgl:lwjgl-sdl-natives-windows:3.4.1:GAMELIBRARY",
+        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_windows_x86": "org.lwjgl:lwjgl-sdl-natives-windows-x86:3.4.1:GAMELIBRARY",
+        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_windows_arm64": "org.lwjgl:lwjgl-sdl-natives-windows-arm64:3.4.1:GAMELIBRARY",
+        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_linux_arm32": "org.lwjgl:lwjgl-sdl-natives-linux-arm32:3.4.1:GAMELIBRARY",
+        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_linux_arm64": "org.lwjgl:lwjgl-sdl-natives-linux-arm64:3.4.1:GAMELIBRARY",
+        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_linux": "org.lwjgl:lwjgl-sdl-natives-linux:3.4.1:GAMELIBRARY",
+        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_macos": "org.lwjgl:lwjgl-sdl-natives-macos:3.4.1:GAMELIBRARY",
+        "@maven_blazesdl//:org_lwjgl_lwjgl_sdl_natives_macos_arm64": "org.lwjgl:lwjgl-sdl-natives-macos-arm64:3.4.1:GAMELIBRARY",
     },
 )
 
@@ -99,7 +118,7 @@ upload_modrinth(
 )
 
 java_binary(
-    name = "dev_client",
+    name = "dev_client_fabric",
     srcs = [],
     data = [
         "//game/26.1.2:game_client_assets",
@@ -132,5 +151,38 @@ java_binary(
         "@maven_fabric_26_1//:io_github_llamalad7_mixinextras_fabric",
         "@maven_fabric_26_1//:net_fabricmc_fabric_loader",
         "@maven_fabric_26_1//:net_fabricmc_sponge_mixin",
+    ],
+)
+
+java_binary(
+    name = "dev_client_neoforge",
+    srcs = [],
+    data = [
+        "//game/26.1:game_client_assets",
+        "//game/26.1:game_client_assets_version",
+    ],
+    env = {
+        "LANG": "en_US.UTF8",
+    },
+    jvm_flags = [
+        "-Ddev.launch.version=26.1",
+        "-Ddev.launch.neoFormVersion=26.1-1",
+        "-Ddev.launch.type=client",
+        "-Ddev.launch.assetsVersion=$(rlocationpath //game/26.1:game_client_assets_version)",
+        "-Ddev.launch.mainClass=net.neoforged.fml.startup.Client",
+        "-Xmx4G",
+        "--add-opens=java.base/java.lang.invoke=ALL-UNNAMED",
+        "--add-exports=jdk.naming.dns/com.sun.jndi.dns=java.naming",
+    ] + select({
+        "@platforms//os:macos": ["-XstartOnFirstThread"],
+        "//conditions:default": [],
+    }),
+    main_class = "top.fifthlight.fabazel.devlaunchwrapper.DevLaunchWrapper",
+    runtime_deps = [
+        ":blazesdl_unmerged",
+        "//game/26.1:game_client_libraries",
+        "//game/26.1:game_client_neoforge",
+        "//rule/dev_launch_wrapper",
+        "@neoforge_26_1//:neoforge_deps",
     ],
 )

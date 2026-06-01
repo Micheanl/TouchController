@@ -1,0 +1,15 @@
+license = "Apache-2.0"
+
+[[mods]]
+modId = "blazesdl_api"
+version = "${version}"
+displayName = "BlazeSDL API"
+description = "API for BlazeSDL."
+license = "Apache-2.0"
+authors = "fifth_light"
+
+[[dependencies.blazesdl_api]]
+modId = "minecraft"
+mandatory = true
+ordering = "NONE"
+side = "CLIENT"

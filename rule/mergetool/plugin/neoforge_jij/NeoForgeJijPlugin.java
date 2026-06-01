@@ -27,19 +27,12 @@ import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class NeoforgeJijPlugin implements Plugin {
+public class NeoForgeJijPlugin implements Plugin {
     private static final long DOS_EPOCH = 315532800000L;
     private static final Pattern DESCRIPTION_PATTERN = Pattern.compile("([^:]+):([^:]+):([^:]+):([^:]*)");
     private static final ObjectMapper MAPPER = new ObjectMapper().configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
 
-    private final LinkedHashMap<String, NeoforgeEntry> neoforgeEntries = new LinkedHashMap<>();
-
-    private record NeoforgeEntry(String group, String artifact, String version, String fmlType) {}
-
-    @Override
-    public int priority() {
-        return 402;
-    }
+    private final LinkedHashMap<String, NeoForgeEntry> neoforgeEntries = new LinkedHashMap<>();
 
     @Override
     public boolean processArg(String arg, PreprocessEnvironment environment) {
@@ -50,10 +43,44 @@ public class NeoforgeJijPlugin implements Plugin {
             if (!matcher.matches()) {
                 throw new IllegalArgumentException("Bad neoforge description: " + description);
             }
-            neoforgeEntries.put(id, new NeoforgeEntry(matcher.group(1), matcher.group(2), matcher.group(3), matcher.group(4)));
+            neoforgeEntries.put(id, new NeoForgeEntry(matcher.group(1), matcher.group(2), matcher.group(3), matcher.group(4)));
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int priority() {
+        return 402;
+    }
+
+    private byte[] buildWrappedJar(NeoForgeEntry neoforgeEntry, java.nio.file.Path sourcePath) throws IOException {
+        var resultStream = new ByteArrayOutputStream();
+        try (var entryInputStream = new JarInputStream(Files.newInputStream(sourcePath));
+             var entryOutputStream = new ZipOutputStream(resultStream)) {
+            var manifest = entryInputStream.getManifest();
+            if (manifest == null) {
+                manifest = new Manifest();
+            }
+            if (!neoforgeEntry.fmlType().isBlank()) {
+                manifest.getMainAttributes().putValue("FMLModType", neoforgeEntry.fmlType());
+            }
+
+            var manifestEntry = new JarEntry("META-INF/MANIFEST.MF");
+            setJarEntryTime(manifestEntry);
+            entryOutputStream.putNextEntry(manifestEntry);
+            manifest.write(entryOutputStream);
+            entryOutputStream.closeEntry();
+
+            JarEntry entry;
+            while ((entry = entryInputStream.getNextJarEntry()) != null) {
+                setJarEntryTime(entry);
+                entryOutputStream.putNextEntry(entry);
+                entryInputStream.transferTo(entryOutputStream);
+                entryOutputStream.closeEntry();
+            }
+        }
+        return resultStream.toByteArray();
     }
 
     @Override
@@ -97,33 +124,7 @@ public class NeoforgeJijPlugin implements Plugin {
         }
     }
 
-    private byte[] buildWrappedJar(NeoforgeEntry neoforgeEntry, java.nio.file.Path sourcePath) throws IOException {
-        var resultStream = new ByteArrayOutputStream();
-        try (var entryInputStream = new JarInputStream(Files.newInputStream(sourcePath));
-             var entryOutputStream = new ZipOutputStream(resultStream)) {
-            var manifest = entryInputStream.getManifest();
-            if (manifest == null) {
-                manifest = new Manifest();
-            }
-            if (!neoforgeEntry.fmlType().isBlank()) {
-                manifest.getMainAttributes().putValue("FMLModType", neoforgeEntry.fmlType());
-            }
-
-            var manifestEntry = new JarEntry("META-INF/MANIFEST.MF");
-            setJarEntryTime(manifestEntry);
-            entryOutputStream.putNextEntry(manifestEntry);
-            manifest.write(entryOutputStream);
-            entryOutputStream.closeEntry();
-
-            JarEntry entry;
-            while ((entry = entryInputStream.getNextJarEntry()) != null) {
-                setJarEntryTime(entry);
-                entryOutputStream.putNextEntry(entry);
-                entryInputStream.transferTo(entryOutputStream);
-                entryOutputStream.closeEntry();
-            }
-        }
-        return resultStream.toByteArray();
+    private record NeoForgeEntry(String group, String artifact, String version, String fmlType) {
     }
 
     private static void setJarEntryTime(ZipEntry entry) {

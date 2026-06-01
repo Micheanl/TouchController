@@ -11,6 +11,6 @@ public class NeoforgeJijPluginProvider implements PluginProvider {
 
     @Override
     public Plugin create() {
-        return new NeoforgeJijPlugin();
+        return new NeoForgeJijPlugin();
     }
 }

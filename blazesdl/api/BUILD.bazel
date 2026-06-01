@@ -11,11 +11,23 @@ expand_template(
     template = "resources/fabric.mod.json",
 )
 
+expand_template(
+    name = "neoforge_mods_toml",
+    out = "META-INF/neoforge.mods.toml",
+    substitutions = {
+        "${version}": blazesdl_api_version,
+    },
+    template = "resources/neoforge.mods.toml",
+)
+
 java_library(
     name = "api",
     srcs = glob(["**/*.java"]),
     resource_strip_prefix = "blazesdl/api",
-    resources = [":fabric_mod_json"],
+    resources = [
+        ":fabric_mod_json",
+        ":neoforge_mods_toml",
+    ],
     visibility = ["//visibility:public"],
     deps = [
         "@maven//:org_jspecify_jspecify",
