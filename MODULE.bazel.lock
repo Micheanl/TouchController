@@ -350,7 +350,7 @@
     "//repo:llvm_mingw.bzl%llvm_mingw": {
       "general": {
         "bzlTransitiveDigest": "JuARQ9nevK0XZrDDlUagtolYaCbX846zP7XZj9hih9U=",
-        "usagesDigest": "qzQ7B9q68gPwRk2c2UEeUOr8uiH0HPCqw14fGXL71dg=",
+        "usagesDigest": "b8OL6GfORfKohZWDPDQuP1fWk7QYC0Sgy87Ha7S0o8I=",
         "recordedInputs": [
           "REPO_MAPPING:,platforms platforms"
         ],
@@ -358,9 +358,9 @@
           "llvm_mingw_toolchain_linux_x86_64_files": {
             "repoRuleId": "@@//repo:llvm_mingw.bzl%_llvm_mingw_files",
             "attributes": {
-              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20251216/llvm-mingw-20251216-ucrt-ubuntu-22.04-x86_64.tar.xz",
-              "sha256": "db561734a05eb4a0695d5e901aadd6c1cda74bba4c9e102b677f81c6fd59849a",
-              "strip_prefix": "llvm-mingw-20251216-ucrt-ubuntu-22.04-x86_64",
+              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20260602/llvm-mingw-20260602-ucrt-ubuntu-22.04-x86_64.tar.xz",
+              "sha256": "9d191203f9768ead60662d3ae53cdf28e0a28b1e6d44b7f329b9202cb2add337",
+              "strip_prefix": "llvm-mingw-20260602-ucrt-ubuntu-22.04-x86_64",
               "type": "tar.xz",
               "targets": {
                 "x86_64": "x86_64-w64-mingw32",
@@ -389,9 +389,9 @@
           "llvm_mingw_toolchain_linux_aarch64_files": {
             "repoRuleId": "@@//repo:llvm_mingw.bzl%_llvm_mingw_files",
             "attributes": {
-              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20251216/llvm-mingw-20251216-ucrt-ubuntu-22.04-aarch64.tar.xz",
-              "sha256": "2950bc65bdd289a2138f48ffb4b200c06c6dc71d8c105452ebd9fa7d567497ec",
-              "strip_prefix": "llvm-mingw-20251216-ucrt-ubuntu-22.04-aarch64",
+              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20260602/llvm-mingw-20260602-ucrt-ubuntu-22.04-aarch64.tar.xz",
+              "sha256": "e71b61c968f65f94ed3878ca22ab663d7854d91c053c1b8a824ac2f1c9a18503",
+              "strip_prefix": "llvm-mingw-20260602-ucrt-ubuntu-22.04-aarch64",
               "type": "tar.xz",
               "targets": {
                 "x86_64": "x86_64-w64-mingw32",
@@ -420,9 +420,9 @@
           "llvm_mingw_toolchain_macos_files": {
             "repoRuleId": "@@//repo:llvm_mingw.bzl%_llvm_mingw_files",
             "attributes": {
-              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20251216/llvm-mingw-20251216-ucrt-macos-universal.tar.xz",
-              "sha256": "38bb5e48ec3e0ce95fb901f4efff0bd6ffa966d1b32539a6510af816a959d160",
-              "strip_prefix": "llvm-mingw-20251216-ucrt-macos-universal",
+              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20260602/llvm-mingw-20260602-ucrt-macos-universal.tar.xz",
+              "sha256": "d3310f9b86b368900850af8bc95da20648f9fc6b0be3bb64dbf8fb18d7c0894f",
+              "strip_prefix": "llvm-mingw-20260602-ucrt-macos-universal",
               "type": "tar.xz",
               "targets": {
                 "x86_64": "x86_64-w64-mingw32",
@@ -450,9 +450,9 @@
           "llvm_mingw_toolchain_windows_x86_64_files": {
             "repoRuleId": "@@//repo:llvm_mingw.bzl%_llvm_mingw_files",
             "attributes": {
-              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20251216/llvm-mingw-20251216-ucrt-x86_64.zip",
-              "sha256": "2d96a4b758f7f8deaec5065833fe025aa53cfc5f704d0524002510984da0ccf4",
-              "strip_prefix": "llvm-mingw-20251216-ucrt-x86_64",
+              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20260602/llvm-mingw-20260602-ucrt-x86_64.zip",
+              "sha256": "3de3eda9377bbaf35f8c9001f190380f63b8ee981fa55d3ae9d7cce7c6ad7c70",
+              "strip_prefix": "llvm-mingw-20260602-ucrt-x86_64",
               "type": "zip",
               "targets": {
                 "x86_64": "x86_64-w64-mingw32",
@@ -481,9 +481,9 @@
           "llvm_mingw_toolchain_windows_aarch64_files": {
             "repoRuleId": "@@//repo:llvm_mingw.bzl%_llvm_mingw_files",
             "attributes": {
-              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20251216/llvm-mingw-20251216-ucrt-aarch64.zip",
-              "sha256": "60c06bd255feb2ef1eb6fce7ee6b307d8f78ee6639660f49861c7c10a8a86164",
-              "strip_prefix": "llvm-mingw-20251216-ucrt-aarch64",
+              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20260602/llvm-mingw-20260602-ucrt-aarch64.zip",
+              "sha256": "cb5c20fbe1808e31ada5cbe4efd9daa2fee19c91dac6ec5ca1ac46a9c7247e37",
+              "strip_prefix": "llvm-mingw-20260602-ucrt-aarch64",
               "type": "zip",
               "targets": {
                 "x86_64": "x86_64-w64-mingw32",
@@ -512,9 +512,9 @@
           "llvm_mingw_toolchain_windows_x86_32_files": {
             "repoRuleId": "@@//repo:llvm_mingw.bzl%_llvm_mingw_files",
             "attributes": {
-              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20251216/llvm-mingw-20251216-ucrt-i686.zip",
-              "sha256": "c6b17faa808f412ec8ef2086994b3fc3c16e8c7292bbaf275254d0acfa18f54d",
-              "strip_prefix": "llvm-mingw-20251216-ucrt-i686",
+              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20260602/llvm-mingw-20260602-ucrt-i686.zip",
+              "sha256": "0bd7db3527754980e5fb3331b9fffdbad1e5a7aec268d5f6e7d9beb0b5654780",
+              "strip_prefix": "llvm-mingw-20260602-ucrt-i686",
               "type": "zip",
               "targets": {
                 "x86_64": "x86_64-w64-mingw32",
@@ -543,9 +543,9 @@
           "llvm_mingw_toolchain_windows_armv7_files": {
             "repoRuleId": "@@//repo:llvm_mingw.bzl%_llvm_mingw_files",
             "attributes": {
-              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20251216/llvm-mingw-20251216-ucrt-armv7.zip",
-              "sha256": "84aba9a04e23af4bbf90a742d7045f9f5ce2a233caa73e9a5e3990334e1e3109",
-              "strip_prefix": "llvm-mingw-20251216-ucrt-armv7",
+              "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20260602/llvm-mingw-20260602-ucrt-armv7.zip",
+              "sha256": "804ad9c43036bb207d6b07768bb11ca96774797fb764d39d7d8302fb75527497",
+              "strip_prefix": "llvm-mingw-20260602-ucrt-armv7",
               "type": "zip",
               "targets": {
                 "x86_64": "x86_64-w64-mingw32",

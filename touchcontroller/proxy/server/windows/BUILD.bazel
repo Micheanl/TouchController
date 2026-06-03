@@ -26,6 +26,7 @@ cc_library(
     linkopts = [
         "-lwindowsapp",
         "-luser32",
+        "-lkernel32",
     ],
     target_compatible_with = ["@platforms//os:windows"],
     visibility = ["//touchcontroller:__subpackages__"],

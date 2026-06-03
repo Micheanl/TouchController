@@ -123,7 +123,7 @@ def _impl(ctx):
         cxx_builtin_include_directories = [
             "%s/include" % ctx.attr.execroot,
             "%s/%s/include" % (ctx.attr.execroot, ctx.attr.triple),
-            "%s/lib/clang/21/include" % ctx.attr.execroot,
+            "%s/lib/clang/22/include" % ctx.attr.execroot,
         ],
         toolchain_identifier = "llvm-mingw",
         host_system_name = "local",
