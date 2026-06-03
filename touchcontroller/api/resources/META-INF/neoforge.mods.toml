@@ -1,13 +1,13 @@
 modLoader = "javafml"
 loaderVersion = "[1,)"
-license="${license}"
-issueTrackerURL="${issue_tracker}"
+license = "${license}"
+issueTrackerURL = "${issue_tracker}"
 
 [[mods]]
-modId="touchcontroller_api"
-version="${version}"
-displayName="TouchController API"
-displayURL="${home_page}"
-logoFile="icon.png"
-authors="fifth_light"
-description='''${description}'''
+modId = "touchcontroller_api"
+version = "${version}"
+displayName = "TouchController API"
+displayURL = "${home_page}"
+logoFile = "icon.png"
+authors = "fifth_light"
+description = '''${description}'''

@@ -4,33 +4,22 @@ license = "${license}"
 issueTrackerURL = "${issue_tracker}"
 
 [[mods]]
-modId = "combine_1_21_1"
+modId = "combine_common"
 version = "${version}"
-displayName = "Combine 1.21.1 implementation"
+displayName = "Combine common"
 displayURL = "${home_page}"
 logoFile = "icon.png"
 authors = "fifth_light"
 description = "${description}"
 
-[[mixins]]
-config = "combine.mixins.render.json"
-
-[[dependencies.combine_1_21_1]]
+[[dependencies.combine_common]]
 modId = "minecraft"
 type = "required"
-versionRange = "1.21.1"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.combine_1_21_1]]
+[[dependencies.combine_common]]
 modId = "kotlinforforge"
 type = "required"
-ordering = "NONE"
-side = "CLIENT"
-
-[[dependencies.combine_1_21_1]]
-modId = "combine_common"
-type = "required"
-versionRange = "[${version},)"
 ordering = "NONE"
 side = "CLIENT"

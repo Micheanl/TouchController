@@ -10,6 +10,6 @@ authors = "fifth_light"
 
 [[dependencies.blazesdl_api]]
 modId = "minecraft"
-mandatory = true
+type = "required"
 ordering = "NONE"
 side = "CLIENT"

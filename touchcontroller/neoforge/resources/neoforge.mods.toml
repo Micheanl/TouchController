@@ -1,45 +1,45 @@
-modLoader="javafml"
-loaderVersion="[0,)"
-license="${license}"
-issueTrackerURL="${issue_tracker}"
+modLoader = "javafml"
+loaderVersion = "[0,)"
+license = "${license}"
+issueTrackerURL = "${issue_tracker}"
 
 [[mods]]
-modId="touchcontroller"
-version="${version}"
-displayName="TouchController common"
-displayURL="${home_page}"
-logoFile="assets/touchcontroller/textures/icon.png"
-authors="${mod_authors}"
-credits="${mod_contributors}"
-description="${description}"
+modId = "touchcontroller"
+version = "${version}"
+displayName = "TouchController common"
+displayURL = "${home_page}"
+logoFile = "assets/touchcontroller/textures/icon.png"
+authors = "${mod_authors}"
+credits = "${mod_contributors}"
+description = "${description}"
 
 [[dependencies.touchcontroller]]
-modId="minecraft"
-mandatory=true
-ordering="NONE"
-side="CLIENT"
+modId = "minecraft"
+type = "required"
+ordering = "NONE"
+side = "CLIENT"
 
 [[dependencies.touchcontroller]]
-modId="combine"
-mandatory=true
-versionRange="[${combine_version},]"
-ordering="NONE"
-side="CLIENT"
+modId = "combine_common"
+type = "required"
+versionRange = "[${combine_version},]"
+ordering = "NONE"
+side = "CLIENT"
 
 [[dependencies.touchcontroller]]
-modId="kotlinforforge"
-type="required"
-ordering="NONE"
-side="CLIENT"
+modId = "kotlinforforge"
+type = "required"
+ordering = "NONE"
+side = "CLIENT"
 
 [[dependencies.touchcontroller]]
-modId="touchcontroller_api"
-type="required"
-ordering="NONE"
-side="CLIENT"
+modId = "touchcontroller_api"
+type = "required"
+ordering = "NONE"
+side = "CLIENT"
 
 [[dependencies.touchcontroller]]
-modId="touchcontroller_texture"
-type="required"
-ordering="NONE"
-side="CLIENT"
+modId = "touchcontroller_texture"
+type = "required"
+ordering = "NONE"
+side = "CLIENT"

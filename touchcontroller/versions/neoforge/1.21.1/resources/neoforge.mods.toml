@@ -21,21 +21,28 @@ config = "touchcontroller.mixins.neoforge.json"
 
 [[dependencies.touchcontroller_1_21_1]]
 modId = "minecraft"
-mandatory = true
+type = "required"
 versionRange = "[1.21.1]"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.touchcontroller_1_21_1]]
 modId = "neoforge"
-mandatory = true
+type = "required"
 versionRange = "[21.1,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.touchcontroller_1_21_1]]
-modId = "combine"
-mandatory = true
+modId = "combine_common"
+type = "required"
+versionRange = "[${combine_version},]"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.touchcontroller_1_21_1]]
+modId = "combine_1_21_1"
+type = "required"
 versionRange = "[${combine_version},]"
 ordering = "NONE"
 side = "CLIENT"

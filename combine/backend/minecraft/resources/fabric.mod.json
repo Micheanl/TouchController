@@ -1,0 +1,31 @@
+{
+    "schemaVersion": 1,
+    "id": "combine_common",
+    "version": "${version}",
+    "name": "Combine common",
+    "description": "${description}",
+    "authors": [
+        "fifth_light"
+    ],
+    "license": "${license}",
+    "environment": "client",
+    "contact": {
+        "homepage": "${home_page}",
+        "sources": "${sources_page}",
+        "issues": "${issue_tracker}"
+    },
+    "icon": "icon.png",
+    "depends": {
+        "minecraft": "*",
+        "java": ">=21",
+        "fabric-language-kotlin": "*"
+    },
+    "custom": {
+        "modmenu": {
+            "parent": "combine",
+            "badges": [
+                "library"
+            ]
+        }
+    }
+}
