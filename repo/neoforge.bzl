@@ -47,6 +47,15 @@ def _neoforge_repo_impl(rctx):
     )
 
     config_data = json.decode(rctx.read("%s/config.json" % output_prefix))
+
+    ignore_list_files = []
+    for run_name, run_config in config_data.get("runs", {}).items():
+        ignore_list = run_config.get("props", {}).get("ignoreList")
+        if ignore_list != None:
+            ignore_list_file = "%s/ignorelist_%s.txt" % (output_prefix, run_name)
+            rctx.file(ignore_list_file, ignore_list)
+            ignore_list_files.append((run_name, ignore_list_file))
+
     download_tokens = [
         rctx.download(
             url = _convert_maven_coordinate_to_url(repository_url, config_data["sources"]),
@@ -70,11 +79,11 @@ def _neoforge_repo_impl(rctx):
         if library not in neoforge_libraries:
             neoforge_libraries[library] = label
 
-    access_transformers = config_data["ats"]
-    if type(access_transformers) == type([]):
-        access_transformers = access_transformers[0]
-
-    sass_files = config_data.get("sass", [])
+    neoforge_modules = {}
+    for module in config_data.get("modules", []):
+        label = '"@%s//jar"' % _convert_maven_coordinate_to_repo(repository_prefix, module)
+        if module not in neoforge_modules:
+            neoforge_modules[module] = label
 
     build_file_contents = [
         'package(default_visibility = ["//visibility:public"])',
@@ -106,15 +115,40 @@ def _neoforge_repo_impl(rctx):
         ")",
     ]
 
+    sass_files = config_data.get("sass", [])
     if sass_files:
         sass_srcs = ['"%s/%s"' % (output_prefix, f) for f in sass_files]
         build_file_contents += [
             "",
             "filegroup(",
             '    name = "sas",',
-            '    srcs = [%s],' % ", ".join(sass_srcs),
+            "    srcs = [%s]," % ", ".join(sass_srcs),
             ")",
         ]
+
+    for run_name, ignore_list_file in ignore_list_files:
+        build_file_contents += [
+            "",
+            "filegroup(",
+            '    name = "ignore_list_%s",' % run_name,
+            '    srcs = ["%s"],' % ignore_list_file,
+            ")",
+        ]
+
+    if len(neoforge_modules) > 0:
+        build_file_contents += [
+            "",
+            "java_merge(",
+            '    name = "neoforge_modules",',
+            "    deps = [",
+            "        %s" % ", \n        ".join(neoforge_modules.values()),
+            "    ],",
+            ")",
+        ]
+
+    access_transformers = config_data["ats"]
+    if type(access_transformers) == type([]):
+        access_transformers = access_transformers[0]
 
     build_file_contents += [
         "",
@@ -349,6 +383,18 @@ pin = tag_class(
     },
 )
 
+def _maven_coordinate_to_filename(coordinate):
+    ext_parts = coordinate.split("@")
+    coord = ext_parts[0]
+    ext = ext_parts[1] if len(ext_parts) > 1 else "jar"
+    parts = coord.split(":")
+    artifact = parts[1]
+    version = parts[2]
+    classifier = parts[3] if len(parts) > 3 else None
+    if classifier:
+        return "%s-%s-%s.%s" % (artifact, version, classifier, ext)
+    return "%s-%s.%s" % (artifact, version, ext)
+
 def _neoforge_impl(mctx):
     versions = {}
     pin_file = None
@@ -434,6 +480,8 @@ def _neoforge_impl(mctx):
         config_data = json.decode(mctx.read("%s/config.json" % output_prefix))
         for library in config_data["libraries"]:
             append_library(library, version_legacy)
+        for module in config_data.get("modules", []):
+            append_library(module, version_legacy)
 
     pin_content = {}
     if pin_file != None:
@@ -447,6 +495,7 @@ def _neoforge_impl(mctx):
             name = _convert_maven_coordinate_to_repo(repository_prefix, coordinate),
             url = _convert_maven_coordinate_to_url_with_repo(repository_url, coordinate),
             sha256 = pin_content.get(_convert_maven_coordinate_to_url(repository_url, coordinate), None),
+            downloaded_file_name = _maven_coordinate_to_filename(coordinate),
         )
 
     neoforge_pin(

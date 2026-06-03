@@ -6,6 +6,9 @@ merge_library_jar(
     name = "minecraft_unmerged",
     aspect = True,
     aspect_class = "top.fifthlight.combine.AspectProvider",
+    resources = {
+        "//combine/backend/minecraft/neoforge:neoforge_mod_toml": "combine/backend/minecraft/neoforge",
+    },
     visibility = ["//visibility:public"],
     deps = [
         "//combine",
@@ -14,7 +17,7 @@ merge_library_jar(
 )
 
 unified_jar(
-    name = "minecraft",
+    name = "combine_minecraft",
     fabric_deps = {
         "combine-common": "=",
         "combine-fabric-1-21-1": "=",
@@ -37,7 +40,6 @@ unified_jar(
     resources = {
         "//combine/resources:icon": ".",
     },
-    visibility = ["//visibility:public"],
     deps = {
         "combine-common": ":minecraft_unmerged",
         "combine-fabric-1-21-1": "//combine/backend/minecraft/fabric/1.21.1",
@@ -52,4 +54,10 @@ unified_jar(
         "combine-neoforge-1-21-11": "//combine/backend/minecraft/neoforge/1.21.11",
         "combine-neoforge-26-1": "//combine/backend/minecraft/neoforge/26.1",
     } | combine_unified_deps,
+)
+
+alias(
+    name = "minecraft",
+    actual = ":combine_minecraft",
+    visibility = ["//visibility:public"],
 )

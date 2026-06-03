@@ -1,0 +1,14 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+java_library(
+    name = "java",
+    srcs = glob([
+        "*.java",
+        "plugin/*.java",
+    ]),
+    javacopts = ["--release=8"],
+    resource_strip_prefix = "rule/dev_launch_wrapper/java/resources",
+    resources = glob(["resources/**"]),
+    visibility = ["//rule/dev_launch_wrapper:__pkg__"],
+    deps = ["@bazel_tools//tools/java/runfiles"],
+)

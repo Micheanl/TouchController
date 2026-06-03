@@ -216,11 +216,30 @@ expand_template(
     template = "resources/fabric.mod.atlas.json",
 )
 
+expand_template(
+    name = "neoforge_mod_toml_atlas",
+    out = "atlas_expanded/META-INF/neoforge.mods.toml",
+    substitutions = {
+        "${version}": touchcontroller_version,
+        "${license}": touchcontroller_license,
+        "${home_page}": touchcontroller_homepage,
+        "${sources_page}": touchcontroller_source,
+        "${issue_tracker}": touchcontroller_issue_tracker,
+        "${name}": "TouchController Textures Atlas",
+        "${description}": "Textures for TouchController. For Minecraft < 1.21.2.",
+        "${authors}": ", ".join(touchcontroller_texture_authors),
+    },
+    template = "resources/META-INF/neoforge.mods.atlas.toml",
+)
+
 merge_library_jar(
     name = "texture_atlas",
     aspect_impl_package_suffix = "atlas",
     aspects = [":texture_common"],
-    resources = {":fabric_mod_json_atlas": "."},
+    resources = {
+        ":fabric_mod_json_atlas": ".",
+        ":neoforge_mod_toml_atlas": "touchcontroller/resources/texture/atlas_expanded",
+    },
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
         ":atlas_lib",

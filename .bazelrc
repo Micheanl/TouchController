@@ -38,5 +38,5 @@ common --@protobuf//bazel/toolchains:prefer_prebuilt_protoc
 # Android Rules
 common --android_platforms=@//platforms:android_arm32,@//platforms:android_arm64,@//platforms:android_x86_32,@//platforms:android_x86_64
 
-# C++17
-common --cxxopt=-std=c++17 --host_cxxopt=-std=c++17
+# C++20
+common --cxxopt=-std=c++20 --host_cxxopt=-std=c++20

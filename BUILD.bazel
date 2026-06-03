@@ -10,6 +10,7 @@ refresh_compile_commands(
         "//touchcontroller/proxy/server/linux:wayland": "--platforms=//platforms:linux_x86_64",
         "//touchcontroller/proxy/server/windows:lib": "--platforms=//platforms:windows_x86_64",
         "//touchcontroller/proxy/server/windows:lib-legacy": "--platforms=//platforms:windows_x86_64",
+        "//rule/dev_launch_wrapper:launcher": "",
     },
 )
 

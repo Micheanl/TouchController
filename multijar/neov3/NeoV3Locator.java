@@ -1,10 +1,15 @@
 package top.fifthlight.multijar.neov3;
 
 import cpw.mods.jarhandling.JarContents;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.fml.util.DevEnvUtils;
 import net.neoforged.jarjar.nio.layzip.LayeredZipFileSystemProvider;
 import net.neoforged.neoforgespi.language.IModInfo;
-import net.neoforged.neoforgespi.locating.*;
+import net.neoforged.neoforgespi.locating.IDependencyLocator;
+import net.neoforged.neoforgespi.locating.IDiscoveryPipeline;
+import net.neoforged.neoforgespi.locating.IModFile;
+import net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.fifthlight.multijar.common.MultiJarManifest;
@@ -47,6 +52,39 @@ public class NeoV3Locator implements IDependencyLocator {
                 .findFirst();
     }
 
+    private void processJar(JarContents contents, String minecraftVersionStr, IDiscoveryPipeline pipeline) throws IOException {
+        var manifestUri = contents.findFile(MultiJarManifest.NEOFORGE_MANIFEST_PATH);
+        if (manifestUri.isEmpty()) {
+            return;
+        }
+        var manifestPath = Path.of(manifestUri.get());
+
+        MultiJarManifest manifest;
+        try (var reader = Files.newBufferedReader(manifestPath)) {
+            manifest = MultiJarManifest.fromJson(reader);
+        } catch (FileNotFoundException | NoSuchFileException e) {
+            return;
+        } catch (Exception e) {
+            LOGGER.warn("Failed to parse loader manifest for mod {}", contents.getPrimaryPath(), e);
+            return;
+        }
+
+        LOGGER.info("Loading mod {}", contents.getPrimaryPath());
+
+        var jars = manifest.jars(minecraftVersionStr);
+        for (var jar : jars) {
+            var jij = contents.findFile(jar);
+            if (jij.isEmpty()) {
+                LOGGER.warn("Failed to find jar {} for mod {}", jar, contents.getPrimaryPath());
+                continue;
+            }
+            var jijPath = Path.of(jij.get());
+            LOGGER.info("Loading jar {} for mod {}", jijPath, contents.getPrimaryPath());
+            var jijModFile = pipeline.readModFile(JarContents.of(jijPath), attributes);
+            pipeline.addModFile(jijModFile);
+        }
+    }
+
     @Override
     public void scanMods(List<IModFile> loadedMods, IDiscoveryPipeline pipeline) {
         var minecraftInfo = findModInfo(loadedMods, "minecraft");
@@ -58,6 +96,18 @@ public class NeoV3Locator implements IDependencyLocator {
         var gameDirectory = FMLPaths.GAMEDIR.get();
 
         LOGGER.info("MultiJar loader on Minecraft {} in directory {}", minecraftVersionStr, gameDirectory);
+
+        if (!FMLEnvironment.production) {
+            for (var path : DevEnvUtils.findFileSystemRootsOfFileOnClasspath(
+                    MultiJarManifest.NEOFORGE_MANIFEST_PATH)) {
+                if (!Files.isRegularFile(path)) continue;
+                try (var contents = JarContents.of(path)) {
+                    processJar(contents, minecraftVersionStr, pipeline);
+                } catch (IOException e) {
+                    LOGGER.warn("Failed to read mod {} in classpath", path);
+                }
+            }
+        }
 
         var modsDir = gameDirectory.resolve(FMLPaths.MODSDIR.relative()).toAbsolutePath().normalize();
         if (!Files.exists(modsDir)) {
@@ -74,39 +124,11 @@ public class NeoV3Locator implements IDependencyLocator {
                 } catch (IOException ignored) {}
 
                 try (var contents = JarContents.of(path)) {
-                    var manifestUri = contents.findFile(MultiJarManifest.NEOFORGE_MANIFEST_PATH);
-                    if (manifestUri.isEmpty()) {
-                        return;
-                    }
-                    var manifestPath = Path.of(manifestUri.get());
-
-                    MultiJarManifest manifest;
-                    try (var reader = Files.newBufferedReader(manifestPath)) {
-                        manifest = MultiJarManifest.fromJson(reader);
-                    } catch (FileNotFoundException | NoSuchFileException e) {
-                        return;
-                    } catch (Exception e) {
-                        LOGGER.warn("Failed to parse loader manifest for mod {}", path, e);
-                        return;
-                    }
-
-                    LOGGER.info("Loading mod {}", path);
-
-                    var jars = manifest.jars(minecraftVersionStr);
-                    for (var jar : jars) {
-                        var jij = contents.findFile(jar);
-                        if (jij.isEmpty()) {
-                            LOGGER.warn("Failed to find jar {} for mod {}", jar, path);
-                            continue;
-                        }
-                        var jijPath = Path.of(jij.get());
-                        LOGGER.info("Loading jar {} for mod {}", jijPath, path);
-                        var jijModFile = pipeline.readModFile(JarContents.of(jijPath), attributes);
-                        pipeline.addModFile(jijModFile);
-                    }
+                    processJar(contents, minecraftVersionStr, pipeline);
                 } catch (IOException e) {
                     LOGGER.warn("Failed to read mod {}", path);
                 }
+
             });
         } catch (IOException ex) {
             LOGGER.warn("Failed to scan mods directory {}", modsDir);

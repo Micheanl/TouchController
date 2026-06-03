@@ -56,6 +56,7 @@ def _theme_atlas_info_jar_impl(name, visibility, substitutions):
         name = name,
         visibility = visibility,
         fabric = "//combine/theme:resources/fabric.mod.atlas.json",
+        neoforge = "//combine/theme:resources/META-INF/neoforge.mods.atlas.toml",
         substitutions = predefined_substitutions | substitutions,
     )
 

@@ -1,0 +1,10 @@
+top.fifthlight.fabazel.devlaunchwrapper.plugin.ExpandRunfilePlugin
+top.fifthlight.fabazel.devlaunchwrapper.plugin.NativeManifestPlugin
+top.fifthlight.fabazel.devlaunchwrapper.plugin.CopyFilesPlugin
+top.fifthlight.fabazel.devlaunchwrapper.plugin.GlfwPlugin
+top.fifthlight.fabazel.devlaunchwrapper.plugin.LegacyHomePlugin
+top.fifthlight.fabazel.devlaunchwrapper.plugin.GameArgsPlugin
+top.fifthlight.fabazel.devlaunchwrapper.plugin.FMLPlugin
+top.fifthlight.fabazel.devlaunchwrapper.plugin.AssetsPlugin
+top.fifthlight.fabazel.devlaunchwrapper.plugin.TypePlugin
+top.fifthlight.fabazel.devlaunchwrapper.plugin.MainClassPlugin
