@@ -155,6 +155,10 @@ public class ExpectActualPlugin implements Plugin, ExpectActualPluginContext {
                     } else {
                         throw new IllegalStateException("Aspect expect not satisfied: " + fqn);
                     }
+                } else {
+                    // Clean existing SPI files
+                    var spiManifestPath = "META-INF/services/" + fqn + "$Factory";
+                    mergeEntries.remove(spiManifestPath);
                 }
             }
 
@@ -178,7 +182,7 @@ public class ExpectActualPlugin implements Plugin, ExpectActualPluginContext {
             var expectData = expectEntry.getValue();
             var actualData = actualDataMap.get(key);
 
-            // Clean
+            // Clean SPI files
             var spiManifestPath = "META-INF/services/" + key + "$Factory";
             mergeEntries.remove(spiManifestPath);
 
