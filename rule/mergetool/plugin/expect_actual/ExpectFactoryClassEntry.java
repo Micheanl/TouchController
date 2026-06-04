@@ -1,7 +1,6 @@
 package top.fifthlight.mergetools.merger.plugin.expectactual;
 
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
 import org.objectweb.asm.Opcodes;
 import top.fifthlight.mergetools.merger.api.MergeEntry;
 import top.fifthlight.mergetools.processor.ActualData;
@@ -11,15 +10,15 @@ import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public record ExpectManifest(ExpectActualPluginContext context, String interfaceFullQualifiedName,
-                             ExpectData expectData, String aspectProviderInterface,
-                             String aspectProviderFactory) implements MergeEntry {
-    public ExpectManifest(ExpectActualPluginContext context, String interfaceFullQualifiedName, ExpectData expectData) {
+public record ExpectFactoryClassEntry(ExpectActualPluginContext context, String interfaceFullQualifiedName,
+                                      ExpectData expectData, String aspectProviderInterface,
+                                      String aspectProviderFactory) implements MergeEntry {
+    public ExpectFactoryClassEntry(ExpectActualPluginContext context, String interfaceFullQualifiedName, ExpectData expectData) {
         this(context, interfaceFullQualifiedName, expectData, null, null);
     }
 
-    public ExpectManifest withAspectProvider(String aspectProviderInterface, String aspectProviderFactory) {
-        return new ExpectManifest(context, interfaceFullQualifiedName, expectData, aspectProviderInterface, aspectProviderFactory);
+    public ExpectFactoryClassEntry withAspectProvider(String aspectProviderInterface, String aspectProviderFactory) {
+        return new ExpectFactoryClassEntry(context, interfaceFullQualifiedName, expectData, aspectProviderInterface, aspectProviderFactory);
     }
 
     private record MethodPair(String parameterTypes, String name) {
@@ -83,7 +82,7 @@ public record ExpectManifest(ExpectActualPluginContext context, String interface
             var actualClassName = ExpectActualUtils.descriptorNameToInternalName(actualData.implementationName());
             ExpectActualUtils.generateDirectCallMethodBody(
                     methodVisitor, actualConstructor, expectConstructor,
-                    actualClassName, methodPair.parameterTypes(), actualConstructor.returnType(), true
+                    actualClassName, methodPair.parameterTypes(), true
             );
 
             methodVisitor.visitEnd();
@@ -91,20 +90,7 @@ public record ExpectManifest(ExpectActualPluginContext context, String interface
     }
 
     private void writeDelegateMethods(ClassWriter classWriter, String expectBinaryName, String factoryInternalName) {
-        var aspectProviderInternalName = ExpectActualUtils.descriptorNameToInternalName(aspectProviderInterface);
-        var aspectProviderFactoryInternalName = ExpectActualUtils.descriptorNameToInternalName(aspectProviderFactory);
-
-        classWriter.visitField(Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC | Opcodes.ACC_FINAL,
-                "aspectProvider", ExpectActualUtils.internalNameToDescriptor(aspectProviderInternalName), null, null);
-        {
-            var clinit = classWriter.visitMethod(Opcodes.ACC_STATIC, "<clinit>", "()V", null, null);
-            clinit.visitCode();
-            clinit.visitMethodInsn(Opcodes.INVOKESTATIC, aspectProviderFactoryInternalName, "getInstance", ExpectActualUtils.internalNametoNoArgMethodDescriptor(aspectProviderInternalName), false);
-            clinit.visitFieldInsn(Opcodes.PUTSTATIC, factoryInternalName, "aspectProvider", ExpectActualUtils.internalNameToDescriptor(aspectProviderInternalName));
-            clinit.visitInsn(Opcodes.RETURN);
-            clinit.visitMaxs(1, 0);
-            clinit.visitEnd();
-        }
+        ExpectActualUtils.generateAspectProviderField(classWriter, factoryInternalName, aspectProviderInterface, aspectProviderFactory);
 
         for (var expectConstructor : expectData.constructors()) {
             var generatedMethodDescriptor = "(" +
@@ -112,24 +98,7 @@ public record ExpectManifest(ExpectActualPluginContext context, String interface
                     ")" + expectBinaryName;
             var methodVisitor = classWriter.visitMethod(Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC, expectConstructor.name(), generatedMethodDescriptor, null, null);
             methodVisitor.visitCode();
-
-            methodVisitor.visitFieldInsn(Opcodes.GETSTATIC, factoryInternalName, "aspectProvider", ExpectActualUtils.internalNameToDescriptor(aspectProviderInternalName));
-
-            var parameters = expectConstructor.parameters();
-            var variableLabels = ExpectActualUtils.loadParameters(methodVisitor, parameters, 0);
-
-            methodVisitor.visitMethodInsn(Opcodes.INVOKEINTERFACE, aspectProviderInternalName, expectConstructor.name(), generatedMethodDescriptor, true);
-
-            var endLabel = new Label();
-            methodVisitor.visitLabel(endLabel);
-            methodVisitor.visitInsn(Opcodes.ARETURN);
-
-            for (var i = 0; i < parameters.length; i++) {
-                var parameter = parameters[i];
-                methodVisitor.visitLocalVariable(parameter.name(), parameter.type(), null, variableLabels[i], endLabel, i);
-            }
-            methodVisitor.visitMaxs(parameters.length + 1, parameters.length);
-
+            ExpectActualUtils.generateAspectCallMethodBody(methodVisitor, factoryInternalName, generatedMethodDescriptor, aspectProviderInterface, expectConstructor, true);
             methodVisitor.visitEnd();
         }
     }

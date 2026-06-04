@@ -239,7 +239,6 @@ def _merge_library_jar_impl(ctx):
     args.add(output_jar)
 
     if ctx.attr.aspect:
-        args.add("--aspect-mode", "true")
         args.add("--aspect-class", ctx.attr.aspect_class)
 
     aspect_jar_files = [dep[AspectJarInfo].jar for dep in ctx.attr.aspects]

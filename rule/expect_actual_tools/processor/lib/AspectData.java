@@ -3,18 +3,19 @@ package top.fifthlight.mergetools.processor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Arrays;
+import java.util.List;
 
 public record AspectData(
         @JsonProperty("aspectProviderInterface") String aspectProviderInterface,
         @JsonProperty("aspectProviderFactory") String aspectProviderFactory,
-        @JsonProperty("expects") ExpectEntry[] expects
+        @JsonProperty("expects") List<ExpectEntry> expects
 ) {
     @Override
     public String toString() {
         return "AspectData{" +
                 "aspectProviderInterface='" + aspectProviderInterface + '\'' +
                 ", aspectProviderFactory='" + aspectProviderFactory + '\'' +
-                ", expects=" + Arrays.toString(expects) +
+                ", expects=" + expects +
                 '}';
     }
 

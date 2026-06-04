@@ -1,5 +1,6 @@
 package top.fifthlight.mergetools.merger.plugin.expectactual;
 
+import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -55,7 +56,6 @@ public class ExpectActualUtils {
             ExpectData.Constructor expectConstructor,
             String actualClassName,
             String parameterTypes,
-            String returnType,
             boolean isStatic
     ) {
         switch (actualConstructor.type()) {
@@ -78,7 +78,7 @@ public class ExpectActualUtils {
                 mv.visitMethodInsn(Opcodes.INVOKESPECIAL, actualClassName, "<init>", constructorDescriptor, false);
             }
             case STATIC_METHOD -> {
-                var actualMethodDescriptor = "(" + parameterTypes + ")" + returnType;
+                var actualMethodDescriptor = "(" + parameterTypes + ")" + actualConstructor.returnType();
                 mv.visitMethodInsn(Opcodes.INVOKESTATIC, actualClassName, expectConstructor.name(), actualMethodDescriptor, false);
             }
         }
@@ -91,5 +91,47 @@ public class ExpectActualUtils {
             mv.visitLocalVariable(parameter.name(), parameter.type(), null, variableLabels[i], endLabel, i + localOffset);
         }
         mv.visitMaxs(parameters.length + 2, parameters.length + localOffset);
+    }
+
+    public static void generateAspectCallMethodBody(
+            MethodVisitor mv,
+            String className,
+            String methodDescriptor,
+            String aspectProviderInternalName,
+            ExpectData.Constructor expectConstructor,
+            boolean isStatic
+    ) {
+        mv.visitFieldInsn(Opcodes.GETSTATIC, className, "aspectProvider", ExpectActualUtils.internalNameToDescriptor(aspectProviderInternalName));
+
+        var localOffset = isStatic ? 0 : 1;
+
+        var parameters = expectConstructor.parameters();
+        var variableLabels = ExpectActualUtils.loadParameters(mv, parameters, localOffset);
+
+        mv.visitMethodInsn(Opcodes.INVOKEINTERFACE, aspectProviderInternalName, expectConstructor.name(), methodDescriptor, true);
+
+        var endLabel = new Label();
+        mv.visitLabel(endLabel);
+        mv.visitInsn(Opcodes.ARETURN);
+
+        for (var i = 0; i < parameters.length; i++) {
+            var parameter = parameters[i];
+            mv.visitLocalVariable(parameter.name(), parameter.type(), null, variableLabels[i], endLabel, i);
+        }
+        mv.visitMaxs(parameters.length + 1, parameters.length + localOffset);
+    }
+
+    public static void generateAspectProviderField(ClassVisitor classVisitor, String classInternalName, String aspectProviderInternalName, String aspectProviderFactoryInternalName) {
+        classVisitor.visitField(Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC | Opcodes.ACC_FINAL,
+                "aspectProvider", ExpectActualUtils.internalNameToDescriptor(aspectProviderInternalName), null, null);
+        {
+            var clinit = classVisitor.visitMethod(Opcodes.ACC_STATIC, "<clinit>", "()V", null, null);
+            clinit.visitCode();
+            clinit.visitMethodInsn(Opcodes.INVOKESTATIC, aspectProviderFactoryInternalName, "getInstance", ExpectActualUtils.internalNametoNoArgMethodDescriptor(aspectProviderInternalName), false);
+            clinit.visitFieldInsn(Opcodes.PUTSTATIC, classInternalName, "aspectProvider", ExpectActualUtils.internalNameToDescriptor(aspectProviderInternalName));
+            clinit.visitInsn(Opcodes.RETURN);
+            clinit.visitMaxs(1, 0);
+            clinit.visitEnd();
+        }
     }
 }
