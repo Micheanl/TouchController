@@ -3,7 +3,7 @@
  * Copyright (C) 2026 fifth_light
  */
 
-package top.fifthlight.touchcontroller.neoforge.v1_21_11
+package top.fifthlight.touchcontroller.neoforge.v26_1
 
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.Screen
@@ -34,7 +34,7 @@ import top.fifthlight.touchcontroller.common.model.TouchControllerLoadStatus
 import top.fifthlight.touchcontroller.common.ui.config.screen.getConfigScreen
 import top.fifthlight.touchcontroller.gal.gameconfig.v26_1.GameConfigEditorImpl
 
-@Mod("touchcontroller_26_1")
+@Mod("touchcontroller_26_1_neoforge")
 class TouchController(modEventBus: IEventBus, private val container: ModContainer) {
     private val logger = LoggerFactory.getLogger(TouchController::class.java)
 

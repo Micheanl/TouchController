@@ -18,18 +18,8 @@ expand_template(
         "${mod_contributors}": ", ".join(touchcontroller_contributors),
     },
     template = "resources/neoforge.mods.toml",
-)
-
-merge_library_jar(
-    name = "neoforge_unmerged",
-    aspect = True,
-    aspect_class = "top.fifthlight.touchcontroller.AspectProvider",
-    resources = {
-        ":neoforge_mod_toml": "touchcontroller/neoforge",
-    },
-    visibility = ["//touchcontroller:__subpackages__"],
-    deps = [
-        "//touchcontroller/common",
-        "//touchcontroller/resources/texture:icon_jar",
+    visibility = [
+        "//touchcontroller:__pkg__",
+        "//touchcontroller/common:__pkg__",
     ],
 )

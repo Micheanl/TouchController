@@ -74,7 +74,7 @@ java_binary(
         "//game/1.21.10:game_client_libraries",
         # Classpath separator
         "//game/1.21.10:game_mapping_jar",
-        "//combine/backend/minecraft/versions:1.21.10",
+        "//combine/backend/minecraft/versions/1.21.10",
         "//combine/backend/minecraft/fabric/1.21.10:meta_jar",
         "//combine/backend/minecraft/fabric:meta_jar",
         ":calculator_unmapped",

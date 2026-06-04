@@ -14,6 +14,8 @@ def _unified_jar_impl(ctx):
     args.add("--plugin", "unified_jar")
     args.add(output_jar)
 
+    args.add("--manifest-mode", "use-first-by-alphabet")
+
     input_files = []
     template_files = []
 
@@ -22,23 +24,19 @@ def _unified_jar_impl(ctx):
     args.add(loader_jar)
     input_files.append(loader_jar)
 
-    args.add("--jij-base-path")
-    args.add("META-INF/jars/")
+    args.add("--jij-base-path", "META-INF/jars/")
 
     # Template files via ResourcePlugin
     if ctx.file.fabric_mod_json:
-        args.add("--resource-path")
-        args.add("fabric.mod.json")
+        args.add("--resource-path", "fabric.mod.json")
         args.add(ctx.file.fabric_mod_json)
         template_files.append(ctx.file.fabric_mod_json)
     if ctx.file.neoforge_mod_toml:
-        args.add("--resource-path")
-        args.add("META-INF/neoforge.mods.toml")
+        args.add("--resource-path", "META-INF/neoforge.mods.toml")
         args.add(ctx.file.neoforge_mod_toml)
         template_files.append(ctx.file.neoforge_mod_toml)
     if ctx.file.forge_mods_toml:
-        args.add("--resource-path")
-        args.add("META-INF/mods.toml")
+        args.add("--resource-path", "META-INF/mods.toml")
         args.add(ctx.file.forge_mods_toml)
         template_files.append(ctx.file.forge_mods_toml)
 
@@ -73,12 +71,10 @@ def _unified_jar_impl(ctx):
 
     resource_files = []
     for resource, strip in ctx.attr.resources.items():
-        args.add("--resource-strip")
-        args.add(strip)
+        args.add("--resource-strip", strip)
         for file in resource.files.to_list():
             resource_files.append(file)
-            args.add("--resource")
-            args.add(file)
+            args.add("--resource", file)
 
     args.use_param_file("@%s")
     args.set_param_file_format("multiline")

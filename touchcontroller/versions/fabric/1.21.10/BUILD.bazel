@@ -49,10 +49,8 @@ kt_merge_library(
         "//touchcontroller/versions/gal/key/1.21.10",
     ],
     merge_runtime_deps = [
-        "//touchcontroller/resources/texture:vanilla_lib",
+        "//touchcontroller/versions/1.21.10",
         "//touchcontroller/versions/fabric/gal/1.21.10",
-        "//touchcontroller/versions/gal/1.21.10",
-        "//touchcontroller/versions/mixin/1.21.10",
     ],
     resource_jars = [
         ":fabric_mod_json",
@@ -103,7 +101,7 @@ kt_merge_library(
 merge_library_jar(
     name = "fabric_unmapped",
     aspect_impl_package_suffix = "fabric.v1_21_10",
-    aspects = ["//touchcontroller/fabric:fabric_unmerged"],
+    aspects = ["//touchcontroller/common:common_merged"],
     deps = [":fabric_unmapped_unmerged"],
 )
 
@@ -153,7 +151,7 @@ java_binary(
         ":fabric_unmapped_unmerged",
         ":remapped_deps",
         "//combine",
-        "//combine/backend/minecraft/versions:1.21.10",
+        "//combine/backend/minecraft/versions/1.21.10",
         "//combine/backend/minecraft/fabric/1.21.10:meta_jar",
         "//combine/backend/minecraft/fabric:meta_jar",
         "//touchcontroller/common",

@@ -28,15 +28,10 @@ kt_merge_library(
     ]),
     actual = True,
     merge_deps = [
-        "//touchcontroller/versions/extension/26.1",
         "//touchcontroller/versions/fabric/gal/key/26.1",
-        "//touchcontroller/versions/gal/gameconfig/26.1",
-        "//touchcontroller/versions/gal/key/26.1",
     ],
     merge_runtime_deps = [
         "//touchcontroller/versions/fabric/gal/26.1",
-        "//touchcontroller/versions/gal/26.1",
-        "//touchcontroller/versions/mixin/26.1",
     ],
     resource_jars = [
         ":fabric_mod_json",
@@ -54,6 +49,7 @@ kt_merge_library(
         "//touchcontroller/resources/lang",
         "//touchcontroller/resources/texture:texture_common",
         "//touchcontroller/resources/texture:texture_vanilla",
+        "//touchcontroller/versions/26.1",
     ],
     deps = [
         "//combine/backend/minecraft/identifier/26.1",
@@ -77,6 +73,9 @@ kt_merge_library(
         "//touchcontroller/common/layout/data",
         "//touchcontroller/common/model",
         "//touchcontroller/common/ui/config/screen",
+        "//touchcontroller/versions/extension/26.1",
+        "//touchcontroller/versions/gal/gameconfig/26.1",
+        "//touchcontroller/versions/gal/key/26.1",
         "@maven_fabric_26_1//:com_terraformersmc_modmenu",
         "@maven_fabric_26_1//:io_github_llamalad7_mixinextras_fabric",
         "@maven_fabric_26_1//:net_fabricmc_fabric_api_fabric_api",
@@ -92,7 +91,7 @@ kt_merge_library(
 merge_library_jar(
     name = "fabric",
     aspect_impl_package_suffix = "fabric.v26_1",
-    aspects = ["//touchcontroller/fabric:fabric_unmerged"],
+    aspects = ["//touchcontroller/versions/26.1:26.1_merged"],
     deps = [":fabric_unmerged"],
 )
 
@@ -131,10 +130,12 @@ java_binary(
         ":fabric_unmerged",
         "//blazesdl/26.1:blazesdl_unmerged",
         "//combine",
-        "//combine/backend/minecraft/versions:26.1",
-        "//combine/backend/minecraft/fabric/26.1:meta_jar",
+        "//combine/backend/minecraft/versions/26.1",
+        "//combine/backend/minecraft/versions/26.1:meta_jar",
         "//combine/backend/minecraft/fabric:meta_jar",
         "//touchcontroller/common",
+        "//touchcontroller/common:meta_jar",
+        "//touchcontroller/versions/26.1:meta_jar",
         "//rule/dev_launch_wrapper",
         "@maven_fabric_26_1//:io_github_llamalad7_mixinextras_fabric",
         "@maven_fabric_26_1//:net_fabricmc_fabric_language_kotlin",

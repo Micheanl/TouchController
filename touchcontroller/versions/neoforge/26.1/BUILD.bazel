@@ -30,15 +30,9 @@ kt_merge_library(
         ],
     ),
     merge_deps = [
-        "//touchcontroller/versions/extension/26.1",
-        "//touchcontroller/versions/gal/gameconfig/26.1",
-        "//touchcontroller/versions/gal/key/26.1",
-        "//touchcontroller/versions/neoforge/gal/config/26.1",
         "//touchcontroller/versions/neoforge/gal/key/26.1",
     ],
-    merge_runtime_deps = [
-        "//touchcontroller/versions/gal/26.1",
-        "//touchcontroller/versions/mixin/26.1",
+    merge_only_deps = [
         "//touchcontroller/versions/neoforge/gal/26.1",
     ],
     resource_jars = [
@@ -74,6 +68,9 @@ kt_merge_library(
         "//touchcontroller/common/layout/data",
         "//touchcontroller/common/model",
         "//touchcontroller/common/ui/config/screen",
+        "//touchcontroller/versions/extension/26.1",
+        "//touchcontroller/versions/gal/gameconfig/26.1",
+        "//touchcontroller/versions/gal/key/26.1",
         "@neoforge_26_1//:net_fabricmc_sponge_mixin",
         "@neoforge_26_1//:net_neoforged_bus",
         "@neoforge_26_1//:net_neoforged_fancymodloader_loader",
@@ -83,8 +80,8 @@ kt_merge_library(
 
 merge_library_jar(
     name = "neoforge",
-    aspect_impl_package_suffix = "neoforge.v26_1",
-    aspects = ["//touchcontroller/neoforge:neoforge_unmerged"],
+    aspect_impl_package_suffix = "neoforge",
+    aspects = ["//touchcontroller/versions/26.1:26.1_merged"],
     deps = [":neoforge_unmerged"],
 )
 
@@ -113,7 +110,8 @@ neoforge_merge_jij(
         "//touchcontroller/resources/texture:texture_common": "top.fifthlight.touchcontroller:touchcontroller-texture:%s:" % touchcontroller_version,
         "//touchcontroller/resources/texture:texture_vanilla": "top.fifthlight.touchcontroller:touchcontroller-texture-vanilla:%s:" % touchcontroller_version,
         "//touchcontroller/api": "top.fifthlight.touchcontroller:api:%s:" % touchcontroller_api_version,
-        "//touchcontroller/neoforge:neoforge_unmerged": "top.fifthlight.touchcontroller:neoforge:%s:" % touchcontroller_version,
+        "//touchcontroller/common:common_merged": "top.fifthlight.touchcontroller:neoforge:%s:" % touchcontroller_version,
+        "//touchcontroller/versions/26.1:26.1_merged": "top.fifthlight.touchcontroller:neoforge-26-1:%s:" % touchcontroller_version,
     },
 )
 
@@ -150,7 +148,9 @@ java_binary(
         ":neoforge_merged",
         "//rule/dev_launch_wrapper",
         "@neoforge_26_1//:neoforge_deps",
-        "//combine/backend/minecraft",
+        "//combine/backend/minecraft:minecraft_common_standalone",
+        "//combine/backend/minecraft:combine_neoforge_libraries",
+        "//combine/backend/minecraft/versions/26.1:26.1_merged",
         "@maven//:org_jetbrains_kotlin_kotlin_reflect",
     ],
 )

@@ -30,25 +30,22 @@ expand_template(
     template = "resources/fabric.mod.json",
 )
 
-expand_template(
-    name = "neoforge_mod_toml",
-    out = "META-INF/neoforge.mods.toml",
-    substitutions = {
-        "${version}": combine_version,
-        "${license}": combine_license,
-        "${description}": combine_description,
-        "${home_page}": combine_home_page,
-        "${sources_page}": combine_sources_page,
-        "${issue_tracker}": combine_issue_tracker,
-    },
-    template = "resources/neoforge.mods.toml",
-)
-
 merge_jar(
     name = "minecraft_common",
     resources = {
         ":fabric_mod_json": "combine/backend/minecraft",
-        ":neoforge_mod_toml": "combine/backend/minecraft",
+        "//combine/backend/minecraft/neoforge:neoforge_mod_toml": "combine/backend/minecraft/neoforge",
+        "//combine/resources:icon": ".",
+    },
+    visibility = ["//visibility:public"],
+    deps = [":minecraft_unmerged"],
+)
+
+merge_jar(
+    name = "minecraft_common_standalone",
+    resources = {
+        "//combine/backend/minecraft/fabric:fabric_mod_json": "combine/backend/minecraft/fabric",
+        "//combine/backend/minecraft/neoforge:neoforge_mod_toml": "combine/backend/minecraft/neoforge",
         "//combine/resources:icon": ".",
     },
     visibility = ["//visibility:public"],
@@ -56,15 +53,22 @@ merge_jar(
 )
 
 unified_jar(
-    name = "combine_minecraft",
+    name = "combine_neoforge_libraries",
+    neoforge_deps = combine_unified_neoforge,
+    visibility = ["//visibility:public"],
+    deps = combine_unified_deps,
+)
+
+unified_jar(
+    name = "minecraft",
     fabric_deps = {
         "combine-common": "=",
+        "combine-26-1": "=",
+        "combine-26-2": "=",
         "combine-fabric-1-21-1": "=",
         "combine-fabric-1-21-8": "=",
         "combine-fabric-1-21-10": "=",
         "combine-fabric-1-21-11": "=",
-        "combine-fabric-26-1": "=",
-        "combine-fabric-26-2": "=",
     } | combine_unified_fabric,
     fabric_mod_json = "//combine/backend/minecraft/fabric:fabric_mod_json",
     neoforge_deps = {
@@ -73,30 +77,29 @@ unified_jar(
         "combine-neoforge-1-21-8": ["1.21.8"],
         "combine-neoforge-1-21-10": ["1.21.10"],
         "combine-neoforge-1-21-11": ["1.21.11"],
-        "combine-neoforge-26-1": ["26.1"],
+        "combine-26-1": [
+            "26.1",
+            "26.1.1",
+            "26.1.2",
+        ],
+        "combine-26-2": ["26.2"],
     } | combine_unified_neoforge,
     neoforge_mod_toml = "//combine/backend/minecraft/neoforge:neoforge_mod_toml",
     resources = {
         "//combine/resources:icon": ".",
     },
+    visibility = ["//visibility:public"],
     deps = {
         "combine-common": ":minecraft_common",
+        "combine-26-1": "//combine/backend/minecraft/versions/26.1:26.1_merged",
+        "combine-26-2": "//combine/backend/minecraft/versions/26.2:26.2_merged",
         "combine-fabric-1-21-1": "//combine/backend/minecraft/fabric/1.21.1",
         "combine-fabric-1-21-8": "//combine/backend/minecraft/fabric/1.21.8",
         "combine-fabric-1-21-10": "//combine/backend/minecraft/fabric/1.21.10",
         "combine-fabric-1-21-11": "//combine/backend/minecraft/fabric/1.21.11",
-        "combine-fabric-26-1": "//combine/backend/minecraft/fabric/26.1",
-        "combine-fabric-26-2": "//combine/backend/minecraft/fabric/26.2",
         "combine-neoforge-1-21-1": "//combine/backend/minecraft/neoforge/1.21.1",
         "combine-neoforge-1-21-8": "//combine/backend/minecraft/neoforge/1.21.8",
         "combine-neoforge-1-21-10": "//combine/backend/minecraft/neoforge/1.21.10",
         "combine-neoforge-1-21-11": "//combine/backend/minecraft/neoforge/1.21.11",
-        "combine-neoforge-26-1": "//combine/backend/minecraft/neoforge/26.1",
     } | combine_unified_deps,
-)
-
-alias(
-    name = "minecraft",
-    actual = ":combine_minecraft",
-    visibility = ["//visibility:public"],
 )

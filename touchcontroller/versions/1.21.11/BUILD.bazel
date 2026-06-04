@@ -4,6 +4,8 @@ merge_library_group(
     name = "1.21.11",
     visibility = ["//visibility:public"],
     deps = [
+        "//touchcontroller/versions/event/1.21.11",
+        "//touchcontroller/versions/extension/1.21.11",
         "//touchcontroller/versions/gal/action/1.21.11",
         "//touchcontroller/versions/gal/chat/1.21.11",
         "//touchcontroller/versions/gal/creativetab/1.21.11",
@@ -19,5 +21,6 @@ merge_library_group(
         "//touchcontroller/versions/gal/player/1.21.11",
         "//touchcontroller/versions/gal/view/1.21.11",
         "//touchcontroller/versions/gal/window/1.21.11",
+        "//touchcontroller/versions/mixin/1.21.11",
     ],
 )

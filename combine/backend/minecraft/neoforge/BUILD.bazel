@@ -26,7 +26,7 @@ unified_jar(
         "combine-neoforge-1-21-8": ["1.21.8"],
         "combine-neoforge-1-21-10": ["1.21.10"],
         "combine-neoforge-1-21-11": ["1.21.11"],
-        "combine-neoforge-26-1": ["26.1"],
+        "combine-26-1": ["26.1"],
     } | combine_unified_neoforge,
     neoforge_mod_toml = ":neoforge_mod_toml",
     resources = {
@@ -39,6 +39,6 @@ unified_jar(
         "combine-neoforge-1-21-8": "//combine/backend/minecraft/neoforge/1.21.8",
         "combine-neoforge-1-21-10": "//combine/backend/minecraft/neoforge/1.21.10",
         "combine-neoforge-1-21-11": "//combine/backend/minecraft/neoforge/1.21.11",
-        "combine-neoforge-26-1": "//combine/backend/minecraft/neoforge/26.1",
+        "combine-26-1": "//combine/backend/minecraft/versions/26.1:26.1_merged",
     } | combine_unified_deps,
 )

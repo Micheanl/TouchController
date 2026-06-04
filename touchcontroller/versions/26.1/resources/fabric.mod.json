@@ -1,0 +1,34 @@
+{
+    "schemaVersion": 1,
+    "id": "touchcontroller-26-1",
+    "version": "${version}",
+    "name": "TouchController 26.1 implementation",
+    "description": "${description}",
+    "authors": "mod_authors_array",
+    "contributors": "mod_contributors_array",
+    "contact": {
+        "homepage": "${home_page}",
+        "sources": "${sources_page}",
+        "issues": "${issue_tracker}"
+    },
+    "license": "${license}",
+    "icon": "assets/touchcontroller/textures/icon.png",
+    "environment": "client",
+    "depends": {
+        "java": ">=21",
+        "minecraft": "mod_game_versions_array",
+        "combine": "^${combine_version}",
+        "fabric-api": "*",
+        "fabric-language-kotlin": "*",
+        "touchcontroller": "=${version}",
+        "touchcontroller-texture-vanilla": "=${version}",
+        "touchcontroller-lang-modern": "=${version}"
+    },
+    "custom": {
+        "modmenu": {
+            "badges": [
+                "library"
+            ]
+        }
+    }
+}

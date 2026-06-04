@@ -37,7 +37,7 @@ merge_library_jar(
     visibility = ["//visibility:public"],
     deps = [
         ":meta_jar",
-        "//combine/backend/minecraft/versions:1.21.10",
+        "//combine/backend/minecraft/versions/1.21.10",
     ],
 )
 

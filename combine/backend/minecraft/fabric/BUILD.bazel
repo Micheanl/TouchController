@@ -47,7 +47,7 @@ fabric_merge_jij(
         "//combine/backend/minecraft/fabric/1.21.8": "combine-1-21-8:=",
         "//combine/backend/minecraft/fabric/1.21.10": "combine-1-21-10:=",
         "//combine/backend/minecraft/fabric/1.21.11": "combine-1-21-11:=",
-        "//combine/backend/minecraft/fabric/26.1": "combine-26-1:=",
+        "//combine/backend/minecraft/versions/26.1:26.1_merged": "combine-26-1:=",
         "//combine/backend/minecraft/fabric/26.2": "combine-26-2:=",
     } | combine_fabric_libraries,
 )

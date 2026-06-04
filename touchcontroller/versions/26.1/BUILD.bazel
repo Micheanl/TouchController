@@ -1,0 +1,87 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+load("//combine:properties.bzl", "combine_version")
+load("//rule:jar.bzl", "jar")
+load("//rule:merge_library.bzl", "merge_library_group", "merge_library_jar")
+load("//touchcontroller:properties.bzl", "touchcontroller_authors", "touchcontroller_contributors", "touchcontroller_description", "touchcontroller_fabric_game_versions", "touchcontroller_homepage", "touchcontroller_issue_tracker", "touchcontroller_license", "touchcontroller_source", "touchcontroller_version")
+
+merge_library_group(
+    name = "26.1",
+    visibility = ["//touchcontroller:__subpackages__"],
+    deps = [
+        "//touchcontroller/versions/event/26.1",
+        "//touchcontroller/versions/extension/26.1",
+        "//touchcontroller/versions/gal/action/26.1",
+        "//touchcontroller/versions/gal/chat/26.1",
+        "//touchcontroller/versions/gal/creativetab/26.1",
+        "//touchcontroller/versions/gal/entity/26.1",
+        "//touchcontroller/versions/gal/feature/26.1",
+        "//touchcontroller/versions/gal/gameconfig/26.1",
+        "//touchcontroller/versions/gal/gamestate/26.1",
+        "//touchcontroller/versions/gal/item/26.1",
+        "//touchcontroller/versions/gal/itemlist/26.1",
+        "//touchcontroller/versions/gal/key/26.1",
+        "//touchcontroller/versions/gal/library/26.1",
+        "//touchcontroller/versions/gal/paint/26.1",
+        "//touchcontroller/versions/gal/player/26.1",
+        "//touchcontroller/versions/gal/view/26.1",
+        "//touchcontroller/versions/gal/window/26.1",
+        "//touchcontroller/versions/mixin/26.1",
+    ],
+)
+
+expand_template(
+    name = "fabric_mod_json",
+    out = "fabric.mod.json",
+    substitutions = {
+        "${version}": touchcontroller_version,
+        "${license}": touchcontroller_license,
+        "${home_page}": touchcontroller_homepage,
+        "${sources_page}": touchcontroller_source,
+        "${issue_tracker}": touchcontroller_issue_tracker,
+        "${description}": touchcontroller_description,
+        "${combine_version}": combine_version,
+        '"mod_authors_array"': json.encode(touchcontroller_authors),
+        '"mod_contributors_array"': json.encode(touchcontroller_contributors),
+        '"mod_game_versions_array"': json.encode(touchcontroller_fabric_game_versions),
+    },
+    template = "resources/fabric.mod.json",
+)
+
+expand_template(
+    name = "neoforge_mod_toml",
+    out = "META-INF/neoforge.mods.toml",
+    substitutions = {
+        "${version}": touchcontroller_version,
+        "${license}": touchcontroller_license,
+        "${home_page}": touchcontroller_homepage,
+        "${sources_page}": touchcontroller_source,
+        "${issue_tracker}": touchcontroller_issue_tracker,
+        "${description}": touchcontroller_description,
+        "${combine_version}": combine_version,
+        "${mod_authors}": ", ".join(touchcontroller_authors),
+        "${mod_contributors}": ", ".join(touchcontroller_contributors),
+    },
+    template = "resources/neoforge.mods.toml",
+)
+
+jar(
+    name = "meta_jar",
+    resources = [
+        ":fabric_mod_json",
+    ],
+    visibility = ["//touchcontroller/versions/fabric/26.1:__pkg__"],
+)
+
+merge_library_jar(
+    name = "26.1_merged",
+    aspect = True,
+    aspect_class = "top.fifthlight.touchcontroller.v26_1.AspectProvider",
+    aspect_impl_package_suffix = "v26_1",
+    aspects = ["//touchcontroller/common:common_merged"],
+    resources = {
+        ":fabric_mod_json": "touchcontroller/versions/26.1",
+        ":neoforge_mod_toml": "touchcontroller/versions/26.1",
+    },
+    visibility = ["//touchcontroller:__subpackages__"],
+    deps = [":26.1"],
+)

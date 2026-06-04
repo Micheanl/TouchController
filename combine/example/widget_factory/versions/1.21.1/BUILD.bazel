@@ -92,7 +92,7 @@ java_binary(
         ":widget_factory_unmerged",
         "//combine/backend/minecraft/fabric:meta_jar",
         "//combine/backend/minecraft/fabric/1.21.1:meta_jar",
-        "//combine/backend/minecraft/versions:1.21.1",
+        "//combine/backend/minecraft/versions/1.21.1",
         "//game/1.21.1:game_client_libraries",
         "//game/1.21.1:game_client_named",
         "//game/1.21.1:game_mapping_jar",

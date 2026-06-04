@@ -30,7 +30,7 @@ ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.combine_1_21_8]]
-modId = "combine_common"
+modId = "combine"
 type = "required"
 versionRange = "[${version},)"
 ordering = "NONE"

@@ -15,5 +15,5 @@ combine_unified_neoforge = {modid: ["common"] for modid in combine_unified_deps.
 combine_unified_fabric = {
     "androidx_compose_runtime_runtime_desktop": "1.10.2",
     "androidx_collection_collection_jvm": "1.5.0",
-    "org_mini2Dx_universal_tween_engine": "6.3.3",
+    "org_mini2dx_universal_tween_engine": "6.3.3",
 }

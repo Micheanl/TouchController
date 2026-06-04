@@ -1,0 +1,32 @@
+{
+    "schemaVersion": 1,
+    "id": "touchcontroller-common",
+    "version": "${version}",
+    "name": "TouchController common",
+    "description": "Common code for TouchController.",
+    "authors": "mod_authors_array",
+    "contributors": "mod_contributors_array",
+    "contact": {
+        "homepage": "${home_page}",
+        "sources": "${sources_page}",
+        "issues": "${issue_tracker}"
+    },
+    "license": "${license}",
+    "icon": "assets/touchcontroller/textures/icon.png",
+    "environment": "client",
+    "depends": {
+        "java": ">=21",
+        "minecraft": "mod_game_versions_array",
+        "combine": "^${combine_version}",
+        "fabric-api": "*",
+        "fabric-language-kotlin": "*"
+    },
+    "custom": {
+        "modmenu": {
+            "parent": "touchcontroller",
+            "badges": [
+                "library"
+            ]
+        }
+    }
+}

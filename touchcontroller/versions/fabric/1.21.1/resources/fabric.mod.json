@@ -37,6 +37,8 @@
         "java": ">=21",
         "combine": "^${combine_version}",
         "fabric-api": "*",
-        "fabric-language-kotlin": "*"
+        "fabric-language-kotlin": "*",
+        "touchcontroller-texture-atlas": "=${version}",
+        "touchcontroller-lang-modern": "=${version}"
     }
 }

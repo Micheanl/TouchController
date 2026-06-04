@@ -32,7 +32,7 @@ ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.touchcontroller_1_21_11]]
-modId = "combine_common"
+modId = "combine"
 type = "required"
 versionRange = "[${combine_version},]"
 ordering = "NONE"

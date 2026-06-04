@@ -1,4 +1,5 @@
-load("//rule:merge_library.bzl", "merge_library_group")
+load("//rule:jar.bzl", "jar")
+load("//rule:merge_library.bzl", "merge_library_group", "merge_library_jar")
 
 merge_library_group(
     name = "common",
@@ -52,5 +53,27 @@ merge_library_group(
         "//touchcontroller/common/util/registry",
         "//touchcontroller/common/util/state",
         "//touchcontroller/common/util/uuid",
+    ],
+)
+
+jar(
+    name = "meta_jar",
+    resource_paths = {
+        "//touchcontroller/fabric:fabric_mod_json": "fabric.mod.json",
+    },
+    visibility = ["//touchcontroller:__subpackages__"],
+)
+
+merge_library_jar(
+    name = "common_merged",
+    aspect = True,
+    aspect_class = "top.fifthlight.touchcontroller.AspectProvider",
+    resources = {
+        "//touchcontroller/neoforge:neoforge_mod_toml": "touchcontroller/neoforge",
+    },
+    visibility = ["//touchcontroller:__subpackages__"],
+    deps = [
+        "//touchcontroller/common",
+        "//touchcontroller/resources/texture:icon_jar",
     ],
 )

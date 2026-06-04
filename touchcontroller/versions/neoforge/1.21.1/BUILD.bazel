@@ -36,9 +36,8 @@ kt_merge_library(
         "//touchcontroller/versions/neoforge/gal/config/1.21.1",
         "//touchcontroller/versions/neoforge/gal/key/1.21.1",
     ],
-    merge_runtime_deps = [
-        "//touchcontroller/versions/gal/1.21.1",
-        "//touchcontroller/versions/mixin/1.21.1",
+    merge_only_deps = [
+        "//touchcontroller/versions/1.21.1",
         "//touchcontroller/versions/neoforge/gal/1.21.1",
     ],
     resource_jars = [
@@ -84,7 +83,7 @@ kt_merge_library(
 merge_library_jar(
     name = "neoforge",
     aspect_impl_package_suffix = "neoforge.v1_21_1",
-    aspects = ["//touchcontroller/neoforge:neoforge_unmerged"],
+    aspects = ["//touchcontroller/common:common_merged"],
     deps = [":neoforge_unmerged"],
 )
 
@@ -113,7 +112,7 @@ neoforge_merge_jij(
         "//touchcontroller/resources/texture:texture_common": "top.fifthlight.touchcontroller:touchcontroller-texture:%s:" % touchcontroller_version,
         "//touchcontroller/resources/texture:texture_atlas": "top.fifthlight.touchcontroller:touchcontroller-texture-atlas:%s:" % touchcontroller_version,
         "//touchcontroller/api": "top.fifthlight.touchcontroller:api:%s:" % touchcontroller_api_version,
-        "//touchcontroller/neoforge:neoforge_unmerged": "top.fifthlight.touchcontroller:neoforge:%s:" % touchcontroller_version,
+        "//touchcontroller/common:common_merged": "top.fifthlight.touchcontroller:neoforge:%s:" % touchcontroller_version,
     },
 )
 
@@ -122,7 +121,9 @@ java_binary(
     srcs = [],
     data = [
         ":neoforge_merged",
-        "//combine/backend/minecraft",
+        "//combine/backend/minecraft:combine_neoforge_libraries",
+        "//combine/backend/minecraft:minecraft_common_standalone",
+        "//combine/backend/minecraft/neoforge/1.21.1",
         "//game/1.21.1:game_client_assets",
         "//game/1.21.1:game_client_assets_version",
         "//game/1.21.1:game_client_neoforge",
@@ -152,7 +153,9 @@ java_binary(
         "-Ddev.launch.classPath=$(rlocationpath @neoforge_1_21_1//:resources_jar)",
         "-Ddev.launch.classPath=$(rlocationpath :neoforge_merged)",
         "-Ddev.launch.classPath=$(rlocationpath //game/1.21.1:game_kotlinforforge)",
-        "-Ddev.launch.classPath=$(rlocationpath //combine/backend/minecraft)",
+        "-Ddev.launch.classPath=$(rlocationpath //combine/backend/minecraft:combine_neoforge_libraries)",
+        "-Ddev.launch.classPath=$(rlocationpath //combine/backend/minecraft:minecraft_common_standalone)",
+        "-Ddev.launch.classPath=$(rlocationpath //combine/backend/minecraft/neoforge/1.21.1)",
         "-Xmx4G",
         "START_MODULEPATH",
         "$(rlocationpaths @neoforge_1_21_1//:neoforge_modules)",

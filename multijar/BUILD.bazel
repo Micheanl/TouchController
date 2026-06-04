@@ -2,6 +2,9 @@ load("//rule:merge_library.bzl", "merge_library_jar")
 
 merge_library_jar(
     name = "multijar",
+    manifest_entries = {
+        "Automatic-Module-Name": "multijar.loader",
+    },
     visibility = ["//visibility:public"],
     deps = [
         "//multijar/neov10",
