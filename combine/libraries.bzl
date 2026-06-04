@@ -1,19 +1,20 @@
-combine_fabric_libraries = {
-    "@maven//:androidx_compose_runtime_runtime_desktop": "androidx_compose_runtime_runtime_desktop:1.10.2",
-    "@maven//:androidx_collection_collection_jvm": "androidx_collection_collection_jvm:1.5.0",
-    "@maven//:org_mini2Dx_universal_tween_engine": "org_mini2dx_universal_tween_engine:6.3.3",
-}
+load("@rules_jvm_external//:defs.bzl", "artifact")
 
-combine_unified_deps = {
-    "androidx_compose_runtime_runtime_desktop": "@maven//:androidx_compose_runtime_runtime_desktop",
-    "androidx_collection_collection_jvm": "@maven//:androidx_collection_collection_jvm",
-    "org_mini2dx_universal_tween_engine": "@maven//:org_mini2Dx_universal_tween_engine",
-}
+def _library(coordinate):
+    [group, artifact_id, version] = coordinate.split(":")
+    return struct(
+        name = (group + "_" + artifact_id).replace(".", "_").replace("-", "_").lower(),
+        label = artifact(coordinate),
+        version = version,
+    )
 
-combine_unified_neoforge = {modid: ["common"] for modid in combine_unified_deps.keys()}
+_libraries = [
+    _library("androidx.compose.runtime:runtime-desktop:1.10.0"),
+    _library("androidx.collection:collection-jvm:1.5.0"),
+    _library("org.mini2Dx:universal-tween-engine:6.3.3"),
+]
 
-combine_unified_fabric = {
-    "androidx_compose_runtime_runtime_desktop": "1.10.2",
-    "androidx_collection_collection_jvm": "1.5.0",
-    "org_mini2dx_universal_tween_engine": "6.3.3",
-}
+combine_fabric_libraries = {lib.label: (lib.name + ":" + lib.version) for lib in _libraries}
+combine_unified_deps = {lib.name: lib.label for lib in _libraries}
+combine_unified_neoforge = {lib.name: ["common"] for lib in _libraries}
+combine_unified_fabric = {lib.name: lib.version for lib in _libraries}

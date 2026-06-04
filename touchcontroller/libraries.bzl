@@ -1,37 +1,26 @@
-touchcontroller_fabric_libraries = {
-    "@maven//:androidx_compose_runtime_runtime_saveable_desktop": "androidx_compose_runtime_runtime_saveable_desktop:1.10.2",
-    "@maven//:androidx_savedstate_savedstate_desktop": "androidx_savedstate_savedstate_desktop:1.3.2",
-    "@maven//:androidx_savedstate_savedstate_compose_desktop": "androidx_savedstate_savedstate_compose_desktop:1.3.2",
-    "@maven//:androidx_lifecycle_lifecycle_common_jvm": "androidx_lifecycle_lifecycle_common_jvm:2.9.4",
-    "@maven//:androidx_lifecycle_lifecycle_runtime_compose_desktop": "androidx_lifecycle_lifecycle_runtime_compose_desktop:2.9.4",
-    "@maven//:org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm": "org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm:0.4.0",
-    "@maven//:cafe_adriel_voyager_voyager_core_desktop": "cafe_adriel_voyager_voyager_core_desktop:1.1.0-beta03",
-    "@maven//:cafe_adriel_voyager_voyager_navigator_desktop": "cafe_adriel_voyager_voyager_navigator_desktop:1.1.0-beta03",
-    "@maven//:cafe_adriel_voyager_voyager_screenmodel_desktop": "cafe_adriel_voyager_voyager_screenmodel_desktop:1.1.0-beta03",
-}
+load("@rules_jvm_external//:defs.bzl", "artifact")
 
-touchcontroller_unified_deps = {
-    "androidx_compose_runtime_runtime_saveable_desktop": "@maven//:androidx_compose_runtime_runtime_saveable_desktop",
-    "androidx_savedstate_savedstate_desktop": "@maven//:androidx_savedstate_savedstate_desktop",
-    "androidx_savedstate_savedstate_compose_desktop": "@maven//:androidx_savedstate_savedstate_compose_desktop",
-    "androidx_lifecycle_lifecycle_common_jvm": "@maven//:androidx_lifecycle_lifecycle_common_jvm",
-    "androidx_lifecycle_lifecycle_runtime_compose_desktop": "@maven//:androidx_lifecycle_lifecycle_runtime_compose_desktop",
-    "org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm": "@maven//:org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm",
-    "cafe_adriel_voyager_voyager_core_desktop": "@maven//:cafe_adriel_voyager_voyager_core_desktop",
-    "cafe_adriel_voyager_voyager_navigator_desktop": "@maven//:cafe_adriel_voyager_voyager_navigator_desktop",
-    "cafe_adriel_voyager_voyager_screenmodel_desktop": "@maven//:cafe_adriel_voyager_voyager_screenmodel_desktop",
-}
+def _library(coordinate):
+    [group, artifact_id, version] = coordinate.split(":")
+    return struct(
+        name = (group + "_" + artifact_id).replace(".", "_").replace("-", "_").lower(),
+        label = artifact(coordinate),
+        version = version,
+    )
 
-touchcontroller_unified_neoforge = {modid: ["common"] for modid in touchcontroller_unified_deps.keys()}
+_libraries = [
+    _library("androidx.compose.runtime:runtime-saveable-desktop:1.10.0"),
+    _library("androidx.savedstate:savedstate-desktop:1.3.3"),
+    _library("androidx.savedstate:savedstate-compose-desktop:1.3.3"),
+    _library("androidx.lifecycle:lifecycle-common-jvm:2.9.4"),
+    _library("androidx.lifecycle:lifecycle-runtime-compose-desktop:2.9.4"),
+    _library("org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.4.0"),
+    _library("cafe.adriel.voyager:voyager-core-desktop:1.1.0-beta03"),
+    _library("cafe.adriel.voyager:voyager-navigator-desktop:1.1.0-beta03"),
+    _library("cafe.adriel.voyager:voyager-screenmodel-desktop:1.1.0-beta03"),
+]
 
-touchcontroller_unified_fabric = {
-    "androidx_compose_runtime_runtime_saveable_desktop": "1.10.2",
-    "androidx_savedstate_savedstate_desktop": "1.3.2",
-    "androidx_savedstate_savedstate_compose_desktop": "1.3.2",
-    "androidx_lifecycle_lifecycle_common_jvm": "2.9.4",
-    "androidx_lifecycle_lifecycle_runtime_compose_desktop": "2.9.4",
-    "org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm": "0.4.0",
-    "cafe_adriel_voyager_voyager_core_desktop": "1.1.0-beta03",
-    "cafe_adriel_voyager_voyager_navigator_desktop": "1.1.0-beta03",
-    "cafe_adriel_voyager_voyager_screenmodel_desktop": "1.1.0-beta03",
-}
+touchcontroller_fabric_libraries = {lib.label: (lib.name + ":" + lib.version) for lib in _libraries}
+touchcontroller_unified_deps = {lib.name: lib.label for lib in _libraries}
+touchcontroller_unified_neoforge = {lib.name: ["common"] for lib in _libraries}
+touchcontroller_unified_fabric = {lib.name: lib.version for lib in _libraries}
