@@ -1,0 +1,27 @@
+name: 'Setup Bazel Remote Cache'
+
+inputs:
+  host:
+    required: true
+  authorization:
+    required: false
+    default: ''
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Bazel Remote Cache
+      shell: bash
+      run: |
+        CACHE_RC="${{ runner.temp }}/bazel_cache.bazelrc"
+        {
+          echo "build --remote_cache=${{ inputs.host }}"
+          if [ -n "${{ inputs.authorization }}" ]; then
+            echo "build --remote_header=Authorization=\"${{ inputs.authorization }}\""
+          fi
+        } > "$CACHE_RC"
+        if [ -n "$BAZELRC" ]; then
+          echo "BAZELRC=$BAZELRC,$CACHE_RC" >> "$GITHUB_ENV"
+        else
+          echo "BAZELRC=$CACHE_RC" >> "$GITHUB_ENV"
+        fi

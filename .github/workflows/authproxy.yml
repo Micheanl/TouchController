@@ -28,6 +28,11 @@ jobs:
           ndk-version: r28b
       - name: Setup Bazel
         uses: bazel-contrib/setup-bazel@0.14.0
+      - name: Setup Remote Cache
+        uses: ./.github/actions/setup-bazel-cache
+        with:
+          host: ${{ vars.BAZEL_CACHE_HOST }}
+          authorization: ${{ secrets.BAZEL_CACHE_AUTH }}
       - name: Build
         run: |
           bazel build --verbose_failures //authproxy
