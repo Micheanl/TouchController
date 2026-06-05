@@ -40,6 +40,12 @@ public abstract class LocalPlayerMixin {
     private static HitResult cameraRaycast(Entity instance, double maxDistance, float tickDelta, boolean includeFluids) {
         var gameRenderer = Minecraft.getInstance().gameRenderer;
         var fov = ((GameRendererInvoker) gameRenderer).callGetFov(gameRenderer.getMainCamera(), tickDelta, true);
+
+        if (fov == 0f) {
+            touchcontroller$currentDirection = instance.getViewVector(tickDelta);
+            return instance.pick(maxDistance, tickDelta, includeFluids);
+        }
+
         var cameraPitch = Math.toRadians(instance.getViewXRot(tickDelta));
         var cameraYaw = Math.toRadians(instance.getViewYRot(tickDelta));
 
