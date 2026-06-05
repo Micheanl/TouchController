@@ -8,6 +8,8 @@ kotlinforforge_versions = {
     "neoforge_1_21_10": "K2lpyV17",
     "neoforge_1_21_11": "K2lpyV17",
     "neoforge_26_1": "K2lpyV17",
+    "neoforge_26_1_1": "K2lpyV17",
+    "neoforge_26_1_2": "K2lpyV17",
 }
 
 [

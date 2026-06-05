@@ -6,6 +6,8 @@ game_version(
     client_assets = "@minecraft_assets//:assets_26.1.2",
     client_assets_version = "@minecraft_assets//:version_26.1.2",
     client_libraries = "@minecraft//26.1.2:client_libraries",
+    kotlinforforge = "@kotlinforforge_neoforge_26_1_2//:primary",
+    neoforge = "@neoforge_26_1_2//:neoforge",
     server = "@minecraft//26.1.2:server",
     version = "26.1.2",
     visibility = ["//visibility:public"],
