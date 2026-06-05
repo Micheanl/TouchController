@@ -29,7 +29,7 @@ jobs:
       - name: Setup Bazel
         uses: bazel-contrib/setup-bazel@0.14.0
       - name: Build
-        run: bazel build --verbose_failures --config=opt //touchcontroller //touchcontroller/fabric
+        run: bazel build --verbose_failures --config=opt //touchcontroller //touchcontroller/fabric //touchcontroller/neoforge
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -37,3 +37,4 @@ jobs:
           path: |
             bazel-bin/touchcontroller/touchcontroller.jar
             bazel-bin/touchcontroller/fabric/fabric.jar
+            bazel-bin/touchcontroller/neoforge/neoforge.jar
