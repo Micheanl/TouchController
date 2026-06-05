@@ -1,5 +1,13 @@
 # TouchController NEWS - User visible changes
 
+## 0.3.1-alpha10
+
+- Added third-party library list in about screen
+- Fixed crash when running 1.21.1 NeoForge with Sable and Create together
+- Added support for NeoForge 1.21.1, 1.21.10, 1.21.11, 26.1, 26.1.1, 26.1.2
+- Fixed scrolling issues in UI
+- Fixed some interfaces not filling the available space
+
 ## 0.3.1-alpha09
 
 - Added spear into long press to use items
