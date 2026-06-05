@@ -105,6 +105,7 @@ def _impl(ctx):
                         flag_group(
                             flags = [
                                 "-Wl,--pdb=",
+                                "-Wl,--no-insert-timestamp",
                                 "-lstdc++",
                                 "-lm",
                                 "-static",
