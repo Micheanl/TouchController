@@ -52,7 +52,7 @@ ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.touchcontroller_26_1_neoforge]]
-modId = "touchcontroller"
+modId = "touchcontroller_common"
 type = "required"
 ordering = "NONE"
 side = "CLIENT"

@@ -6,7 +6,7 @@ issueTrackerURL = "${issue_tracker}"
 [[mods]]
 modId = "touchcontroller"
 version = "${version}"
-displayName = "TouchController common"
+displayName = "TouchController"
 displayURL = "${home_page}"
 logoFile = "assets/touchcontroller/textures/icon.png"
 authors = "${mod_authors}"
@@ -28,6 +28,12 @@ side = "CLIENT"
 
 [[dependencies.touchcontroller]]
 modId = "kotlinforforge"
+type = "required"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.touchcontroller]]
+modId = "touchcontroller_common"
 type = "required"
 ordering = "NONE"
 side = "CLIENT"

@@ -54,7 +54,7 @@ ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.touchcontroller_1_21_1]]
-modId = "touchcontroller"
+modId = "touchcontroller_common"
 type = "required"
 ordering = "NONE"
 side = "CLIENT"

@@ -16,11 +16,11 @@
     "environment": "client",
     "depends": {
         "java": ">=21",
-        "minecraft": "mod_game_versions_array",
+        "minecraft": ["26.1", "26.1.1", "26.1.2"],
         "combine": "^${combine_version}",
         "fabric-api": "*",
         "fabric-language-kotlin": "*",
-        "touchcontroller": "=${version}",
+        "touchcontroller-common": "=${version}",
         "touchcontroller-texture-vanilla": "=${version}",
         "touchcontroller-lang-modern": "=${version}"
     },

@@ -2,8 +2,8 @@
     "schemaVersion": 1,
     "id": "touchcontroller-common",
     "version": "${version}",
-    "name": "TouchController common",
-    "description": "Common code for TouchController.",
+    "name": "TouchController Common",
+    "description": "${description}",
     "authors": "mod_authors_array",
     "contributors": "mod_contributors_array",
     "contact": {

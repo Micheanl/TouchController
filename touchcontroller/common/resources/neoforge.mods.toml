@@ -4,41 +4,41 @@ license = "${license}"
 issueTrackerURL = "${issue_tracker}"
 
 [[mods]]
-modId = "touchcontroller"
+modId = "touchcontroller_common"
 version = "${version}"
-displayName = "TouchController"
+displayName = "TouchController Common"
 displayURL = "${home_page}"
 logoFile = "assets/touchcontroller/textures/icon.png"
 authors = "${mod_authors}"
 credits = "${mod_contributors}"
 description = "${description}"
 
-[[dependencies.touchcontroller]]
+[[dependencies.touchcontroller_common]]
 modId = "minecraft"
 type = "required"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller]]
+[[dependencies.touchcontroller_common]]
 modId = "combine"
 type = "required"
 versionRange = "[${combine_version},]"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller]]
+[[dependencies.touchcontroller_common]]
 modId = "kotlinforforge"
 type = "required"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller]]
+[[dependencies.touchcontroller_common]]
 modId = "touchcontroller_api"
 type = "required"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller]]
+[[dependencies.touchcontroller_common]]
 modId = "touchcontroller_texture"
 type = "required"
 ordering = "NONE"

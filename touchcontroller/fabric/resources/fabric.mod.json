@@ -19,7 +19,8 @@
         "minecraft": "mod_game_versions_array",
         "combine": "^${combine_version}",
         "fabric-api": "*",
-        "fabric-language-kotlin": "*"
+        "fabric-language-kotlin": "*",
+        "touchcontroller-common": "${version}"
     },
     "custom": {
         "modmenu": {

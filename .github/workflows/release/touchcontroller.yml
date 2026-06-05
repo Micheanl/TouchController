@@ -48,14 +48,18 @@ jobs:
         run: |
           bazel build --verbose_failures --config=opt \
             //touchcontroller:update_log \
+            //touchcontroller
             //touchcontroller/fabric
+            //touchcontroller/neoforge
 
       - name: Attest
         uses: actions/attest@v4
         if: matrix.os == "ubuntu-latest"
         with:
           subject-path: |
+            bazel-bin/touchcontroller/touchcontroller.jar
             bazel-bin/touchcontroller/fabric/fabric.jar
+            bazel-bin/touchcontroller/neoforge/neoforge.jar
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
@@ -63,7 +67,9 @@ jobs:
           name: artifacts-${{ matrix.os }}
           path: |
             bazel-bin/touchcontroller/update_log.md
+            bazel-bin/touchcontroller/touchcontroller.jar
             bazel-bin/touchcontroller/fabric/fabric.jar
+            bazel-bin/touchcontroller/neoforge/neoforge.jar
 
   publish-staging:
     name: Publish to Modrinth Staging
@@ -112,11 +118,22 @@ jobs:
             --version-type "${mod_state}" \
             --changelog "$(realpath release/bazel-bin/touchcontroller/update_log.md)" \
             --file-name "TouchController-${mod_version}+fabric.jar" \
-            "$(realpath release/bazel-bin/touchcontroller/fabric/fabric.jar) \
+            "$(realpath release/bazel-bin/touchcontroller/fabric/fabric.jar)" \
             $(jq -cr .touchcontroller_fabric_game_versions.[] <<< "${properties}" | sed 's/^/--game-version /' | tr '\n' ' ') \
             --dependency --dependency-project-id P7dR8mSH --dependency-type required \
             --dependency --dependency-project-id Ha28R6CL --dependency-type required \
-            --dependency --dependency-project-id mOgUt4GM --dependency-type optional
+            --dependency --dependency-project-id mOgUt4GM --dependency-type optional && \
+          bazel run //rule/modrinth_uploader -- \
+            --use-token-from-environment \
+            --project-id "${MODRINTH_ID}" \
+            --version-name "${mod_version}" \
+            --version-id "${mod_version}+neoforge" \
+            --version-type "${mod_state}" \
+            --changelog "$(realpath release/bazel-bin/touchcontroller/update_log.md)" \
+            --file-name "TouchController-${mod_version}+neoforge.jar" \
+            "$(realpath release/bazel-bin/touchcontroller/neoforge/neoforge.jar)" \
+            $(jq -cr .touchcontroller_neoforge_game_versions.[] <<< "${properties}" | sed 's/^/--game-version /' | tr '\n' ' ') \
+            --dependency --dependency-project-id ordsPcFz --dependency-type required
 
   publish-production:
     name: Publish to Modrinth Production
@@ -169,7 +186,18 @@ jobs:
             $(jq -cr .touchcontroller_fabric_game_versions.[] <<< "${properties}" | sed 's/^/--game-version /' | tr '\n' ' ') \
             --dependency --dependency-project-id P7dR8mSH --dependency-type required \
             --dependency --dependency-project-id Ha28R6CL --dependency-type required \
-            --dependency --dependency-project-id mOgUt4GM --dependency-type optional
+            --dependency --dependency-project-id mOgUt4GM --dependency-type optional && \
+          bazel run //rule/modrinth_uploader -- \
+            --use-token-from-environment \
+            --project-id "${MODRINTH_ID}" \
+            --version-name "${mod_version}" \
+            --version-id "${mod_version}+neoforge" \
+            --version-type "${mod_state}" \
+            --changelog "$(realpath release/bazel-bin/touchcontroller/update_log.md)" \
+            --file-name "TouchController-${mod_version}+neoforge.jar" \
+            "$(realpath release/bazel-bin/touchcontroller/neoforge/neoforge.jar)" \
+            $(jq -cr .touchcontroller_neoforge_game_versions.[] <<< "${properties}" | sed 's/^/--game-version /' | tr '\n' ' ') \
+            --dependency --dependency-project-id ordsPcFz --dependency-type required
 
       - name: Move file and set environment variables
         shell: bash
@@ -183,7 +211,9 @@ jobs:
           else
             echo "MOD_PRERELEASE=true" >> $GITHUB_ENV
           fi
+          mv release/bazel-bin/touchcontroller/touchcontroller.jar "release/TouchController-${mod_version}.jar"
           mv release/bazel-bin/touchcontroller/fabric/fabric.jar "release/TouchController-${mod_version}+fabric.jar"
+          mv release/bazel-bin/touchcontroller/neoforge/neoforge.jar "release/TouchController-${mod_version}+neoforge.jar"
 
       - name: Publish to GitHub Releases
         uses: softprops/action-gh-release@v3
@@ -191,4 +221,7 @@ jobs:
           name: TouchController v${{ env.MOD_VERSION }}
           body_path: release/bazel-bin/touchcontroller/update_log.md
           prerelease: ${{ env.MOD_PRERELEASE == 'true' }}
-          files: release/TouchController-*+fabric.jar
+          files: |
+            release/TouchController-*.jar
+            release/TouchController-*+fabric.jar
+            release/TouchController-*+neoforge.jar

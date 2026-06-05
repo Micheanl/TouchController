@@ -24,3 +24,82 @@ touchcontroller_fabric_libraries = {lib.label: (lib.name + ":" + lib.version) fo
 touchcontroller_unified_deps = {lib.name: lib.label for lib in _libraries}
 touchcontroller_unified_neoforge = {lib.name: ["common"] for lib in _libraries}
 touchcontroller_unified_fabric = {lib.name: lib.version for lib in _libraries}
+
+touchcontroller_common_deps = {
+    "combine-common": "//combine/backend/minecraft:minecraft_common_standalone",
+    "combine-26-1": "//combine/backend/minecraft/versions/26.1:26.1_merged",
+    "combine-theme-blackstone": "//combine/theme/blackstone:blackstone_common",
+    "combine-theme-blackstone-atlas": "//combine/theme/blackstone:blackstone_atlas",
+    "combine-theme-blackstone-vanilla": "//combine/theme/blackstone:blackstone_vanilla",
+    "touchcontroller-api": "//touchcontroller/api",
+    "touchcontroller-common": "//touchcontroller/common:common_merged",
+    "touchcontroller-lang-modern": "//touchcontroller/resources/lang:lang",
+    "touchcontroller-texture": "//touchcontroller/resources/texture:texture_common",
+    "touchcontroller-texture-atlas": "//touchcontroller/resources/texture:texture_atlas",
+    "touchcontroller-texture-vanilla": "//touchcontroller/resources/texture:texture_vanilla",
+    "touchcontroller-26-1": "//touchcontroller/versions/26.1:26.1_merged",
+}
+
+touchcontroller_neoforge_deps = {
+    "combine-neoforge-1-21-1": "//combine/backend/minecraft/neoforge/1.21.1",
+    "combine-neoforge-1-21-10": "//combine/backend/minecraft/neoforge/1.21.10",
+    "combine-neoforge-1-21-11": "//combine/backend/minecraft/neoforge/1.21.11",
+    "touchcontroller-1-21-1-neoforge": "//touchcontroller/versions/neoforge/1.21.1",
+    "touchcontroller-1-21-10-neoforge": "//touchcontroller/versions/neoforge/1.21.10",
+    "touchcontroller-1-21-11-neoforge": "//touchcontroller/versions/neoforge/1.21.11",
+    "touchcontroller-26-1-neoforge": "//touchcontroller/versions/neoforge/26.1",
+    "touchcontroller-26-1-2-neoforge": "//touchcontroller/versions/neoforge/26.1.2",
+}
+
+touchcontroller_neoforge_config = {
+    "combine-common": ["common"],
+    "combine-neoforge-1-21-1": ["1.21.1"],
+    "combine-neoforge-1-21-10": ["1.21.10"],
+    "combine-neoforge-1-21-11": ["1.21.11"],
+    "combine-26-1": [
+        "26.1",
+        "26.1.1",
+        "26.1.2",
+    ],
+    "combine-theme-blackstone": ["common"],
+    "combine-theme-blackstone-atlas": ["1.21.1"],
+    "combine-theme-blackstone-vanilla": [
+        "1.21.10",
+        "1.21.11",
+        "26.1",
+        "26.1.1",
+        "26.1.2",
+    ],
+    "touchcontroller-api": ["common"],
+    "touchcontroller-common": ["common"],
+    "touchcontroller-lang-modern": [
+        "1.21.1",
+        "1.21.10",
+        "1.21.11",
+        "26.1",
+        "26.1.1",
+        "26.1.2",
+    ],
+    "touchcontroller-texture": ["common"],
+    "touchcontroller-texture-atlas": ["1.21.1"],
+    "touchcontroller-texture-vanilla": [
+        "1.21.10",
+        "1.21.11",
+        "26.1",
+        "26.1.1",
+        "26.1.2",
+    ],
+    "touchcontroller-1-21-1-neoforge": ["1.21.1"],
+    "touchcontroller-1-21-10-neoforge": ["1.21.10"],
+    "touchcontroller-1-21-11-neoforge": ["1.21.11"],
+    "touchcontroller-26-1": [
+        "26.1",
+        "26.1.1",
+        "26.1.2",
+    ],
+    "touchcontroller-26-1-neoforge": [
+        "26.1",
+        "26.1.1",
+    ],
+    "touchcontroller-26-1-2-neoforge": ["26.1.2"],
+}

@@ -1,8 +1,7 @@
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("//combine:libraries.bzl", "combine_fabric_libraries")
 load("//combine:properties.bzl", "combine_version")
-load("//rule:merge_jar.bzl", "merge_jar")
-load("//rule:merge_library.bzl", "merge_library_jar")
+load("//rule:jar.bzl", "jar")
 load("//rule/fabric:merge_jij.bzl", "fabric_merge_jij")
 load("//touchcontroller:libraries.bzl", "touchcontroller_fabric_libraries")
 load("//touchcontroller:properties.bzl", "touchcontroller_authors", "touchcontroller_contributors", "touchcontroller_description", "touchcontroller_fabric_game_versions", "touchcontroller_homepage", "touchcontroller_issue_tracker", "touchcontroller_license", "touchcontroller_source", "touchcontroller_version")
@@ -23,15 +22,15 @@ expand_template(
         '"mod_game_versions_array"': json.encode(touchcontroller_fabric_game_versions),
     },
     template = "resources/fabric.mod.json",
-    visibility = ["//touchcontroller:__subpackages__"],
+    visibility = ["//touchcontroller:__pkg__"],
 )
 
-merge_jar(
+jar(
     name = "fabric_unmerged",
-    resources = {
-        ":fabric_mod_json": "touchcontroller/fabric",
+    resource_paths = {
+        ":fabric_mod_json": "fabric.mod.json",
+        "//touchcontroller/resources/texture:icon": "assets/touchcontroller/textures/icon.png",
     },
-    deps = ["//touchcontroller/common:common_merged"],
 )
 
 fabric_merge_jij(
@@ -48,6 +47,7 @@ fabric_merge_jij(
         "//combine/backend/minecraft/fabric/1.21.11": "combine-1-21-11:=",
         "//combine/backend/minecraft/versions/26.1:26.1_merged": "combine-26.1:=",
         "//touchcontroller/api": "touchcontroller-api:=",
+        "//touchcontroller/common:common_merged": "touchcontroller-common:=",
         "//touchcontroller/resources/lang": "touchcontroller-lang-modern:=",
         "//touchcontroller/resources/texture:texture_common": "touchcontroller-texture:=",
         "//touchcontroller/resources/texture:texture_vanilla": "touchcontroller-texture-vanilla:=",
@@ -55,7 +55,7 @@ fabric_merge_jij(
         "//touchcontroller/versions/fabric/1.21.1": "touchcontroller-1-21-1:=",
         "//touchcontroller/versions/fabric/1.21.10": "touchcontroller-1-21-10:=",
         "//touchcontroller/versions/fabric/1.21.11": "touchcontroller-1-21-11:=",
-        "//touchcontroller/versions/26.1": "touchcontroller-26-1:=",
+        "//touchcontroller/versions/26.1:26.1_merged": "touchcontroller-26-1:=",
         "//touchcontroller/versions/fabric/26.1": "touchcontroller-26-1-fabric:=",
     } | combine_fabric_libraries | touchcontroller_fabric_libraries,
 )

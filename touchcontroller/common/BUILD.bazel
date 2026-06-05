@@ -1,5 +1,9 @@
+load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+load("//combine:properties.bzl", "combine_version")
 load("//rule:jar.bzl", "jar")
 load("//rule:merge_library.bzl", "merge_library_group", "merge_library_jar")
+load("//touchcontroller:properties.bzl", "touchcontroller_authors", "touchcontroller_contributors", "touchcontroller_description", "touchcontroller_fabric_game_versions", "touchcontroller_homepage", "touchcontroller_issue_tracker", "touchcontroller_license", "touchcontroller_source", "touchcontroller_version")
 
 merge_library_group(
     name = "common",
@@ -56,10 +60,53 @@ merge_library_group(
     ],
 )
 
+expand_template(
+    name = "fabric_mod_json",
+    out = "fabric.mod.json",
+    substitutions = {
+        "${version}": touchcontroller_version,
+        "${license}": touchcontroller_license,
+        "${home_page}": touchcontroller_homepage,
+        "${sources_page}": touchcontroller_source,
+        "${issue_tracker}": touchcontroller_issue_tracker,
+        "${description}": touchcontroller_description,
+        "${combine_version}": combine_version,
+        '"mod_authors_array"': json.encode(touchcontroller_authors),
+        '"mod_contributors_array"': json.encode(touchcontroller_contributors),
+        '"mod_game_versions_array"': json.encode(touchcontroller_fabric_game_versions),
+    },
+    template = "resources/fabric.mod.json",
+)
+
+expand_template(
+    name = "neoforge_mod_toml",
+    out = "META-INF/neoforge.mods.toml",
+    substitutions = {
+        "${version}": touchcontroller_version,
+        "${license}": touchcontroller_license,
+        "${home_page}": touchcontroller_homepage,
+        "${sources_page}": touchcontroller_source,
+        "${issue_tracker}": touchcontroller_issue_tracker,
+        "${description}": touchcontroller_description,
+        "${combine_version}": combine_version,
+        "${mod_authors}": ", ".join(touchcontroller_authors),
+        "${mod_contributors}": ", ".join(touchcontroller_contributors),
+    },
+    template = "resources/neoforge.mods.toml",
+)
+
+copy_file(
+    name = "icon",
+    src = "//touchcontroller/resources/texture:icon",
+    out = "icon/assets/touchcontroller/textures/icon.png",
+    is_executable = False,
+)
+
 jar(
     name = "meta_jar",
     resource_paths = {
-        "//touchcontroller/fabric:fabric_mod_json": "fabric.mod.json",
+        ":fabric_mod_json": "fabric.mod.json",
+        "//touchcontroller/resources/texture:icon": "assets/touchcontroller/textures/icon.png",
     },
     visibility = ["//touchcontroller:__subpackages__"],
 )
@@ -69,7 +116,9 @@ merge_library_jar(
     aspect = True,
     aspect_class = "top.fifthlight.touchcontroller.AspectProvider",
     resources = {
-        "//touchcontroller/neoforge:neoforge_mod_toml": "touchcontroller/neoforge",
+        ":fabric_mod_json": "touchcontroller/common",
+        ":neoforge_mod_toml": "touchcontroller/common",
+        ":icon": "touchcontroller/common/icon",
     },
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [

@@ -97,7 +97,7 @@ merge_library_jar(
 
 alias(
     name = "26.1",
-    actual = "fabric",
+    actual = ":fabric",
     visibility = ["//touchcontroller:__subpackages__"],
 )
 

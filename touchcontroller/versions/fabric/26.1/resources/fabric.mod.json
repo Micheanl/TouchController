@@ -42,7 +42,6 @@
         "combine": "^${combine_version}",
         "fabric-api": "*",
         "fabric-language-kotlin": "*",
-        "touchcontroller": "=${version}",
         "touchcontroller-26-1": "=${version}"
     }
 }
