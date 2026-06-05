@@ -2,7 +2,7 @@ license = "${license}"
 issueTrackerURL = "${issue_tracker}"
 
 [[mods]]
-modId = "touchcontroller_1_21_11"
+modId = "touchcontroller_1_21_10"
 version = "${version}"
 displayName = "TouchController"
 displayURL = "${home_page}"
@@ -17,53 +17,53 @@ config = "touchcontroller.mixins.json"
 [[mixins]]
 config = "touchcontroller.mixins.neoforge.json"
 
-[[dependencies.touchcontroller_1_21_11]]
+[[dependencies.touchcontroller_1_21_10]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.11]"
+versionRange = "[1.21.10]"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller_1_21_11]]
+[[dependencies.touchcontroller_1_21_10]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.11.42,)"
+versionRange = "[21.10.63,)"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller_1_21_11]]
+[[dependencies.touchcontroller_1_21_10]]
 modId = "combine"
 type = "required"
 versionRange = "[${combine_version},]"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller_1_21_11]]
-modId = "combine_1_21_11"
+[[dependencies.touchcontroller_1_21_10]]
+modId = "combine_1_21_10"
 type = "required"
 versionRange = "[${combine_version},]"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller_1_21_11]]
+[[dependencies.touchcontroller_1_21_10]]
 modId = "kotlinforforge"
 type = "required"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller_1_21_11]]
+[[dependencies.touchcontroller_1_21_10]]
 modId = "touchcontroller"
 type = "required"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller_1_21_11]]
+[[dependencies.touchcontroller_1_21_10]]
 modId = "touchcontroller_texture_vanilla"
 type = "required"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.touchcontroller_1_21_11]]
+[[dependencies.touchcontroller_1_21_10]]
 modId = "touchcontroller_lang_modern"
 type = "required"
 ordering = "NONE"

@@ -83,7 +83,6 @@ java_binary(
         ":widget_factory_unmerged",
         "//blazesdl/26.1:blazesdl_unmerged",
         "//combine/backend/minecraft/fabric:meta_jar",
-        "//combine/backend/minecraft/versions/26.1",
         "//combine/backend/minecraft/versions/26.1:meta_jar",
         "//game/26.1:game_client",
         "//game/26.1:game_client_libraries",

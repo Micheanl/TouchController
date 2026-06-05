@@ -23,7 +23,7 @@ expand_template(
         '"mod_game_versions_array"': json.encode(touchcontroller_fabric_game_versions),
     },
     template = "resources/fabric.mod.json",
-    visibility = ["//touchcontroller:__pkg__"],
+    visibility = ["//touchcontroller:__subpackages__"],
 )
 
 merge_jar(
