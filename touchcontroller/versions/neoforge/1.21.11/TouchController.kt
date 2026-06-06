@@ -17,7 +17,7 @@ import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent
 import net.neoforged.neoforge.client.event.ClientTickEvent
 import net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent
-import net.neoforged.neoforge.client.event.RenderGuiLayerEvent
+import net.neoforged.neoforge.client.event.lifecycle.ClientStartedEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers
 import net.neoforged.neoforge.common.NeoForge
@@ -68,19 +68,18 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
     }
 
     private fun initialize() {
-        val client = Minecraft.getInstance()
-
         container.registerExtensionPoint(IConfigScreenFactory::class.java, IConfigScreenFactory { _, parent ->
             getConfigScreen(parent) as Screen
         })
 
-        client.execute {
-            GlobalConfigHolder.load()
-            WindowEvents.onWindowCreated()
-            GameConfigEditorImpl.executePendingCallback()
-        }
-
         NeoForge.EVENT_BUS.register(object {
+            @SubscribeEvent
+            fun onClientStarted(event: ClientStartedEvent) {
+                GlobalConfigHolder.load()
+                WindowEvents.loadPlatformWindow()
+                GameConfigEditorImpl.executePendingCallback()
+            }
+
             @SubscribeEvent
             fun blockOutlineEvent(event: ExtractBlockOutlineRenderStateEvent) {
                 event.isCanceled =

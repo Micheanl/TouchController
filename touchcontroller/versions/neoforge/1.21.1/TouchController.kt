@@ -16,7 +16,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent
 import net.neoforged.neoforge.client.event.ClientTickEvent
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent
-import net.neoforged.neoforge.client.event.RenderGuiLayerEvent
 import net.neoforged.neoforge.client.event.RenderHighlightEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers
@@ -76,7 +75,7 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
 
         client.execute {
             GlobalConfigHolder.load()
-            WindowEvents.onWindowCreated()
+            WindowEvents.loadPlatformWindow()
             GameConfigEditorImpl.executePendingCallback()
         }
 

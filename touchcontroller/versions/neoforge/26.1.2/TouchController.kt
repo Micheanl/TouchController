@@ -8,16 +8,14 @@ package top.fifthlight.touchcontroller.neoforge.v26_1_2
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.resources.Identifier
+import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent
-import net.neoforged.neoforge.client.event.ClientTickEvent
-import net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent
-import net.neoforged.neoforge.client.event.RenderGuiLayerEvent
+import net.neoforged.neoforge.client.event.*
+import net.neoforged.neoforge.client.event.lifecycle.ClientStartedEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers
 import net.neoforged.neoforge.common.NeoForge
@@ -37,12 +35,13 @@ import top.fifthlight.touchcontroller.common.model.TouchControllerLoadStatus
 import top.fifthlight.touchcontroller.common.ui.config.screen.getConfigScreen
 import top.fifthlight.touchcontroller.gal.gameconfig.v26_1.GameConfigEditorImpl
 
-@Mod("touchcontroller_26_1_2_neoforge")
+@Mod("touchcontroller_26_1_2_neoforge", dist = [Dist.CLIENT])
 class TouchController(modEventBus: IEventBus, private val container: ModContainer) {
     private val logger = LoggerFactory.getLogger(TouchController::class.java)
 
     init {
         modEventBus.addListener(::onClientSetup)
+        modEventBus.addListener(::onLoadPlatformNativeWindow)
         modEventBus.addListener(::onRegisterHudHandler)
     }
 
@@ -52,6 +51,10 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
         initialize()
 
         TouchControllerLoadStatus.isLoaded = true
+    }
+
+    private fun onLoadPlatformNativeWindow(event: AddClientReloadListenersEvent) {
+        WindowEvents.loadPlatformWindow()
     }
 
     private fun onRegisterHudHandler(event: RegisterGuiLayersEvent) {
@@ -68,19 +71,17 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
     }
 
     private fun initialize() {
-        val client = Minecraft.getInstance()
-
         container.registerExtensionPoint(IConfigScreenFactory::class.java, IConfigScreenFactory { _, parent ->
             getConfigScreen(parent) as Screen
         })
 
-        client.execute {
-            GlobalConfigHolder.load()
-            WindowEvents.onWindowCreated()
-            GameConfigEditorImpl.executePendingCallback()
-        }
-
         NeoForge.EVENT_BUS.register(object {
+            @SubscribeEvent
+            fun onClientStarted(event: ClientStartedEvent) {
+                GlobalConfigHolder.load()
+                GameConfigEditorImpl.executePendingCallback()
+            }
+
             @SubscribeEvent
             fun blockOutlineEvent(event: ExtractBlockOutlineRenderStateEvent) {
                 event.isCanceled =

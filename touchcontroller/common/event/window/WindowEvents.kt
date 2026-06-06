@@ -25,7 +25,7 @@ object WindowEvents {
         }
     }
 
-    fun onWindowCreated() {
+    fun loadPlatformWindow() {
         mainThreadDispatcher.execute {
             PlatformProvider.load()
             PlatformProvider.platform?.sendEvent(InitializeMessage)

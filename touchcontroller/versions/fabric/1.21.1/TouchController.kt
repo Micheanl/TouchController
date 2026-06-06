@@ -94,7 +94,7 @@ class TouchController : ClientModInitializer {
         }
         ClientLifecycleEvents.CLIENT_STARTED.register {
             GlobalConfigHolder.load()
-            WindowEvents.onWindowCreated()
+            WindowEvents.loadPlatformWindow()
             GameConfigEditorImpl.executePendingCallback()
         }
         ClientPlayerBlockBreakEvents.AFTER.register { _, _, _, _ ->
