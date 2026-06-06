@@ -69,7 +69,7 @@ class TouchController : ClientModInitializer {
         HudElementRegistry.attachElementBefore(
             VanillaHudElements.BOSS_BAR,
             Identifier.of(BuildInfo.MOD_ID, "hud").toMinecraft()
-        ) { drawContext, partialTicks ->
+        ) { drawContext, _ ->
             val client = Minecraft.getInstance()
             if (!client.options.hideGui) {
                 val canvas = CanvasImpl(drawContext)
