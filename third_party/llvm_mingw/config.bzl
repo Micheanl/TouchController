@@ -109,7 +109,6 @@ def _impl(ctx):
                                 "-lstdc++",
                                 "-lm",
                                 "-static",
-                                "-l:CRT_fp8.o",
                             ],
                         ),
                     ]),
