@@ -210,15 +210,15 @@ jobs:
           else
             echo "MOD_PRERELEASE=true" >> $GITHUB_ENV
           fi
-          mv release/neoforge/touchcontroller.jar "release/TouchController-${mod_version}.jar"
-          mv release/neoforge/fabric/fabric.jar "release/TouchController-${mod_version}+fabric.jar"
-          mv release/neoforge/neoforge/neoforge.jar "release/TouchController-${mod_version}+neoforge.jar"
+          mv release/touchcontroller.jar "release/TouchController-${mod_version}.jar"
+          mv release/fabric/fabric.jar "release/TouchController-${mod_version}+fabric.jar"
+          mv release/neoforge/neoforge.jar "release/TouchController-${mod_version}+neoforge.jar"
 
       - name: Publish to GitHub Releases
         uses: softprops/action-gh-release@v3
         with:
           name: TouchController v${{ env.MOD_VERSION }}
-          body_path: release/neoforge/update_log.md
+          body_path: release/update_log.md
           prerelease: ${{ env.MOD_PRERELEASE == 'true' }}
           files: |
             release/TouchController-*.jar
