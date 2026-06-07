@@ -7,6 +7,7 @@ package top.fifthlight.touchcontroller.neoforge.v26_1_2
 
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.Screen
+import net.minecraft.client.input.KeyEvent
 import net.minecraft.resources.Identifier
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.IEventBus
@@ -15,13 +16,12 @@ import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent
-import net.neoforged.neoforge.client.event.ClientTickEvent
-import net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent
+import net.neoforged.neoforge.client.event.*
 import net.neoforged.neoforge.client.event.lifecycle.ClientStartedEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers
+import net.neoforged.neoforge.client.settings.KeyModifier
+import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.level.block.BreakBlockEvent
 import org.slf4j.LoggerFactory
 import top.fifthlight.combine.backend.minecraft.render.v26_1.CanvasImpl
@@ -30,6 +30,7 @@ import top.fifthlight.touchcontroller.common.config.data.StatusConfig
 import top.fifthlight.touchcontroller.common.config.holder.GlobalConfigHolder
 import top.fifthlight.touchcontroller.common.event.block.BlockBreakEvents
 import top.fifthlight.touchcontroller.common.event.connection.ConnectionEvents
+import top.fifthlight.touchcontroller.common.event.key.KeyEvents
 import top.fifthlight.touchcontroller.common.event.render.RenderEvents
 import top.fifthlight.touchcontroller.common.event.tick.TickEvents
 import top.fifthlight.touchcontroller.common.event.window.WindowEvents
@@ -38,6 +39,7 @@ import top.fifthlight.touchcontroller.common.model.TouchControllerLoadStatus
 import top.fifthlight.touchcontroller.common.platform.provider.PlatformProvider
 import top.fifthlight.touchcontroller.common.ui.config.screen.getConfigScreen
 import top.fifthlight.touchcontroller.gal.gameconfig.v26_1.GameConfigEditorImpl
+import top.fifthlight.touchcontroller.gal.key.v26_1.KeyBindingStateImpl
 
 @Mod("touchcontroller_26_1_2_neoforge", dist = [Dist.CLIENT])
 @EventBusSubscriber(modid = "touchcontroller_26_1_2_neoforge", value = [Dist.CLIENT])
@@ -76,9 +78,26 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
         })
 
         PlatformProvider.loadNative()
+
+        KeyEvents.addClickHandler { state ->
+            val keyBinding = state as KeyBindingStateImpl
+            val vanillaBinding = keyBinding.keyBinding
+
+            // Many mods compare the modifier with KeyMapping, so we must emulate them by hacky mixin.
+            try {
+                currentModifier = vanillaBinding.keyModifier
+                @Suppress("UnstableApiUsage")
+                NeoForge.EVENT_BUS.post(InputEvent.Key(KeyEvent(vanillaBinding.key.value, 0, 0), 0))
+            } finally {
+                currentModifier = null
+            }
+        }
     }
 
     companion object {
+        @JvmStatic
+        var currentModifier: KeyModifier? = null
+
         @JvmStatic
         @SubscribeEvent
         private fun onClientStarted(event: ClientStartedEvent) {

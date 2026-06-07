@@ -16,14 +16,14 @@ object KeyEvents: KeyBindingEventsHandler {
     @ActualConstructor
     fun of(): KeyBindingEventsHandler = this
 
-    private val handlers = mutableListOf<(KeyBindingState) -> Unit>()
+    private val clickHandlers = mutableListOf<(KeyBindingState) -> Unit>()
 
-    fun addHandler(handler: (KeyBindingState) -> Unit) {
-        handlers.add(handler)
+    fun addClickHandler(handler: (KeyBindingState) -> Unit) {
+        clickHandlers.add(handler)
     }
 
-    override fun onKeyDown(state: KeyBindingState) {
-        handlers.forEach {
+    override fun onKeyClicked(state: KeyBindingState) {
+        clickHandlers.forEach {
             it.invoke(state)
         }
     }

@@ -14,6 +14,12 @@
     "license": "${license}",
     "icon": "assets/touchcontroller/textures/icon.png",
     "environment": "client",
+    "mixins": [
+        {
+            "config": "touchcontroller.mixins.json",
+            "environment": "client"
+        }
+    ],
     "depends": {
         "java": ">=21",
         "minecraft": ["26.1", "26.1.1", "26.1.2"],

@@ -52,7 +52,7 @@ enum class DefaultKeyBindingType {
 }
 
 interface KeyBindingEventsHandler {
-    fun onKeyDown(state: KeyBindingState)
+    fun onKeyClicked(state: KeyBindingState)
 
     @ExpectFactory
     interface Factory {
@@ -71,7 +71,7 @@ abstract class KeyBindingState {
     // Click for once. You probably don't want to use this as it only increases press count, without actually pressing
     // the button. If it causes problems, use clicked = true instead.
     open fun click() {
-        KeyBindingEventsHandler.onKeyDown(this)
+        KeyBindingEventsHandler.onKeyClicked(this)
     }
 
     abstract fun haveClickCount(): Boolean

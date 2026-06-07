@@ -12,9 +12,6 @@ credits = "${mod_contributors}"
 description = "${description}"
 
 [[mixins]]
-config = "touchcontroller.mixins.json"
-
-[[mixins]]
 config = "touchcontroller.mixins.neoforge.json"
 
 [[dependencies.touchcontroller_26_1_neoforge]]

@@ -24,10 +24,6 @@
     },
     "mixins": [
         {
-            "config": "touchcontroller.mixins.json",
-            "environment": "client"
-        },
-        {
             "config": "touchcontroller.mixins.fabric.json",
             "environment": "client"
         }

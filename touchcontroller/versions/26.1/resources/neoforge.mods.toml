@@ -3,6 +3,9 @@ loaderVersion = "[0,)"
 license = "${license}"
 issueTrackerURL = "${issue_tracker}"
 
+[[mixins]]
+config = "touchcontroller.mixins.json"
+
 [[mods]]
 modId = "touchcontroller_26_1"
 version = "${version}"

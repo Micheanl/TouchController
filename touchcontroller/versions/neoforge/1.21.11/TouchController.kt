@@ -7,6 +7,7 @@ package top.fifthlight.touchcontroller.neoforge.v1_21_11
 
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.Screen
+import net.minecraft.client.input.KeyEvent
 import net.minecraft.resources.Identifier
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.IEventBus
@@ -19,6 +20,8 @@ import net.neoforged.neoforge.client.event.*
 import net.neoforged.neoforge.client.event.lifecycle.ClientStartedEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers
+import net.neoforged.neoforge.client.settings.KeyModifier
+import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.level.BlockEvent
 import org.slf4j.LoggerFactory
 import top.fifthlight.combine.backend.minecraft.render.v1_21_11.CanvasImpl
@@ -27,6 +30,7 @@ import top.fifthlight.touchcontroller.common.config.data.StatusConfig
 import top.fifthlight.touchcontroller.common.config.holder.GlobalConfigHolder
 import top.fifthlight.touchcontroller.common.event.block.BlockBreakEvents
 import top.fifthlight.touchcontroller.common.event.connection.ConnectionEvents
+import top.fifthlight.touchcontroller.common.event.key.KeyEvents
 import top.fifthlight.touchcontroller.common.event.render.RenderEvents
 import top.fifthlight.touchcontroller.common.event.tick.TickEvents
 import top.fifthlight.touchcontroller.common.event.window.WindowEvents
@@ -35,6 +39,7 @@ import top.fifthlight.touchcontroller.common.model.TouchControllerLoadStatus
 import top.fifthlight.touchcontroller.common.platform.provider.PlatformProvider
 import top.fifthlight.touchcontroller.common.ui.config.screen.getConfigScreen
 import top.fifthlight.touchcontroller.gal.gameconfig.v1_21_11.GameConfigEditorImpl
+import top.fifthlight.touchcontroller.gal.key.v1_21_11.KeyBindingStateImpl
 
 @Mod("touchcontroller_1_21_11", dist = [Dist.CLIENT])
 @EventBusSubscriber(modid = "touchcontroller_1_21_11", value = [Dist.CLIENT])
@@ -50,9 +55,7 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
     private fun onClientSetup(event: FMLClientSetupEvent) {
         logger.info("Loading TouchController…")
 
-        container.registerExtensionPoint(IConfigScreenFactory::class.java, IConfigScreenFactory { _, parent ->
-            getConfigScreen(parent) as Screen
-        })
+        initialize()
 
         TouchControllerLoadStatus.isLoaded = true
     }
@@ -74,7 +77,30 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
         }
     }
 
+    private fun initialize() {
+        container.registerExtensionPoint(IConfigScreenFactory::class.java, IConfigScreenFactory { _, parent ->
+            getConfigScreen(parent) as Screen
+        })
+
+        KeyEvents.addClickHandler { state ->
+            val keyBinding = state as KeyBindingStateImpl
+            val vanillaBinding = keyBinding.keyBinding
+
+            // Many mods compare the modifier with KeyMapping, so we must emulate them by hacky mixin.
+            try {
+                currentModifier = vanillaBinding.keyModifier
+                @Suppress("UnstableApiUsage")
+                NeoForge.EVENT_BUS.post(InputEvent.Key(KeyEvent(vanillaBinding.key.value, 0, 0), 0))
+            } finally {
+                currentModifier = null
+            }
+        }
+    }
+
     companion object {
+        @JvmStatic
+        var currentModifier: KeyModifier? = null
+
         @JvmStatic
         @SubscribeEvent
         private fun onClientStarted(event: ClientStartedEvent) {

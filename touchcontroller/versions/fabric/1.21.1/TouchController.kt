@@ -74,9 +74,11 @@ class TouchController : ClientModInitializer {
             }
         }
 
-        KeyEvents.addHandler { state ->
+        KeyEvents.addClickHandler { state ->
             val vanillaState = state as KeyBindingStateImpl
             val vanillaKeyBinding = vanillaState.keyBinding
+            // Why emulate a down here? Some mods (like YSM) write their own subclass of KeyMapping,
+            // so we must fake a setDown() here for compatibility.
             if (vanillaKeyBinding.javaClass != KeyMapping::class.java) {
                 isInEmulatedSetDown = true
                 vanillaState.keyBinding.isDown = true

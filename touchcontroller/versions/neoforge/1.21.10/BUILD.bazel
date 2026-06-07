@@ -51,6 +51,7 @@ kt_merge_library(
     ),
     visibility = ["//visibility:public"],
     deps = [
+        "//touchcontroller/versions/neoforge/1.21.1:neoforge_unmerged",
         "//game/1.21.10:game_client_libraries",
         "//game/1.21.10:game_client_neoforge",
         # Classpath separator
