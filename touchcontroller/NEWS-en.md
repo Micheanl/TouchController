@@ -1,5 +1,10 @@
 # TouchController NEWS - User visible changes
 
+## 0.3.1-alpha11
+
+- Fixed render issued caused by native library loading order in NeoForge 26.1.2
+- Reduced block destroy delay in create mode to 7 ticks
+
 ## 0.3.1-alpha10
 
 - Added third-party library list in about screen
