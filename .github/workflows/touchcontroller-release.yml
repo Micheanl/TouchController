@@ -218,6 +218,7 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           name: TouchController v${{ env.MOD_VERSION }}
+          draft: true
           body_path: release/update_log.md
           prerelease: ${{ env.MOD_PRERELEASE == 'true' }}
           files: |
