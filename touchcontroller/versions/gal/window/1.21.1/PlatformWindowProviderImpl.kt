@@ -5,7 +5,6 @@
 
 package top.fifthlight.touchcontroller.gal.window.v1_21_1
 
-import com.mojang.blaze3d.platform.Window
 import net.minecraft.client.Minecraft
 import org.lwjgl.glfw.GLFW
 import org.lwjgl.glfw.GLFWNativeWayland
@@ -17,13 +16,13 @@ import top.fifthlight.touchcontroller.common.gal.window.NativeWindow
 import top.fifthlight.touchcontroller.common.gal.window.PlatformWindowProvider
 
 @ActualImpl(PlatformWindowProvider::class)
-class PlatformWindowProviderImpl(private val inner: Window) : PlatformWindowProvider {
-    companion object {
-        private val instance by lazy { PlatformWindowProviderImpl(Minecraft.getInstance().window) }
+object PlatformWindowProviderImpl : PlatformWindowProvider {
+    @JvmStatic
+    @ActualConstructor("of")
+    fun of(): PlatformWindowProvider = PlatformWindowProviderImpl
 
-        @JvmStatic
-        @ActualConstructor("of")
-        fun of(): PlatformWindowProvider = instance
+    private val inner by lazy {
+        Minecraft.getInstance().window
     }
 
     override val windowWidth: Int
@@ -33,15 +32,18 @@ class PlatformWindowProviderImpl(private val inner: Window) : PlatformWindowProv
 
     override val platform: GlfwPlatform<*> by lazy {
         when (GLFW.glfwGetPlatform()) {
-            GLFW.GLFW_PLATFORM_WIN32 -> GlfwPlatform.Win32(NativeWindow.Win32(GLFWNativeWin32.glfwGetWin32Window(inner.window)))
-            GLFW.GLFW_PLATFORM_COCOA -> GlfwPlatform.Cocoa
-            GLFW.GLFW_PLATFORM_WAYLAND -> GlfwPlatform.Wayland(
+            GLFW.GLFW_PLATFORM_WIN32 -> GlfwPlatform.Win32 {
+                NativeWindow.Win32(GLFWNativeWin32.glfwGetWin32Window(inner.window))
+            }
+
+            GLFW.GLFW_PLATFORM_WAYLAND -> GlfwPlatform.Wayland {
                 NativeWindow.Wayland(
                     displayPointer = GLFWNativeWayland.glfwGetWaylandDisplay(),
                     surfacePointer = GLFWNativeWayland.glfwGetWaylandWindow(inner.window),
                 )
-            )
+            }
 
+            GLFW.GLFW_PLATFORM_COCOA -> GlfwPlatform.Cocoa
             GLFW.GLFW_PLATFORM_X11 -> GlfwPlatform.X11
             else -> GlfwPlatform.Unknown
         }

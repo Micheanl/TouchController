@@ -30,9 +30,13 @@ sealed class NativeWindow {
 sealed class GlfwPlatform<Window : NativeWindow> {
     abstract val nativeWindow: Window
 
-    data class Win32(override val nativeWindow: NativeWindow.Win32) : GlfwPlatform<NativeWindow.Win32>()
+    class Win32(nativeWindowFactory: () -> NativeWindow.Win32) : GlfwPlatform<NativeWindow.Win32>() {
+        override val nativeWindow: NativeWindow.Win32 by lazy(nativeWindowFactory)
+    }
 
-    data class Wayland(override val nativeWindow: NativeWindow.Wayland) : GlfwPlatform<NativeWindow.Wayland>()
+    class Wayland(nativeWindowFactory: () -> NativeWindow.Wayland) : GlfwPlatform<NativeWindow.Wayland>() {
+        override val nativeWindow: NativeWindow.Wayland by lazy(nativeWindowFactory)
+    }
 
     data object Cocoa : GlfwPlatform<NativeWindow>() {
         override val nativeWindow: NativeWindow

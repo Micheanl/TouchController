@@ -27,7 +27,7 @@ object WindowEvents {
 
     fun loadPlatformWindow() {
         mainThreadDispatcher.execute {
-            PlatformProvider.load()
+            PlatformProvider.initialize()
             PlatformProvider.platform?.sendEvent(InitializeMessage)
             logger.info("Loaded platform on thread ${Thread.currentThread().name}")
         }

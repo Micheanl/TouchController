@@ -33,6 +33,7 @@ import top.fifthlight.touchcontroller.common.event.tick.TickEvents
 import top.fifthlight.touchcontroller.common.event.window.WindowEvents
 import top.fifthlight.touchcontroller.common.model.ControllerHudModel
 import top.fifthlight.touchcontroller.common.model.TouchControllerLoadStatus
+import top.fifthlight.touchcontroller.common.platform.provider.PlatformProvider
 import top.fifthlight.touchcontroller.gal.gameconfig.v1_21_10.GameConfigEditorImpl
 import top.fifthlight.touchcontroller.gal.key.v1_21_10.KeyBindingStateImpl
 
@@ -97,6 +98,8 @@ class TouchController : ClientModInitializer {
             ConnectionEvents.onJoinedWorld()
         }
         ClientLifecycleEvents.CLIENT_STARTED.register {
+            PlatformProvider.loadNative()
+
             GlobalConfigHolder.load()
             WindowEvents.loadPlatformWindow()
             GameConfigEditorImpl.executePendingCallback()

@@ -5,7 +5,6 @@ kt_merge_library(
     name = "provider",
     srcs = glob(["*.kt"]),
     merge_deps = [
-        "//touchcontroller/common/gal/library",
         "//touchcontroller/common/gal/window",
         "//touchcontroller/common/platform",
         "//touchcontroller/common/platform/android",

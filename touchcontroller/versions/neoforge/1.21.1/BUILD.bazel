@@ -69,6 +69,7 @@ kt_merge_library(
         "//touchcontroller/common/event/render",
         "//touchcontroller/common/event/tick",
         "//touchcontroller/common/event/window",
+        "//touchcontroller/common/platform/provider",
         "//touchcontroller/common/gal/key",
         "//touchcontroller/common/layout/data",
         "//touchcontroller/common/model",
@@ -76,6 +77,7 @@ kt_merge_library(
         "@neoforge_1_21_1//:net_fabricmc_sponge_mixin",
         "@neoforge_1_21_1//:net_neoforged_bus",
         "@neoforge_1_21_1//:net_neoforged_fancymodloader_loader",
+        "@neoforge_1_21_1//:net_neoforged_mergetool",
         "@neoforge_1_21_1//:io_github_llamalad7_mixinextras_neoforge",
     ],
 )

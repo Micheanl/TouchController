@@ -12,13 +12,16 @@ import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.ModContainer
+import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
-import net.neoforged.neoforge.client.event.*
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent
+import net.neoforged.neoforge.client.event.ClientTickEvent
+import net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent
 import net.neoforged.neoforge.client.event.lifecycle.ClientStartedEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers
-import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.level.block.BreakBlockEvent
 import org.slf4j.LoggerFactory
 import top.fifthlight.combine.backend.minecraft.render.v26_1.CanvasImpl
@@ -32,16 +35,17 @@ import top.fifthlight.touchcontroller.common.event.tick.TickEvents
 import top.fifthlight.touchcontroller.common.event.window.WindowEvents
 import top.fifthlight.touchcontroller.common.model.ControllerHudModel
 import top.fifthlight.touchcontroller.common.model.TouchControllerLoadStatus
+import top.fifthlight.touchcontroller.common.platform.provider.PlatformProvider
 import top.fifthlight.touchcontroller.common.ui.config.screen.getConfigScreen
 import top.fifthlight.touchcontroller.gal.gameconfig.v26_1.GameConfigEditorImpl
 
 @Mod("touchcontroller_26_1_2_neoforge", dist = [Dist.CLIENT])
+@EventBusSubscriber(modid = "touchcontroller_26_1_2_neoforge", value = [Dist.CLIENT])
 class TouchController(modEventBus: IEventBus, private val container: ModContainer) {
     private val logger = LoggerFactory.getLogger(TouchController::class.java)
 
     init {
         modEventBus.addListener(::onClientSetup)
-        modEventBus.addListener(::onLoadPlatformNativeWindow)
         modEventBus.addListener(::onRegisterHudHandler)
     }
 
@@ -51,10 +55,6 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
         initialize()
 
         TouchControllerLoadStatus.isLoaded = true
-    }
-
-    private fun onLoadPlatformNativeWindow(event: AddClientReloadListenersEvent) {
-        WindowEvents.loadPlatformWindow()
     }
 
     private fun onRegisterHudHandler(event: RegisterGuiLayersEvent) {
@@ -75,33 +75,41 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
             getConfigScreen(parent) as Screen
         })
 
-        NeoForge.EVENT_BUS.register(object {
-            @SubscribeEvent
-            fun onClientStarted(event: ClientStartedEvent) {
-                GlobalConfigHolder.load()
-                GameConfigEditorImpl.executePendingCallback()
-            }
+        PlatformProvider.loadNative()
+    }
 
-            @SubscribeEvent
-            fun blockOutlineEvent(event: ExtractBlockOutlineRenderStateEvent) {
-                event.isCanceled =
-                    GlobalConfigHolder.config.value.status.status != StatusConfig.Status.DISABLED && !ControllerHudModel.result.showBlockOutline
-            }
+    companion object {
+        @JvmStatic
+        @SubscribeEvent
+        private fun onClientStarted(event: ClientStartedEvent) {
+            GlobalConfigHolder.load()
+            WindowEvents.loadPlatformWindow()
+            GameConfigEditorImpl.executePendingCallback()
+        }
 
-            @SubscribeEvent
-            fun clientTick(event: ClientTickEvent.Post) {
-                TickEvents.clientTick()
-            }
+        @JvmStatic
+        @SubscribeEvent
+        private fun blockOutlineEvent(event: ExtractBlockOutlineRenderStateEvent) {
+            event.isCanceled =
+                GlobalConfigHolder.config.value.status.status != StatusConfig.Status.DISABLED && !ControllerHudModel.result.showBlockOutline
+        }
 
-            @SubscribeEvent
-            fun joinWorld(event: ClientPlayerNetworkEvent.LoggingIn) {
-                ConnectionEvents.onJoinedWorld()
-            }
+        @JvmStatic
+        @SubscribeEvent
+        private fun clientTick(event: ClientTickEvent.Post) {
+            TickEvents.clientTick()
+        }
 
-            @SubscribeEvent
-            fun blockBroken(event: BreakBlockEvent) {
-                BlockBreakEvents.afterBlockBreak()
-            }
-        })
+        @JvmStatic
+        @SubscribeEvent
+        private fun joinWorld(event: ClientPlayerNetworkEvent.LoggingIn) {
+            ConnectionEvents.onJoinedWorld()
+        }
+
+        @JvmStatic
+        @SubscribeEvent
+        private fun blockBroken(event: BreakBlockEvent) {
+            BlockBreakEvents.afterBlockBreak()
+        }
     }
 }

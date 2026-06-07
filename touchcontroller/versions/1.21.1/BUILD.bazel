@@ -16,7 +16,6 @@ merge_library_group(
         "//touchcontroller/versions/gal/item/1.21.1",
         "//touchcontroller/versions/gal/itemlist/1.21.1",
         "//touchcontroller/versions/gal/key/1.21.1",
-        "//touchcontroller/versions/gal/library/1.21.1",
         "//touchcontroller/versions/gal/paint/1.21.1",
         "//touchcontroller/versions/gal/player/1.21.1",
         "//touchcontroller/versions/gal/view/1.21.1",
