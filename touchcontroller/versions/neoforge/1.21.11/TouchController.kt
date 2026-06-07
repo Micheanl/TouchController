@@ -15,10 +15,7 @@ import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent
-import net.neoforged.neoforge.client.event.ClientTickEvent
-import net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent
+import net.neoforged.neoforge.client.event.*
 import net.neoforged.neoforge.client.event.lifecycle.ClientStartedEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers
@@ -45,6 +42,7 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
     private val logger = LoggerFactory.getLogger(TouchController::class.java)
 
     init {
+        modEventBus.addListener(::onLoadNatives)
         modEventBus.addListener(::onClientSetup)
         modEventBus.addListener(::onRegisterHudHandler)
     }
@@ -52,9 +50,15 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
     private fun onClientSetup(event: FMLClientSetupEvent) {
         logger.info("Loading TouchController…")
 
-        initialize()
+        container.registerExtensionPoint(IConfigScreenFactory::class.java, IConfigScreenFactory { _, parent ->
+            getConfigScreen(parent) as Screen
+        })
 
         TouchControllerLoadStatus.isLoaded = true
+    }
+
+    private fun onLoadNatives(event: AddClientReloadListenersEvent) {
+        PlatformProvider.loadNative()
     }
 
     private fun onRegisterHudHandler(event: RegisterGuiLayersEvent) {
@@ -68,14 +72,6 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
                 RenderEvents.onHudRender(canvas)
             }
         }
-    }
-
-    private fun initialize() {
-        container.registerExtensionPoint(IConfigScreenFactory::class.java, IConfigScreenFactory { _, parent ->
-            getConfigScreen(parent) as Screen
-        })
-
-        PlatformProvider.loadNative()
     }
 
     companion object {

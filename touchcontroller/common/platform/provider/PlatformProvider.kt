@@ -181,6 +181,7 @@ object PlatformProvider {
     }
 
     fun initialize() = synchronized(this) {
+        require(platformNativeLoaded) { "Platform native libraries hasn't been initialized" }
         if (platformLoaded) {
             return
         }

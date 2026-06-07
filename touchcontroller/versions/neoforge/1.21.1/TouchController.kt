@@ -51,7 +51,7 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
     private fun onClientSetup(event: FMLClientSetupEvent) {
         logger.info("Loading TouchController…")
 
-        initialize()
+        initialize(event)
 
         TouchControllerLoadStatus.isLoaded = true
     }
@@ -69,16 +69,14 @@ class TouchController(modEventBus: IEventBus, private val container: ModContaine
         }
     }
 
-    private fun initialize() {
-        val client = Minecraft.getInstance()
-
+    private fun initialize(event: FMLClientSetupEvent) {
         container.registerExtensionPoint(IConfigScreenFactory::class.java, IConfigScreenFactory { _, parent ->
             getConfigScreen(parent) as Screen
         })
 
         PlatformProvider.loadNative()
 
-        client.execute {
+        event.enqueueWork {
             GlobalConfigHolder.load()
             WindowEvents.loadPlatformWindow()
             GameConfigEditorImpl.executePendingCallback()
