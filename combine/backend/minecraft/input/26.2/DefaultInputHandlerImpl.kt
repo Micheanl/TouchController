@@ -13,6 +13,21 @@ object DefaultInputHandlerImpl : InputHandler {
     @ActualConstructor("ofDefault")
     fun ofDefault() = DefaultInputHandlerImpl
 
+    // To work around some launcher doesn't implement it
+    private val hasGlfwSetPreeditCursorRectangle by lazy {
+        runCatching {
+            val glfwClass = Class.forName("org.lwjgl.glfw.GLFW")
+            glfwClass.getMethod(
+                "glfwSetPreeditCursorRectangle",
+                Long::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType,
+            )
+        }.isSuccess
+    }
+
     override val events
         get() = InputHandler.Empty.events
 
@@ -25,8 +40,10 @@ object DefaultInputHandlerImpl : InputHandler {
         } else if (haveState && textInputState == null) {
             textInputManager.stopTextInput()
         }
-        cursorRect?.let { cursorRect ->
-            textInputManager.setTextInputArea(cursorRect.left, cursorRect.top, cursorRect.right, cursorRect.bottom)
+        if (hasGlfwSetPreeditCursorRectangle) {
+            cursorRect?.let { cursorRect ->
+                textInputManager.setTextInputArea(cursorRect.left, cursorRect.top, cursorRect.right, cursorRect.bottom)
+            }
         }
         haveState = textInputState != null
     }
