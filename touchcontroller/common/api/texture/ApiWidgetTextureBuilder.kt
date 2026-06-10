@@ -18,16 +18,16 @@ class ApiWidgetTextureBuilder : WidgetTextureBuilder {
         apply { this.id = id }
 
     override fun classic(namespace: String, path: String, width: Int, height: Int) =
-        apply { classic = TextureFactory.create(namespace, path, width, height, IntPadding.ZERO) }
+        apply { classic = TextureFactory.createSprite(namespace, path, width, height, IntPadding.ZERO) }
 
     override fun classicExtended(namespace: String, path: String, width: Int, height: Int) =
-        apply { classicExtended = TextureFactory.create(namespace, path, width, height, IntPadding.ZERO) }
+        apply { classicExtended = TextureFactory.createSprite(namespace, path, width, height, IntPadding.ZERO) }
 
     override fun newStyle(namespace: String, path: String, width: Int, height: Int) =
-        apply { newStyle = TextureFactory.create(namespace, path, width, height, IntPadding.ZERO) }
+        apply { newStyle = TextureFactory.createSprite(namespace, path, width, height, IntPadding.ZERO) }
 
     override fun newRegression(namespace: String, path: String, width: Int, height: Int) =
-        apply { newStyleExtended = TextureFactory.create(namespace, path, width, height, IntPadding.ZERO) }
+        apply { newStyleExtended = TextureFactory.createSprite(namespace, path, width, height, IntPadding.ZERO) }
 
     fun build(): ApiWidgetTexture {
         val id = checkNotNull(id) { "id cannot be null" }

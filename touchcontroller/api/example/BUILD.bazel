@@ -68,6 +68,8 @@ java_binary(
         "//combine/backend/minecraft/versions/26.1:meta_jar",
         "//combine/backend/minecraft/fabric:meta_jar",
         "//touchcontroller/common",
+        "//touchcontroller/common:meta_jar",
+        "//touchcontroller/versions/26.1:meta_jar",
         "//touchcontroller/versions/fabric/26.1:fabric_unmerged",
         "//rule/dev_launch_wrapper",
         "@maven_fabric_26_1//:io_github_llamalad7_mixinextras_fabric",

@@ -67,7 +67,7 @@ jar(
     resources = [
         ":fabric_mod_json",
     ],
-    visibility = ["//touchcontroller/versions/fabric/26.1:__pkg__"],
+    visibility = ["//touchcontroller:__subpackages__"],
 )
 
 merge_library_jar(

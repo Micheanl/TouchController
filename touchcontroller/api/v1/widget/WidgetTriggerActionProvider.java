@@ -12,10 +12,8 @@ import top.fifthlight.touchcontroller.api.v1.action.PlayerActionInstance;
 
 @ApiStatus.NonExtendable
 public interface WidgetTriggerActionProvider {
-    @Nullable
     WidgetTriggerAction gameAction(GameActionInstance gameAction);
 
-    @Nullable
     WidgetTriggerAction playerAction(PlayerActionInstance playerAction);
 
     @Nullable
