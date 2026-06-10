@@ -22,7 +22,7 @@ class AndroidPlatform(name: String) : LargeMessageWrappedPlatform() {
 
     private val logger = LoggerFactory.getLogger(AndroidPlatform::class.java)
     private val handle = Transport.new(name)
-    private val readBuffer = ByteArray(128)
+    private val readBuffer = ByteArray(256)
 
     override fun pollSmallEvent(): ProxyMessage? {
         val receivedLength = Transport.receive(handle, readBuffer)
