@@ -27,7 +27,12 @@ cc_library(
         "-lwindowsapp",
         "-luser32",
         "-lkernel32",
-    ],
+    ] + select({
+        "@platforms//cpu:x86_32": [
+            "-Wl,--kill-at",
+        ],
+        "//conditions:default": [],
+    }),
     target_compatible_with = ["@platforms//os:windows"],
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
@@ -52,7 +57,12 @@ cc_library(
     linkopts = [
         "-lole32",
         "-luuid",
-    ],
+    ] + select({
+        "@platforms//cpu:x86_32": [
+            "-Wl,--kill-at",
+        ],
+        "//conditions:default": [],
+    }),
     target_compatible_with = ["@platforms//os:windows"],
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [

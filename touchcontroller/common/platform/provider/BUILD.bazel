@@ -53,6 +53,7 @@ cc_jni_library(
     platforms = select({
         "//:config_release": [
             "@//platforms:windows_x86_64",
+            "@//platforms:windows_x86_32",
             "@//platforms:windows_arm64",
         ],
         "//conditions:default": [
@@ -69,6 +70,7 @@ cc_jni_library(
     platforms = select({
         "//:config_release": [
             "@//platforms:windows_x86_64",
+            "@//platforms:windows_x86_32",
             "@//platforms:windows_arm64",
         ],
         "//conditions:default": [
