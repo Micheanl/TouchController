@@ -891,7 +891,7 @@
     },
     "//repo:neoforge.bzl%neoforge": {
       "general": {
-        "bzlTransitiveDigest": "prC6OAJF2x+xFqsyljwFHTi1vKBYjk8IcaPQ72FRNRk=",
+        "bzlTransitiveDigest": "uxjovelJphS7PgIHtBIWN00mdS6jshIechZ/28q1ksk=",
         "usagesDigest": "zNj4vn6cWF3Uw7tCCY3AHWsPrAwflXNuOXAyCXzmO2s=",
         "recordedInputs": [
           "REPO_MAPPING:, ",
@@ -1372,6 +1372,7 @@
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_jar",
             "attributes": {
               "url": "https://libraries.minecraft.net/java3d/vecmath/1.5.2/vecmath-1.5.2.jar",
+              "sha256": "09adf7955baa6bddf57a4bdbf9a91cf690261314969b59a18085ece1e05eccf9",
               "downloaded_file_name": "vecmath-1.5.2.jar"
             }
           },
@@ -2787,6 +2788,7 @@
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_jar",
             "attributes": {
               "url": "https://libraries.minecraft.net/com/mojang/logging/1.1.1/logging-1.1.1.jar",
+              "sha256": "c1756eaf0685da94142bacc84309bb7ccddf65e004638c3299ab645710b5938c",
               "downloaded_file_name": "logging-1.1.1.jar"
             }
           },
@@ -2906,6 +2908,7 @@
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_jar",
             "attributes": {
               "url": "https://libraries.minecraft.net/com/mojang/logging/1.2.7/logging-1.2.7.jar",
+              "sha256": "3dc3190204bac5f4184d8405bfe1f724f73a6a15a0d3f36ec7f69e6872c1a76c",
               "downloaded_file_name": "logging-1.2.7.jar"
             }
           },
@@ -3369,6 +3372,7 @@
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_jar",
             "attributes": {
               "url": "https://libraries.minecraft.net/com/mojang/logging/1.2.7/logging-1.2.7.jar",
+              "sha256": "3dc3190204bac5f4184d8405bfe1f724f73a6a15a0d3f36ec7f69e6872c1a76c",
               "downloaded_file_name": "logging-1.2.7.jar"
             }
           },
@@ -3576,6 +3580,7 @@
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_jar",
             "attributes": {
               "url": "https://libraries.minecraft.net/com/mojang/logging/1.4.9/logging-1.4.9.jar",
+              "sha256": "01306cf798c46dba0e72c769a67b96f71cb7492a1572a74ef4d8268e3f9ffb9d",
               "downloaded_file_name": "logging-1.4.9.jar"
             }
           },
@@ -3663,6 +3668,7 @@
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_jar",
             "attributes": {
               "url": "https://libraries.minecraft.net/com/mojang/logging/1.5.10/logging-1.5.10.jar",
+              "sha256": "de3031f2420d649b9a4152e4e160d50b87ce6e7b4d68163caf2b5ebbaf391f7e",
               "downloaded_file_name": "logging-1.5.10.jar"
             }
           },
@@ -4006,6 +4012,7 @@
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_jar",
             "attributes": {
               "url": "https://libraries.minecraft.net/com/mojang/logging/1.6.11/logging-1.6.11.jar",
+              "sha256": "5d803eb7348a27468c6172daef2f0d77260dd63cde377ebfa73e36789ae8fcee",
               "downloaded_file_name": "logging-1.6.11.jar"
             }
           },
@@ -18143,18 +18150,18 @@
                 "1.17": "f425401a00adf0112fde624ee80c66333530f8a1",
                 "1.18": "d31a2e85ae149dd1b1a7070b22cb8887892fda6c",
                 "1.19": "a9c8b05a8082a65678beda6dfa2b8f21fa627bce",
-                "5": "5a68a9794e5ad2280313c5024ce226d42edc278d",
-                "12": "8379b9dd77a7ea2f72f498fadeb0f3156c791a38",
-                "16": "42aec930b21de6beaca2f35ae5b168027ba90d30",
-                "17": "818f68d092986c6933366762f435889884c36a52",
-                "18": "cb0e5e5a5516b0ccececee2ed2404b4a4bdde7a8",
-                "19": "86387e16cfca7ce584afa4f71f9675661dd64381",
-                "24": "9f4002eac17cd3058ee38b6d7d25a046e2ddd56c",
-                "26": "9246b1598a4119b0726b4e3fe1404d3ebab03733",
-                "27": "89f833cb61015f933152dfd9f67073425a6df537",
-                "29": "d2564f12f5ddfffbb9902b3c45af92709f373d60",
-                "30": "2866ab0411f8507bf88d81513a08956a2474403f",
-                "32": "1e10f2104f3b79b72a23ec961505bb3cbf249955"
+                "5": "2fa5ea07b4d63f63c35de6b4920fd91c25b2940b",
+                "12": "13fe391a8dfb68f5437069534dfdbca6dde9c24a",
+                "16": "999caad88325ce0a97833f79cec21c334545b0c3",
+                "17": "9d71ad753040d688caf85a0ad22ef2b6d16783ff",
+                "18": "f42dd85bb8cd0da77bf53498da7d5b08349bdb6f",
+                "19": "e4b5db65f5f4dc1ba20171d0948b59453fb8aa0a",
+                "24": "be63106930da0105dffc6fc86885040712048c85",
+                "26": "730c794bffc4e47965511f40b76e16519dd76082",
+                "27": "bd31c426766f409243fd2344519c249a6eb9a0ce",
+                "29": "3555b389b2ee5a10da606f7d99e2638fba3b77c3",
+                "30": "e62b49a71c7bb9be891b6b086e691413130dbb33",
+                "32": "03516883f82f43451af8691e557fa6fcc2165656"
               },
               "asset_urls": {
                 "pre-1.6": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json",
@@ -18167,18 +18174,18 @@
                 "1.17": "https://piston-meta.mojang.com/v1/packages/f425401a00adf0112fde624ee80c66333530f8a1/1.17.json",
                 "1.18": "https://piston-meta.mojang.com/v1/packages/d31a2e85ae149dd1b1a7070b22cb8887892fda6c/1.18.json",
                 "1.19": "https://piston-meta.mojang.com/v1/packages/a9c8b05a8082a65678beda6dfa2b8f21fa627bce/1.19.json",
-                "5": "https://piston-meta.mojang.com/v1/packages/5a68a9794e5ad2280313c5024ce226d42edc278d/5.json",
-                "12": "https://piston-meta.mojang.com/v1/packages/8379b9dd77a7ea2f72f498fadeb0f3156c791a38/12.json",
-                "16": "https://piston-meta.mojang.com/v1/packages/42aec930b21de6beaca2f35ae5b168027ba90d30/16.json",
-                "17": "https://piston-meta.mojang.com/v1/packages/818f68d092986c6933366762f435889884c36a52/17.json",
-                "18": "https://piston-meta.mojang.com/v1/packages/cb0e5e5a5516b0ccececee2ed2404b4a4bdde7a8/18.json",
-                "19": "https://piston-meta.mojang.com/v1/packages/86387e16cfca7ce584afa4f71f9675661dd64381/19.json",
-                "24": "https://piston-meta.mojang.com/v1/packages/9f4002eac17cd3058ee38b6d7d25a046e2ddd56c/24.json",
-                "26": "https://piston-meta.mojang.com/v1/packages/9246b1598a4119b0726b4e3fe1404d3ebab03733/26.json",
-                "27": "https://piston-meta.mojang.com/v1/packages/89f833cb61015f933152dfd9f67073425a6df537/27.json",
-                "29": "https://piston-meta.mojang.com/v1/packages/d2564f12f5ddfffbb9902b3c45af92709f373d60/29.json",
-                "30": "https://piston-meta.mojang.com/v1/packages/2866ab0411f8507bf88d81513a08956a2474403f/30.json",
-                "32": "https://piston-meta.mojang.com/v1/packages/1e10f2104f3b79b72a23ec961505bb3cbf249955/32.json"
+                "5": "https://piston-meta.mojang.com/v1/packages/2fa5ea07b4d63f63c35de6b4920fd91c25b2940b/5.json",
+                "12": "https://piston-meta.mojang.com/v1/packages/13fe391a8dfb68f5437069534dfdbca6dde9c24a/12.json",
+                "16": "https://piston-meta.mojang.com/v1/packages/999caad88325ce0a97833f79cec21c334545b0c3/16.json",
+                "17": "https://piston-meta.mojang.com/v1/packages/9d71ad753040d688caf85a0ad22ef2b6d16783ff/17.json",
+                "18": "https://piston-meta.mojang.com/v1/packages/f42dd85bb8cd0da77bf53498da7d5b08349bdb6f/18.json",
+                "19": "https://piston-meta.mojang.com/v1/packages/e4b5db65f5f4dc1ba20171d0948b59453fb8aa0a/19.json",
+                "24": "https://piston-meta.mojang.com/v1/packages/be63106930da0105dffc6fc86885040712048c85/24.json",
+                "26": "https://piston-meta.mojang.com/v1/packages/730c794bffc4e47965511f40b76e16519dd76082/26.json",
+                "27": "https://piston-meta.mojang.com/v1/packages/bd31c426766f409243fd2344519c249a6eb9a0ce/27.json",
+                "29": "https://piston-meta.mojang.com/v1/packages/3555b389b2ee5a10da606f7d99e2638fba3b77c3/29.json",
+                "30": "https://piston-meta.mojang.com/v1/packages/e62b49a71c7bb9be891b6b086e691413130dbb33/30.json",
+                "32": "https://piston-meta.mojang.com/v1/packages/03516883f82f43451af8691e557fa6fcc2165656/32.json"
               },
               "version_assets": {
                 "b1.7.3": "pre-1.6",

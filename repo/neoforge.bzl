@@ -494,7 +494,7 @@ def _neoforge_impl(mctx):
         http_jar(
             name = _convert_maven_coordinate_to_repo(repository_prefix, coordinate),
             url = _convert_maven_coordinate_to_url_with_repo(repository_url, coordinate),
-            sha256 = pin_content.get(_convert_maven_coordinate_to_url(repository_url, coordinate), None),
+            sha256 = pin_content.get(_convert_maven_coordinate_to_url_with_repo(repository_url, coordinate), None),
             downloaded_file_name = _maven_coordinate_to_filename(coordinate),
         )
 
