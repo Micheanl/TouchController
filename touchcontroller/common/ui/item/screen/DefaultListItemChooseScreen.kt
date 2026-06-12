@@ -18,7 +18,7 @@ import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.item.data.Item
 import top.fifthlight.combine.item.data.ItemStackFactory
 import top.fifthlight.combine.item.widget.ItemGrid
-import top.fifthlight.combine.widget.ui.EditText
+import top.fifthlight.combine.widget.EditText
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.common.gal.item.ItemProviderFactory
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme

@@ -1,4 +1,4 @@
-package top.fifthlight.combine.widget.ui
+package top.fifthlight.combine.widget
 
 import androidx.compose.runtime.*
 import kotlinx.collections.immutable.persistentListOf

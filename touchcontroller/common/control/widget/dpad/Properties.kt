@@ -13,10 +13,10 @@ import top.fifthlight.combine.core.modifier.placement.fillMaxWidth
 import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Spacer
-import top.fifthlight.combine.widget.ui.DropdownItemList
-import top.fifthlight.combine.widget.ui.Select
-import top.fifthlight.combine.widget.ui.SelectIcon
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.widget.DropdownItemList
+import top.fifthlight.combine.widget.Select
+import top.fifthlight.combine.widget.SelectIcon
+import top.fifthlight.combine.widget.Text
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.common.control.*
 

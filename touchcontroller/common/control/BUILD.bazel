@@ -32,6 +32,7 @@ kt_merge_library(
         "//combine/core/paint",
         "//combine/core/widget/layout",
         "//combine/data",
+        "//combine/theme/blackstone",
         "//combine/widget",
         "//touchcontroller/resources/texture:texture_lib",
         "@maven//:androidx_compose_runtime_runtime_annotation_jvm",

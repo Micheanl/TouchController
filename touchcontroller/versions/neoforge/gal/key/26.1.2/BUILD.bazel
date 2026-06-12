@@ -6,7 +6,6 @@ kt_merge_library(
     actual = True,
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
-        "//game/26.1.2:game_client_libraries",
         "//game/26.1.2:game_client_neoforge",
         "//touchcontroller/common/gal/key",
         "//touchcontroller/versions/gal/key/26.1",

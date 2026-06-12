@@ -17,10 +17,10 @@ import top.fifthlight.combine.core.modifier.placement.padding
 import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.core.widget.layout.Box
 import top.fifthlight.combine.core.widget.layout.Column
-import top.fifthlight.combine.widget.ui.Button
-import top.fifthlight.combine.widget.ui.Icon
-import top.fifthlight.combine.widget.ui.IconButton
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.widget.Button
+import top.fifthlight.combine.widget.Icon
+import top.fifthlight.combine.widget.IconButton
+import top.fifthlight.combine.widget.Text
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.assets.texture.Textures
 import top.fifthlight.touchcontroller.common.control.ControllerWidget

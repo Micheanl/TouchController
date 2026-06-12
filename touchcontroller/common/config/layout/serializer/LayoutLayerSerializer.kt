@@ -13,11 +13,7 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.descriptors.element
-import kotlinx.serialization.encoding.CompositeDecoder
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
-import kotlinx.serialization.encoding.decodeStructure
-import kotlinx.serialization.encoding.encodeStructure
+import kotlinx.serialization.encoding.*
 import kotlinx.serialization.serializer
 import top.fifthlight.touchcontroller.common.config.condition.LayerConditions
 import top.fifthlight.touchcontroller.common.config.layout.LayoutLayer
@@ -31,7 +27,7 @@ class LayoutLayerSerializer : KSerializer<LayoutLayer> {
     override val descriptor: SerialDescriptor =
         buildClassSerialDescriptor("top.fifthlight.touchcontroller.config.LayoutLayer") {
             element<String>("name")
-            element<List<ControllerWidget>>("widgets")
+            element<List<ControllerWidget>>("widget")
             element<LayerConditions>("conditions")
         }
 

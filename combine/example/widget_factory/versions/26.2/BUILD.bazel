@@ -7,6 +7,7 @@ kt_merge_library(
     resource_strip_prefix = "combine/example/widget_factory/versions/26.2/resources",
     resources = glob(["resources/**"]),
     runtime_deps = [
+        "//combine/backend/minecraft/versions/26.2",
         "//combine/theme/blackstone:blackstone_common",
         "//combine/theme/blackstone:blackstone_vanilla",
         "//combine/theme/oreui:oreui_common",

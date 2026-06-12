@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import top.fifthlight.combine.core.data.Identifier
 import top.fifthlight.combine.core.modifier.Modifier
 import top.fifthlight.combine.core.modifier.drawing.border
-import top.fifthlight.combine.widget.ui.Icon
+import top.fifthlight.combine.widget.Icon
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.assets.texture.Textures
 import top.fifthlight.touchcontroller.common.config.condition.SelectEntityLayerConditionKey

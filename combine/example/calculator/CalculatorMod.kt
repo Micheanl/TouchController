@@ -13,7 +13,7 @@ import net.minecraft.client.KeyMapping
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.resources.ResourceLocation
 import org.lwjgl.glfw.GLFW
-import top.fifthlight.combine.core.data.TextFactoryFactory
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.combine.core.layout.Alignment
 import top.fifthlight.combine.core.layout.Arrangement
 import top.fifthlight.combine.core.modifier.Modifier
@@ -29,8 +29,8 @@ import top.fifthlight.combine.theme.blackstone.BlackstoneTheme
 import top.fifthlight.combine.theme.invoke
 import top.fifthlight.combine.theme.oreui.OreUITheme
 import top.fifthlight.combine.theme.vanilla.VanillaTheme
-import top.fifthlight.combine.widget.ui.Button
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.widget.Button
+import top.fifthlight.combine.widget.Text
 
 class CalculatorMod: ClientModInitializer, ModMenuApi {
     companion object {
@@ -47,7 +47,7 @@ class CalculatorMod: ClientModInitializer, ModMenuApi {
     private fun createScreen(parent: Screen? = null) = ScreenFactoryFactory.of().getScreen(
         parent = parent,
         renderBackground = true,
-        title = TextFactoryFactory.of().literal("Combine Calculator")
+        title = Text.literal("Combine Calculator")
     ) {
         var themeIndex by remember { mutableStateOf(0) }
         themes[themeIndex].second {

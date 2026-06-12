@@ -7,7 +7,7 @@ package top.fifthlight.touchcontroller.common.ui.layer.tab.holdingitem
 
 import androidx.compose.runtime.Composable
 import top.fifthlight.combine.core.data.Identifier
-import top.fifthlight.combine.widget.ui.Icon
+import top.fifthlight.combine.widget.Icon
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.assets.texture.Textures
 import top.fifthlight.touchcontroller.common.config.condition.HoldingItemLayerConditionKey

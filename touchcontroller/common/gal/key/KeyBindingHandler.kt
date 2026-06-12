@@ -8,7 +8,6 @@ package top.fifthlight.touchcontroller.common.gal.key
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import top.fifthlight.combine.core.data.Text
-import top.fifthlight.combine.core.data.TextFactoryFactory
 import top.fifthlight.mergetools.api.ExpectFactory
 import kotlin.uuid.Uuid
 
@@ -131,13 +130,12 @@ abstract class KeyBindingState {
     }
 
     companion object Empty : KeyBindingState() {
-        private val textFactory = TextFactoryFactory.of()
         override val id: String = "empty"
         override val name: Text
-            get() = textFactory.empty()
+            get() = Text.empty()
         override val categoryId: String = "empty"
         override val categoryName: Text
-            get() = textFactory.empty()
+            get() = Text.empty()
 
         override fun haveClickCount() = false
     }

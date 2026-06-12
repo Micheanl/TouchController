@@ -2,7 +2,7 @@ load("//rule:merge_library.bzl", "kt_merge_library")
 
 kt_merge_library(
     name = "common",
-    srcs = glob(["*.kt"]),
+    srcs = glob(["**/*.kt"]),
     visibility = ["//combine/example/widget_factory:__subpackages__"],
     runtime_deps = [
         "//combine/theme/blackstone:blackstone_common",

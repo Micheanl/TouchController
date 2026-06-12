@@ -21,9 +21,9 @@ import top.fifthlight.combine.core.modifier.placement.padding
 import top.fifthlight.combine.core.widget.layout.Box
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
-import top.fifthlight.combine.widget.ui.GuideButton
-import top.fifthlight.combine.widget.ui.Text
-import top.fifthlight.combine.widget.ui.WarningButton
+import top.fifthlight.combine.widget.GuideButton
+import top.fifthlight.combine.widget.Text
+import top.fifthlight.combine.widget.WarningButton
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.common.config.PresetConfig
 import top.fifthlight.touchcontroller.common.ui.component.BuiltInPresetKeySelector

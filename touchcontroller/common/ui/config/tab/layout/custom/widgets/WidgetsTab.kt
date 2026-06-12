@@ -19,7 +19,11 @@ import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.core.widget.layout.Box
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
-import top.fifthlight.combine.widget.ui.*
+import top.fifthlight.combine.theme.blackstone.widget.AlertDialog
+import top.fifthlight.combine.theme.blackstone.widget.CheckButton
+import top.fifthlight.combine.theme.blackstone.widget.ListButton
+import top.fifthlight.combine.theme.blackstone.widget.LocalListButtonTheme
+import top.fifthlight.combine.widget.*
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntRect
@@ -34,9 +38,6 @@ import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.tab.Loc
 import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.widgets.model.WidgetsTabModel
 import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.widgets.state.WidgetsTabState
 import top.fifthlight.touchcontroller.common.ui.control.AutoScaleControllerWidget
-import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
-import top.fifthlight.touchcontroller.common.ui.widget.CheckButton
-import top.fifthlight.touchcontroller.common.ui.widget.ListButton
 import kotlin.math.max
 
 private enum class ControllerWidgetType {
@@ -208,7 +209,7 @@ private fun CustomWidgetList(
                         .minHeight(24)
                         .fillMaxHeight()
                         .anchor { anchor = it },
-                    drawableSet = LocalTouchControllerTheme.current.listButtonDrawablesUnchecked,
+                    drawableSet = LocalListButtonTheme.current.drawableSet.off,
                     onClick = {
                         expanded = true
                     },
@@ -257,7 +258,7 @@ object WidgetsTab : CustomTab() {
             value = tabState,
             valueTransformer = { tabState.tabState.dialogState as? WidgetsTabState.DialogState.ChangeNewWidgetParams },
             onDismissRequest = { tabModel.closeDialog() },
-            action = { dialogState ->
+            actions = { dialogState ->
                 GuideButton(
                     onClick = {
                         tabModel.closeDialog()
@@ -331,7 +332,7 @@ object WidgetsTab : CustomTab() {
             title = {
                 Text(Text.translatable(Texts.SCREEN_CUSTOM_CONTROL_LAYOUT_WIDGETS_EDIT_WIDGET_PRESET_TITLE))
             },
-            action = { dialogState ->
+            actions = { dialogState ->
                 GuideButton(
                     onClick = {
                         tabModel.renameWidgetPresetItem(dialogState.index, dialogState.name)

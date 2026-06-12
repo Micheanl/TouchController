@@ -51,16 +51,10 @@ kt_merge_library(
     ),
     visibility = ["//visibility:public"],
     deps = [
-        "//touchcontroller/versions/neoforge/1.21.1:neoforge_unmerged",
+        "//combine/backend/minecraft/render/1.21.10",
         "//game/1.21.10:game_client_libraries",
         "//game/1.21.10:game_client_neoforge",
-        # Classpath separator
-        "//combine/backend/minecraft/identifier/1.21.10",
-        "//combine/backend/minecraft/render/1.21.10",
-        "//combine/core/data",
-        "//touchcontroller/api",
         "//touchcontroller/buildinfo",
-        "//touchcontroller/common/api",
         "//touchcontroller/common/config",
         "//touchcontroller/common/config/data",
         "//touchcontroller/common/config/holder",
@@ -75,11 +69,11 @@ kt_merge_library(
         "//touchcontroller/common/model",
         "//touchcontroller/common/platform/provider",
         "//touchcontroller/common/ui/config/screen",
+        "@neoforge_1_21_10//:io_github_llamalad7_mixinextras_neoforge",
         "@neoforge_1_21_10//:net_fabricmc_sponge_mixin",
         "@neoforge_1_21_10//:net_neoforged_bus",
         "@neoforge_1_21_10//:net_neoforged_fancymodloader_loader",
         "@neoforge_1_21_10//:net_neoforged_mergetool",
-        "@neoforge_1_21_10//:io_github_llamalad7_mixinextras_neoforge",
     ],
 )
 

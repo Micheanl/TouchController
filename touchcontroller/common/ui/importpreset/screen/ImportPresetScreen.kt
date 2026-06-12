@@ -14,8 +14,8 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import top.fifthlight.combine.core.data.Text
 import top.fifthlight.combine.core.modifier.Modifier
 import top.fifthlight.combine.core.modifier.placement.fillMaxWidth
-import top.fifthlight.combine.widget.ui.Button
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.widget.Button
+import top.fifthlight.combine.widget.Text
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.common.config.preset.builtin.key.BuiltinPresetKey
 import top.fifthlight.touchcontroller.common.ui.component.BuiltInPresetKeySelector

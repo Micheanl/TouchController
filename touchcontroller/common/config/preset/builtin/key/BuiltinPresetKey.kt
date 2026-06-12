@@ -98,7 +98,7 @@ class LayoutPresetsSerializer : KSerializer<BuiltinPresetKey.TopBarConfig> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor(
         serialName = "top.fifthlight.touchcontroller.common.config.preset.builtin.key.BuiltinPresetKey.TopBarConfig",
     ) {
-        element("widgets", widgetsSerializer.descriptor, isOptional = true)
+        element("widget", widgetsSerializer.descriptor, isOptional = true)
     }
 
     override fun serialize(encoder: Encoder, value: BuiltinPresetKey.TopBarConfig) =

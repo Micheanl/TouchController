@@ -1,7 +1,6 @@
-package top.fifthlight.combine.widget.ui
+package top.fifthlight.combine.widget
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import top.fifthlight.combine.core.input.interaction.InteractionSource
@@ -9,53 +8,29 @@ import top.fifthlight.combine.core.input.interaction.MutableInteractionSource
 import top.fifthlight.combine.core.layout.Alignment
 import top.fifthlight.combine.core.layout.Arrangement
 import top.fifthlight.combine.core.modifier.Modifier
-import top.fifthlight.combine.core.modifier.drawing.border
 import top.fifthlight.combine.core.modifier.focus.focusable
-import top.fifthlight.combine.core.modifier.placement.padding
 import top.fifthlight.combine.core.modifier.pointer.clickable
 import top.fifthlight.combine.core.modifier.pointer.toggleable
-import top.fifthlight.combine.core.paint.Drawable
 import top.fifthlight.combine.core.sound.LocalSoundManager
 import top.fifthlight.combine.core.sound.SoundKind
 import top.fifthlight.combine.core.sound.SoundManager
-import top.fifthlight.combine.core.widget.layout.Column
-import top.fifthlight.combine.core.widget.layout.ColumnScope
 import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.core.widget.layout.RowScope
 import top.fifthlight.combine.theme.LocalTheme
-import top.fifthlight.combine.ui.style.ColorTheme
-import top.fifthlight.combine.ui.style.DrawableSet
-import top.fifthlight.combine.ui.style.LocalColorTheme
-
-data class RadioDrawableSet(
-    val unchecked: DrawableSet,
-    val checked: DrawableSet,
-) {
-    companion object {
-        val current
-            @Composable get() = LocalTheme.current.let { theme ->
-                RadioDrawableSet(
-                    unchecked = theme.drawables.radioUnchecked,
-                    checked = theme.drawables.radioChecked,
-                )
-            }
-    }
-}
+import top.fifthlight.combine.ui.style.OnOffDrawableSet
+import top.fifthlight.combine.ui.style.get
 
 @Composable
 fun RadioIcon(
     modifier: Modifier = Modifier,
     interactionSource: InteractionSource,
-    drawableSet: RadioDrawableSet = RadioDrawableSet.current,
+    drawableSet: OnOffDrawableSet = LocalTheme.current.drawables.radio,
+    enabled: Boolean = true,
     value: Boolean,
 ) {
-    val currentDrawableSet = if (value) {
-        drawableSet.checked
-    } else {
-        drawableSet.unchecked
-    }
+    val currentDrawableSet = drawableSet[value]
     val state by widgetState(interactionSource)
-    val drawable = currentDrawableSet.getByState(state)
+    val drawable = currentDrawableSet.getByState(state, enabled = enabled)
 
     Icon(
         modifier = modifier,
@@ -64,59 +39,18 @@ fun RadioIcon(
 }
 
 @Composable
-fun RadioRow(
-    modifier: Modifier = Modifier,
-    border: Drawable = LocalTheme.current.drawables.radioBoxBorder,
-    content: @Composable RowScope.() -> Unit
-) {
-    Row(
-        modifier = Modifier
-            .padding(4)
-            .border(border)
-            .then(modifier),
-        horizontalArrangement = Arrangement.spacedBy(4),
-    ) {
-        CompositionLocalProvider(
-            LocalColorTheme provides ColorTheme.light,
-        ) {
-            content()
-        }
-    }
-}
-
-@Composable
-fun RadioColumn(
-    modifier: Modifier = Modifier,
-    border: Drawable = LocalTheme.current.drawables.radioBoxBorder,
-    content: @Composable ColumnScope.() -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .padding(4)
-            .border(border)
-            .then(modifier),
-        verticalArrangement = Arrangement.spacedBy(4),
-    ) {
-        CompositionLocalProvider(
-            LocalColorTheme provides ColorTheme.light,
-        ) {
-            content()
-        }
-    }
-}
-
-@Composable
 fun RadioBoxItem(
     modifier: Modifier = Modifier,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     value: Boolean,
     onValueChanged: (Boolean) -> Unit,
+    enabled: Boolean = true,
     clickSound: Boolean = true,
     content: @Composable RowScope.() -> Unit,
 ) {
     val soundManager: SoundManager = LocalSoundManager.current
     Row(
-        modifier = modifier.toggleable(
+        modifier = if (enabled) modifier.toggleable(
             interactionSource = interactionSource,
             value = value,
             onValueChanged = {
@@ -125,12 +59,13 @@ fun RadioBoxItem(
                 }
                 onValueChanged(it)
             },
-        ),
+        ) else modifier,
         horizontalArrangement = Arrangement.spacedBy(4),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         RadioIcon(
             interactionSource = interactionSource,
+            enabled = enabled,
             value = value,
         )
         content()
@@ -140,13 +75,14 @@ fun RadioBoxItem(
 @Composable
 fun Radio(
     modifier: Modifier = Modifier,
-    drawableSet: RadioDrawableSet = RadioDrawableSet.current,
+    drawableSet: OnOffDrawableSet = LocalTheme.current.drawables.radio,
+    enabled: Boolean = true,
     value: Boolean,
     onValueChanged: ((Boolean) -> Unit)?,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
-    val modifier = if (onValueChanged == null) {
+    val modifier = if (onValueChanged == null || !enabled) {
         modifier
     } else {
         Modifier
@@ -161,6 +97,7 @@ fun Radio(
         modifier = modifier,
         interactionSource = interactionSource,
         drawableSet = drawableSet,
+        enabled = enabled,
         value = value,
     )
 }

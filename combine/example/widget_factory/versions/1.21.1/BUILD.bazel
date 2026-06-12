@@ -8,6 +8,8 @@ kt_merge_library(
     resource_strip_prefix = "combine/example/widget_factory/versions/1.21.1/resources",
     resources = glob(["resources/**"]),
     runtime_deps = [
+        "//combine/backend/minecraft/versions/1.21.1",
+        # TODO: add atlas and ninepatch as runtime_deps in *_atlas
         "//combine/core/util/atlas",
         "//combine/core/util/ninepatch",
         "//combine/theme/blackstone:blackstone_atlas",

@@ -5,7 +5,6 @@ kt_merge_library(
     srcs = glob(["*.kt"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//combine/core/data",
         "//combine/core/paint",
         "//combine/data",
     ],

@@ -1,4 +1,4 @@
-package top.fifthlight.combine.widget.ui
+package top.fifthlight.combine.widget
 
 import androidx.compose.runtime.*
 import kotlinx.coroutines.delay
@@ -34,6 +34,7 @@ import top.fifthlight.combine.ui.style.DrawableSet
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntRect
 import top.fifthlight.data.IntSize
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun EditText(
@@ -107,7 +108,7 @@ fun EditText(
         if (focused) {
             while (true) {
                 cursorShow = !cursorShow
-                delay(500)
+                delay(500.milliseconds)
             }
         } else {
             cursorShow = false
@@ -256,23 +257,15 @@ fun EditText(
             val selectionStartX = TextMeasurer.measure(fullText.substring(0, textInputState.selection.start)).width
             val selectionWidth = TextMeasurer.measure(textInputState.selectionText).width
 
-            if (selectionWidth > 0) {
-                canvas.fillRect(
-                    offset = IntOffset(selectionStartX, offsetY),
-                    size = IntSize(selectionWidth, textSize.height),
-                    color = Colors.GRAY,
-                )
-            }
-
             val cursorWidth = 1
-            // 计算光标位置
+            // Calculate the cursor position
             val cursorX = if (textInputState.selectionLeft) {
                 selectionStartX
             } else {
                 selectionStartX + selectionWidth
             }
 
-            // 调整滚动偏移量以确保光标在可见区域中
+            // Ensure the cursor is visible
             val visibleAreaStart = scrollOffset
             val visibleAreaEnd = scrollOffset + node.width
             if (cursorX < visibleAreaStart) {
@@ -281,16 +274,23 @@ fun EditText(
                 scrollOffset = cursorX + cursorWidth - node.width
             }
 
-            // 确保滚动偏移量在范围内
+            // Clamp scroll offset to width
             scrollOffset = scrollOffset.coerceIn(0, (textSize.width - node.width + cursorWidth).coerceAtLeast(0))
 
-            // 记录光标矩形（用于输入法）
+            // Report cursor rect to IME
             cursorRect = IntRect(
                 IntOffset(cursorX - scrollOffset, offsetY) + node.absolutePosition,
                 IntSize(1, textSize.height)
             )
 
-            // 绘制光标（如果需要）
+            if (selectionWidth > 0) {
+                canvas.fillRect(
+                    offset = IntOffset(selectionStartX - scrollOffset, offsetY),
+                    size = IntSize(selectionWidth, textSize.height),
+                    color = Colors.GRAY,
+                )
+            }
+
             if (cursorShow) {
                 canvas.fillRect(
                     offset = IntOffset(cursorX - scrollOffset, offsetY),
@@ -299,7 +299,7 @@ fun EditText(
                 )
             }
 
-            // 构建富文本（处理预编辑文本的下划线）
+            // Generate underlined text for composition
             val styledText = TextFactory.build {
                 if (textInputState.composition != TextRange.EMPTY) {
                     val beforeComposition = fullText.take(textInputState.composition.start)
@@ -313,11 +313,11 @@ fun EditText(
                 }
             }
 
-            // 绘制整个富文本
+            // Render the text
             canvas.drawText(
                 offset = IntOffset(-scrollOffset, offsetY),
                 text = styledText,
-                color = Colors.WHITE
+                color = Colors.WHITE,
             )
         }
     }

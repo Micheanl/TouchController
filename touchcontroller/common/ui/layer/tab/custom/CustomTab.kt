@@ -18,14 +18,15 @@ import top.fifthlight.combine.core.modifier.placement.*
 import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
-import top.fifthlight.combine.widget.ui.*
+import top.fifthlight.combine.theme.blackstone.widget.AlertDialog
+import top.fifthlight.combine.widget.*
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.assets.texture.Textures
 import top.fifthlight.touchcontroller.common.config.condition.CustomLayerConditionKey
 import top.fifthlight.touchcontroller.common.ui.layer.tab.LayerConditionTab
 import top.fifthlight.touchcontroller.common.ui.layer.tab.LocalLayerConditionTabContext
 import top.fifthlight.touchcontroller.common.ui.layer.tab.custom.model.CustomTabModel
-import top.fifthlight.touchcontroller.common.ui.widget.ListButton
+import top.fifthlight.combine.theme.blackstone.widget.ListButton
 
 object CustomTab : LayerConditionTab() {
     @Composable
@@ -51,7 +52,7 @@ object CustomTab : LayerConditionTab() {
             title = {
                 Text(Text.translatable(Texts.SCREEN_LAYER_EDITOR_CUSTOM_CONDITION_EDIT))
             },
-            action = {
+            actions = {
                 val editState = tabState.editState
                 GuideButton(
                     onClick = {

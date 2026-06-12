@@ -26,7 +26,6 @@ kt_merge_library(
         "**/*.kt",
         "**/*.java",
     ]),
-    actual = True,
     merge_deps = [
         "//touchcontroller/versions/fabric/gal/key/26.1",
     ],

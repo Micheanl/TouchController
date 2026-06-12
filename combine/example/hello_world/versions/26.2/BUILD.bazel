@@ -70,6 +70,7 @@ java_binary(
         ":hello_world_unmerged",
         "//blazesdl/26.2:blazesdl_unmerged",
         "//combine/backend/minecraft/fabric:meta_jar",
+        "//combine/backend/minecraft/versions/26.2",
         "//combine/backend/minecraft/versions/26.2:meta_jar",
         "//game/26.2:game_client",
         "//game/26.2:game_client_libraries",

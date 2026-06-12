@@ -9,7 +9,7 @@ import net.minecraft.client.KeyMapping
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.resources.Identifier
 import org.lwjgl.glfw.GLFW
-import top.fifthlight.combine.core.data.TextFactoryFactory
+import top.fifthlight.combine.core.data.Text
 import top.fifthlight.combine.core.screen.ScreenFactoryFactory
 import top.fifthlight.combine.example.widgetfactory.common.WidgetFactory
 
@@ -24,7 +24,7 @@ class WidgetFactoryMod : ClientModInitializer, ModMenuApi {
         ScreenFactoryFactory.of().getScreen(
             parent = parent,
             renderBackground = true,
-            title = TextFactoryFactory.of().literal("Widget Factory"),
+            title = Text.literal("Widget Factory"),
         ) {
             WidgetFactory()
         } as Screen
@@ -42,7 +42,7 @@ class WidgetFactoryMod : ClientModInitializer, ModMenuApi {
             client.setScreen(
                 ScreenFactoryFactory.of().getScreen(
                     parent = null,
-                    title = TextFactoryFactory.of().literal("Widget Factory"),
+                    title = Text.literal("Widget Factory"),
                 ) {
                     WidgetFactory()
                 } as Screen

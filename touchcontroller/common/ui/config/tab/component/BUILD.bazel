@@ -6,7 +6,6 @@ kt_merge_library(
     merge_deps = [
         "//touchcontroller/common/ui/config/tab",
         "//touchcontroller/common/ui/theme",
-        "//touchcontroller/common/ui/widget",
     ],
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
@@ -19,8 +18,8 @@ kt_merge_library(
         "//combine/core/modifier/scroll",
         "//combine/core/paint",
         "//combine/core/widget/layout",
+        "//combine/theme/blackstone",
         "//combine/widget",
-        "//touchcontroller/resources/texture:texture_lib",
         "@maven//:cafe_adriel_voyager_voyager_navigator_desktop",
     ],
 )

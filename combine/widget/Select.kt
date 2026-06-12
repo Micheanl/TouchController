@@ -1,4 +1,4 @@
-package top.fifthlight.combine.widget.ui
+package top.fifthlight.combine.widget
 
 import androidx.compose.runtime.*
 import top.fifthlight.combine.core.data.plus
@@ -15,25 +15,6 @@ import top.fifthlight.combine.core.widget.layout.RowScope
 import top.fifthlight.combine.theme.LocalTheme
 import top.fifthlight.combine.ui.style.*
 import top.fifthlight.data.IntRect
-
-data class SelectDrawableSet(
-    val menuBox: DrawableSet,
-    val floatPanel: Drawable,
-    val itemUnselected: DrawableSet,
-    val itemSelected: DrawableSet,
-) {
-    companion object {
-        val current
-            @Composable get() = LocalTheme.current.let { theme ->
-                SelectDrawableSet(
-                    menuBox = theme.drawables.selectMenuBox,
-                    floatPanel = theme.drawables.selectFloatPanel,
-                    itemUnselected = theme.drawables.selectItemUnselected,
-                    itemSelected = theme.drawables.selectItemSelected,
-                )
-            }
-    }
-}
 
 @Composable
 fun SelectIcon(
@@ -55,7 +36,8 @@ fun SelectIcon(
 @Composable
 fun Select(
     modifier: Modifier = Modifier,
-    drawableSet: SelectDrawableSet = SelectDrawableSet.current,
+    menuBoxDrawableSet: DrawableSet = LocalTheme.current.drawables.selectMenuBox,
+    floatPanelDrawableSet: Drawable = LocalTheme.current.drawables.selectFloatPanel,
     colorThemeSet: ColorThemeSet = LocalTheme.current.colors.select,
     textStyleSet: TextStyleSet = LocalTheme.current.textStyles.select,
     expanded: Boolean = false,
@@ -65,7 +47,7 @@ fun Select(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val state by widgetState(interactionSource)
-    val menuTexture = drawableSet.menuBox.getByState(state)
+    val menuTexture = menuBoxDrawableSet.getByState(state)
     val colorTheme = colorThemeSet.getByState(state)
     val textTheme = textStyleSet.getByState(state) + LocalTextStyle.current
 
@@ -90,7 +72,7 @@ fun Select(
     }
 
     DropDownMenu(
-        border = drawableSet.floatPanel,
+        drawableSet = floatPanelDrawableSet,
         anchor = anchor,
         expanded = expanded,
         onDismissRequest = { onExpandedChanged(false) }

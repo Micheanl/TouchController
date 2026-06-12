@@ -12,7 +12,6 @@ kt_merge_library(
     deps = [
         "//combine/backend/minecraft/item/1.21.1",
         "//combine/item/data",
-        "//game/1.21.1:game_client_libraries",
         "//game/1.21.1:game_client_named",
         "//touchcontroller/common/config/item",
         "//touchcontroller/common/gal/entity",

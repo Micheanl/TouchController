@@ -1,4 +1,4 @@
-package top.fifthlight.combine.widget.ui
+package top.fifthlight.combine.widget
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -17,37 +17,20 @@ import top.fifthlight.combine.core.sound.SoundManager
 import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.core.widget.layout.RowScope
 import top.fifthlight.combine.theme.LocalTheme
-import top.fifthlight.combine.ui.style.DrawableSet
-
-data class CheckBoxDrawableSet(
-    val unchecked: DrawableSet,
-    val checked: DrawableSet,
-) {
-    companion object {
-        val current
-            @Composable get() = LocalTheme.current.drawables.let { drawables ->
-                CheckBoxDrawableSet(
-                    unchecked = drawables.uncheckedCheckBox,
-                    checked = drawables.checkboxChecked,
-                )
-            }
-    }
-}
+import top.fifthlight.combine.ui.style.OnOffDrawableSet
+import top.fifthlight.combine.ui.style.get
 
 @Composable
 fun CheckBoxIcon(
     modifier: Modifier = Modifier,
     interactionSource: InteractionSource,
-    drawableSet: CheckBoxDrawableSet = CheckBoxDrawableSet.current,
+    drawableSet: OnOffDrawableSet = LocalTheme.current.drawables.checkbox,
+    enabled: Boolean = true,
     value: Boolean,
 ) {
-    val currentDrawableSet = if (value) {
-        drawableSet.checked
-    } else {
-        drawableSet.unchecked
-    }
+    val currentDrawableSet = drawableSet[value]
     val state by widgetState(interactionSource)
-    val drawable = currentDrawableSet.getByState(state)
+    val drawable = currentDrawableSet.getByState(state, enabled = enabled)
 
     Icon(
         modifier = modifier,
@@ -57,15 +40,17 @@ fun CheckBoxIcon(
 
 @Composable
 fun CheckBoxItem(
+    modifier: Modifier = Modifier,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     value: Boolean,
     onValueChanged: (Boolean) -> Unit,
+    enabled: Boolean = true,
     clickSound: Boolean = true,
     content: @Composable RowScope.() -> Unit,
 ) {
     val soundManager: SoundManager = LocalSoundManager.current
     Row(
-        modifier = Modifier.toggleable(
+        modifier = if (enabled) modifier.toggleable(
             interactionSource = interactionSource,
             value = value,
             onValueChanged = {
@@ -74,12 +59,13 @@ fun CheckBoxItem(
                 }
                 onValueChanged(it)
             },
-        ),
+        ) else modifier,
         horizontalArrangement = Arrangement.spacedBy(4),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         CheckBoxIcon(
             interactionSource = interactionSource,
+            enabled = enabled,
             value = value,
         )
         content()
@@ -89,13 +75,14 @@ fun CheckBoxItem(
 @Composable
 fun CheckBox(
     modifier: Modifier = Modifier,
-    drawableSet: CheckBoxDrawableSet = CheckBoxDrawableSet.current,
+    drawableSet: OnOffDrawableSet = LocalTheme.current.drawables.checkbox,
+    enabled: Boolean = true,
     value: Boolean,
     onValueChanged: ((Boolean) -> Unit)?,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
-    val modifier = if (onValueChanged == null) {
+    val modifier = if (onValueChanged == null || !enabled) {
         modifier
     } else {
         Modifier
@@ -110,6 +97,7 @@ fun CheckBox(
         modifier = modifier,
         interactionSource = interactionSource,
         drawableSet = drawableSet,
+        enabled = enabled,
         value = value,
     )
 }

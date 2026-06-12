@@ -10,8 +10,8 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import top.fifthlight.combine.core.data.Text
 import top.fifthlight.combine.core.modifier.Modifier
 import top.fifthlight.combine.core.screen.LocalCloseHandler
-import top.fifthlight.combine.widget.ui.Text
-import top.fifthlight.combine.widget.ui.TextButton
+import top.fifthlight.combine.widget.Text
+import top.fifthlight.combine.widget.TextButton
 import top.fifthlight.touchcontroller.assets.lang.Texts
 
 @Composable

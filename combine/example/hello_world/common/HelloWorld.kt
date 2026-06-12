@@ -10,8 +10,8 @@ import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.theme.invoke
 import top.fifthlight.combine.theme.vanilla.VanillaTheme
-import top.fifthlight.combine.widget.ui.Button
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.widget.Button
+import top.fifthlight.combine.widget.Text
 
 @Composable
 fun HelloWorld() {

@@ -16,7 +16,9 @@ def _combine_theme_impl(
         deps,
         icon,
         vanilla_package,
-        atlas_package):
+        atlas_package,
+        atlas_width,
+        atlas_height):
     kt_texture_lib(
         name = name + "_texture_lib",
         dep = texture,
@@ -89,6 +91,8 @@ def _combine_theme_impl(
         name = name + "_atlas_pack",
         dep = texture,
         namespace = namespace,
+        width = atlas_width,
+        height = atlas_height,
     )
 
     kt_atlas_lib(
@@ -138,6 +142,8 @@ combine_theme = macro(
         "icon": attr.label(allow_single_file = True, configurable = False),
         "vanilla_package": attr.string(mandatory = False),
         "atlas_package": attr.string(mandatory = False),
+        "atlas_width": attr.int(mandatory = False, default = 128),
+        "atlas_height": attr.int(mandatory = False, default = 128),
     },
     implementation = _combine_theme_impl,
 )

@@ -26,7 +26,11 @@ import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.FlowRow
 import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.core.widget.layout.Spacer
-import top.fifthlight.combine.widget.ui.*
+import top.fifthlight.combine.theme.blackstone.widget.AlertDialog
+import top.fifthlight.combine.theme.blackstone.widget.ListButton
+import top.fifthlight.combine.theme.blackstone.widget.NavigationButton
+import top.fifthlight.combine.theme.blackstone.widget.RadioRow
+import top.fifthlight.combine.widget.*
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntSize
@@ -44,9 +48,7 @@ import top.fifthlight.touchcontroller.common.gal.key.KeyBindingHandler
 import top.fifthlight.touchcontroller.common.gal.key.KeyBindingHandlerFactory
 import top.fifthlight.touchcontroller.common.layout.align.Align
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
-import top.fifthlight.touchcontroller.common.ui.widget.ListButton
 import top.fifthlight.touchcontroller.common.ui.widget.Scaffold
-import top.fifthlight.touchcontroller.common.ui.widget.TabButton
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.AppBar
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.BackButton
 
@@ -809,7 +811,7 @@ class KeyBindingProperty<Config : ControllerWidget>(
                 title = {
                     Text(Text.translatable(Texts.WIDGET_KEY_BINDING_SELECT_TITLE))
                 },
-                action = {
+                actions = {
                     Button(onClick = {
                         showDialog = false
                     }) {
@@ -836,7 +838,7 @@ class KeyBindingProperty<Config : ControllerWidget>(
                     ) {
                         for (category in keyCategories) {
                             val firstKey = keyBindingsWithCategories[category]?.firstOrNull() ?: continue
-                            TabButton(
+                            NavigationButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 checked = selectedCategory == category,
                                 onClick = { selectedCategory = category }

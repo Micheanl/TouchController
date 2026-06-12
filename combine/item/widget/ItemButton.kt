@@ -11,8 +11,8 @@ import top.fifthlight.combine.core.paint.Colors
 import top.fifthlight.combine.core.sound.LocalSoundManager
 import top.fifthlight.combine.core.sound.SoundKind
 import top.fifthlight.combine.item.data.ItemStack
-import top.fifthlight.combine.widget.ui.WidgetState
-import top.fifthlight.combine.widget.ui.widgetState
+import top.fifthlight.combine.widget.WidgetState
+import top.fifthlight.combine.widget.widgetState
 
 @Composable
 fun ItemButton(

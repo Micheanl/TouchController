@@ -28,6 +28,7 @@ kt_merge_library(
         "//combine/core/screen",
         "//combine/core/widget/layout",
         "//combine/data",
+        "//combine/theme/blackstone",
         "//combine/widget",
         "@maven//:cafe_adriel_voyager_voyager_navigator_desktop",
         "@maven//:org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm",

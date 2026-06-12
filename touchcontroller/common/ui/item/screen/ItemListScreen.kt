@@ -23,9 +23,10 @@ import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.item.data.Item
 import top.fifthlight.combine.item.widget.Item
-import top.fifthlight.combine.widget.ui.Icon
-import top.fifthlight.combine.widget.ui.IconButton
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.theme.blackstone.widget.LocalListButtonTheme
+import top.fifthlight.combine.widget.Icon
+import top.fifthlight.combine.widget.IconButton
+import top.fifthlight.combine.widget.Text
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.assets.texture.Textures
 import top.fifthlight.touchcontroller.common.gal.gamestate.GameState
@@ -74,7 +75,7 @@ class ItemListScreen(
                             ) {
                                 Row(
                                     modifier = Modifier
-                                        .border(LocalTouchControllerTheme.current.listButtonDrawablesUnchecked.normal)
+                                        .border(LocalListButtonTheme.current.drawableSet.off.normal)
                                         .weight(1f)
                                         .fillMaxHeight(),
                                     verticalAlignment = Alignment.CenterVertically,

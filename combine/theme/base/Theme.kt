@@ -21,12 +21,8 @@ data class Theme(
 
         val textButton: DrawableSet = EmptyDrawableSet,
 
-        val alertDialogBackground: Drawable = Drawable.Empty,
-
-        val uncheckedCheckBox: DrawableSet = EmptyDrawableSet,
-        val checkboxChecked: DrawableSet = uncheckedCheckBox,
-
-        val checkBoxButton: DrawableSet = EmptyDrawableSet,
+        val checkbox: OnOffDrawableSet = OnOffDrawableSet(EmptyDrawableSet),
+        val radio: OnOffDrawableSet = checkbox,
 
         val colorPickerHandleChoice: Drawable = Drawable.Empty,
         val colorPickerSliderHandleHollow: DrawableSet = EmptyDrawableSet,
@@ -46,18 +42,9 @@ data class Theme(
 
         val selectMenuBox: DrawableSet = EmptyDrawableSet,
         val selectFloatPanel: Drawable = Drawable.Empty,
-        val selectItemUnselected: DrawableSet = EmptyDrawableSet,
-        val selectItemSelected: DrawableSet = EmptyDrawableSet,
-
+        val selectItem: OnOffDrawableSet = OnOffDrawableSet(EmptyDrawableSet),
         val selectIconUp: Drawable = Drawable.Empty,
         val selectIconDown: Drawable = Drawable.Empty,
-
-        val radioUnchecked: DrawableSet = EmptyDrawableSet,
-        val radioChecked: DrawableSet = EmptyDrawableSet,
-
-        val radioBoxBorder: Drawable = Drawable.Empty,
-
-        val tab: DrawableSet = EmptyDrawableSet,
 
         val itemGridBackground: Drawable? = null,
     )
@@ -70,12 +57,24 @@ data class Theme(
         val guideButton: ColorThemeSet = button,
         val warningButton: ColorThemeSet = button,
 
+        val tabButton: OnOffColorSet = OnOffColorSet(button),
+
         val textButton: ColorThemeSet = button,
 
         val select: ColorThemeSet = ColorThemeSet(
             normal = ColorTheme.light,
             disabled = ColorTheme.light.copy(foreground = SECONDARY_WHITE)
         ),
+        val selectItem: OnOffColorSet = OnOffColorSet(
+            off = ColorThemeSet(
+                normal = ColorTheme.dark,
+                disabled = ColorTheme.dark.copy(foreground = SECONDARY_WHITE)
+            ),
+            on = ColorThemeSet(
+                normal = ColorTheme.light,
+                disabled = ColorTheme.light.copy(foreground = SECONDARY_WHITE)
+            ),
+        )
     )
 
     data class TextStyles(
@@ -90,4 +89,5 @@ data class Theme(
 }
 
 @Composable
-operator fun Theme.invoke(block: @Composable () -> Unit): Unit = CompositionLocalProvider(LocalTheme provides this, block)
+operator fun Theme.invoke(block: @Composable () -> Unit): Unit =
+    CompositionLocalProvider(LocalTheme provides this, block)

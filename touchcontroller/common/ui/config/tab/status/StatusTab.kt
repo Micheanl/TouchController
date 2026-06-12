@@ -20,7 +20,9 @@ import top.fifthlight.combine.core.modifier.placement.fillMaxWidth
 import top.fifthlight.combine.core.modifier.placement.padding
 import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.core.widget.layout.Column
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.theme.blackstone.widget.ListButton
+import top.fifthlight.combine.theme.blackstone.widget.LocalListButtonTheme
+import top.fifthlight.combine.widget.Text
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.common.config.data.StatusConfig
 import top.fifthlight.touchcontroller.common.ui.config.model.LocalConfigScreenModel
@@ -29,7 +31,6 @@ import top.fifthlight.touchcontroller.common.ui.config.tab.TabGroup
 import top.fifthlight.touchcontroller.common.ui.config.tab.TabOptions
 import top.fifthlight.touchcontroller.common.ui.config.tab.status.model.StatusTabModel
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
-import top.fifthlight.touchcontroller.common.ui.widget.ListButton
 
 object StatusTab : Tab() {
     override val options = TabOptions(
@@ -90,7 +91,7 @@ object StatusTab : Tab() {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(LocalTouchControllerTheme.current.listButtonDrawablesUnchecked.normal),
+                        .border(LocalListButtonTheme.current.drawableSet.off.normal),
                     verticalArrangement = Arrangement.spacedBy(8),
                 ) {
                     uiState.warningMessage?.let { Text(it) }

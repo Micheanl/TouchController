@@ -1,4 +1,4 @@
-package top.fifthlight.combine.widget.ui
+package top.fifthlight.combine.widget
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -14,11 +14,14 @@ import top.fifthlight.combine.core.modifier.drawing.clip
 import top.fifthlight.combine.core.modifier.focus.focusable
 import top.fifthlight.combine.core.modifier.placement.*
 import top.fifthlight.combine.core.modifier.pointer.clickable
-import top.fifthlight.combine.core.paint.Colors
 import top.fifthlight.combine.core.paint.Drawable
 import top.fifthlight.combine.core.widget.Popup
 import top.fifthlight.combine.core.widget.layout.Box
 import top.fifthlight.combine.core.widget.layout.Column
+import top.fifthlight.combine.theme.LocalTheme
+import top.fifthlight.combine.ui.style.OnOffColorSet
+import top.fifthlight.combine.ui.style.OnOffDrawableSet
+import top.fifthlight.combine.ui.style.get
 import top.fifthlight.data.IntRect
 import top.fifthlight.data.IntSize
 
@@ -43,7 +46,8 @@ fun DropdownMenuScope.DropdownItemList(
 @Composable
 fun <T> DropdownMenuScope.DropdownItemList(
     modifier: Modifier = Modifier,
-    drawableSet: SelectDrawableSet = SelectDrawableSet.current,
+    drawableSet: OnOffDrawableSet = LocalTheme.current.drawables.selectItem,
+    colorThemeSet: OnOffColorSet = LocalTheme.current.colors.selectItem,
     items: Collection<T>,
     textProvider: (T) -> Text,
     selectedIndex: Int = -1,
@@ -59,11 +63,8 @@ fun <T> DropdownMenuScope.DropdownItemList(
             val text = textProvider(item)
             val interactionSource = remember { MutableInteractionSource() }
             val state by widgetState(interactionSource)
-            val drawable = if (index == selectedIndex) {
-                drawableSet.itemSelected
-            } else {
-                drawableSet.itemUnselected
-            }.getByState(state)
+            val drawable = drawableSet[index == selectedIndex].getByState(state)
+            val colorTheme = colorThemeSet[index == selectedIndex].getByState(state)
             Text(
                 modifier = Modifier
                     .border(drawable)
@@ -72,11 +73,7 @@ fun <T> DropdownMenuScope.DropdownItemList(
                     }
                     .focusable(interactionSource)
                     .fillMaxWidth(),
-                color = if (index == selectedIndex) {
-                    Colors.BLACK
-                } else {
-                    Colors.WHITE
-                },
+                color = colorTheme.foreground,
                 text = text,
             )
         }
@@ -99,7 +96,7 @@ private data class DropdownMenuScopeImpl(
 @Composable
 fun DropDownMenu(
     anchor: IntRect,
-    border: Drawable = SelectDrawableSet.current.floatPanel,
+    drawableSet: Drawable = LocalTheme.current.drawables.selectFloatPanel,
     expandProgress: Float = 1f,
     onDismissRequest: () -> Unit,
     content: @Composable DropdownMenuScope.() -> Unit,
@@ -134,10 +131,10 @@ fun DropDownMenu(
                 }
             },
         ) {
-            val scope = DropdownMenuScopeImpl(anchor, border)
+            val scope = DropdownMenuScopeImpl(anchor, drawableSet)
             Box(
                 modifier = Modifier
-                    .border(border)
+                    .border(drawableSet)
                     .clip(width = 1f, height = expandProgress, anchorOffset = anchor.offset)
             ) {
                 content(scope)
@@ -149,7 +146,7 @@ fun DropDownMenu(
 @Composable
 fun DropDownMenu(
     anchor: IntRect,
-    border: Drawable = SelectDrawableSet.current.floatPanel,
+    drawableSet: Drawable = LocalTheme.current.drawables.selectFloatPanel,
     expanded: Boolean,
     onDismissRequest: () -> Unit,
     content: @Composable DropdownMenuScope.() -> Unit,
@@ -158,7 +155,7 @@ fun DropDownMenu(
     if (expandProgress != 0f) {
         DropDownMenu(
             anchor = anchor,
-            border = border,
+            drawableSet = drawableSet,
             expandProgress = expandProgress,
             onDismissRequest = onDismissRequest,
             content = content,

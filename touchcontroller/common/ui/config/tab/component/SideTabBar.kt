@@ -15,12 +15,12 @@ import top.fifthlight.combine.core.modifier.placement.padding
 import top.fifthlight.combine.core.modifier.placement.width
 import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.core.widget.layout.Column
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.theme.blackstone.widget.NavigationButton
+import top.fifthlight.combine.widget.Text
 import top.fifthlight.touchcontroller.common.ui.config.tab.Tab
 import top.fifthlight.touchcontroller.common.ui.config.tab.TabGroup
 import top.fifthlight.touchcontroller.common.ui.config.tab.TabOptions
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
-import top.fifthlight.touchcontroller.common.ui.widget.TabButton
 
 @Composable
 fun SideTabBar(
@@ -49,7 +49,7 @@ fun SideTabBar(
                 Column(verticalArrangement = Arrangement.spacedBy(4)) {
                     for (tab in tabs) {
                         val options = tab.options
-                        TabButton(
+                        NavigationButton(
                             modifier = Modifier.fillMaxWidth(),
                             checked = navigator?.lastItem == tab,
                             onClick = {

@@ -31,6 +31,7 @@ kt_merge_library(
         "//combine/core/text",
         "//combine/core/widget/layout",
         "//combine/data",
+        "//combine/theme/blackstone",
         "//combine/widget",
         "//touchcontroller/resources/texture:texture_lib",
         "@maven//:org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm",

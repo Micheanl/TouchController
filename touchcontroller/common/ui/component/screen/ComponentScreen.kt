@@ -20,10 +20,12 @@ import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.core.widget.layout.Box
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
-import top.fifthlight.combine.widget.ui.EditText
-import top.fifthlight.combine.widget.ui.Icon
-import top.fifthlight.combine.widget.ui.IconButton
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.theme.blackstone.widget.ListButton
+import top.fifthlight.combine.theme.blackstone.widget.LocalListButtonTheme
+import top.fifthlight.combine.widget.EditText
+import top.fifthlight.combine.widget.Icon
+import top.fifthlight.combine.widget.IconButton
+import top.fifthlight.combine.widget.Text
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.assets.texture.Textures
 import top.fifthlight.touchcontroller.common.gal.gamestate.GameState
@@ -32,7 +34,6 @@ import top.fifthlight.touchcontroller.common.gal.item.ItemDataComponentTypeProvi
 import top.fifthlight.touchcontroller.common.ui.component.model.ComponentScreenModel
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
 import top.fifthlight.touchcontroller.common.ui.widget.ItemShower
-import top.fifthlight.touchcontroller.common.ui.widget.ListButton
 import top.fifthlight.touchcontroller.common.ui.widget.Scaffold
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.AppBar
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.BackButton
@@ -83,7 +84,7 @@ class ComponentScreen(
                             ) {
                                 Row(
                                     modifier = Modifier
-                                        .border(LocalTouchControllerTheme.current.listButtonDrawablesUnchecked.normal)
+                                        .border(LocalListButtonTheme.current.drawableSet.off.normal)
                                         .weight(1f)
                                         .fillMaxHeight(),
                                     verticalAlignment = Alignment.CenterVertically,

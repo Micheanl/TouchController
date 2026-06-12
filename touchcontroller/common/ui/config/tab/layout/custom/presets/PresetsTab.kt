@@ -18,7 +18,10 @@ import top.fifthlight.combine.core.modifier.placement.*
 import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
-import top.fifthlight.combine.widget.ui.*
+import top.fifthlight.combine.theme.blackstone.widget.AlertDialog
+import top.fifthlight.combine.theme.blackstone.widget.ListButton
+import top.fifthlight.combine.theme.blackstone.widget.LocalNavigationButtonTheme
+import top.fifthlight.combine.widget.*
 import top.fifthlight.data.IntRect
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.assets.texture.Textures
@@ -28,8 +31,6 @@ import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.presets
 import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.tab.CustomTab
 import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.tab.LocalCustomTabContext
 import top.fifthlight.touchcontroller.common.ui.importpreset.screen.ImportPresetScreen
-import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
-import top.fifthlight.touchcontroller.common.ui.widget.ListButton
 import kotlin.uuid.Uuid
 
 @Composable
@@ -69,7 +70,7 @@ private fun PresetsList(
                         .minHeight(24)
                         .fillMaxHeight()
                         .anchor { anchor = it },
-                    drawableSet = LocalTouchControllerTheme.current.tabButtonDrawablesUnchecked,
+                    drawableSet = LocalNavigationButtonTheme.current.drawableSet.off,
                     onClick = {
                         expanded = true
                     },
@@ -166,7 +167,7 @@ object PresetsTab : CustomTab() {
             title = {
                 Text(Text.translatable(Texts.SCREEN_CUSTOM_CONTROL_LAYOUT_PRESETS_CREATE_EMPTY_PRESET))
             },
-            action = { state ->
+            actions = { state ->
                 GuideButton(
                     onClick = {
                         tabModel.createPreset(state)
@@ -254,7 +255,7 @@ object PresetsTab : CustomTab() {
             title = {
                 Text(Text.translatable(Texts.SCREEN_CUSTOM_CONTROL_LAYOUT_PRESETS_EDIT_PRESET))
             },
-            action = { state ->
+            actions = { state ->
                 GuideButton(
                     onClick = {
                         if (uiState.selectedPresetUuid == state.uuid) {
@@ -346,7 +347,7 @@ object PresetsTab : CustomTab() {
             value = tabState,
             valueTransformer = { tabState as? PresetsTabState.Delete },
             onDismissRequest = { tabModel.clearState() },
-            action = { state ->
+            actions = { state ->
                 WarningButton(
                     onClick = {
                         screenModel.deletePreset(state.uuid)
@@ -380,7 +381,7 @@ object PresetsTab : CustomTab() {
             title = {
                 Text(Text.translatable(Texts.SCREEN_CUSTOM_CONTROL_LAYOUT_PRESETS_PATH))
             },
-            action = { state ->
+            actions = { state ->
                 GuideButton(
                     onClick = {
                         tabModel.clearState()

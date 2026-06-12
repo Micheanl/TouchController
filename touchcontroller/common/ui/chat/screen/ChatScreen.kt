@@ -26,7 +26,8 @@ import top.fifthlight.combine.core.screen.ScreenFactoryFactory
 import top.fifthlight.combine.core.text.TextHitTestResult
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
-import top.fifthlight.combine.widget.ui.*
+import top.fifthlight.combine.theme.blackstone.widget.AlertDialog
+import top.fifthlight.combine.widget.*
 import top.fifthlight.mergetools.api.ActualConstructor
 import top.fifthlight.mergetools.api.ActualImpl
 import top.fifthlight.touchcontroller.assets.lang.Texts
@@ -59,7 +60,7 @@ private fun ChatScreen() {
             onDismissRequest = {
                 screenModel.closeSettingsDialog()
             },
-            action = {
+            actions = {
                 WarningButton(onClick = {
                     screenModel.resetSettings()
                 }) {

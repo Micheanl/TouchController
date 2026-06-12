@@ -1,4 +1,4 @@
-package top.fifthlight.combine.widget.ui
+package top.fifthlight.combine.widget
 
 import androidx.compose.runtime.*
 import top.fifthlight.combine.core.data.plus
@@ -83,7 +83,7 @@ fun TextButton(
     drawableSet: DrawableSet = LocalTheme.current.drawables.textButton,
     colorThemeSet: ColorThemeSet = LocalTheme.current.colors.textButton,
     textStyleSet: TextStyleSet = LocalTheme.current.textStyles.textButton,
-    padding: IntPadding = IntPadding(left = 8, right = 8, top = 1),
+    padding: IntPadding = IntPadding(left = 8, right = 8),
     minSize: IntSize = IntSize(width = 0, height = 20),
     enabled: Boolean = true,
     onClick: () -> Unit,

@@ -2,7 +2,7 @@ load("//combine/theme:texture_theme.bzl", "combine_theme")
 
 combine_theme(
     name = "blackstone",
-    srcs = glob(["*.kt"]),
+    srcs = glob(["**/*.kt"]),
     aspect_class = "top.fifthlight.combine.theme.blackstone.AspectProvider",
     atlas_package = "top.fifthlight.combine.theme.blackstone.atlas",
     icon = "icon.png",
@@ -19,4 +19,18 @@ combine_theme(
     texture = "//combine/theme/blackstone/texture",
     vanilla_package = "top.fifthlight.combine.theme.blackstone.vanilla",
     visibility = ["//visibility:public"],
+    deps = [
+        "//:compose",
+        "//combine/core/animation",
+        "//combine/core/data",
+        "//combine/core/layout",
+        "//combine/core/modifier",
+        "//combine/core/modifier/drawing",
+        "//combine/core/modifier/placement",
+        "//combine/core/modifier/pointer",
+        "//combine/core/widget",
+        "//combine/core/widget/layout",
+        "//combine/data",
+        "//combine/widget",
+    ],
 )

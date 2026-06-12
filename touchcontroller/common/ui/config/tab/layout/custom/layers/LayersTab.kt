@@ -18,7 +18,10 @@ import top.fifthlight.combine.core.modifier.scroll.verticalScroll
 import top.fifthlight.combine.core.widget.layout.Box
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
-import top.fifthlight.combine.widget.ui.*
+import top.fifthlight.combine.theme.blackstone.widget.AlertDialog
+import top.fifthlight.combine.theme.blackstone.widget.ListButton
+import top.fifthlight.combine.theme.blackstone.widget.LocalListButtonTheme
+import top.fifthlight.combine.widget.*
 import top.fifthlight.data.IntRect
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.assets.texture.Textures
@@ -31,8 +34,6 @@ import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.state.C
 import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.tab.CustomTab
 import top.fifthlight.touchcontroller.common.ui.config.tab.layout.custom.tab.LocalCustomTabContext
 import top.fifthlight.touchcontroller.common.ui.layer.screen.LayerEditorScreen
-import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
-import top.fifthlight.touchcontroller.common.ui.widget.ListButton
 
 @Composable
 private fun LayersList(
@@ -70,7 +71,7 @@ private fun LayersList(
                         .minHeight(24)
                         .fillMaxHeight()
                         .anchor { anchor = it },
-                    drawableSet = LocalTouchControllerTheme.current.listButtonDrawablesUnchecked,
+                    drawableSet = LocalListButtonTheme.current.drawableSet.off,
                     onClick = {
                         expanded = true
                     },
@@ -122,7 +123,7 @@ object LayersTab : CustomTab() {
             value = tabState,
             valueTransformer = { tabState as? LayersTabState.Delete },
             onDismissRequest = { tabModel.clearState() },
-            action = { state ->
+            actions = { state ->
                 WarningButton(
                     onClick = {
                         screenModel.deleteLayer(state.index)

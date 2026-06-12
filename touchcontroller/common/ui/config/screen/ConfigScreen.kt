@@ -20,7 +20,11 @@ import top.fifthlight.combine.core.screen.ScreenFactory
 import top.fifthlight.combine.core.widget.layout.Box
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
-import top.fifthlight.combine.widget.ui.*
+import top.fifthlight.combine.theme.blackstone.widget.AlertDialog
+import top.fifthlight.combine.widget.Button
+import top.fifthlight.combine.widget.GuideButton
+import top.fifthlight.combine.widget.Text
+import top.fifthlight.combine.widget.WarningButton
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.common.config.PresetConfig
 import top.fifthlight.touchcontroller.common.ui.config.model.ConfigScreenModel
@@ -57,7 +61,7 @@ private fun ConfigScreen() {
             title = {
                 Text(Text.translatable(Texts.WARNING_DEVELOPMENT_VERSION_TITLE))
             },
-            action = {
+            actions = {
                 GuideButton(onClick = { screenModel.closeDevelopmentDialog() }) {
                     Text(Text.translatable(Texts.WARNING_DEVELOPMENT_VERSION_OK))
                 }

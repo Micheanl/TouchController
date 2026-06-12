@@ -8,6 +8,7 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.descriptors.element
 import kotlinx.serialization.encoding.*
+import kotlin.math.ceil
 import kotlin.math.sqrt
 
 inline fun Size(size: Float) = Size(packFloats(size, size))
@@ -34,6 +35,7 @@ value class Size(private val packed: Long) {
     }
 
     fun toIntSize() = IntSize(width = width.toInt(), height = height.toInt())
+    fun ceilToIntSize() = IntSize(width = ceil(width).toInt(), height = ceil(height).toInt())
 
     operator fun component1() = width
     operator fun component2() = height

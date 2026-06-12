@@ -1,4 +1,4 @@
-package top.fifthlight.combine.widget.ui
+package top.fifthlight.combine.widget
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -14,6 +14,7 @@ import top.fifthlight.combine.ui.style.DrawableSet
 import top.fifthlight.data.IntOffset
 import top.fifthlight.data.IntRect
 import top.fifthlight.data.IntSize
+import kotlin.math.roundToInt
 
 data class SliderDrawableSet(
     val activeTrack: DrawableSet,
@@ -130,7 +131,7 @@ fun IntSlider(
     onValueChanged: (Int) -> Unit,
 ) {
     fun Int.toProgress() = (this - range.first).toFloat() / (range.last - range.first)
-    fun Float.toValue() = (this * (range.last - range.first)).toInt() + range.first
+    fun Float.toValue() = (this * (range.last - range.first)).roundToInt() + range.first
 
     Slider(
         modifier = modifier,

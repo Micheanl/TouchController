@@ -25,9 +25,10 @@ import top.fifthlight.combine.core.paint.Colors
 import top.fifthlight.combine.core.paint.TextureFactory
 import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
-import top.fifthlight.combine.widget.ui.Icon
-import top.fifthlight.combine.widget.ui.Link
-import top.fifthlight.combine.widget.ui.Text
+import top.fifthlight.combine.theme.blackstone.widget.LocalNavigationButtonTheme
+import top.fifthlight.combine.widget.Icon
+import top.fifthlight.combine.widget.Link
+import top.fifthlight.combine.widget.Text
 import top.fifthlight.data.IntPadding
 import top.fifthlight.data.IntSize
 import top.fifthlight.touchcontroller.assets.lang.Texts
@@ -149,7 +150,7 @@ object AboutTab : Tab() {
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .border(LocalTouchControllerTheme.current.tabButtonDrawablesUnchecked.normal),
+                                .border(LocalNavigationButtonTheme.current.drawableSet.off.normal),
                             verticalArrangement = Arrangement.spacedBy(4),
                         ) {
                             Row(

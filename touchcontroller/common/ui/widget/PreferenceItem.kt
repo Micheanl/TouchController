@@ -18,7 +18,7 @@ import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.ColumnScope
 import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.core.widget.layout.RowScope
-import top.fifthlight.combine.widget.ui.*
+import top.fifthlight.combine.widget.*
 import top.fifthlight.touchcontroller.assets.lang.Texts
 
 @Composable

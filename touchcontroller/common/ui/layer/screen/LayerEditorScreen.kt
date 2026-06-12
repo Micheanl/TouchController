@@ -26,7 +26,9 @@ import top.fifthlight.combine.core.widget.layout.Column
 import top.fifthlight.combine.core.widget.layout.Row
 import top.fifthlight.combine.item.data.ItemStackFactory
 import top.fifthlight.combine.item.widget.Item
-import top.fifthlight.combine.widget.ui.*
+import top.fifthlight.combine.theme.blackstone.widget.ListButton
+import top.fifthlight.combine.theme.blackstone.widget.LocalListButtonTheme
+import top.fifthlight.combine.widget.*
 import top.fifthlight.touchcontroller.assets.lang.Texts
 import top.fifthlight.touchcontroller.assets.texture.Textures
 import top.fifthlight.touchcontroller.common.config.condition.*
@@ -40,7 +42,6 @@ import top.fifthlight.touchcontroller.common.ui.layer.tab.LocalLayerConditionTab
 import top.fifthlight.touchcontroller.common.ui.layer.tab.all.allLayerConditionTabs
 import top.fifthlight.touchcontroller.common.ui.theme.LocalTouchControllerTheme
 import top.fifthlight.touchcontroller.common.ui.theme.TouchControllerTheme
-import top.fifthlight.touchcontroller.common.ui.widget.ListButton
 import top.fifthlight.touchcontroller.common.ui.widget.Scaffold
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.AppBar
 import top.fifthlight.touchcontroller.common.ui.widget.navigation.BackButton
@@ -60,7 +61,7 @@ private fun LayerConditionItem(
     ) {
         Row(
             modifier = Modifier
-                .border(LocalTouchControllerTheme.current.listButtonDrawablesUnchecked.normal)
+                .border(LocalListButtonTheme.current.drawableSet.off.normal)
                 .fillMaxHeight()
                 .weight(1f),
             verticalAlignment = Alignment.CenterVertically,
