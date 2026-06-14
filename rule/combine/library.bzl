@@ -31,6 +31,12 @@ def _kt_texture_source_impl(ctx):
         inputs = [],
         outputs = [output_file],
         executable = ctx.executable._generator_bin,
+        execution_requirements = {
+            "supports-workers": "1",
+            "supports-multiplex-workers": "1",
+            "supports-multiplex-sandboxing": "1",
+            "requires-worker-protocol": "proto",
+        },
         arguments = [args],
     )
 

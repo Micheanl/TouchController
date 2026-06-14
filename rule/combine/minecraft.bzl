@@ -47,6 +47,12 @@ def _atlas_pack_impl(ctx):
         inputs = texture_info.files,
         outputs = [atlas_png, metadata_file],
         executable = ctx.executable._generator_bin,
+        execution_requirements = {
+            "supports-workers": "1",
+            "supports-multiplex-workers": "1",
+            "supports-multiplex-sandboxing": "1",
+            "requires-worker-protocol": "proto",
+        },
         arguments = [gen_args],
     )
 
@@ -81,6 +87,12 @@ def _atlas_pack_impl(ctx):
         inputs = all_inputs,
         outputs = [output_file],
         executable = ctx.executable._mergetool,
+        execution_requirements = {
+            "supports-workers": "1",
+            "supports-multiplex-workers": "1",
+            "supports-multiplex-sandboxing": "1",
+            "requires-worker-protocol": "proto",
+        },
         arguments = [merge_args],
     )
 
@@ -162,6 +174,12 @@ def _vanilla_pack_impl(ctx):
         inputs = texture_info.files,
         outputs = [output_file],
         executable = ctx.executable._generator_bin,
+        execution_requirements = {
+            "supports-workers": "1",
+            "supports-multiplex-workers": "1",
+            "supports-multiplex-sandboxing": "1",
+            "requires-worker-protocol": "proto",
+        },
         arguments = [args],
     )
 
@@ -216,6 +234,12 @@ def _kt_vanilla_source_impl(ctx):
         inputs = texture_info.files,
         outputs = [output_file],
         executable = ctx.executable._generator_bin,
+        execution_requirements = {
+            "supports-workers": "1",
+            "supports-multiplex-workers": "1",
+            "supports-multiplex-sandboxing": "1",
+            "requires-worker-protocol": "proto",
+        },
         arguments = [args],
     )
 
@@ -327,6 +351,12 @@ def _kt_atlas_source_impl(ctx):
         inputs = depset([pack_info.atlas_metadata], transitive = [texture_info.files]),
         outputs = [output_file],
         executable = ctx.executable._generator_bin,
+        execution_requirements = {
+            "supports-workers": "1",
+            "supports-multiplex-workers": "1",
+            "supports-multiplex-sandboxing": "1",
+            "requires-worker-protocol": "proto",
+        },
         arguments = [args],
     )
 
