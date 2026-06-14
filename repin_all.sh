@@ -30,8 +30,10 @@ REPIN=1 bazel run @maven_fabric_1_21_8//:pin
 REPIN=1 bazel run @maven_fabric_1_21_9//:pin
 REPIN=1 bazel run @maven_fabric_1_21_10//:pin
 REPIN=1 bazel run @maven_fabric_1_21_11//:pin
+REPIN=1 bazel run @maven_fabric_25w14craftmine//:pin
 REPIN=1 bazel run @maven_fabric_26_1//:pin
 REPIN=1 bazel run @maven_fabric_26_1_1//:pin
+REPIN=1 bazel run @maven_fabric_26w14a//:pin
 REPIN=1 bazel run @maven_fabric_26_1_2//:pin
 REPIN=1 bazel run @maven_fabric_26_2//:pin
 bazel run @modrinth_pin//:pin

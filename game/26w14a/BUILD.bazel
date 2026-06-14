@@ -1,0 +1,12 @@
+load("//game:game.bzl", "game_version")
+
+game_version(
+    name = "game",
+    client = "@minecraft//26w14a:client",
+    client_assets = "@minecraft_assets//:assets_26w14a",
+    client_assets_version = "@minecraft_assets//:version_26w14a",
+    client_libraries = "@minecraft//26w14a:client_libraries",
+    server = "@minecraft//26w14a:server",
+    version = "26w14a",
+    visibility = ["//visibility:public"],
+)

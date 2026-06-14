@@ -206,6 +206,13 @@ fabric_versions = {
         "mixin": "0.16.5+mixin.0.8.7",
         "mixin_extras": "0.5.0",
     },
+    "25w14craftmine": {
+        "api": "0.119.7+25w14craftmine",
+        "loader": "0.16.12",
+        "placeholder_api": "2.6.3+25w14craftmine",
+        "mixin": "0.15.4+mixin.0.8.7",
+        "mixin_extras": "0.4.1",
+    },
     "26.1": {
         "intermediary": False,
         "api": "0.144.0+26.1",
@@ -221,6 +228,13 @@ fabric_versions = {
         "modmenu": "18.0.0-alpha.8",
         "mixin": "0.17.0+mixin.0.8.7",
         "mixin_extras": "0.5.0",
+    },
+    "26w14a": {
+        "intermediary": False,
+        "api": "0.145.2+26w14a",
+        "loader": "0.18.6",
+        "mixin": "0.17.0+mixin.0.8.7",
+        "mixin_extras": "0.5.3",
     },
     "26.1.2": {
         "intermediary": False,
@@ -255,9 +269,7 @@ fabric_versions = {
             artifacts = [
                             "net.fabricmc.fabric-api:fabric-api:%s" % entry["api"],
                             "net.fabricmc:fabric-loader:%s" % entry["loader"],
-                            ("io.github.prospector:modmenu:%s" % entry["modmenu"]) if "modmenu_legacy" in entry else ("com.terraformersmc:modmenu:%s" % entry["modmenu"]),
                             "net.fabricmc:sponge-mixin:%s" % entry["mixin"],
-                            "net.fabricmc:fabric-language-kotlin:1.13.5+kotlin.2.2.10",
                         ] + (["eu.pb4:placeholder-api:%s" % entry["placeholder_api"]] if "placeholder_api" in entry else []) +
                         (["io.github.llamalad7:mixinextras-fabric:%s" % entry["mixin_extras"]] if "mixin_extras" in entry else []) +
                         (["net.fabricmc:intermediary:%s:v2" % version] if entry.get("intermediary", True) else []),
@@ -270,6 +282,20 @@ fabric_versions = {
                 "https://maven.nucleoid.xyz/",
             ],
         ),
+        maven.artifact(
+            name = "maven_fabric_%s" % version.replace(".", "_"),
+            group = "net.fabricmc",
+            artifact = "fabric-language-kotlin",
+            version = "1.13.5+kotlin.2.2.10",
+            exclusions = ["net.fabricmc:fabric-loader"],
+        ),
+        maven.artifact(
+            name = "maven_fabric_%s" % version.replace(".", "_"),
+            group = "io.github.prospector" if "modmenu_legacy" in entry else "com.terraformersmc",
+            artifact = "modmenu",
+            version = entry["modmenu"],
+            exclusions = ["net.fabricmc:fabric-loader"],
+        ) if "modmenu" in entry else (),
         use_repo(maven, "maven_fabric_%s" % version.replace(".", "_")),
     )
     for version, entry in fabric_versions.items()
@@ -285,7 +311,6 @@ fabric_versions = {
                             "net.legacyfabric:yarn:%s:v2" % entry["yarn"],
                             "net.fabricmc:fabric-loader:%s" % entry["loader"],
                             "net.fabricmc:sponge-mixin:%s" % entry["mixin"],
-                            "net.fabricmc:fabric-language-kotlin:1.13.5+kotlin.2.2.10",
                         ] + (["io.github.llamalad7:mixinextras-fabric:%s" % entry["mixin_extras"]] if "mixin_extras" in entry else []) +
                         (["io.github.llamalad7:mixinextras-fabric:%s" % entry["mixin_extras"]] if "mixin_extras" in entry else []) +
                         (["net.legacyfabric.legacy-fabric-api:legacy-fabric-api:%s" % entry["api"]] if "api" in entry else []),
@@ -296,6 +321,13 @@ fabric_versions = {
                 "https://maven.fabricmc.net/",
                 "https://repo1.maven.org/maven2/",
             ],
+        ),
+        maven.artifact(
+            name = "maven_fabric_%s" % version.replace(".", "_"),
+            group = "net.fabricmc",
+            artifact = "fabric-language-kotlin",
+            version = "1.13.5+kotlin.2.2.10",
+            exclusions = ["net.fabricmc:fabric-loader"],
         ),
         use_repo(maven, "maven_fabric_%s" % version.replace(".", "_")),
     )
@@ -312,8 +344,6 @@ fabric_versions = {
                 "net.glasslauncher:biny:%s:v2" % entry["yarn"],
                 "net.fabricmc:fabric-loader:%s" % entry["loader"],
                 "net.fabricmc:sponge-mixin:%s" % entry["mixin"],
-                "net.fabricmc:fabric-language-kotlin:1.13.5+kotlin.2.2.10",
-                "net.glasslauncher.mods:ModMenu:%s" % entry["modmenu"],
             ] + (["io.github.llamalad7:mixinextras-fabric:%s" % entry["mixin_extras"]] if "mixin_extras" in entry else []),
             fetch_sources = True,
             lock_file = "//game/%s:maven_install_fabric.json" % version,
@@ -324,6 +354,20 @@ fabric_versions = {
                 "https://repo1.maven.org/maven2/",
             ],
         ),
+        maven.artifact(
+            name = "maven_fabric_%s" % version.replace(".", "_"),
+            group = "net.fabricmc",
+            artifact = "fabric-language-kotlin",
+            version = "1.13.5+kotlin.2.2.10",
+            exclusions = ["net.fabricmc:fabric-loader"],
+        ),
+        maven.artifact(
+            name = "maven_fabric_%s" % version.replace(".", "_"),
+            group = "net.glasslauncher.mods",
+            artifact = "ModMenu",
+            version = entry["modmenu"],
+            exclusions = ["net.fabricmc:fabric-loader"],
+        ) if "modmenu" in entry else (),
         use_repo(maven, "maven_fabric_%s" % version.replace(".", "_")),
     )
     for version, entry in fabric_versions.items()

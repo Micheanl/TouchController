@@ -1,0 +1,15 @@
+load("//game:game.bzl", "game_version")
+
+game_version(
+    name = "game",
+    client = "@minecraft//25w14craftmine:client",
+    client_assets = "@minecraft_assets//:assets_25w14craftmine",
+    client_assets_version = "@minecraft_assets//:version_25w14craftmine",
+    client_libraries = "@minecraft//25w14craftmine:client_libraries",
+    client_mappings = "@minecraft//25w14craftmine:client_mappings",
+    intermediary = "@maven_fabric_25w14craftmine//:net_fabricmc_intermediary_v2",
+    neoforge = "@neoforge_25w14craftmine//:neoforge",
+    server = "@minecraft//25w14craftmine:server",
+    version = "25w14craftmine",
+    visibility = ["//visibility:public"],
+)

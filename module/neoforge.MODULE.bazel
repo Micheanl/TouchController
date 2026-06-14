@@ -220,6 +220,15 @@ neoforge_versions = {
         "neoforge_sources_sha256": "eb96678adb747d7792d3c5de509fe81d37a771019ccef04011146399d8801112",
         "neoforge_universal_sha256": "0bba6d7cedc69ab53a308aacc8acd270e0739a9ce7341aed5185dc3480ca2673",
     },
+    "25w14craftmine": {
+        "java_target": 21,
+        "neoform_version": "25w14craftmine-20250401.222524",
+        "neoform_sha256": "3bda8360a7d649667b1aac7bdece237dff3822767a1b976f4709c5ec5ff02723",
+        "neoforge_version": "0.25w14craftmine.5-beta",
+        "neoforge_userdev_sha256": "939fb0361dca04b8c128f385b5fbeb526da4a4538d6df2ab8a604031d824d94a",
+        "neoforge_sources_sha256": "31d3ce4ec793bdcad26a5a19b04dff2c895555cb8eacfd355522606eba3c4fb7",
+        "neoforge_universal_sha256": "6799a076c7707963305f8f31019f215e246355712834ffe7673bb1f9fe989d47",
+    },
     "26.1": {
         "java_target": 25,
         "version": "26.1",

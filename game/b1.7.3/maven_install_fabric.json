@@ -3,10 +3,10 @@
   "__INPUT_ARTIFACTS_HASH": {
     "babric:intermediary": 601047205,
     "io.github.llamalad7:mixinextras-fabric": 1058344455,
-    "net.fabricmc:fabric-language-kotlin": 380334501,
+    "net.fabricmc:fabric-language-kotlin": -61944167,
     "net.fabricmc:fabric-loader": -861132213,
     "net.fabricmc:sponge-mixin": -457681575,
-    "net.glasslauncher.mods:ModMenu": 1272960732,
+    "net.glasslauncher.mods:ModMenu": -1489067032,
     "net.glasslauncher:biny": 1623736788,
     "repositories": 1289188188
   },
@@ -18,7 +18,7 @@
     "com.google.guava:guava:jar:sources": 1813664589,
     "io.github.llamalad7:mixinextras-fabric": 929750148,
     "io.github.llamalad7:mixinextras-fabric:jar:sources": 1026531141,
-    "net.fabricmc:fabric-language-kotlin": -1898611323,
+    "net.fabricmc:fabric-language-kotlin": -1605597024,
     "net.fabricmc:fabric-language-kotlin:jar:sources": 575372654,
     "net.fabricmc:fabric-loader": -1206104152,
     "net.fabricmc:fabric-loader:jar:sources": 535724764,
@@ -275,7 +275,6 @@
   },
   "dependencies": {
     "net.fabricmc:fabric-language-kotlin": [
-      "net.fabricmc:fabric-loader",
       "org.jetbrains.kotlin:kotlin-reflect",
       "org.jetbrains.kotlin:kotlin-stdlib",
       "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
