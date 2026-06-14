@@ -1,0 +1,27 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_common_library", "kt_jvm_library")
+
+kt_common_library(
+    name = "common",
+    srcs = glob(["commonMain/**/*.kt"]),
+    fragment_name = "commonMain",
+)
+
+kt_common_library(
+    name = "jvm",
+    srcs = glob(["jvmMain/**/*.kt"]),
+    fragment_name = "jvmMain",
+    deps = [":common"],
+)
+
+kt_jvm_library(
+    name = "lifecycle_runtime_desktop",
+    srcs = glob(["desktopMain/**/*.kt"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        ":jvm",
+        "@maven//:androidx_annotation_annotation_jvm",
+        "@maven//:androidx_arch_core_core_common",
+        "@maven//:androidx_lifecycle_lifecycle_common_jvm",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm",
+    ],
+)

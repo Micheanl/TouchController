@@ -1,0 +1,27 @@
+"MODULE.bazel androidx.savedstate source build"
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "androidx_savedstate",
+    build_file = "@//third_party/androidx_savedstate:BUILD.savedstate_desktop.bazel",
+    sha256 = "e6d4ba23fb5155e6190ee0d6ddf05dc8b6c723fdb7c0b0dd4d0921a234e13c59",
+    url = "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-desktop/1.3.3/savedstate-desktop-1.3.3-sources.jar",
+)
+
+http_archive(
+    name = "androidx_savedstate_compose",
+    build_file = "@//third_party/androidx_savedstate:BUILD.savedstate_compose_desktop.bazel",
+    sha256 = "87632984d47b10696a5b49c80c6876e0e1e65713695807959e10496b8912ba45",
+    url = "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-compose-desktop/1.3.3/savedstate-compose-desktop-1.3.3-sources.jar",
+)
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.override(
+    coordinates = "androidx.savedstate:savedstate-desktop",
+    target = "@androidx_savedstate//:savedstate_desktop",
+)
+maven.override(
+    coordinates = "androidx.savedstate:savedstate-compose-desktop",
+    target = "@androidx_savedstate_compose//:savedstate_compose_desktop",
+)

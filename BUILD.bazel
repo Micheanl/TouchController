@@ -89,7 +89,7 @@ define_kt_toolchain(
         "//conditions:default": "error",
     }),
     experimental_use_abi_jars = True,
-    jvm_target = "21",
+    jvm_target = "1.8",
     kotlinc_options = ":kotlinc_opts",
     language_version = "2.2",
 )

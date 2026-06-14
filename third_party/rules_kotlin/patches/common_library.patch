@@ -1,0 +1,363 @@
+--- a/kotlin/internal/defs.bzl
++++ b/kotlin/internal/defs.bzl
+@@ -15,6 +15,7 @@ load(
+     "//src/main/starlark/core/compile:common.bzl",
+     _JAVA_RUNTIME_TOOLCHAIN_TYPE = "JAVA_RUNTIME_TOOLCHAIN_TYPE",
+     _JAVA_TOOLCHAIN_TYPE = "JAVA_TOOLCHAIN_TYPE",
++    _KtCommonInfo = "KtCommonInfo",
+     _KtJvmInfo = "KtJvmInfo",
+ )
+ load(
+@@ -40,6 +41,8 @@ KSP_COMPILER_PLUGIN_REPO = "com_github_google_ksp"
+
+ KtJvmInfo = _KtJvmInfo
+
++KtCommonInfo = _KtCommonInfo
++
+ KtCompilerPluginInfo = _KtCompilerPluginInfo
+
+ KspPluginInfo = _KspPluginInfo
+
+--- a/kotlin/internal/jvm/compile.bzl
++++ b/kotlin/internal/jvm/compile.bzl
+@@ -24,6 +24,7 @@ load(
+     "//kotlin/internal:defs.bzl",
+     _JAVA_RUNTIME_TOOLCHAIN_TYPE = "JAVA_RUNTIME_TOOLCHAIN_TYPE",
+     _JAVA_TOOLCHAIN_TYPE = "JAVA_TOOLCHAIN_TYPE",
++    _KtCommonInfo = "KtCommonInfo",
+     _KtCompilerPluginInfo = "KtCompilerPluginInfo",
+     _KtJvmInfo = "KtJvmInfo",
+     _KtPluginConfiguration = "KtPluginConfiguration",
+@@ -94,6 +95,33 @@ def _partitioned_srcs(srcs):
+         src_jars = src_jars,
+     )
+
++def _collect_fragments(deps):
++    """Collects fragment metadata from KtCommonInfo deps.
++
++    Returns a struct with fragments and source files, or None if no
++    KtCommonInfo deps are present.
++    """
++    fragments = []
++    transitive_fragments = []
++    srcs = []
++    for dep in deps:
++        if _KtCommonInfo in dep:
++            info = dep[_KtCommonInfo]
++            fragments.append(info)
++            transitive_fragments.append(info.transitive_refines)
++            srcs.append(info.transitive_srcs)
++    if not fragments:
++        return None
++
++    return struct(
++        fragments = fragments,
++        transitive_fragments = depset(
++            direct = fragments,
++            transitive = transitive_fragments,
++        ),
++        srcs = depset(transitive = srcs),
++    )
++
+ def _compiler_toolchains(ctx):
+     """Creates a struct of the relevant compilation toolchains"""
+     return struct(
+@@ -402,7 +430,8 @@ def _run_kapt_builder_actions(
+         deps_artifacts,
+         annotation_processors,
+         transitive_runtime_jars,
+-        plugins):
++        plugins,
++        common_srcs = None):
+     """Runs KAPT using the KotlinBuilder tool
+     Returns:
+         A struct containing KAPT outputs
+@@ -429,6 +458,7 @@ def _run_kapt_builder_actions(
+         },
+         build_kotlin = False,
+         mnemonic = "KotlinKapt",
++        common_srcs = common_srcs,
+     )
+
+     return struct(
+@@ -544,6 +574,17 @@ def _run_ksp_builder_actions(
+         ksp_generated_src_jar = ksp_generated_java_srcjar,
+     )
+
++def _map_fragments_to_name(fragment):
++    return fragment.fragment_name
++
++def _map_fragments_to_argument(fragment):
++    result = ["-Xfragments=" + fragment.fragment_name]
++    for src in fragment.srcs:
++        result.append("-Xfragment-sources=%s:%s" % (fragment.fragment_name, src.path))
++    for refined in fragment.refines:
++        result.append("-Xfragment-refines=%s:%s" % (fragment.fragment_name, refined.fragment_name))
++    return result
++
+ def _run_kt_builder_action(
+         ctx,
+         mnemonic,
+@@ -557,7 +598,8 @@ def _run_kt_builder_action(
+         transitive_runtime_jars,
+         plugins,
+         outputs,
+-        build_kotlin = True):
++        build_kotlin = True,
++        common_srcs = None):
+     """Creates a KotlinBuilder action invocation."""
+     if not mnemonic:
+         fail("Error: A `mnemonic` must be provided for every invocation of `_run_kt_builder_action`!")
+@@ -572,6 +614,24 @@ def _run_kt_builder_action(
+
+     # Unwrap kotlinc_options/javac_options options or default to the ones being provided by the toolchain
+     args.add_all("--kotlin_passthrough_flags", kotlinc_options_to_flags(kotlinc_options))
++    if common_srcs:
++        args.add("-Xmulti-platform")
++        args.add("-Xexpect-actual-classes")
++        args.add("-Xfragments=" + compile_deps.module_name)
++        args.add_all(
++            srcs.all_srcs,
++            format_each = "-Xfragment-sources={}:%s".format(compile_deps.module_name),
++        )
++        args.add_all(
++            common_srcs.fragments,
++            map_each = _map_fragments_to_name,
++            format_each = "-Xfragment-refines={}:%s".format(compile_deps.module_name),
++        )
++        args.add_all(
++            common_srcs.transitive_fragments,
++            map_each = _map_fragments_to_argument,
++        )
++        args.add_all("--sources", common_srcs.srcs, omit_if_empty = True)
+     args.add_all("--javacopts", javac_options_to_flags(javac_options))
+     args.add_all("--direct_dependencies", _java_infos_to_compile_jars(compile_deps.deps))
+     args.add("--strict_kotlin_deps", toolchains.kt.experimental_strict_kotlin_deps)
+@@ -665,7 +725,7 @@ def _run_kt_builder_action(
+                 deps_artifacts,
+                 plugins.stubs_phase.classpath,
+                 plugins.compile_phase.classpath,
+-            ],
++            ] + ([common_srcs.srcs] if common_srcs else []),
+         ),
+         tools = [
+             toolchains.kt.kotlinbuilder.files_to_run,
+@@ -739,6 +799,8 @@ def _kt_jvm_produce_output_jar_actions(
+     toolchains = _compiler_toolchains(ctx)
+     srcs = _partitioned_srcs(ctx.files.srcs)
+
++    common_srcs = _collect_fragments(ctx.attr.deps)
++
+     annotation_processors = _plugin_mappers.targets_to_annotation_processors(ctx.attr.plugins + ctx.attr.deps)
+     ksp_annotation_processors = _plugin_mappers.targets_to_ksp_annotation_processors(ctx.attr.plugins + ctx.attr.deps)
+     ksp_options = _plugin_mappers.targets_to_ksp_options(ctx.attr.plugins + ctx.attr.deps)
+@@ -770,6 +832,7 @@ def _kt_jvm_produce_output_jar_actions(
+         plugins = plugins,
+         compile_jar = compile_jar,
+         output_jdeps = output_jdeps,
++        common_srcs = common_srcs,
+     )
+     output_jars = outputs_struct.output_jars
+     generated_src_jars = outputs_struct.generated_src_jars
+@@ -874,7 +937,8 @@ def _run_kt_java_builder_actions(
+         transitive_runtime_jars,
+         plugins,
+         compile_jar,
+-        output_jdeps):
++        output_jdeps,
++        common_srcs = None):
+     """Runs the necessary KotlinBuilder and JavaBuilder actions to compile a jar
+
+     Returns:
+@@ -897,6 +961,7 @@ def _run_kt_java_builder_actions(
+             annotation_processors = annotation_processors,
+             transitive_runtime_jars = transitive_runtime_jars,
+             plugins = plugins,
++            common_srcs = common_srcs,
+         )
+         generated_kapt_src_jars.append(kapt_outputs.ap_generated_src_jar)
+         output_jars.append(kapt_outputs.kapt_generated_class_jar)
+@@ -961,6 +1026,7 @@ def _run_kt_java_builder_actions(
+             outputs = outputs,
+             build_kotlin = True,
+             mnemonic = "KotlinCompile",
++            common_srcs = common_srcs,
+         )
+
+         compile_jars.append(kt_compile_jar)
+
+--- a/kotlin/internal/jvm/jvm.bzl
++++ b/kotlin/internal/jvm/jvm.bzl
+@@ -101,6 +101,7 @@ load(
+     _JAVA_RUNTIME_TOOLCHAIN_TYPE = "JAVA_RUNTIME_TOOLCHAIN_TYPE",
+     _JAVA_TOOLCHAIN_TYPE = "JAVA_TOOLCHAIN_TYPE",
+     _KspPluginInfo = "KspPluginInfo",
++    _KtCommonInfo = "KtCommonInfo",
+     _KtCompilerPluginInfo = "KtCompilerPluginInfo",
+     _KtJvmInfo = "KtJvmInfo",
+     _TOOLCHAIN_TYPE = "TOOLCHAIN_TYPE",
+@@ -121,6 +122,10 @@ load(
+     _kt_jvm_library_impl = "kt_jvm_library_impl",
+     _kt_ksp_plugin_impl = "kt_ksp_plugin_impl",
+ )
++load(
++    "//kotlin/internal/jvm:kt_common.bzl",
++    _kt_common_library = "kt_common_library",
++)
+ load("//kotlin/internal/utils:utils.bzl", "utils")
+
+ # Toolchain type for the Windows launcher maker
+@@ -230,6 +235,7 @@ _common_attr = utils.add_dicts(
+             providers = [
+                 [JavaInfo],
+                 [_KtJvmInfo],
++                [_KtCommonInfo],
+             ],
+             allow_files = False,
+         ),
+@@ -738,3 +744,5 @@ attrs = struct(
+     lib_common_attr = _lib_common_attr,
+     runnable_common_attr = _runnable_common_attr,
+ )
++
++kt_common_library = _kt_common_library
+
+--- a/kotlin/internal/jvm/jvm_deps.bzl
++++ b/kotlin/internal/jvm/jvm_deps.bzl
+@@ -30,7 +30,7 @@ def _jvm_deps(ctx, toolchains, associate_deps, deps = [], deps_java_infos = [],
+     )
+     dep_infos = (
+         deps_java_infos +
+-        [_java_info(d) for d in deps] +
++        [info for info in [_java_info(d) for d in deps] if info] +
+         associates.dep_infos +
+         [toolchains.kt.jvm_stdlibs]
+     )
+
+--- /dev/null
++++ b/kotlin/internal/jvm/kt_common.bzl
+@@ -0,0 +1,88 @@
++"""kt_common_library rule for Kotlin Multiplatform common source fragments."""
++
++load(
++    "//kotlin/internal:defs.bzl",
++    _KtCommonInfo = "KtCommonInfo",
++)
++
++def _kt_common_library_impl(ctx):
++    fragment_name = ctx.attr.fragment_name if ctx.attr.fragment_name else ctx.label.name
++
++    refines = []
++    transitive_refines = []
++    transitive_srcs = []
++
++    for dep in ctx.attr.deps:
++        if _KtCommonInfo in dep:
++            info = dep[_KtCommonInfo]
++            refines.append(info)
++            transitive_refines.append(info.transitive_refines)
++            transitive_srcs.append(info.transitive_srcs)
++
++    srcs = ctx.files.srcs
++
++    return [
++        _KtCommonInfo(
++            fragment_name = fragment_name,
++            srcs = srcs,
++            refines = refines,
++            transitive_refines = depset(
++                direct = refines,
++                transitive = transitive_refines,
++            ),
++            transitive_srcs = depset(
++                direct = srcs,
++                transitive = transitive_srcs,
++            ),
++        ),
++        DefaultInfo(files = depset(srcs)),
++    ]
++
++kt_common_library = rule(
++    doc = """\
++    Defines a Kotlin Multiplatform common source fragment.
++
++    A kt_common_library provides KtCommonInfo, which carries the fragment name,
++    source files, and refines (dependency) relationships.
++
++    Example:
++
++    ```bzl
++    kt_common_library(
++        name = "common",
++        srcs = glob(["src/commonMain/kotlin/**/*.kt"]),
++        fragment_name = "commonMain",
++    )
++
++    kt_common_library(
++        name = "mid",
++        srcs = glob(["src/midMain/kotlin/**/*.kt"]),
++        fragment_name = "midMain",
++        deps = [":common"],  # midMain refines commonMain
++    )
++
++    kt_jvm_library(
++        name = "lib",
++        srcs = glob(["src/jvmMain/kotlin/**/*.kt"]),
++        deps = [":mid"],  # jvmMain refines midMain
++    )
++    ```
++    """,
++    attrs = {
++        "srcs": attr.label_list(
++            doc = "Kotlin source files belonging to this fragment.",
++            allow_files = [".kt"],
++            default = [],
++        ),
++        "deps": attr.label_list(
++            doc = "Other kt_common_library targets that this fragment refines.",
++            default = [],
++            providers = [_KtCommonInfo],
++        ),
++        "fragment_name": attr.string(
++            doc = "Name of this fragment (e.g. 'commonMain'). If not provided, generate from target name.",
++        ),
++    },
++    implementation = _kt_common_library_impl,
++    provides = [_KtCommonInfo],
++)
+
+--- a/kotlin/jvm.bzl
++++ b/kotlin/jvm.bzl
+@@ -4,6 +4,7 @@ load(
+ )
+ load(
+     "//kotlin/internal/jvm:jvm.bzl",
++    _kt_common_library = "kt_common_library",
+     _kt_jvm_binary = "kt_jvm_binary",
+     _kt_jvm_import = "kt_jvm_import",
+     _kt_jvm_library = "kt_jvm_library",
+@@ -11,6 +12,7 @@ load(
+ )
+
+ kt_javac_options = _kt_javac_options
++kt_common_library = _kt_common_library
+ kt_jvm_binary = _kt_jvm_binary
+ kt_jvm_import = _kt_jvm_import
+ kt_jvm_library = _kt_jvm_library
+
+--- a/src/main/starlark/core/compile/common.bzl
++++ b/src/main/starlark/core/compile/common.bzl
+@@ -55,3 +55,13 @@ KtJvmInfo = provider(
+         "transitive_source_jars": "Returns the Jars containing source files of the current target and all of its transitive dependencies. [intellij-aspect]",
+     },
+ )
++
++KtCommonInfo = provider(
++    fields = {
++        "fragment_name": "The fragment name (e.g. 'commonMain').",
++        "srcs": "The source files.",
++        "refines": "List of KtCommonInfo this fragment directly refines.",
++        "transitive_refines": "depset of KtCommonInfo for all fragments in the transitive closure.",
++        "transitive_srcs": "depset of all source files in the transitive closure.",
++    },
++)

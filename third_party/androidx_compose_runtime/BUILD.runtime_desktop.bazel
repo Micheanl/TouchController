@@ -1,0 +1,42 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_common_library", "kt_jvm_library")
+
+kt_jvm_library(
+    name = "compose_compiler",
+    srcs = [],
+    exported_compiler_plugins = ["@//:compose_plugin"],
+    visibility = ["//visibility:public"],
+)
+
+kt_common_library(
+    name = "common",
+    srcs = glob(["commonMain/**/*.kt"]),
+    fragment_name = "commonMain",
+)
+
+kt_common_library(
+    name = "non_android",
+    srcs = glob(["nonAndroidMain/**/*.kt"]),
+    fragment_name = "nonAndroidMain",
+    deps = [":common"],
+)
+
+kt_common_library(
+    name = "jvm",
+    srcs = glob(["jvmMain/**/*.kt"]),
+    fragment_name = "jvmMain",
+    deps = [":non_android"],
+)
+
+kt_jvm_library(
+    name = "runtime_desktop",
+    srcs = glob(["desktopMain/**/*.kt"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        ":compose_compiler",
+        ":jvm",
+        "@maven//:androidx_annotation_annotation_jvm",
+        "@maven//:androidx_collection_collection_jvm",
+        "@maven//:androidx_compose_runtime_runtime_annotation_jvm",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm",
+    ],
+)

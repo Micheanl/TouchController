@@ -1,0 +1,15 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
+
+kt_jvm_library(
+    name = "runtime_saveable_desktop",
+    srcs = glob(["commonMain/**/*.kt"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "@//:compose",
+        "@maven//:androidx_collection_collection_jvm",
+        "@maven//:androidx_lifecycle_lifecycle_runtime_desktop",
+        "@maven//:androidx_savedstate_savedstate_compose_desktop",
+        "@maven//:androidx_savedstate_savedstate_desktop",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_core_jvm",
+    ],
+)

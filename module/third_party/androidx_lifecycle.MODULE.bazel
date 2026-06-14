@@ -1,0 +1,27 @@
+"MODULE.bazel androidx.lifecycle source build"
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "androidx_lifecycle_runtime",
+    build_file = "@//third_party/androidx_lifecycle:BUILD.lifecycle_runtime_desktop.bazel",
+    sha256 = "00a5bf579ef186ae2c8eac89ff2d972e3581d687494af516c567accfda6e64cd",
+    url = "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-desktop/2.9.4/lifecycle-runtime-desktop-2.9.4-sources.jar",
+)
+
+http_archive(
+    name = "androidx_lifecycle_runtime_compose",
+    build_file = "@//third_party/androidx_lifecycle:BUILD.lifecycle_runtime_compose_desktop.bazel",
+    sha256 = "aacae1df01c5f7e2a5e6d247c299ca371808ceac496cbf19f662e54a1cd83faf",
+    url = "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-compose-desktop/2.9.4/lifecycle-runtime-compose-desktop-2.9.4-sources.jar",
+)
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.override(
+    coordinates = "androidx.lifecycle:lifecycle-runtime-desktop",
+    target = "@androidx_lifecycle_runtime//:lifecycle_runtime_desktop",
+)
+maven.override(
+    coordinates = "androidx.lifecycle:lifecycle-runtime-compose-desktop",
+    target = "@androidx_lifecycle_runtime_compose//:lifecycle_runtime_compose_desktop",
+)

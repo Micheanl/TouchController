@@ -6,6 +6,7 @@ def _library(coordinate):
         name = (group + "_" + artifact_id).replace(".", "_").replace("-", "_").lower(),
         label = artifact(coordinate),
         version = version,
+        coordinate = coordinate,
     )
 
 _libraries = [
@@ -13,7 +14,9 @@ _libraries = [
     _library("androidx.savedstate:savedstate-desktop:1.3.3"),
     _library("androidx.savedstate:savedstate-compose-desktop:1.3.3"),
     _library("androidx.lifecycle:lifecycle-common-jvm:2.9.4"),
+    _library("androidx.lifecycle:lifecycle-runtime-desktop:2.9.4"),
     _library("androidx.lifecycle:lifecycle-runtime-compose-desktop:2.9.4"),
+    _library("androidx.arch.core:core-common:2.2.0"),
     _library("org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.4.0"),
     _library("cafe.adriel.voyager:voyager-core-desktop:1.1.0-beta03"),
     _library("cafe.adriel.voyager:voyager-navigator-desktop:1.1.0-beta03"),
@@ -21,6 +24,7 @@ _libraries = [
 ]
 
 touchcontroller_fabric_libraries = {lib.label: (lib.name + ":" + lib.version) for lib in _libraries}
+touchcontroller_neoforge_libraries = {lib.label: (lib.coordinate + ":LIBRARY") for lib in _libraries}
 touchcontroller_unified_deps = {lib.name: lib.label for lib in _libraries}
 touchcontroller_unified_neoforge = {lib.name: ["common"] for lib in _libraries}
 touchcontroller_unified_fabric = {lib.name: lib.version for lib in _libraries}

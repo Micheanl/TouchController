@@ -56,25 +56,14 @@
     "org.apache.maven:maven-resolver-provider": 2046956324,
     "org.eclipse.sisu:org.eclipse.sisu.inject": -589010221,
     "org.javassist:javassist": 29424833,
-    "org.jetbrains.compose.material3:material3-desktop": 1980626431,
-    "org.jetbrains.compose.material:material-icons-core-desktop": 807184435,
-    "org.jetbrains.compose.ui:ui-desktop": 1355439251,
-    "org.jetbrains.compose.ui:ui-graphics-desktop": 121106093,
     "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable": -113555848,
     "org.jetbrains.kotlin:kotlin-stdlib": 52847824,
     "org.jetbrains.kotlin:kotlin-test-junit5": 1682081423,
     "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm": 1304849756,
     "org.jetbrains.kotlinx:kotlinx-coroutines-core": 1170705955,
-    "org.jetbrains.kotlinx:kotlinx-coroutines-swing": -795042098,
+    "org.jetbrains.kotlinx:kotlinx-coroutines-swing": 885486310,
     "org.jetbrains.kotlinx:kotlinx-serialization-core": -1740822934,
     "org.jetbrains.kotlinx:kotlinx-serialization-json": 1514315635,
-    "org.jetbrains.skiko:skiko-awt": 334649111,
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64": -500802568,
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-x64": 425066332,
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64": 1000983129,
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-x64": -1544318467,
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64": 942886793,
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-x64": 511484717,
     "org.joml:joml": -1464888579,
     "org.junit.jupiter:junit-jupiter-api": -95082348,
     "org.junit.jupiter:junit-jupiter-engine": 776916472,
@@ -104,28 +93,18 @@
     "androidx.compose.runtime:runtime-annotation-jvm:jar:sources": -342418265,
     "androidx.compose.runtime:runtime-desktop": -1285759521,
     "androidx.compose.runtime:runtime-desktop:jar:sources": 1528084894,
-    "androidx.compose.runtime:runtime-retain-desktop": -1971446875,
-    "androidx.compose.runtime:runtime-retain-desktop:jar:sources": 1682333015,
-    "androidx.compose.runtime:runtime-saveable-desktop": -467623979,
+    "androidx.compose.runtime:runtime-saveable-desktop": 1937785540,
     "androidx.compose.runtime:runtime-saveable-desktop:jar:sources": 1856297494,
-    "androidx.graphics:graphics-shapes-desktop": 1329420683,
-    "androidx.graphics:graphics-shapes-desktop:jar:sources": 1890128285,
     "androidx.lifecycle:lifecycle-common-jvm": 545026622,
     "androidx.lifecycle:lifecycle-common-jvm:jar:sources": 509629631,
     "androidx.lifecycle:lifecycle-runtime-compose-desktop": -412803159,
     "androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources": -1121323828,
     "androidx.lifecycle:lifecycle-runtime-desktop": -2098385122,
     "androidx.lifecycle:lifecycle-runtime-desktop:jar:sources": -1502946436,
-    "androidx.lifecycle:lifecycle-viewmodel-desktop": -1516065367,
-    "androidx.lifecycle:lifecycle-viewmodel-desktop:jar:sources": 482399717,
-    "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop": 1073979102,
-    "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop:jar:sources": -591850983,
-    "androidx.navigationevent:navigationevent-desktop": 1067751703,
-    "androidx.navigationevent:navigationevent-desktop:jar:sources": 134828833,
-    "androidx.savedstate:savedstate-compose-desktop": 2076064615,
-    "androidx.savedstate:savedstate-compose-desktop:jar:sources": 1059504157,
-    "androidx.savedstate:savedstate-desktop": 1174665046,
-    "androidx.savedstate:savedstate-desktop:jar:sources": 2112916763,
+    "androidx.savedstate:savedstate-compose-desktop": 462283667,
+    "androidx.savedstate:savedstate-compose-desktop:jar:sources": -1421670436,
+    "androidx.savedstate:savedstate-desktop": -1824082313,
+    "androidx.savedstate:savedstate-desktop:jar:sources": -368257830,
     "aopalliance:aopalliance": -607169114,
     "aopalliance:aopalliance:jar:sources": 1914632793,
     "at.favre.lib:hkdf": -1311773779,
@@ -310,60 +289,16 @@
     "org.eclipse.sisu:org.eclipse.sisu.inject:jar:sources": 1073469091,
     "org.javassist:javassist": 2095435428,
     "org.javassist:javassist:jar:sources": 2102088945,
-    "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop": -2054814517,
-    "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources": 1579421176,
-    "org.jetbrains.androidx.savedstate:savedstate-compose-desktop": 1213108596,
-    "org.jetbrains.androidx.savedstate:savedstate-compose-desktop:jar:sources": 1413502513,
-    "org.jetbrains.compose.animation:animation-core-desktop": -1316012299,
-    "org.jetbrains.compose.animation:animation-core-desktop:jar:sources": 1196217901,
-    "org.jetbrains.compose.animation:animation-desktop": 1847630249,
-    "org.jetbrains.compose.animation:animation-desktop:jar:sources": 1011607172,
-    "org.jetbrains.compose.foundation:foundation-desktop": -1359748134,
-    "org.jetbrains.compose.foundation:foundation-desktop:jar:sources": -642880463,
-    "org.jetbrains.compose.foundation:foundation-layout-desktop": 1690051417,
-    "org.jetbrains.compose.foundation:foundation-layout-desktop:jar:sources": -1663781202,
-    "org.jetbrains.compose.material3:material3-desktop": -936378892,
-    "org.jetbrains.compose.material3:material3-desktop:jar:sources": 1611019705,
-    "org.jetbrains.compose.material:material-icons-core-desktop": 530633897,
-    "org.jetbrains.compose.material:material-icons-core-desktop:jar:sources": -735500400,
-    "org.jetbrains.compose.material:material-ripple-desktop": 1539364580,
-    "org.jetbrains.compose.material:material-ripple-desktop:jar:sources": -1156080426,
-    "org.jetbrains.compose.runtime:runtime-desktop": -1084087459,
-    "org.jetbrains.compose.runtime:runtime-desktop:jar:sources": -1070052513,
-    "org.jetbrains.compose.runtime:runtime-saveable-desktop": -681602383,
-    "org.jetbrains.compose.runtime:runtime-saveable-desktop:jar:sources": -1070052513,
-    "org.jetbrains.compose.ui:ui-backhandler-desktop": 557051488,
-    "org.jetbrains.compose.ui:ui-backhandler-desktop:jar:sources": -286011724,
-    "org.jetbrains.compose.ui:ui-desktop": 1754618576,
-    "org.jetbrains.compose.ui:ui-desktop:jar:sources": 176221128,
-    "org.jetbrains.compose.ui:ui-geometry-desktop": 560290573,
-    "org.jetbrains.compose.ui:ui-geometry-desktop:jar:sources": 239189863,
-    "org.jetbrains.compose.ui:ui-graphics-desktop": 1265350745,
-    "org.jetbrains.compose.ui:ui-graphics-desktop:jar:sources": 1295350246,
-    "org.jetbrains.compose.ui:ui-text-desktop": -868968198,
-    "org.jetbrains.compose.ui:ui-text-desktop:jar:sources": -534503170,
-    "org.jetbrains.compose.ui:ui-unit-desktop": -1994544386,
-    "org.jetbrains.compose.ui:ui-unit-desktop:jar:sources": -837295709,
-    "org.jetbrains.compose.ui:ui-util-desktop": 203160386,
-    "org.jetbrains.compose.ui:ui-util-desktop:jar:sources": -1646845979,
     "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable": 466132285,
     "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable:jar:sources": -2101612717,
     "org.jetbrains.kotlin:kotlin-reflect": -196767604,
     "org.jetbrains.kotlin:kotlin-reflect:jar:sources": -360624647,
     "org.jetbrains.kotlin:kotlin-stdlib": 611564394,
-    "org.jetbrains.kotlin:kotlin-stdlib-common": -123026270,
-    "org.jetbrains.kotlin:kotlin-stdlib-common:jar:sources": -625796736,
-    "org.jetbrains.kotlin:kotlin-stdlib-jdk7": 1106928725,
-    "org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:sources": -1126958790,
-    "org.jetbrains.kotlin:kotlin-stdlib-jdk8": -555327761,
-    "org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:sources": -2004944091,
     "org.jetbrains.kotlin:kotlin-stdlib:jar:sources": -1733871346,
     "org.jetbrains.kotlin:kotlin-test": -1699169786,
     "org.jetbrains.kotlin:kotlin-test-junit5": 600258648,
     "org.jetbrains.kotlin:kotlin-test-junit5:jar:sources": -456123033,
     "org.jetbrains.kotlin:kotlin-test:jar:sources": -941138505,
-    "org.jetbrains.kotlinx:atomicfu-jvm": 1529818417,
-    "org.jetbrains.kotlinx:atomicfu-jvm:jar:sources": 1145019286,
     "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm": -738055090,
     "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:jar:sources": -1769675867,
     "org.jetbrains.kotlinx:kotlinx-coroutines-core": 480257347,
@@ -372,8 +307,6 @@
     "org.jetbrains.kotlinx:kotlinx-coroutines-core:jar:sources": -258596920,
     "org.jetbrains.kotlinx:kotlinx-coroutines-swing": -1145386925,
     "org.jetbrains.kotlinx:kotlinx-coroutines-swing:jar:sources": -2144799249,
-    "org.jetbrains.kotlinx:kotlinx-datetime-jvm": 366154125,
-    "org.jetbrains.kotlinx:kotlinx-datetime-jvm:jar:sources": 1751534803,
     "org.jetbrains.kotlinx:kotlinx-serialization-core": 641378800,
     "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm": 1561212787,
     "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:jar:sources": -892673115,
@@ -382,22 +315,6 @@
     "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm": 213380020,
     "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:jar:sources": 1646081519,
     "org.jetbrains.kotlinx:kotlinx-serialization-json:jar:sources": -499450172,
-    "org.jetbrains.runtime:jbr-api": -1451093487,
-    "org.jetbrains.runtime:jbr-api:jar:sources": -264054531,
-    "org.jetbrains.skiko:skiko-awt": -362252442,
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64": 1560744071,
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64:jar:sources": 188708469,
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-x64": -479143989,
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-x64:jar:sources": 1684236564,
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64": -943623276,
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64:jar:sources": -986267531,
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-x64": -1321134642,
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-x64:jar:sources": 1790374889,
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64": -604701389,
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64:jar:sources": -30325901,
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-x64": -1090857725,
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-x64:jar:sources": 997967724,
-    "org.jetbrains.skiko:skiko-awt:jar:sources": -490407801,
     "org.jetbrains:annotations": -1826928000,
     "org.jetbrains:annotations:jar:sources": 812290439,
     "org.joml:joml": -218153928,
@@ -532,26 +449,12 @@
       },
       "version": "1.10.0"
     },
-    "androidx.compose.runtime:runtime-retain-desktop": {
-      "shasums": {
-        "jar": "463ee9c1e93d1b913458bfecc96d128a3574a802f41c8c9781d7320c3b55ed8b",
-        "sources": "88ee97c327d7a67bf1a50e309968b114af4d04d7ccff46f2b6cf1f2286d7b16c"
-      },
-      "version": "1.10.0"
-    },
     "androidx.compose.runtime:runtime-saveable-desktop": {
       "shasums": {
         "jar": "ef24e24cc8c9c3b9871007fbdf589ed9aaaecf95979a66b7484806f9f0e24d91",
         "sources": "c431498c69a84ecd1e128774196228b89917a7093250efe95527d06bf46fa674"
       },
       "version": "1.10.0"
-    },
-    "androidx.graphics:graphics-shapes-desktop": {
-      "shasums": {
-        "jar": "8d7a4d3812cae2e3ef8272e97f6e9917ae45931f17cf1391f0246a92c955d9f4",
-        "sources": "724fd3727c9b76a9fc31004a8c05499328c3a5b6090931239af170919f795696"
-      },
-      "version": "1.1.0"
     },
     "androidx.lifecycle:lifecycle-common-jvm": {
       "shasums": {
@@ -574,40 +477,19 @@
       },
       "version": "2.9.4"
     },
-    "androidx.lifecycle:lifecycle-viewmodel-desktop": {
-      "shasums": {
-        "jar": "98f816be6869407c87d46058756f97780fa6c6cf61acdba97216f413731af15d",
-        "sources": "71307177192a0d228f7573847e72693e117316924d0bb5b898dee56284ed986b"
-      },
-      "version": "2.9.4"
-    },
-    "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop": {
-      "shasums": {
-        "jar": "3e0b44e2514eafdd6938d5457d9f46e4785077c45d3b4364b5c23c4dcb93efd3",
-        "sources": "ea63728f21ca7c883055061f3a40f8a1f5e0f356d31ac6b972d770fc43a6f249"
-      },
-      "version": "2.9.4"
-    },
-    "androidx.navigationevent:navigationevent-desktop": {
-      "shasums": {
-        "jar": "43deeb5774fd737fa945e09a47f93b6f1a508d17fac8f3b65f1c863e7f7d0660",
-        "sources": "8ac6df68a24c80bbf5cbd7550ce30581a1d1f7cb35b54a7c707bd2583c6e70ec"
-      },
-      "version": "1.0.1"
-    },
     "androidx.savedstate:savedstate-compose-desktop": {
       "shasums": {
         "jar": "4a94787a6e5bcfe143390a4f2737d4425d2ea867f2b34a847de6cda3c6ccc58a",
         "sources": "87632984d47b10696a5b49c80c6876e0e1e65713695807959e10496b8912ba45"
       },
-      "version": "1.3.3"
+      "version": "1.3.2"
     },
     "androidx.savedstate:savedstate-desktop": {
       "shasums": {
         "jar": "c5c89062ba8402b8f8657efd54db1ff192f91ca95fae59c3b418fbc477c3e3ea",
         "sources": "e6d4ba23fb5155e6190ee0d6ddf05dc8b6c723fdb7c0b0dd4d0921a234e13c59"
       },
-      "version": "1.3.3"
+      "version": "1.3.2"
     },
     "aopalliance:aopalliance": {
       "shasums": {
@@ -1258,132 +1140,6 @@
       },
       "version": "3.30.2-GA"
     },
-    "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop": {
-      "shasums": {
-        "jar": "31c3c4b6dea38f078c46829dee2c43abba2bf8757b7ee8a0f660f31217364898",
-        "sources": "6f27472e1e5fe26259f156b498f6745feb57b651b673d65fe9938a7fec2d9065"
-      },
-      "version": "2.9.6"
-    },
-    "org.jetbrains.androidx.savedstate:savedstate-compose-desktop": {
-      "shasums": {
-        "jar": "0f3d045c5fd7e1301ab6c38cd0778067b0484cf39acac1233be71a723a6a8075",
-        "sources": "6f27472e1e5fe26259f156b498f6745feb57b651b673d65fe9938a7fec2d9065"
-      },
-      "version": "1.3.6"
-    },
-    "org.jetbrains.compose.animation:animation-core-desktop": {
-      "shasums": {
-        "jar": "76cf4d09b5312f9a9e46e80a270c76a7157a93819493feb7076f9c8c98610605",
-        "sources": "3670839cd23f441c048b44e975f13c058d5869430c48bcf21e9dac2d0d5ccb79"
-      },
-      "version": "1.9.3"
-    },
-    "org.jetbrains.compose.animation:animation-desktop": {
-      "shasums": {
-        "jar": "bbc5e198f7b8159fa7170aff2efbc9c6124a6da9a7faab8889e922422a3b225b",
-        "sources": "fe4ac0cca11476b6aae39e5ce17ba7a04597f4f79f0897fb53d8377e5e78d5aa"
-      },
-      "version": "1.9.3"
-    },
-    "org.jetbrains.compose.foundation:foundation-desktop": {
-      "shasums": {
-        "jar": "d3c57aa818c01233408eeef0734f51b0bc1687b71e4cf863ddf92b93a7cc8612",
-        "sources": "4f6a4fd0046b6147dc1725777594d5fe0ba1bef718b3ea595dbc92cbe6296f6a"
-      },
-      "version": "1.9.3"
-    },
-    "org.jetbrains.compose.foundation:foundation-layout-desktop": {
-      "shasums": {
-        "jar": "5950ce1e10259ae2198a46e1681d959f16bcd64d8b5d0289e17c50863af3f8ed",
-        "sources": "5644e9ba756367093391b3793b198d66dfaff4544382a6220dc715e2a8304a74"
-      },
-      "version": "1.9.3"
-    },
-    "org.jetbrains.compose.material3:material3-desktop": {
-      "shasums": {
-        "jar": "b4e46cb4c5bfb4edd80ce425be5f00af57f68921440ad2ede4e89d49c8090cfa",
-        "sources": "7c152fbc5ff7aa5a41d4f836a0de441f277ec6d2e745b7d3b753e3882020ff19"
-      },
-      "version": "1.10.0-alpha05"
-    },
-    "org.jetbrains.compose.material:material-icons-core-desktop": {
-      "shasums": {
-        "jar": "bcf6c853b6db2ff148d2d3aad3b7a7ea54d93fc7b42e0afd840eb6daf1a1c681",
-        "sources": "b3f1be7fda4d13a6d938bb918275ddc143e9d6a2007727f284778480526f5f16"
-      },
-      "version": "1.7.3"
-    },
-    "org.jetbrains.compose.material:material-ripple-desktop": {
-      "shasums": {
-        "jar": "2407d9e83c6fd84b90b123cc7ae6291fa7a18bb40938ad210f675e4c86425c8b",
-        "sources": "97205abc1b113d5875ff7527337305b404c6a4cd6947f5d498a3a127d04f167d"
-      },
-      "version": "1.9.3"
-    },
-    "org.jetbrains.compose.runtime:runtime-desktop": {
-      "shasums": {
-        "jar": "05f5570c0a7ea8addd6fe9507a70f293efa7f1450d8b9b16dc3c8fee21cc6127",
-        "sources": "6f27472e1e5fe26259f156b498f6745feb57b651b673d65fe9938a7fec2d9065"
-      },
-      "version": "1.10.0"
-    },
-    "org.jetbrains.compose.runtime:runtime-saveable-desktop": {
-      "shasums": {
-        "jar": "eb7132b55de2b0913736fdff4705022803e455810f018efecc9eb3230936520a",
-        "sources": "6f27472e1e5fe26259f156b498f6745feb57b651b673d65fe9938a7fec2d9065"
-      },
-      "version": "1.10.0"
-    },
-    "org.jetbrains.compose.ui:ui-backhandler-desktop": {
-      "shasums": {
-        "jar": "1babf68f5a05cbe1ba8cf934f0e575bb0d0b184444514e6aa7ec1f8004c9ce33",
-        "sources": "38dbbb0950845a8c579436ecc5aa1088010f60fc05bb7ae8e1c2679cb7985c82"
-      },
-      "version": "1.10.0"
-    },
-    "org.jetbrains.compose.ui:ui-desktop": {
-      "shasums": {
-        "jar": "c699d8571082a7f507fbede0b9d567c661f47013a4f3f9b68109b8a0bd828ea8",
-        "sources": "201aa6919e58102a678655948b6307c43d971db62710277a47b9e6193c79c201"
-      },
-      "version": "1.10.0"
-    },
-    "org.jetbrains.compose.ui:ui-geometry-desktop": {
-      "shasums": {
-        "jar": "cdbfdabccac8abef2d9bc0420ec0c4be7a880f6d26b2d1cc4e2317c0d252ee27",
-        "sources": "4d1dab1b80fc0a3a71db085c6cdfb7957a14f58e23686f2963a53968e51197d1"
-      },
-      "version": "1.10.0"
-    },
-    "org.jetbrains.compose.ui:ui-graphics-desktop": {
-      "shasums": {
-        "jar": "d1710a4a15b115fc4c37878b32b10a476a0ec3b8399fa1fb588181dba83dbdd2",
-        "sources": "b51c404d13fea37c73bd5aaab5689f90b3df39d602df7c18562cf678df5ed2b7"
-      },
-      "version": "1.10.0"
-    },
-    "org.jetbrains.compose.ui:ui-text-desktop": {
-      "shasums": {
-        "jar": "6ee18433659f389621386e759217b3ed5ef0f1e22ea177cad705457dc75aa27b",
-        "sources": "4f2344958fa0b206984502b68f049b13980d2f424d1941621e444d6831c08a11"
-      },
-      "version": "1.10.0"
-    },
-    "org.jetbrains.compose.ui:ui-unit-desktop": {
-      "shasums": {
-        "jar": "f0f3439928b3d9132f07cb2d7a86091696372ebc8354d16b48830b6ce15e8161",
-        "sources": "1789eff0b726655ad25f2e3d808b99622c534961be4b6f36c1967ceeb5a15f0e"
-      },
-      "version": "1.10.0"
-    },
-    "org.jetbrains.compose.ui:ui-util-desktop": {
-      "shasums": {
-        "jar": "7bfc93a8cad2974cdfd5a2c817e3083e0e3c48ef99e4dbba51eb98a14c92ed2d",
-        "sources": "5e59da26d188b62085ca7cebbccd834324c7062332fed53b1408281a62e4764f"
-      },
-      "version": "1.10.0"
-    },
     "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable": {
       "shasums": {
         "jar": "e1024c542f1d021e170cd040e4e1730f2fd76ce8ed76fc9e3496988ca643a2e0",
@@ -1405,27 +1161,6 @@
       },
       "version": "2.2.21"
     },
-    "org.jetbrains.kotlin:kotlin-stdlib-common": {
-      "shasums": {
-        "jar": "6d3ba6f93ba29f2399d7fc873be479c6c38e449136cf542f55155f00e4ececd4",
-        "sources": "6408b12eca479c45121dd0ad729d35e38d9c72afddb2764fb2c3c6af879be255"
-      },
-      "version": "1.9.24"
-    },
-    "org.jetbrains.kotlin:kotlin-stdlib-jdk7": {
-      "shasums": {
-        "jar": "3bd26ecb6d12978c5c4e0b41f76c9ff551fac2a5e6268427a9d2a0cdf8a5ad91",
-        "sources": "2534c8908432e06de73177509903d405b55f423dd4c2f747e16b92a2162611e6"
-      },
-      "version": "2.2.20"
-    },
-    "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-      "shasums": {
-        "jar": "c314177935d8dc2eda879507117f25d6de56f6c57ede99416b14cd622bb9e09d",
-        "sources": "3cb6895054a0985bba591c165503fe4dd63a215af53263b67a071ccdc242bf6e"
-      },
-      "version": "2.2.20"
-    },
     "org.jetbrains.kotlin:kotlin-test": {
       "shasums": {
         "jar": "940eaaeccc434c79fc5afcb3093f47e46469661bb350e79f82f4d92ac6e960c5",
@@ -1439,13 +1174,6 @@
         "sources": "891c56d8183d2cd3e912cf250adeca889dba51d02b07fce3015321e08f72b4a2"
       },
       "version": "2.1.10"
-    },
-    "org.jetbrains.kotlinx:atomicfu-jvm": {
-      "shasums": {
-        "jar": "101ff43ff563fca167af5ade98c3b69bf569010eab745013b84d8955034d3b3c",
-        "sources": "5cbc18e1ffd1160ed9d027fab9d81c5909fc4b7a0bb0492770d27cc018805a60"
-      },
-      "version": "0.23.2"
     },
     "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm": {
       "shasums": {
@@ -1475,13 +1203,6 @@
       },
       "version": "1.10.1"
     },
-    "org.jetbrains.kotlinx:kotlinx-datetime-jvm": {
-      "shasums": {
-        "jar": "3b8b98657c9aff3be7f6b4b575e9f3fb9a3a1f452a801da0f438901734acdade",
-        "sources": "7252432e626821da49ae6ba9bf6880988ee9e9977ba6fdcd4e225c57cd387f2f"
-      },
-      "version": "0.7.1"
-    },
     "org.jetbrains.kotlinx:kotlinx-serialization-core": {
       "shasums": {
         "jar": "8538625241c15f44814004320eaea5df67e944adc52b00ddb83198d664e92251",
@@ -1509,62 +1230,6 @@
         "sources": "9622a494e5312637eb83693ae1628684052ef90f1d616755dd0cf6d32a5186e3"
       },
       "version": "1.8.0"
-    },
-    "org.jetbrains.runtime:jbr-api": {
-      "shasums": {
-        "jar": "657ede7d7f8e175c909b23caa10fcd4d4a511304fd938aa9cc8457b4378950d5",
-        "sources": "0b0da2fdf5b7c24b5c8c432088e7d3a71062b01716ea5859555dc5c5326486e3"
-      },
-      "version": "1.5.0"
-    },
-    "org.jetbrains.skiko:skiko-awt": {
-      "shasums": {
-        "jar": "cdfe998711c8f0fa84f21745ebcfe6d840d307c4ceea7f0dda3158be2bb2193d",
-        "sources": "cc27f1bd75ba2d2a3bbbfe7879a645ac574fdfd4ce4b2e5ae6ccdda4f4d911fa"
-      },
-      "version": "0.9.37.3"
-    },
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64": {
-      "shasums": {
-        "jar": "7270c086018ae77b2a4532f0a21c52a3e11ce8da991b09d587d348b817be81a9",
-        "sources": "6cfc9036d921f193a6019525380f80b0e16541c7960e16ba4d2603348ae75946"
-      },
-      "version": "0.9.37.3"
-    },
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-x64": {
-      "shasums": {
-        "jar": "c88132224eb94a67d5e41b807ead0301b5cba8eab41d5226badd7cac37e43821",
-        "sources": "3c40637cf834f9c4945345dc80f2c7d128481bc93a652ea75127b700972c6827"
-      },
-      "version": "0.9.37.3"
-    },
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64": {
-      "shasums": {
-        "jar": "0c5dc5e1015fd7fc2584197cfb26dab2d8abd8da36d0e1bfe4699c082253ccb2",
-        "sources": "3fcaa8da2f294e4b5d1d83767d961e13a742d9645f85fae54120a893188d4f1c"
-      },
-      "version": "0.9.37.3"
-    },
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-x64": {
-      "shasums": {
-        "jar": "886bad504af3e5f1af98d8d6b86b7dad17e3dd34f6ad1d025dc3adc6c9e497ad",
-        "sources": "bc340263c63102ff8590c4e67751b7bcdc1035a8eb8f2f8f8c940868e8a1c34c"
-      },
-      "version": "0.9.37.3"
-    },
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64": {
-      "shasums": {
-        "jar": "5108560d8a221f3034311b2f1c36f7c5fbe5be2bd780b6b035fc76900572b62e",
-        "sources": "5a3b7d0d0dc4f8d49494981eba725488e0162ee14bf6d425756d88b09c805088"
-      },
-      "version": "0.9.37.3"
-    },
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-x64": {
-      "shasums": {
-        "jar": "f508582567352440ec6a67d30f97a0d78d28768fcf4b3a57fc275659a4c56e66",
-        "sources": "aea92361ff441b7ccd589692b23a2dc53e73b791e8260c1e1b3ec107495d6c3e"
-      },
-      "version": "0.9.37.3"
     },
     "org.jetbrains:annotations": {
       "shasums": {
@@ -1814,22 +1479,11 @@
       "org.jetbrains.kotlin:kotlin-stdlib",
       "org.jetbrains.kotlinx:kotlinx-coroutines-core"
     ],
-    "androidx.compose.runtime:runtime-retain-desktop": [
-      "androidx.collection:collection-jvm",
-      "androidx.compose.runtime:runtime-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:kotlinx-coroutines-core"
-    ],
     "androidx.compose.runtime:runtime-saveable-desktop": [
       "androidx.collection:collection-jvm",
       "androidx.compose.runtime:runtime-desktop",
       "androidx.lifecycle:lifecycle-runtime-compose-desktop",
       "androidx.savedstate:savedstate-compose-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
-    "androidx.graphics:graphics-shapes-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.collection:collection-jvm",
       "org.jetbrains.kotlin:kotlin-stdlib"
     ],
     "androidx.lifecycle:lifecycle-common-jvm": [
@@ -1848,26 +1502,6 @@
       "androidx.arch.core:core-common",
       "androidx.lifecycle:lifecycle-common-jvm",
       "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
-    "androidx.lifecycle:lifecycle-viewmodel-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:kotlinx-coroutines-core"
-    ],
-    "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.lifecycle:lifecycle-common-jvm",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop",
-      "androidx.savedstate:savedstate-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:kotlinx-coroutines-core",
-      "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm"
-    ],
-    "androidx.navigationevent:navigationevent-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.compose.runtime:runtime-annotation-jvm",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:kotlinx-coroutines-core"
     ],
     "androidx.savedstate:savedstate-compose-desktop": [
       "androidx.compose.runtime:runtime-desktop",
@@ -2112,184 +1746,11 @@
     "org.eclipse.sisu:org.eclipse.sisu.inject": [
       "org.ow2.asm:asm"
     ],
-    "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop": [
-      "androidx.lifecycle:lifecycle-common-jvm",
-      "androidx.lifecycle:lifecycle-runtime-compose-desktop",
-      "androidx.lifecycle:lifecycle-runtime-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop"
-    ],
-    "org.jetbrains.androidx.savedstate:savedstate-compose-desktop": [
-      "androidx.savedstate:savedstate-compose-desktop",
-      "androidx.savedstate:savedstate-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop"
-    ],
-    "org.jetbrains.compose.animation:animation-core-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.collection:collection-jvm",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-desktop",
-      "org.jetbrains.compose.ui:ui-unit-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:atomicfu-jvm",
-      "org.jetbrains.kotlinx:kotlinx-coroutines-core"
-    ],
-    "org.jetbrains.compose.animation:animation-desktop": [
-      "androidx.collection:collection-jvm",
-      "org.jetbrains.compose.animation:animation-core-desktop",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-desktop",
-      "org.jetbrains.compose.ui:ui-geometry-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
-    "org.jetbrains.compose.foundation:foundation-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.collection:collection-jvm",
-      "org.jetbrains.compose.animation:animation-desktop",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-desktop",
-      "org.jetbrains.compose.ui:ui-text-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:atomicfu-jvm",
-      "org.jetbrains.skiko:skiko-awt"
-    ],
-    "org.jetbrains.compose.foundation:foundation-layout-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.collection:collection-jvm",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
-    "org.jetbrains.compose.material3:material3-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.collection:collection-jvm",
-      "androidx.graphics:graphics-shapes-desktop",
-      "org.jetbrains.compose.animation:animation-core-desktop",
-      "org.jetbrains.compose.foundation:foundation-desktop",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop",
-      "org.jetbrains.compose.material:material-ripple-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop",
-      "org.jetbrains.compose.ui:ui-graphics-desktop",
-      "org.jetbrains.compose.ui:ui-text-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:atomicfu-jvm",
-      "org.jetbrains.kotlinx:kotlinx-datetime-jvm"
-    ],
-    "org.jetbrains.compose.material:material-icons-core-desktop": [
-      "org.jetbrains.compose.ui:ui-desktop",
-      "org.jetbrains.compose.ui:ui-graphics-desktop",
-      "org.jetbrains.compose.ui:ui-unit-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib-common"
-    ],
-    "org.jetbrains.compose.material:material-ripple-desktop": [
-      "androidx.collection:collection-jvm",
-      "org.jetbrains.compose.animation:animation-desktop",
-      "org.jetbrains.compose.foundation:foundation-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
-    "org.jetbrains.compose.runtime:runtime-desktop": [
-      "androidx.compose.runtime:runtime-desktop"
-    ],
-    "org.jetbrains.compose.runtime:runtime-saveable-desktop": [
-      "androidx.compose.runtime:runtime-saveable-desktop",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop",
-      "org.jetbrains.androidx.savedstate:savedstate-compose-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop"
-    ],
-    "org.jetbrains.compose.ui:ui-backhandler-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.navigationevent:navigationevent-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:kotlinx-coroutines-core"
-    ],
-    "org.jetbrains.compose.ui:ui-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.collection:collection-jvm",
-      "androidx.compose.runtime:runtime-retain-desktop",
-      "androidx.lifecycle:lifecycle-common-jvm",
-      "androidx.lifecycle:lifecycle-runtime-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop",
-      "androidx.navigationevent:navigationevent-desktop",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop",
-      "org.jetbrains.compose.ui:ui-geometry-desktop",
-      "org.jetbrains.compose.ui:ui-graphics-desktop",
-      "org.jetbrains.compose.ui:ui-text-desktop",
-      "org.jetbrains.compose.ui:ui-unit-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
-      "org.jetbrains.kotlinx:atomicfu-jvm",
-      "org.jetbrains.kotlinx:kotlinx-coroutines-core",
-      "org.jetbrains.skiko:skiko-awt"
-    ],
-    "org.jetbrains.compose.ui:ui-geometry-desktop": [
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
-    "org.jetbrains.compose.ui:ui-graphics-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.collection:collection-jvm",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-geometry-desktop",
-      "org.jetbrains.compose.ui:ui-unit-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
-      "org.jetbrains.skiko:skiko-awt"
-    ],
-    "org.jetbrains.compose.ui:ui-text-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "androidx.collection:collection-jvm",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop",
-      "org.jetbrains.compose.ui:ui-geometry-desktop",
-      "org.jetbrains.compose.ui:ui-graphics-desktop",
-      "org.jetbrains.compose.ui:ui-unit-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:atomicfu-jvm",
-      "org.jetbrains.kotlinx:kotlinx-coroutines-core",
-      "org.jetbrains.skiko:skiko-awt"
-    ],
-    "org.jetbrains.compose.ui:ui-unit-desktop": [
-      "androidx.annotation:annotation-jvm",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.ui:ui-geometry-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
-    "org.jetbrains.compose.ui:ui-util-desktop": [
-      "androidx.collection:collection-jvm",
-      "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
     "org.jetbrains.kotlin:kotlin-reflect": [
       "org.jetbrains.kotlin:kotlin-stdlib"
     ],
     "org.jetbrains.kotlin:kotlin-stdlib": [
       "org.jetbrains:annotations"
-    ],
-    "org.jetbrains.kotlin:kotlin-stdlib-jdk7": [
-      "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
-    "org.jetbrains.kotlin:kotlin-stdlib-jdk8": [
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
     ],
     "org.jetbrains.kotlin:kotlin-test": [
       "org.jetbrains.kotlin:kotlin-stdlib"
@@ -2299,9 +1760,6 @@
       "org.junit.jupiter:junit-jupiter-api",
       "org.junit.jupiter:junit-jupiter-engine",
       "org.junit.platform:junit-platform-launcher"
-    ],
-    "org.jetbrains.kotlinx:atomicfu-jvm": [
-      "org.jetbrains.kotlin:kotlin-stdlib"
     ],
     "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm": [
       "org.jetbrains.kotlin:kotlin-stdlib"
@@ -2317,9 +1775,6 @@
       "org.jetbrains.kotlin:kotlin-stdlib",
       "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm"
     ],
-    "org.jetbrains.kotlinx:kotlinx-datetime-jvm": [
-      "org.jetbrains.kotlin:kotlin-stdlib"
-    ],
     "org.jetbrains.kotlinx:kotlinx-serialization-core": [
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm"
     ],
@@ -2332,29 +1787,6 @@
     "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm": [
       "org.jetbrains.kotlin:kotlin-stdlib",
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm"
-    ],
-    "org.jetbrains.skiko:skiko-awt": [
-      "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm",
-      "org.jetbrains.runtime:jbr-api"
-    ],
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64": [
-      "org.jetbrains.skiko:skiko-awt"
-    ],
-    "org.jetbrains.skiko:skiko-awt-runtime-linux-x64": [
-      "org.jetbrains.skiko:skiko-awt"
-    ],
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64": [
-      "org.jetbrains.skiko:skiko-awt"
-    ],
-    "org.jetbrains.skiko:skiko-awt-runtime-macos-x64": [
-      "org.jetbrains.skiko:skiko-awt"
-    ],
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64": [
-      "org.jetbrains.skiko:skiko-awt"
-    ],
-    "org.jetbrains.skiko:skiko-awt-runtime-windows-x64": [
-      "org.jetbrains.skiko:skiko-awt"
     ],
     "org.junit.jupiter:junit-jupiter-api": [
       "org.apiguardian:apiguardian-api",
@@ -2520,16 +1952,9 @@
       "androidx.compose.runtime.snapshots.tooling",
       "androidx.compose.runtime.tooling"
     ],
-    "androidx.compose.runtime:runtime-retain-desktop": [
-      "androidx.compose.runtime.retain",
-      "androidx.compose.runtime.retain.impl"
-    ],
     "androidx.compose.runtime:runtime-saveable-desktop": [
       "androidx.compose.runtime.saveable",
       "androidx.compose.runtime.saveable.serialization"
-    ],
-    "androidx.graphics:graphics-shapes-desktop": [
-      "androidx.graphics.shapes"
     ],
     "androidx.lifecycle:lifecycle-common-jvm": [
       "androidx.lifecycle"
@@ -2539,20 +1964,6 @@
     ],
     "androidx.lifecycle:lifecycle-runtime-desktop": [
       "androidx.lifecycle"
-    ],
-    "androidx.lifecycle:lifecycle-viewmodel-desktop": [
-      "androidx.lifecycle",
-      "androidx.lifecycle.viewmodel",
-      "androidx.lifecycle.viewmodel.internal"
-    ],
-    "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop": [
-      "androidx.lifecycle",
-      "androidx.lifecycle.internal",
-      "androidx.lifecycle.serialization"
-    ],
-    "androidx.navigationevent:navigationevent-desktop": [
-      "androidx.navigationevent",
-      "androidx.navigationevent.internal"
     ],
     "androidx.savedstate:savedstate-compose-desktop": [
       "androidx.savedstate.compose",
@@ -4930,155 +4341,6 @@
       "javassist.util",
       "javassist.util.proxy"
     ],
-    "org.jetbrains.compose.animation:animation-core-desktop": [
-      "androidx.compose.animation.core",
-      "androidx.compose.animation.core.internal"
-    ],
-    "org.jetbrains.compose.animation:animation-desktop": [
-      "androidx.compose.animation",
-      "androidx.compose.animation.internal"
-    ],
-    "org.jetbrains.compose.foundation:foundation-desktop": [
-      "androidx.compose.foundation",
-      "androidx.compose.foundation.content",
-      "androidx.compose.foundation.content.internal",
-      "androidx.compose.foundation.contextmenu",
-      "androidx.compose.foundation.draganddrop",
-      "androidx.compose.foundation.gestures",
-      "androidx.compose.foundation.gestures.cupertino",
-      "androidx.compose.foundation.gestures.snapping",
-      "androidx.compose.foundation.interaction",
-      "androidx.compose.foundation.internal",
-      "androidx.compose.foundation.lazy",
-      "androidx.compose.foundation.lazy.grid",
-      "androidx.compose.foundation.lazy.layout",
-      "androidx.compose.foundation.lazy.staggeredgrid",
-      "androidx.compose.foundation.pager",
-      "androidx.compose.foundation.platform",
-      "androidx.compose.foundation.relocation",
-      "androidx.compose.foundation.selection",
-      "androidx.compose.foundation.shape",
-      "androidx.compose.foundation.text",
-      "androidx.compose.foundation.text.contextmenu.builder",
-      "androidx.compose.foundation.text.contextmenu.data",
-      "androidx.compose.foundation.text.contextmenu.gestures",
-      "androidx.compose.foundation.text.contextmenu.internal",
-      "androidx.compose.foundation.text.contextmenu.modifier",
-      "androidx.compose.foundation.text.contextmenu.provider",
-      "androidx.compose.foundation.text.handwriting",
-      "androidx.compose.foundation.text.input",
-      "androidx.compose.foundation.text.input.internal",
-      "androidx.compose.foundation.text.input.internal.selection",
-      "androidx.compose.foundation.text.input.internal.undo",
-      "androidx.compose.foundation.text.l10n",
-      "androidx.compose.foundation.text.modifiers",
-      "androidx.compose.foundation.text.selection",
-      "androidx.compose.foundation.v2",
-      "androidx.compose.foundation.window"
-    ],
-    "org.jetbrains.compose.foundation:foundation-layout-desktop": [
-      "androidx.compose.foundation.layout",
-      "androidx.compose.foundation.layout.internal"
-    ],
-    "org.jetbrains.compose.material3:material3-desktop": [
-      "androidx.compose.material3",
-      "androidx.compose.material3.carousel",
-      "androidx.compose.material3.internal",
-      "androidx.compose.material3.l10n",
-      "androidx.compose.material3.pulltorefresh",
-      "androidx.compose.material3.tokens"
-    ],
-    "org.jetbrains.compose.material:material-icons-core-desktop": [
-      "androidx.compose.material.icons",
-      "androidx.compose.material.icons.automirrored.filled",
-      "androidx.compose.material.icons.automirrored.outlined",
-      "androidx.compose.material.icons.automirrored.rounded",
-      "androidx.compose.material.icons.automirrored.sharp",
-      "androidx.compose.material.icons.automirrored.twotone",
-      "androidx.compose.material.icons.filled",
-      "androidx.compose.material.icons.outlined",
-      "androidx.compose.material.icons.rounded",
-      "androidx.compose.material.icons.sharp",
-      "androidx.compose.material.icons.twotone"
-    ],
-    "org.jetbrains.compose.material:material-ripple-desktop": [
-      "androidx.compose.material.ripple"
-    ],
-    "org.jetbrains.compose.ui:ui-backhandler-desktop": [
-      "androidx.compose.ui.backhandler"
-    ],
-    "org.jetbrains.compose.ui:ui-desktop": [
-      "androidx.compose.ui",
-      "androidx.compose.ui.animation",
-      "androidx.compose.ui.autofill",
-      "androidx.compose.ui.awt",
-      "androidx.compose.ui.draganddrop",
-      "androidx.compose.ui.draw",
-      "androidx.compose.ui.focus",
-      "androidx.compose.ui.graphics",
-      "androidx.compose.ui.graphics.vector",
-      "androidx.compose.ui.hapticfeedback",
-      "androidx.compose.ui.input",
-      "androidx.compose.ui.input.indirect",
-      "androidx.compose.ui.input.key",
-      "androidx.compose.ui.input.mouse",
-      "androidx.compose.ui.input.nestedscroll",
-      "androidx.compose.ui.input.pointer",
-      "androidx.compose.ui.input.pointer.util",
-      "androidx.compose.ui.input.rotary",
-      "androidx.compose.ui.internal",
-      "androidx.compose.ui.layout",
-      "androidx.compose.ui.modifier",
-      "androidx.compose.ui.navigationevent",
-      "androidx.compose.ui.node",
-      "androidx.compose.ui.platform",
-      "androidx.compose.ui.platform.a11y",
-      "androidx.compose.ui.platform.l10n",
-      "androidx.compose.ui.relocation",
-      "androidx.compose.ui.res",
-      "androidx.compose.ui.res.vector",
-      "androidx.compose.ui.scene",
-      "androidx.compose.ui.scene.skia",
-      "androidx.compose.ui.semantics",
-      "androidx.compose.ui.skiko",
-      "androidx.compose.ui.spatial",
-      "androidx.compose.ui.state",
-      "androidx.compose.ui.text",
-      "androidx.compose.ui.unit",
-      "androidx.compose.ui.util",
-      "androidx.compose.ui.viewinterop",
-      "androidx.compose.ui.window"
-    ],
-    "org.jetbrains.compose.ui:ui-geometry-desktop": [
-      "androidx.compose.ui.geometry"
-    ],
-    "org.jetbrains.compose.ui:ui-graphics-desktop": [
-      "androidx.compose.ui.graphics",
-      "androidx.compose.ui.graphics.colorspace",
-      "androidx.compose.ui.graphics.drawscope",
-      "androidx.compose.ui.graphics.internal",
-      "androidx.compose.ui.graphics.layer",
-      "androidx.compose.ui.graphics.painter",
-      "androidx.compose.ui.graphics.shadow",
-      "androidx.compose.ui.graphics.vector"
-    ],
-    "org.jetbrains.compose.ui:ui-text-desktop": [
-      "androidx.compose.ui.text",
-      "androidx.compose.ui.text.font",
-      "androidx.compose.ui.text.input",
-      "androidx.compose.ui.text.internal",
-      "androidx.compose.ui.text.intl",
-      "androidx.compose.ui.text.platform",
-      "androidx.compose.ui.text.style"
-    ],
-    "org.jetbrains.compose.ui:ui-unit-desktop": [
-      "androidx.compose.ui.unit",
-      "androidx.compose.ui.unit.internal"
-    ],
-    "org.jetbrains.compose.ui:ui-util-desktop": [
-      "androidx.compose.ui",
-      "androidx.compose.ui.util"
-    ],
     "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable": [
       "androidx.compose.compiler.plugins.kotlin",
       "androidx.compose.compiler.plugins.kotlin.analysis",
@@ -5208,10 +4470,6 @@
       "kotlin.test.junit5",
       "kotlin.test.junit5.annotations"
     ],
-    "org.jetbrains.kotlinx:atomicfu-jvm": [
-      "kotlinx.atomicfu",
-      "kotlinx.atomicfu.locks"
-    ],
     "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm": [
       "kotlinx.collections.immutable",
       "kotlinx.collections.immutable.adapters",
@@ -5241,15 +4499,6 @@
     "org.jetbrains.kotlinx:kotlinx-coroutines-swing": [
       "kotlinx.coroutines.swing"
     ],
-    "org.jetbrains.kotlinx:kotlinx-datetime-jvm": [
-      "kotlinx.datetime",
-      "kotlinx.datetime.format",
-      "kotlinx.datetime.internal",
-      "kotlinx.datetime.internal.format",
-      "kotlinx.datetime.internal.format.formatter",
-      "kotlinx.datetime.internal.format.parser",
-      "kotlinx.datetime.serializers"
-    ],
     "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm": [
       "kotlinx.serialization",
       "kotlinx.serialization.builtins",
@@ -5261,26 +4510,6 @@
     "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm": [
       "kotlinx.serialization.json",
       "kotlinx.serialization.json.internal"
-    ],
-    "org.jetbrains.runtime:jbr-api": [
-      "com.jetbrains"
-    ],
-    "org.jetbrains.skiko:skiko-awt": [
-      "org.jetbrains.skia",
-      "org.jetbrains.skia.icu",
-      "org.jetbrains.skia.impl",
-      "org.jetbrains.skia.paragraph",
-      "org.jetbrains.skia.shaper",
-      "org.jetbrains.skia.skottie",
-      "org.jetbrains.skia.sksg",
-      "org.jetbrains.skia.svg",
-      "org.jetbrains.skiko",
-      "org.jetbrains.skiko.context",
-      "org.jetbrains.skiko.graphicapi",
-      "org.jetbrains.skiko.node",
-      "org.jetbrains.skiko.redrawer",
-      "org.jetbrains.skiko.swing",
-      "org.jetbrains.skiko.windows"
     ],
     "org.jetbrains:annotations": [
       "org.intellij.lang.annotations",
@@ -5493,24 +4722,14 @@
       "androidx.compose.runtime:runtime-annotation-jvm:jar:sources",
       "androidx.compose.runtime:runtime-desktop",
       "androidx.compose.runtime:runtime-desktop:jar:sources",
-      "androidx.compose.runtime:runtime-retain-desktop",
-      "androidx.compose.runtime:runtime-retain-desktop:jar:sources",
       "androidx.compose.runtime:runtime-saveable-desktop",
       "androidx.compose.runtime:runtime-saveable-desktop:jar:sources",
-      "androidx.graphics:graphics-shapes-desktop",
-      "androidx.graphics:graphics-shapes-desktop:jar:sources",
       "androidx.lifecycle:lifecycle-common-jvm",
       "androidx.lifecycle:lifecycle-common-jvm:jar:sources",
       "androidx.lifecycle:lifecycle-runtime-compose-desktop",
       "androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources",
       "androidx.lifecycle:lifecycle-runtime-desktop",
       "androidx.lifecycle:lifecycle-runtime-desktop:jar:sources",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop:jar:sources",
-      "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop:jar:sources",
-      "androidx.navigationevent:navigationevent-desktop",
-      "androidx.navigationevent:navigationevent-desktop:jar:sources",
       "androidx.savedstate:savedstate-compose-desktop",
       "androidx.savedstate:savedstate-compose-desktop:jar:sources",
       "androidx.savedstate:savedstate-desktop",
@@ -5699,60 +4918,16 @@
       "org.eclipse.sisu:org.eclipse.sisu.inject:jar:sources",
       "org.javassist:javassist",
       "org.javassist:javassist:jar:sources",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources",
-      "org.jetbrains.androidx.savedstate:savedstate-compose-desktop",
-      "org.jetbrains.androidx.savedstate:savedstate-compose-desktop:jar:sources",
-      "org.jetbrains.compose.animation:animation-core-desktop",
-      "org.jetbrains.compose.animation:animation-core-desktop:jar:sources",
-      "org.jetbrains.compose.animation:animation-desktop",
-      "org.jetbrains.compose.animation:animation-desktop:jar:sources",
-      "org.jetbrains.compose.foundation:foundation-desktop",
-      "org.jetbrains.compose.foundation:foundation-desktop:jar:sources",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop:jar:sources",
-      "org.jetbrains.compose.material3:material3-desktop",
-      "org.jetbrains.compose.material3:material3-desktop:jar:sources",
-      "org.jetbrains.compose.material:material-icons-core-desktop",
-      "org.jetbrains.compose.material:material-icons-core-desktop:jar:sources",
-      "org.jetbrains.compose.material:material-ripple-desktop",
-      "org.jetbrains.compose.material:material-ripple-desktop:jar:sources",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop:jar:sources",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-desktop",
-      "org.jetbrains.compose.ui:ui-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-geometry-desktop",
-      "org.jetbrains.compose.ui:ui-geometry-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-graphics-desktop",
-      "org.jetbrains.compose.ui:ui-graphics-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-text-desktop",
-      "org.jetbrains.compose.ui:ui-text-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-unit-desktop",
-      "org.jetbrains.compose.ui:ui-unit-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop:jar:sources",
       "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable",
       "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable:jar:sources",
       "org.jetbrains.kotlin:kotlin-reflect",
       "org.jetbrains.kotlin:kotlin-reflect:jar:sources",
       "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlin:kotlin-stdlib-common",
-      "org.jetbrains.kotlin:kotlin-stdlib-common:jar:sources",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:sources",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:sources",
       "org.jetbrains.kotlin:kotlin-stdlib:jar:sources",
       "org.jetbrains.kotlin:kotlin-test",
       "org.jetbrains.kotlin:kotlin-test-junit5",
       "org.jetbrains.kotlin:kotlin-test-junit5:jar:sources",
       "org.jetbrains.kotlin:kotlin-test:jar:sources",
-      "org.jetbrains.kotlinx:atomicfu-jvm",
-      "org.jetbrains.kotlinx:atomicfu-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm",
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-coroutines-core",
@@ -5761,8 +4936,6 @@
       "org.jetbrains.kotlinx:kotlinx-coroutines-core:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-coroutines-swing",
       "org.jetbrains.kotlinx:kotlinx-coroutines-swing:jar:sources",
-      "org.jetbrains.kotlinx:kotlinx-datetime-jvm",
-      "org.jetbrains.kotlinx:kotlinx-datetime-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-serialization-core",
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm",
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:jar:sources",
@@ -5771,22 +4944,6 @@
       "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm",
       "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-serialization-json:jar:sources",
-      "org.jetbrains.runtime:jbr-api",
-      "org.jetbrains.runtime:jbr-api:jar:sources",
-      "org.jetbrains.skiko:skiko-awt",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt:jar:sources",
       "org.jetbrains:annotations",
       "org.jetbrains:annotations:jar:sources",
       "org.joml:joml",
@@ -5883,24 +5040,14 @@
       "androidx.compose.runtime:runtime-annotation-jvm:jar:sources",
       "androidx.compose.runtime:runtime-desktop",
       "androidx.compose.runtime:runtime-desktop:jar:sources",
-      "androidx.compose.runtime:runtime-retain-desktop",
-      "androidx.compose.runtime:runtime-retain-desktop:jar:sources",
       "androidx.compose.runtime:runtime-saveable-desktop",
       "androidx.compose.runtime:runtime-saveable-desktop:jar:sources",
-      "androidx.graphics:graphics-shapes-desktop",
-      "androidx.graphics:graphics-shapes-desktop:jar:sources",
       "androidx.lifecycle:lifecycle-common-jvm",
       "androidx.lifecycle:lifecycle-common-jvm:jar:sources",
       "androidx.lifecycle:lifecycle-runtime-compose-desktop",
       "androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources",
       "androidx.lifecycle:lifecycle-runtime-desktop",
       "androidx.lifecycle:lifecycle-runtime-desktop:jar:sources",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop:jar:sources",
-      "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop:jar:sources",
-      "androidx.navigationevent:navigationevent-desktop",
-      "androidx.navigationevent:navigationevent-desktop:jar:sources",
       "androidx.savedstate:savedstate-compose-desktop",
       "androidx.savedstate:savedstate-compose-desktop:jar:sources",
       "androidx.savedstate:savedstate-desktop",
@@ -6089,60 +5236,16 @@
       "org.eclipse.sisu:org.eclipse.sisu.inject:jar:sources",
       "org.javassist:javassist",
       "org.javassist:javassist:jar:sources",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources",
-      "org.jetbrains.androidx.savedstate:savedstate-compose-desktop",
-      "org.jetbrains.androidx.savedstate:savedstate-compose-desktop:jar:sources",
-      "org.jetbrains.compose.animation:animation-core-desktop",
-      "org.jetbrains.compose.animation:animation-core-desktop:jar:sources",
-      "org.jetbrains.compose.animation:animation-desktop",
-      "org.jetbrains.compose.animation:animation-desktop:jar:sources",
-      "org.jetbrains.compose.foundation:foundation-desktop",
-      "org.jetbrains.compose.foundation:foundation-desktop:jar:sources",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop:jar:sources",
-      "org.jetbrains.compose.material3:material3-desktop",
-      "org.jetbrains.compose.material3:material3-desktop:jar:sources",
-      "org.jetbrains.compose.material:material-icons-core-desktop",
-      "org.jetbrains.compose.material:material-icons-core-desktop:jar:sources",
-      "org.jetbrains.compose.material:material-ripple-desktop",
-      "org.jetbrains.compose.material:material-ripple-desktop:jar:sources",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop:jar:sources",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-desktop",
-      "org.jetbrains.compose.ui:ui-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-geometry-desktop",
-      "org.jetbrains.compose.ui:ui-geometry-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-graphics-desktop",
-      "org.jetbrains.compose.ui:ui-graphics-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-text-desktop",
-      "org.jetbrains.compose.ui:ui-text-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-unit-desktop",
-      "org.jetbrains.compose.ui:ui-unit-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop:jar:sources",
       "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable",
       "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable:jar:sources",
       "org.jetbrains.kotlin:kotlin-reflect",
       "org.jetbrains.kotlin:kotlin-reflect:jar:sources",
       "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlin:kotlin-stdlib-common",
-      "org.jetbrains.kotlin:kotlin-stdlib-common:jar:sources",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:sources",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:sources",
       "org.jetbrains.kotlin:kotlin-stdlib:jar:sources",
       "org.jetbrains.kotlin:kotlin-test",
       "org.jetbrains.kotlin:kotlin-test-junit5",
       "org.jetbrains.kotlin:kotlin-test-junit5:jar:sources",
       "org.jetbrains.kotlin:kotlin-test:jar:sources",
-      "org.jetbrains.kotlinx:atomicfu-jvm",
-      "org.jetbrains.kotlinx:atomicfu-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm",
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-coroutines-core",
@@ -6151,8 +5254,6 @@
       "org.jetbrains.kotlinx:kotlinx-coroutines-core:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-coroutines-swing",
       "org.jetbrains.kotlinx:kotlinx-coroutines-swing:jar:sources",
-      "org.jetbrains.kotlinx:kotlinx-datetime-jvm",
-      "org.jetbrains.kotlinx:kotlinx-datetime-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-serialization-core",
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm",
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:jar:sources",
@@ -6161,22 +5262,6 @@
       "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm",
       "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-serialization-json:jar:sources",
-      "org.jetbrains.runtime:jbr-api",
-      "org.jetbrains.runtime:jbr-api:jar:sources",
-      "org.jetbrains.skiko:skiko-awt",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt:jar:sources",
       "org.jetbrains:annotations",
       "org.jetbrains:annotations:jar:sources",
       "org.joml:joml",
@@ -6273,24 +5358,14 @@
       "androidx.compose.runtime:runtime-annotation-jvm:jar:sources",
       "androidx.compose.runtime:runtime-desktop",
       "androidx.compose.runtime:runtime-desktop:jar:sources",
-      "androidx.compose.runtime:runtime-retain-desktop",
-      "androidx.compose.runtime:runtime-retain-desktop:jar:sources",
       "androidx.compose.runtime:runtime-saveable-desktop",
       "androidx.compose.runtime:runtime-saveable-desktop:jar:sources",
-      "androidx.graphics:graphics-shapes-desktop",
-      "androidx.graphics:graphics-shapes-desktop:jar:sources",
       "androidx.lifecycle:lifecycle-common-jvm",
       "androidx.lifecycle:lifecycle-common-jvm:jar:sources",
       "androidx.lifecycle:lifecycle-runtime-compose-desktop",
       "androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources",
       "androidx.lifecycle:lifecycle-runtime-desktop",
       "androidx.lifecycle:lifecycle-runtime-desktop:jar:sources",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop:jar:sources",
-      "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop:jar:sources",
-      "androidx.navigationevent:navigationevent-desktop",
-      "androidx.navigationevent:navigationevent-desktop:jar:sources",
       "androidx.savedstate:savedstate-compose-desktop",
       "androidx.savedstate:savedstate-compose-desktop:jar:sources",
       "androidx.savedstate:savedstate-desktop",
@@ -6479,60 +5554,16 @@
       "org.eclipse.sisu:org.eclipse.sisu.inject:jar:sources",
       "org.javassist:javassist",
       "org.javassist:javassist:jar:sources",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources",
-      "org.jetbrains.androidx.savedstate:savedstate-compose-desktop",
-      "org.jetbrains.androidx.savedstate:savedstate-compose-desktop:jar:sources",
-      "org.jetbrains.compose.animation:animation-core-desktop",
-      "org.jetbrains.compose.animation:animation-core-desktop:jar:sources",
-      "org.jetbrains.compose.animation:animation-desktop",
-      "org.jetbrains.compose.animation:animation-desktop:jar:sources",
-      "org.jetbrains.compose.foundation:foundation-desktop",
-      "org.jetbrains.compose.foundation:foundation-desktop:jar:sources",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop:jar:sources",
-      "org.jetbrains.compose.material3:material3-desktop",
-      "org.jetbrains.compose.material3:material3-desktop:jar:sources",
-      "org.jetbrains.compose.material:material-icons-core-desktop",
-      "org.jetbrains.compose.material:material-icons-core-desktop:jar:sources",
-      "org.jetbrains.compose.material:material-ripple-desktop",
-      "org.jetbrains.compose.material:material-ripple-desktop:jar:sources",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop:jar:sources",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-desktop",
-      "org.jetbrains.compose.ui:ui-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-geometry-desktop",
-      "org.jetbrains.compose.ui:ui-geometry-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-graphics-desktop",
-      "org.jetbrains.compose.ui:ui-graphics-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-text-desktop",
-      "org.jetbrains.compose.ui:ui-text-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-unit-desktop",
-      "org.jetbrains.compose.ui:ui-unit-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop:jar:sources",
       "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable",
       "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable:jar:sources",
       "org.jetbrains.kotlin:kotlin-reflect",
       "org.jetbrains.kotlin:kotlin-reflect:jar:sources",
       "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlin:kotlin-stdlib-common",
-      "org.jetbrains.kotlin:kotlin-stdlib-common:jar:sources",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:sources",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:sources",
       "org.jetbrains.kotlin:kotlin-stdlib:jar:sources",
       "org.jetbrains.kotlin:kotlin-test",
       "org.jetbrains.kotlin:kotlin-test-junit5",
       "org.jetbrains.kotlin:kotlin-test-junit5:jar:sources",
       "org.jetbrains.kotlin:kotlin-test:jar:sources",
-      "org.jetbrains.kotlinx:atomicfu-jvm",
-      "org.jetbrains.kotlinx:atomicfu-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm",
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-coroutines-core",
@@ -6541,8 +5572,6 @@
       "org.jetbrains.kotlinx:kotlinx-coroutines-core:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-coroutines-swing",
       "org.jetbrains.kotlinx:kotlinx-coroutines-swing:jar:sources",
-      "org.jetbrains.kotlinx:kotlinx-datetime-jvm",
-      "org.jetbrains.kotlinx:kotlinx-datetime-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-serialization-core",
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm",
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:jar:sources",
@@ -6551,22 +5580,6 @@
       "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm",
       "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-serialization-json:jar:sources",
-      "org.jetbrains.runtime:jbr-api",
-      "org.jetbrains.runtime:jbr-api:jar:sources",
-      "org.jetbrains.skiko:skiko-awt",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt:jar:sources",
       "org.jetbrains:annotations",
       "org.jetbrains:annotations:jar:sources",
       "org.joml:joml",
@@ -6663,24 +5676,14 @@
       "androidx.compose.runtime:runtime-annotation-jvm:jar:sources",
       "androidx.compose.runtime:runtime-desktop",
       "androidx.compose.runtime:runtime-desktop:jar:sources",
-      "androidx.compose.runtime:runtime-retain-desktop",
-      "androidx.compose.runtime:runtime-retain-desktop:jar:sources",
       "androidx.compose.runtime:runtime-saveable-desktop",
       "androidx.compose.runtime:runtime-saveable-desktop:jar:sources",
-      "androidx.graphics:graphics-shapes-desktop",
-      "androidx.graphics:graphics-shapes-desktop:jar:sources",
       "androidx.lifecycle:lifecycle-common-jvm",
       "androidx.lifecycle:lifecycle-common-jvm:jar:sources",
       "androidx.lifecycle:lifecycle-runtime-compose-desktop",
       "androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources",
       "androidx.lifecycle:lifecycle-runtime-desktop",
       "androidx.lifecycle:lifecycle-runtime-desktop:jar:sources",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-desktop:jar:sources",
-      "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop",
-      "androidx.lifecycle:lifecycle-viewmodel-savedstate-desktop:jar:sources",
-      "androidx.navigationevent:navigationevent-desktop",
-      "androidx.navigationevent:navigationevent-desktop:jar:sources",
       "androidx.savedstate:savedstate-compose-desktop",
       "androidx.savedstate:savedstate-compose-desktop:jar:sources",
       "androidx.savedstate:savedstate-desktop",
@@ -6869,60 +5872,16 @@
       "org.eclipse.sisu:org.eclipse.sisu.inject:jar:sources",
       "org.javassist:javassist",
       "org.javassist:javassist:jar:sources",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop",
-      "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop:jar:sources",
-      "org.jetbrains.androidx.savedstate:savedstate-compose-desktop",
-      "org.jetbrains.androidx.savedstate:savedstate-compose-desktop:jar:sources",
-      "org.jetbrains.compose.animation:animation-core-desktop",
-      "org.jetbrains.compose.animation:animation-core-desktop:jar:sources",
-      "org.jetbrains.compose.animation:animation-desktop",
-      "org.jetbrains.compose.animation:animation-desktop:jar:sources",
-      "org.jetbrains.compose.foundation:foundation-desktop",
-      "org.jetbrains.compose.foundation:foundation-desktop:jar:sources",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop",
-      "org.jetbrains.compose.foundation:foundation-layout-desktop:jar:sources",
-      "org.jetbrains.compose.material3:material3-desktop",
-      "org.jetbrains.compose.material3:material3-desktop:jar:sources",
-      "org.jetbrains.compose.material:material-icons-core-desktop",
-      "org.jetbrains.compose.material:material-icons-core-desktop:jar:sources",
-      "org.jetbrains.compose.material:material-ripple-desktop",
-      "org.jetbrains.compose.material:material-ripple-desktop:jar:sources",
-      "org.jetbrains.compose.runtime:runtime-desktop",
-      "org.jetbrains.compose.runtime:runtime-desktop:jar:sources",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop",
-      "org.jetbrains.compose.runtime:runtime-saveable-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop",
-      "org.jetbrains.compose.ui:ui-backhandler-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-desktop",
-      "org.jetbrains.compose.ui:ui-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-geometry-desktop",
-      "org.jetbrains.compose.ui:ui-geometry-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-graphics-desktop",
-      "org.jetbrains.compose.ui:ui-graphics-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-text-desktop",
-      "org.jetbrains.compose.ui:ui-text-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-unit-desktop",
-      "org.jetbrains.compose.ui:ui-unit-desktop:jar:sources",
-      "org.jetbrains.compose.ui:ui-util-desktop",
-      "org.jetbrains.compose.ui:ui-util-desktop:jar:sources",
       "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable",
       "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable:jar:sources",
       "org.jetbrains.kotlin:kotlin-reflect",
       "org.jetbrains.kotlin:kotlin-reflect:jar:sources",
       "org.jetbrains.kotlin:kotlin-stdlib",
-      "org.jetbrains.kotlin:kotlin-stdlib-common",
-      "org.jetbrains.kotlin:kotlin-stdlib-common:jar:sources",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:sources",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
-      "org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:sources",
       "org.jetbrains.kotlin:kotlin-stdlib:jar:sources",
       "org.jetbrains.kotlin:kotlin-test",
       "org.jetbrains.kotlin:kotlin-test-junit5",
       "org.jetbrains.kotlin:kotlin-test-junit5:jar:sources",
       "org.jetbrains.kotlin:kotlin-test:jar:sources",
-      "org.jetbrains.kotlinx:atomicfu-jvm",
-      "org.jetbrains.kotlinx:atomicfu-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm",
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-coroutines-core",
@@ -6931,8 +5890,6 @@
       "org.jetbrains.kotlinx:kotlinx-coroutines-core:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-coroutines-swing",
       "org.jetbrains.kotlinx:kotlinx-coroutines-swing:jar:sources",
-      "org.jetbrains.kotlinx:kotlinx-datetime-jvm",
-      "org.jetbrains.kotlinx:kotlinx-datetime-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-serialization-core",
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm",
       "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:jar:sources",
@@ -6941,22 +5898,6 @@
       "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm",
       "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:jar:sources",
       "org.jetbrains.kotlinx:kotlinx-serialization-json:jar:sources",
-      "org.jetbrains.runtime:jbr-api",
-      "org.jetbrains.runtime:jbr-api:jar:sources",
-      "org.jetbrains.skiko:skiko-awt",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-linux-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-macos-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-arm64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-x64",
-      "org.jetbrains.skiko:skiko-awt-runtime-windows-x64:jar:sources",
-      "org.jetbrains.skiko:skiko-awt:jar:sources",
       "org.jetbrains:annotations",
       "org.jetbrains:annotations:jar:sources",
       "org.joml:joml",

@@ -6,7 +6,7 @@ module(
 )
 
 bazel_dep(name = "rules_java", version = "9.6.1")
-bazel_dep(name = "rules_kotlin", version = "2.3.20")
+bazel_dep(name = "rules_kotlin", version = "2.3.21")
 bazel_dep(name = "rules_jvm_external", version = "6.10")
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "bazel_lib", version = "3.2.2")
@@ -68,6 +68,18 @@ archive_override(
     ],
     strip_prefix = "bazel-worker-api-0.0.10/java",
     url = "https://github.com/bazelbuild/bazel-worker-api/releases/download/v0.0.10/bazel-worker-api-v0.0.10.tar.gz",
+)
+
+# Patch rules_kotlin to add common source support
+archive_override(
+    module_name = "rules_kotlin",
+    patch_strip = 1,
+    patches = [
+        "//third_party/rules_kotlin/patches:common_library.patch",
+        "//third_party/rules_kotlin/patches:module_dot_bazel_version.patch",
+    ],
+    sha256 = "118fcba9b15a5f35f52be6ea84a3cd98f78658b2071ec0f3a1de6d2863f2e50a",
+    url = "https://github.com/bazel-contrib/rules_kotlin/releases/download/v2.3.21/rules_kotlin-v2.3.21.tar.gz",
 )
 
 bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
@@ -133,9 +145,9 @@ include("//module/third_party:saba.MODULE.bazel")
 include("//module/third_party:fabric_loom.MODULE.bazel")
 include("//module/third_party:pngcrush.MODULE.bazel")
 include("//module/third_party:aboutlibraries.MODULE.bazel")
-
-# libraries
-include("//module:compose.MODULE.bazel")
+include("//module/third_party:androidx_compose_runtime.MODULE.bazel")
+include("//module/third_party:androidx_savedstate.MODULE.bazel")
+include("//module/third_party:androidx_lifecycle.MODULE.bazel")
 
 # projects
 include("//module:blazerod.MODULE.bazel")
