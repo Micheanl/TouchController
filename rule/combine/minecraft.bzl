@@ -40,7 +40,7 @@ def _atlas_pack_impl(ctx):
     gen_args.add_all(non_bg_textures, map_each = _texture_to_arg)
     gen_args.add_all(texture_info.ninepatch_textures, map_each = _nine_patch_texture_to_arg)
 
-    gen_args.use_param_file("@%s")
+    gen_args.use_param_file("@%s", use_always = True)
     gen_args.set_param_file_format("multiline")
 
     ctx.actions.run(
@@ -167,7 +167,7 @@ def _vanilla_pack_impl(ctx):
     args.add_all(texture_info.textures, map_each = _texture_to_arg)
     args.add_all(texture_info.ninepatch_textures, map_each = _nine_patch_texture_to_arg)
 
-    args.use_param_file("@%s")
+    args.use_param_file("@%s", use_always = True)
     args.set_param_file_format("multiline")
 
     ctx.actions.run(
@@ -227,7 +227,7 @@ def _kt_vanilla_source_impl(ctx):
     args.add_all(texture_info.textures, map_each = _texture_to_arg)
     args.add_all(texture_info.ninepatch_textures, map_each = _nine_patch_texture_to_arg)
 
-    args.use_param_file("@%s")
+    args.use_param_file("@%s", use_always = True)
     args.set_param_file_format("multiline")
 
     ctx.actions.run(
@@ -344,7 +344,7 @@ def _kt_atlas_source_impl(ctx):
         args.add("--output-package", ctx.attr.package)
     args.add_all(background_textures, map_each = _background_texture_to_arg)
 
-    args.use_param_file("@%s")
+    args.use_param_file("@%s", use_always = True)
     args.set_param_file_format("multiline")
 
     ctx.actions.run(

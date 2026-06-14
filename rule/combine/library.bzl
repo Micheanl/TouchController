@@ -24,7 +24,7 @@ def _kt_texture_source_impl(ctx):
         args.add("--ninepatch")
         args.add(texture.identifier)
 
-    args.use_param_file("@%s")
+    args.use_param_file("@%s", use_always = True)
     args.set_param_file_format("multiline")
 
     ctx.actions.run(
