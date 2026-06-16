@@ -3,9 +3,9 @@
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     artifacts = [
-        "net.neoforged:srgutils:1.0.10",
-        "io.codechicken:DiffPatch:2.1.0.42:all",
-        "net.neoforged.jst:jst-cli-bundle:2.0.7",
+        "net.neoforged:srgutils:1.0.11",
+        "io.codechicken:DiffPatch:2.1.0.43:all",
+        "net.neoforged.jst:jst-cli-bundle:2.0.8",
         "net.minecraftforge:mergetool:1.1.7:fatjar",
     ],
 )

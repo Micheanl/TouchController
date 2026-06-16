@@ -13,6 +13,6 @@ maven.install(
         "org.lwjgl:lwjgl-assimp:jar:natives-linux:3.3.3",
         "org.lwjgl:lwjgl-assimp:jar:natives-macos:3.3.3",
         "org.lwjgl:lwjgl-assimp:jar:natives-macos-arm64:3.3.3",
-        "org.javassist:javassist:3.30.2-GA",
+        "org.javassist:javassist:3.31.0-GA",
     ],
 )

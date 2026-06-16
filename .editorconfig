@@ -16,3 +16,6 @@ indent_size = 4
 
 [en_us.json]
 indent_size = 4
+
+[aboutlibraries.json]
+indent_size = 4

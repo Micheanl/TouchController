@@ -46,6 +46,10 @@ class AboutLibrariesGenerator @Inject constructor(
     val config: Path by option().path().required().help("Config file")
     val output: Path by option().path().required().help("Output file")
 
+    private val format = Json {
+        prettyPrint = true
+    }
+
     override fun run(): Unit = runBlocking {
         val config = withContext(Dispatchers.IO) { Config(config) }
 
@@ -136,7 +140,7 @@ class AboutLibrariesGenerator @Inject constructor(
             licenses = licenses,
         )
         withContext(Dispatchers.IO) {
-            Files.writeString(output, Json.encodeToString(libs))
+            Files.writeString(output, format.encodeToString(libs))
         }
     }
 }

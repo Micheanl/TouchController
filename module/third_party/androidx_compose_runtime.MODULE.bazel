@@ -6,14 +6,14 @@ http_archive(
     name = "androidx_compose_runtime",
     build_file = "@//third_party/androidx_compose_runtime:BUILD.runtime_desktop.bazel",
     sha256 = "42d7dea9d8684cc8ea5b37c66b24b222ca392873579bb79ef65908dfda4bfa7d",
-    url = "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-desktop/1.10.0/runtime-desktop-1.10.0-sources.jar",
+    url = "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-desktop/1.10.3/runtime-desktop-1.10.3-sources.jar",
 )
 
 http_archive(
     name = "androidx_compose_runtime_saveable",
     build_file = "@//third_party/androidx_compose_runtime:BUILD.runtime_saveable_desktop.bazel",
     sha256 = "c431498c69a84ecd1e128774196228b89917a7093250efe95527d06bf46fa674",
-    url = "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-saveable-desktop/1.10.0/runtime-saveable-desktop-1.10.0-sources.jar",
+    url = "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-saveable-desktop/1.10.3/runtime-saveable-desktop-1.10.3-sources.jar",
 )
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")

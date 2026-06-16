@@ -3,7 +3,7 @@
   "__INPUT_ARTIFACTS_HASH": {
     "io.github.llamalad7:mixinextras-fabric": -1076272810,
     "net.fabricmc:fabric-language-kotlin": -61944167,
-    "net.fabricmc:fabric-loader": 356024659,
+    "net.fabricmc:fabric-loader": -861132213,
     "net.fabricmc:sponge-mixin": 456347476,
     "net.legacyfabric:intermediary": -1469256553,
     "net.legacyfabric:yarn": 1703943752,
@@ -18,8 +18,8 @@
     "io.github.llamalad7:mixinextras-fabric:jar:sources": 2049305342,
     "net.fabricmc:fabric-language-kotlin": -1605597024,
     "net.fabricmc:fabric-language-kotlin:jar:sources": 575372654,
-    "net.fabricmc:fabric-loader": -379335519,
-    "net.fabricmc:fabric-loader:jar:sources": 1292192316,
+    "net.fabricmc:fabric-loader": -1206104152,
+    "net.fabricmc:fabric-loader:jar:sources": 535724764,
     "net.fabricmc:sponge-mixin": -826911765,
     "net.fabricmc:sponge-mixin:jar:sources": 1938506578,
     "net.legacyfabric:intermediary:jar:v2": -1877331426,
@@ -97,10 +97,10 @@
     },
     "net.fabricmc:fabric-loader": {
       "shasums": {
-        "jar": "f58fca271b5b48dd4f8faad792b09002439e8444d50af670b8493de3b2d85f08",
-        "sources": "bc64c3561ed561dc06574fac8bc01e597b23f07c9f79a624d5c4935c1e1903d2"
+        "jar": "b1b1d05e9ee52c6bb968fecf4f7e0e4ead8ec890ba9503c213df0daa8431f1fa",
+        "sources": "3c8cd202b3661e574aa284a5badd274e3f56ff7a748a11c6cfc121a67f83668f"
       },
-      "version": "0.15.11"
+      "version": "0.16.9"
     },
     "net.fabricmc:sponge-mixin": {
       "shasums": {
@@ -465,6 +465,7 @@
       "net.fabricmc.loader.impl.lib.tinyremapper.extension.mixin.soft.data",
       "net.fabricmc.loader.impl.lib.tinyremapper.extension.mixin.soft.util",
       "net.fabricmc.loader.impl.metadata",
+      "net.fabricmc.loader.impl.mrj",
       "net.fabricmc.loader.impl.transformer",
       "net.fabricmc.loader.impl.util",
       "net.fabricmc.loader.impl.util.log",

@@ -12,41 +12,38 @@
     "com.android.tools:common": -1991932343,
     "com.android.tools:repository": -1112103798,
     "com.android.tools:sdk-common": 1632481910,
-    "com.google.protobuf:protobuf-java": 1237026331,
-    "com.google.protobuf:protobuf-java-util": 1999337246,
     "repositories": 1670674627
   },
   "__RESOLVED_ARTIFACTS_HASH": {
-    "com.android.tools.analytics-library:protos": -1981455141,
-    "com.android.tools.analytics-library:shared": -887660549,
-    "com.android.tools.analytics-library:tracker": -828890779,
-    "com.android.tools.build:aapt2-proto": 1792570003,
+    "com.android.tools.analytics-library:protos": 1817440628,
+    "com.android.tools.analytics-library:shared": 909256274,
+    "com.android.tools.analytics-library:tracker": 438758768,
+    "com.android.tools.build:aapt2-proto": 1296498476,
     "com.android.tools.build:apksig": 89921474,
-    "com.android.tools.build:apkzlib": -399001659,
-    "com.android.tools.build:builder": -620224048,
+    "com.android.tools.build:apkzlib": -796505922,
+    "com.android.tools.build:builder": -1270803864,
     "com.android.tools.build:builder-model": 841662613,
-    "com.android.tools.build:builder-test-api": -1148967861,
-    "com.android.tools.build:manifest-merger": 1332638811,
-    "com.android.tools.ddms:ddmlib": 1968164689,
-    "com.android.tools.layoutlib:layoutlib-api": 675630219,
+    "com.android.tools.build:builder-test-api": -1777568474,
+    "com.android.tools.build:manifest-merger": -1392380143,
+    "com.android.tools.ddms:ddmlib": 328486070,
+    "com.android.tools.layoutlib:layoutlib-api": -401007213,
     "com.android.tools:annotations": -307747663,
-    "com.android.tools:common": -624541941,
-    "com.android.tools:dvlib": 923971108,
-    "com.android.tools:repository": 1963456190,
-    "com.android.tools:sdk-common": 1761585058,
-    "com.android.tools:sdklib": -1988507626,
+    "com.android.tools:common": -1852553614,
+    "com.android.tools:dvlib": 1794855874,
+    "com.android.tools:repository": -2083865676,
+    "com.android.tools:sdk-common": -1621293533,
+    "com.android.tools:sdklib": -2069590503,
     "com.android:signflinger": 1795623508,
     "com.android:zipflinger": -1648505363,
     "com.google.code.findbugs:jsr305": 870839855,
-    "com.google.code.gson:gson": -1575757252,
-    "com.google.errorprone:error_prone_annotations": 833623751,
+    "com.google.code.gson:gson": -1788091559,
+    "com.google.errorprone:error_prone_annotations": -1020744963,
     "com.google.guava:failureaccess": -1890754729,
-    "com.google.guava:guava": -1363017522,
+    "com.google.guava:guava": 1766531865,
     "com.google.guava:listenablefuture": 1079558157,
     "com.google.j2objc:j2objc-annotations": 880287147,
-    "com.google.jimfs:jimfs": 500549835,
-    "com.google.protobuf:protobuf-java": 1198356280,
-    "com.google.protobuf:protobuf-java-util": 1495580242,
+    "com.google.jimfs:jimfs": 852212490,
+    "com.google.protobuf:protobuf-java": 1948771124,
     "com.googlecode.json-simple:json-simple": 1175914653,
     "com.squareup:javawriter": 1260780548,
     "com.sun.activation:javax.activation": 833641300,
@@ -216,15 +213,15 @@
     },
     "com.google.code.gson:gson": {
       "shasums": {
-        "jar": "d3999291855de495c94c743761b8ab5176cfeabe281a5ab0d8e8d45326fd703e"
+        "jar": "c8fb4839054d280b3033f800d1f5a97de2f028eb8ba2eb458ad287e536f3f25f"
       },
-      "version": "2.8.9"
+      "version": "2.8.6"
     },
     "com.google.errorprone:error_prone_annotations": {
       "shasums": {
-        "jar": "9e6814cb71816988a4fd1b07a993a8f21bb7058d522c162b1de849e19bea54ae"
+        "jar": "baf7d6ea97ce606c53e11b6854ba5f2ce7ef5c24dddf0afa18d1260bd25b002c"
       },
-      "version": "2.18.0"
+      "version": "2.3.4"
     },
     "com.google.guava:failureaccess": {
       "shasums": {
@@ -258,15 +255,9 @@
     },
     "com.google.protobuf:protobuf-java": {
       "shasums": {
-        "jar": "ae0459030b54a6f3058ad349aa01fc2edcbb2d4a84b73699675bbd125df2e96d"
+        "jar": "161d7d61a8cb3970891c299578702fd079646e032329d6c2cabf998d191437c9"
       },
-      "version": "4.34.1"
-    },
-    "com.google.protobuf:protobuf-java-util": {
-      "shasums": {
-        "jar": "5d82fa744a6935bef1fce329e886b03d26c46389db7e3f5cd8363bc795908580"
-      },
-      "version": "4.34.1"
+      "version": "3.10.0"
     },
     "com.googlecode.json-simple:json-simple": {
       "shasums": {
@@ -663,12 +654,6 @@
     "com.google.jimfs:jimfs": [
       "com.google.guava:guava"
     ],
-    "com.google.protobuf:protobuf-java-util": [
-      "com.google.code.findbugs:jsr305",
-      "com.google.code.gson:gson",
-      "com.google.errorprone:error_prone_annotations",
-      "com.google.protobuf:protobuf-java"
-    ],
     "com.sun.istack:istack-commons-runtime": [
       "jakarta.activation:jakarta.activation-api"
     ],
@@ -1008,7 +993,6 @@
       "com.google.gson.internal.bind",
       "com.google.gson.internal.bind.util",
       "com.google.gson.internal.reflect",
-      "com.google.gson.internal.sql",
       "com.google.gson.reflect",
       "com.google.gson.stream"
     ],
@@ -1048,9 +1032,6 @@
     "com.google.protobuf:protobuf-java": [
       "com.google.protobuf",
       "com.google.protobuf.compiler"
-    ],
-    "com.google.protobuf:protobuf-java-util": [
-      "com.google.protobuf.util"
     ],
     "com.googlecode.json-simple:json-simple": [
       "org.json.simple",
@@ -1732,7 +1713,6 @@
       "com.google.j2objc:j2objc-annotations",
       "com.google.jimfs:jimfs",
       "com.google.protobuf:protobuf-java",
-      "com.google.protobuf:protobuf-java-util",
       "com.googlecode.json-simple:json-simple",
       "com.squareup:javawriter",
       "com.sun.activation:javax.activation",
@@ -1803,7 +1783,6 @@
       "com.google.j2objc:j2objc-annotations",
       "com.google.jimfs:jimfs",
       "com.google.protobuf:protobuf-java",
-      "com.google.protobuf:protobuf-java-util",
       "com.googlecode.json-simple:json-simple",
       "com.squareup:javawriter",
       "com.sun.activation:javax.activation",
