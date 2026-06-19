@@ -1,0 +1,46 @@
+name: Build IntelliJ plugins
+on: [ pull_request, push ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    env:
+      MSYS_NO_PATHCONV: 1
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+        plugin: [ "expect_actual" ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v4
+      - uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r28b
+      - name: Setup Bazel
+        uses: bazel-contrib/setup-bazel@0.19.0
+      - name: Setup Remote Cache
+        uses: ./.github/actions/setup-bazel-cache
+        with:
+          host: ${{ vars.BAZEL_CACHE_HOST }}
+          authorization: ${{ secrets.BAZEL_CACHE_AUTH }}
+      - name: Build
+        run: |
+          bazel build --verbose_failures //intellij_plugin/${{ matrix.plugin }}
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: artifacts-${{ matrix.os }}-${{ matrix.plugin }}
+          archive: false
+          path: |
+            bazel-bin/intellij_plugin/${{ matrix.plugin }}/${{ matrix.plugin }}.jar
