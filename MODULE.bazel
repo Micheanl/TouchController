@@ -118,6 +118,7 @@ include("//module:rust.MODULE.bazel")
 
 # platforms
 include("//module:android.MODULE.bazel")
+include("//module/third_party:intellij.MODULE.bazel")
 
 # tools
 include("//module:mdbook.MODULE.bazel")

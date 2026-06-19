@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>fifthlight.expectactual</id>
+    <name>Expect/Actual</name>
+    <version>0.0.1</version>
+    <vendor>fifth_light</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.kotlin.k2</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <codeInsight.lineMarkerProvider
+                language="UAST"
+                implementationClass="top.fifthlight.intellij.expectactual.ExpectFactoryMarkerProvider"/>
+        <codeInsight.lineMarkerProvider
+                language="UAST"
+                implementationClass="top.fifthlight.intellij.expectactual.ActualImplMarkerProvider"/>
+        <codeInsight.lineMarkerProvider
+                language="UAST"
+                implementationClass="top.fifthlight.intellij.expectactual.ActualConstructorMarkerProvider"/>
+    </extensions>
+</idea-plugin>

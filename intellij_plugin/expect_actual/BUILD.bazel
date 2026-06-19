@@ -1,0 +1,22 @@
+load("//rule:merge_library.bzl", "kt_merge_library", "merge_library_jar")
+
+kt_merge_library(
+    name = "expect_actual_unmerged",
+    srcs = glob(["**/*.kt"]),
+    kotlinc_opts = "//intellij_plugin:kotlinc_opts",
+    merge_deps = [
+        "//intellij_plugin/common",
+    ],
+    resource_strip_prefix = "intellij_plugin/expect_actual/resources",
+    resources = glob(["resources/**"]),
+    deps = [
+        "@intellij//:java",
+        "@intellij//:kotlin",
+        "@intellij//:sdk",
+    ],
+)
+
+merge_library_jar(
+    name = "expect_actual",
+    deps = [":expect_actual_unmerged"],
+)
