@@ -5,9 +5,9 @@ http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "ht
 http_archive(
     name = "pngcrush_debian",
     build_file = "@//third_party/pngcrush:BUILD.debian_patches.bazel",
-    sha256 = "b3d9588bffd4f724d943f1da7dacc750a02313324e0e071c91a4cc074f7dd15b",
+    sha256 = "e44befa16ffe0243db4606ba12e2872a25100292dda9fb7adc4c706f5706b7ac",
     strip_prefix = "debian",
-    url = "http://deb.debian.org/debian/pool/main/p/pngcrush/pngcrush_1.8.13-4.debian.tar.xz",
+    url = "http://deb.debian.org/debian/pool/main/p/pngcrush/pngcrush_1.8.13-1.debian.tar.xz",
 )
 
 http_archive(
