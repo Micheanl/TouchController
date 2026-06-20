@@ -66,76 +66,10 @@ jobs:
             bazel-bin/touchcontroller/fabric/fabric.jar
             bazel-bin/touchcontroller/neoforge/neoforge.jar
 
-  publish-staging:
-    name: Publish to Modrinth Staging
-    runs-on: ubuntu-latest
-    needs: build
-    environment: staging
-    env:
-      MODRINTH_ID: ${{ vars.TOUCHCONTROLLER_MODRINTH_ID }}
-      MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: artifacts-ubuntu-latest
-          path: release
-
-      - name: Set up JDK
-        uses: actions/setup-java@v5
-        with:
-          java-version: "21"
-          distribution: "temurin"
-
-      - name: Setup Android NDK
-        uses: nttld/setup-ndk@v1
-        id: setup-ndk
-        with:
-          ndk-version: r28b
-
-      - name: Setup Bazel
-        uses: bazel-contrib/setup-bazel@0.19.0
-
-      - name: Publish to Modrinth
-        shell: bash
-        run: |
-          properties="$(python3 <<< "import os; import json; item = {}; exec(open('touchcontroller/properties.bzl').read(), None, item); print(json.dumps(item))")"
-          mod_version="$(jq -r .touchcontroller_version <<< "${properties}")"
-          mod_state="$(jq -r .touchcontroller_state <<< "${properties}")"
-          bazel run //rule/modrinth_uploader -- \
-            --use-token-from-environment \
-            --project-id "${MODRINTH_ID}" \
-            --version-name "${mod_version}" \
-            --version-id "${mod_version}+fabric" \
-            --version-type "${mod_state}" \
-            --loader fabric \
-            --changelog "$(realpath release/update_log.md)" \
-            --file-name "TouchController-${mod_version}+fabric.jar" \
-            "$(realpath release/fabric/fabric.jar)" \
-            $(jq -cr .touchcontroller_fabric_game_versions.[] <<< "${properties}" | sed 's/^/--game-version /' | tr '\n' ' ') \
-            --dependency --dependency-project-id P7dR8mSH --dependency-type required \
-            --dependency --dependency-project-id Ha28R6CL --dependency-type required \
-            --dependency --dependency-project-id mOgUt4GM --dependency-type optional && \
-          bazel run //rule/modrinth_uploader -- \
-            --use-token-from-environment \
-            --project-id "${MODRINTH_ID}" \
-            --version-name "${mod_version}" \
-            --version-id "${mod_version}+neoforge" \
-            --version-type "${mod_state}" \
-            --loader neoforge \
-            --changelog "$(realpath release/update_log.md)" \
-            --file-name "TouchController-${mod_version}+neoforge.jar" \
-            "$(realpath release/neoforge/neoforge.jar)" \
-            $(jq -cr .touchcontroller_neoforge_game_versions.[] <<< "${properties}" | sed 's/^/--game-version /' | tr '\n' ' ') \
-            --dependency --dependency-project-id ordsPcFz --dependency-type required
-
   publish-production:
     name: Publish to Modrinth Production
     runs-on: ubuntu-latest
-    needs: publish-staging
+    needs: build
     environment: production
     env:
       MODRINTH_ID: ${{ vars.TOUCHCONTROLLER_MODRINTH_ID }}
