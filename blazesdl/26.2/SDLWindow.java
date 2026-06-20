@@ -11,26 +11,25 @@ import com.mojang.blaze3d.systems.GpuBackend;
 import net.minecraft.server.packs.PackResources;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
-import org.lwjgl.sdl.SDLPixels;
-import org.lwjgl.sdl.SDLSurface;
-import org.lwjgl.sdl.SDLVideo;
-import org.lwjgl.sdl.SDL_Surface;
+import org.lwjgl.sdl.*;
 import org.lwjgl.system.JNI;
+import org.lwjgl.system.MemoryStack;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class SDLWindow extends Window {
-    public static boolean useExclusiveFullscreen = false;
     public static long windowCreateHint = 0;
 
-    public SDLWindow(WindowEventHandler eventHandler,
+    public SDLWindow(WindowEventHandler windowEventHandler,
                      DisplayData displayData,
                      @Nullable String fullscreenVideoModeString,
+                     boolean exclusiveFullscreen,
                      String title,
+                     MonitorManager monitorManager,
                      GpuBackend backend) throws BackendCreationException {
-        super(eventHandler, displayData, fullscreenVideoModeString, title, backend);
+        super(windowEventHandler, displayData, fullscreenVideoModeString, exclusiveFullscreen, title, monitorManager, backend);
     }
 
     private SDL_Surface createSDLSurface(NativeImage image) {
@@ -99,36 +98,6 @@ public class SDLWindow extends Window {
         SDLVideo.SDL_SetWindowTitle(handle, title);
     }
 
-    private boolean setupFullscreenVideoMode() {
-        if (useExclusiveFullscreen || SDLUtil.IS_WAYLAND) { // Wayland doesn't have real exclusive fullscreen
-            var monitor = this.screenManager.findBestMonitor(this);
-            if (monitor == null) {
-                LOGGER.warn("Failed to find suitable monitor for fullscreen mode");
-                return false;
-            } else {
-                var videomode = monitor.getPreferredVidMode(this.preferredFullscreenVideoMode);
-
-                this.x = 0;
-                this.y = 0;
-                this.width = videomode.getWidth();
-                this.height = videomode.getHeight();
-
-                // Call SDL_SetWindowFullscreenMode directly because NPE https://github.com/LWJGL/lwjgl3/issues/1110
-                var displayMode = ((SDLVideoMode) videomode).displayMode;
-                var SDL_SetWindowFullscreenMode = SDLVideo.Functions.SetWindowFullscreenMode;
-                if (!JNI.invokePPZ(this.handle, displayMode.address(), SDL_SetWindowFullscreenMode)) {
-                    throw SDLError.handleError("SDL_SetWindowFullscreenMode");
-                }
-
-                return true;
-            }
-        } else {
-            LOGGER.warn("BlazeSDL: Can't set resolution without exclusive fullscreen");
-            return true;
-        }
-    }
-
-    @SuppressWarnings("resource")
     @Override
     public int getRefreshRate() {
         var monitor = SDLVideo.SDL_GetDisplayForWindow(this.handle);
@@ -147,19 +116,45 @@ public class SDLWindow extends Window {
         var wasFullscreen = (SDLVideo.SDL_GetWindowFlags(this.handle) & SDLVideo.SDL_WINDOW_FULLSCREEN) != 0;
 
         if (this.fullscreen) {
-            if (!setupFullscreenVideoMode()) {
-                return;
-            }
+            var monitor = monitorManager.findBestMonitor(this);
 
-            if (!wasFullscreen) {
-                this.windowedX = this.x;
-                this.windowedY = this.y;
-                this.windowedWidth = this.width;
-                this.windowedHeight = this.height;
-            }
+            if (monitor == null) {
+                LOGGER.warn("Failed to find suitable monitor for fullscreen mode");
+                this.fullscreen = false;
+            } else {
+                long displayModeAddress = 0;
+                if (exclusiveFullscreen) {
+                    var mode = monitor.getPreferredVidMode(this.preferredFullscreenVideoMode);
+                    var displayMode = ((SDLVideoMode) mode).displayMode;
+                    displayModeAddress = displayMode.address();
+                }
+                if (!wasFullscreen) {
+                    this.windowedX = this.x;
+                    this.windowedY = this.y;
+                    this.windowedWidth = allowedWindowMinSize(this.width);
+                    this.windowedHeight = allowedWindowMinSize(this.height);
+                }
 
-            if (!SDLVideo.SDL_SetWindowFullscreen(this.handle, true)) {
-                throw SDLError.handleError("SDL_SetWindowFullscreen");
+                var SDL_SetWindowFullscreenMode = SDLVideo.Functions.SetWindowFullscreenMode;
+                if (!JNI.invokePPZ(this.handle, displayModeAddress, SDL_SetWindowFullscreenMode)) {
+                    throw SDLError.handleError("SDL_SetWindowFullscreenMode");
+                }
+                if (!SDLVideo.SDL_SetWindowFullscreen(this.handle, true)) {
+                    throw SDLError.handleError("SDL_SetWindowFullscreen");
+                }
+
+                this.x = 0;
+                this.y = 0;
+                try (var stack = MemoryStack.stackPush()) {
+                    var width = stack.mallocInt(1);
+                    var height = stack.mallocInt(1);
+                    if (!SDLVideo.SDL_GetWindowSize(this.handle, width, height)) {
+                        throw SDLError.handleError("SDL_GetWindowSize");
+                    }
+                    this.width = allowedWindowMinSize(width.get(0));
+                    this.height = allowedWindowMinSize(height.get(0));
+                }
+                SDLVideo.SDL_SyncWindow(this.handle);
             }
         } else {
             this.x = this.windowedX;
@@ -170,14 +165,15 @@ public class SDLWindow extends Window {
             if (!SDLVideo.SDL_SetWindowFullscreen(this.handle, false)) {
                 throw SDLError.handleError("SDL_SetWindowFullscreen");
             }
-            if (!SDLVideo.SDL_SetWindowSize(this.handle, this.width, this.height)) {
-                throw SDLError.handleError("SDL_SetWindowSize");
-            }
             if (!SDLUtil.IS_WAYLAND) {
                 if (!SDLVideo.SDL_SetWindowPosition(this.handle, this.x, this.y)) {
                     throw SDLError.handleError("SDL_SetWindowPosition");
                 }
             }
+            if (!SDLVideo.SDL_SetWindowSize(this.handle, this.width, this.height)) {
+                throw SDLError.handleError("SDL_SetWindowSize");
+            }
+            SDLVideo.SDL_SyncWindow(this.handle);
         }
     }
 
@@ -205,7 +201,7 @@ public class SDLWindow extends Window {
         closeCallback = task;
     }
 
-    public SDLScreenManager getScreenManager() {
-        return (SDLScreenManager) screenManager;
+    public SDLMonitorManager getMonitorManager() {
+        return (SDLMonitorManager) monitorManager;
     }
 }

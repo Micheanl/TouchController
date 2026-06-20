@@ -5,8 +5,6 @@
 
 package top.fifthlight.blazesdl.mixin;
 
-import com.mojang.blaze3d.platform.MonitorCreator;
-import com.mojang.blaze3d.platform.ScreenManager;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.BackendCreationException;
 import com.mojang.blaze3d.systems.GpuBackend;
@@ -15,24 +13,17 @@ import org.lwjgl.sdl.SDLPlatform;
 import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.system.MemoryStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import top.fifthlight.blazesdl.*;
+import top.fifthlight.blazesdl.EventCallback;
+import top.fifthlight.blazesdl.SDLError;
+import top.fifthlight.blazesdl.SDLGlBackend;
+import top.fifthlight.blazesdl.SDLWindow;
 
 @Mixin(Window.class)
 public abstract class WindowMixin {
-    @Unique
-    private SDLWindow blazesdl$getSdlWindow() {
-        if ((Object) this instanceof SDLWindow window) {
-            return window;
-        } else {
-            return null;
-        }
-    }
-
     @Inject(method = "createGlfwWindow", at = @At("HEAD"), cancellable = true)
     private static void createWindow(int width, int height, String title, long monitor, GpuBackend backend, CallbackInfoReturnable<Long> cir) throws BackendCreationException {
         if (!SDLVideo.SDL_GL_LoadLibrary((String) null)) {
@@ -54,11 +45,6 @@ public abstract class WindowMixin {
         cir.setReturnValue(window);
     }
 
-    @Redirect(method = "<init>", at = @At(value = "NEW", target = "Lcom/mojang/blaze3d/platform/ScreenManager;"))
-    private ScreenManager wrapScreenManager(MonitorCreator monitorCreator) {
-        return new SDLScreenManager(SDLMonitor::new);
-    }
-
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwGetPrimaryMonitor()J"))
     private long onGetPrimaryMonitor() {
         return SDLVideo.SDL_GetPrimaryDisplay();
@@ -76,7 +62,6 @@ public abstract class WindowMixin {
             ypos[0] = y.get();
         }
     }
-
 
     @Redirect(method = "refreshFramebufferSize", at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwGetFramebufferSize(J[I[I)V"))
     private void onGlfwGetFramebufferSize(long window, int[] width, int[] height) {

@@ -15,6 +15,8 @@ public class SDLGlSurface extends GlSurface {
     @Override
     public void configure(GpuSurface.Configuration config) {
         SDLVideo.SDL_GL_SetSwapInterval(config.presentMode() == GpuSurface.PresentMode.FIFO ? 1 : 0);
+        this.swapchainWidth = config.width();
+        this.swapchainHeight = config.height();
     }
 
     @Override

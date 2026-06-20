@@ -5,14 +5,12 @@
 
 package top.fifthlight.blazesdl.mixin;
 
-import com.mojang.blaze3d.platform.DisplayData;
-import com.mojang.blaze3d.platform.TextInputManager;
-import com.mojang.blaze3d.platform.Window;
-import com.mojang.blaze3d.platform.WindowEventHandler;
+import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.BackendCreationException;
 import com.mojang.blaze3d.systems.GpuBackend;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.main.GameConfig;
+import org.jspecify.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.sdl.SDLInit;
 import org.lwjgl.sdl.SDLVideo;
@@ -23,9 +21,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import top.fifthlight.blazesdl.SDLError;
-import top.fifthlight.blazesdl.SDLTextInputManager;
-import top.fifthlight.blazesdl.SDLWindow;
+import top.fifthlight.blazesdl.*;
 
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
@@ -35,9 +31,20 @@ public abstract class MinecraftMixin {
     }
 
     @Redirect(method = "<init>", at = @At(value = "NEW", target = "Lcom/mojang/blaze3d/platform/Window;"))
-    private Window createWindow(WindowEventHandler eventHandler, DisplayData displayData,
-                                String fullscreenVideoModeString, String title, GpuBackend backend) throws BackendCreationException {
-        return new SDLWindow(eventHandler, displayData, fullscreenVideoModeString, title, backend);
+    private Window createWindow(
+            WindowEventHandler windowEventHandler,
+            DisplayData displayData,
+            @Nullable String fullscreenVideoModeString,
+            boolean exclusiveFullscreen,
+            String title,
+            MonitorManager monitorManager,
+            GpuBackend backend) throws BackendCreationException {
+        return new SDLWindow(windowEventHandler, displayData, fullscreenVideoModeString, exclusiveFullscreen, title, monitorManager, backend);
+    }
+
+    @Redirect(method = "<init>", at = @At(value = "NEW", target = "Lcom/mojang/blaze3d/platform/MonitorManager;"))
+    private MonitorManager createMonitorManager() {
+        return new SDLMonitorManager();
     }
 
     @Redirect(method = "<init>", at = @At(value = "NEW", target = "Lcom/mojang/blaze3d/platform/TextInputManager;"))
@@ -52,7 +59,7 @@ public abstract class MinecraftMixin {
 
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwWindowHint(II)V"))
     private void windowHint(int hint, int value) {
-        SDLWindow.useExclusiveFullscreen = value != 0;
+        // no-op
     }
 
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwShowWindow(J)V"))

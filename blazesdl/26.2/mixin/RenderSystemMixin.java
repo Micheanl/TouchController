@@ -77,7 +77,7 @@ public class RenderSystemMixin {
                     var eventType = event.type();
                     switch (eventType) {
                         case SDLEvents.SDL_EVENT_DISPLAY_ADDED, SDLEvents.SDL_EVENT_DISPLAY_REMOVED ->
-                                sdlWindow.getScreenManager().onMonitorChange(event.display().displayID(), eventType);
+                                sdlWindow.getMonitorManager().onMonitorChange(event.display().displayID(), eventType);
 
                         case SDLEvents.SDL_EVENT_WINDOW_MOVED -> {
                             var callback = EventCallback.onWindowMove;
@@ -90,20 +90,16 @@ public class RenderSystemMixin {
                                         event.window().data2());
                             }
                         }
-                        case SDLEvents.SDL_EVENT_WINDOW_RESIZED -> {
+                        case SDLEvents.SDL_EVENT_WINDOW_RESIZED, SDLEvents.SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED -> {
                             var windowHandle = windowIdToHandle(event.window().windowID());
                             if (windowHandle == 0L) {
                                 continue;
                             }
-                            var windowCallback = EventCallback.onWindowResize;
-                            if (windowCallback != null) {
-                                windowCallback.invoke(windowHandle, event.window().data1(), event.window().data2());
-                            }
-                        }
-                        case SDLEvents.SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED -> {
-                            var windowHandle = windowIdToHandle(event.window().windowID());
-                            if (windowHandle == 0L) {
-                                continue;
+                            if (eventType == SDLEvents.SDL_EVENT_WINDOW_RESIZED) {
+                                var windowCallback = EventCallback.onWindowResize;
+                                if (windowCallback != null) {
+                                    windowCallback.invoke(windowHandle, event.window().data1(), event.window().data2());
+                                }
                             }
                             var framebufferCallback = EventCallback.onFramebufferResize;
                             if (framebufferCallback != null) {

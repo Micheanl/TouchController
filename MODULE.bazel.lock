@@ -5946,7 +5946,7 @@
     "@@rules_mc+//:extensions.bzl%minecraft": {
       "general": {
         "bzlTransitiveDigest": "JORE55QXdJ2BLGPka8Jyrbuv+WCHUhu1+f3lcBzVL0I=",
-        "usagesDigest": "SnutWeNgg3moq8bA3qge2RxktdvJP+3KdtU7RpOD9IM=",
+        "usagesDigest": "SSdjsVlbsrHCvcKijxUevHNl8PIjMmupceFYDeddMG4=",
         "recordedInputs": [
           "REPO_MAPPING:rules_mc+,bazel_tools bazel_tools"
         ],
@@ -6823,19 +6823,19 @@
               "downloaded_file_path": "server.jar"
             }
           },
-          "minecraft_26_2-pre-2_client": {
+          "minecraft_26_2_client": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
             "attributes": {
-              "url": "https://piston-data.mojang.com/v1/objects/b54b78348ced53071e4506b798845e9ec65bf5a4/client.jar",
-              "integrity": "sha1-tUt4NIztUwceRQa3mIRensZb9aQ=",
+              "url": "https://piston-data.mojang.com/v1/objects/2dc72797acbc1b63fc16a11c4ac393605f453754/client.jar",
+              "integrity": "sha1-Lccnl6y8G2P8FqEcSsOTYF9FN1Q=",
               "downloaded_file_path": "client.jar"
             }
           },
-          "minecraft_26_2-pre-2_server": {
+          "minecraft_26_2_server": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
             "attributes": {
-              "url": "https://piston-data.mojang.com/v1/objects/b7c0d39bf9d7897dba2f9f725957224e74d89a0f/server.jar",
-              "integrity": "sha1-t8DTm/nXiX26L59yWVciTnTYmg8=",
+              "url": "https://piston-data.mojang.com/v1/objects/823e2250d24b3ddac457a60c92a6a941943fcd6a/server.jar",
+              "integrity": "sha1-gj4iUNJLPdrEV6YMkqapQZQ/zWo=",
               "downloaded_file_path": "server.jar"
             }
           },
@@ -11539,12 +11539,12 @@
               "path": "com/microsoft/azure/msal4j/1.24.1/msal4j-1.24.1.jar"
             }
           },
-          "minecraft_com_mojang_authlib_8_0_73_default": {
+          "minecraft_com_mojang_authlib_9_0_75_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/com/mojang/authlib/8.0.73/authlib-8.0.73.jar",
-              "sha1": "292f6a2ee493612178fcfbe68d73f8bfb9385d2b",
-              "path": "com/mojang/authlib/8.0.73/authlib-8.0.73.jar"
+              "url": "https://libraries.minecraft.net/com/mojang/authlib/9.0.75/authlib-9.0.75.jar",
+              "sha1": "d61056a234d5e4b272e09d59b0713f80d6c0b6af",
+              "path": "com/mojang/authlib/9.0.75/authlib-9.0.75.jar"
             }
           },
           "minecraft_com_mojang_datafixerupper_10_0_21_default": {
@@ -11579,124 +11579,124 @@
               "path": "commons-codec/commons-codec/1.22.0/commons-codec-1.22.0.jar"
             }
           },
-          "minecraft_io_netty_netty_buffer_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_buffer_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-buffer/4.2.13.Final/netty-buffer-4.2.13.Final.jar",
-              "sha1": "177025483d7565afaf4f820139d409bdc0cd7000",
-              "path": "io/netty/netty-buffer/4.2.13.Final/netty-buffer-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-buffer/4.2.15.Final/netty-buffer-4.2.15.Final.jar",
+              "sha1": "2beb620803bf871cda2dd5d46b8f831e8015dd34",
+              "path": "io/netty/netty-buffer/4.2.15.Final/netty-buffer-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_codec_base_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_codec_base_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-codec-base/4.2.13.Final/netty-codec-base-4.2.13.Final.jar",
-              "sha1": "a4476639056149914d7a145ce0bb9f86bb7e3f49",
-              "path": "io/netty/netty-codec-base/4.2.13.Final/netty-codec-base-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-codec-base/4.2.15.Final/netty-codec-base-4.2.15.Final.jar",
+              "sha1": "e97149fdd5fb04858efa90e314651c8d700dc68b",
+              "path": "io/netty/netty-codec-base/4.2.15.Final/netty-codec-base-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_codec_compression_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_codec_compression_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-codec-compression/4.2.13.Final/netty-codec-compression-4.2.13.Final.jar",
-              "sha1": "c2a1fc65daf1a3d5467db37b6e0ce42bbb5b98a8",
-              "path": "io/netty/netty-codec-compression/4.2.13.Final/netty-codec-compression-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-codec-compression/4.2.15.Final/netty-codec-compression-4.2.15.Final.jar",
+              "sha1": "89fc4a20b7ae6af974304b1695405e62c4f9b16d",
+              "path": "io/netty/netty-codec-compression/4.2.15.Final/netty-codec-compression-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_codec_http_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_codec_http_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-codec-http/4.2.13.Final/netty-codec-http-4.2.13.Final.jar",
-              "sha1": "196f0b6d0779a7a23be4a8bff362741ff0282ce8",
-              "path": "io/netty/netty-codec-http/4.2.13.Final/netty-codec-http-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-codec-http/4.2.15.Final/netty-codec-http-4.2.15.Final.jar",
+              "sha1": "e611826aa054371bb9a17f27bdb05755a4cac5f0",
+              "path": "io/netty/netty-codec-http/4.2.15.Final/netty-codec-http-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_common_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_common_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-common/4.2.13.Final/netty-common-4.2.13.Final.jar",
-              "sha1": "f91909ed1b9280cd46d8b0ee260ebff40e1c73d8",
-              "path": "io/netty/netty-common/4.2.13.Final/netty-common-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-common/4.2.15.Final/netty-common-4.2.15.Final.jar",
+              "sha1": "7222492c1af9c2d4d78d521eea340a619e242fda",
+              "path": "io/netty/netty-common/4.2.15.Final/netty-common-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_handler_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_handler_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-handler/4.2.13.Final/netty-handler-4.2.13.Final.jar",
-              "sha1": "920eb7284d62152dfc5cb8ef0f9e0deb47ed5635",
-              "path": "io/netty/netty-handler/4.2.13.Final/netty-handler-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-handler/4.2.15.Final/netty-handler-4.2.15.Final.jar",
+              "sha1": "d5344afd1148e3b9927a74be019605ebb0937a93",
+              "path": "io/netty/netty-handler/4.2.15.Final/netty-handler-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_resolver_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_resolver_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-resolver/4.2.13.Final/netty-resolver-4.2.13.Final.jar",
-              "sha1": "c68d861f923020f82fea2c99d5921d8142b5c012",
-              "path": "io/netty/netty-resolver/4.2.13.Final/netty-resolver-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-resolver/4.2.15.Final/netty-resolver-4.2.15.Final.jar",
+              "sha1": "b961a16d379b508b473e064ba06842bba280f4e3",
+              "path": "io/netty/netty-resolver/4.2.15.Final/netty-resolver-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_transport_classes_epoll_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_transport_classes_epoll_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-transport-classes-epoll/4.2.13.Final/netty-transport-classes-epoll-4.2.13.Final.jar",
-              "sha1": "afd19f8ba23aeb6e8db675a4e9642e3cbc0b90c4",
-              "path": "io/netty/netty-transport-classes-epoll/4.2.13.Final/netty-transport-classes-epoll-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-transport-classes-epoll/4.2.15.Final/netty-transport-classes-epoll-4.2.15.Final.jar",
+              "sha1": "44bafba9c9993800e955b365bba4981326f3f3b1",
+              "path": "io/netty/netty-transport-classes-epoll/4.2.15.Final/netty-transport-classes-epoll-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_transport_classes_kqueue_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_transport_classes_kqueue_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-transport-classes-kqueue/4.2.13.Final/netty-transport-classes-kqueue-4.2.13.Final.jar",
-              "sha1": "3bc69154c356b57279cbb6a50998a3158b4a9bec",
-              "path": "io/netty/netty-transport-classes-kqueue/4.2.13.Final/netty-transport-classes-kqueue-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-transport-classes-kqueue/4.2.15.Final/netty-transport-classes-kqueue-4.2.15.Final.jar",
+              "sha1": "f248656bb907607c5a41c7b61fd918a97db79250",
+              "path": "io/netty/netty-transport-classes-kqueue/4.2.15.Final/netty-transport-classes-kqueue-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_transport_native_epoll_4_2_13_Final_linux_aarch_64_default": {
+          "minecraft_io_netty_netty_transport_native_epoll_4_2_15_Final_linux_aarch_64_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-epoll/4.2.13.Final/netty-transport-native-epoll-4.2.13.Final-linux-aarch_64.jar",
-              "sha1": "eebb86f112e04b9733ae3cc8b427cf7f345157fe",
-              "path": "io/netty/netty-transport-native-epoll/4.2.13.Final/netty-transport-native-epoll-4.2.13.Final-linux-aarch_64.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-epoll/4.2.15.Final/netty-transport-native-epoll-4.2.15.Final-linux-aarch_64.jar",
+              "sha1": "cccd31f2c8e966ab1e7a4d2293c8a3965628fe73",
+              "path": "io/netty/netty-transport-native-epoll/4.2.15.Final/netty-transport-native-epoll-4.2.15.Final-linux-aarch_64.jar"
             }
           },
-          "minecraft_io_netty_netty_transport_native_epoll_4_2_13_Final_linux_x86_64_default": {
+          "minecraft_io_netty_netty_transport_native_epoll_4_2_15_Final_linux_x86_64_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-epoll/4.2.13.Final/netty-transport-native-epoll-4.2.13.Final-linux-x86_64.jar",
-              "sha1": "c70d4ce6fb2feac68d3c9c3d72e44eb362cc6c80",
-              "path": "io/netty/netty-transport-native-epoll/4.2.13.Final/netty-transport-native-epoll-4.2.13.Final-linux-x86_64.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-epoll/4.2.15.Final/netty-transport-native-epoll-4.2.15.Final-linux-x86_64.jar",
+              "sha1": "ce256127f8ed3f076756f1f4dcb5877d65d1f1c2",
+              "path": "io/netty/netty-transport-native-epoll/4.2.15.Final/netty-transport-native-epoll-4.2.15.Final-linux-x86_64.jar"
             }
           },
-          "minecraft_io_netty_netty_transport_native_kqueue_4_2_13_Final_osx_aarch_64_default": {
+          "minecraft_io_netty_netty_transport_native_kqueue_4_2_15_Final_osx_aarch_64_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-kqueue/4.2.13.Final/netty-transport-native-kqueue-4.2.13.Final-osx-aarch_64.jar",
-              "sha1": "67b47e1512ce10f339dfcd81c3769cbc1f732d9a",
-              "path": "io/netty/netty-transport-native-kqueue/4.2.13.Final/netty-transport-native-kqueue-4.2.13.Final-osx-aarch_64.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-kqueue/4.2.15.Final/netty-transport-native-kqueue-4.2.15.Final-osx-aarch_64.jar",
+              "sha1": "8ea0ef3eb716d821332e4b4926825a4b7c1a6d38",
+              "path": "io/netty/netty-transport-native-kqueue/4.2.15.Final/netty-transport-native-kqueue-4.2.15.Final-osx-aarch_64.jar"
             }
           },
-          "minecraft_io_netty_netty_transport_native_kqueue_4_2_13_Final_osx_x86_64_default": {
+          "minecraft_io_netty_netty_transport_native_kqueue_4_2_15_Final_osx_x86_64_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-kqueue/4.2.13.Final/netty-transport-native-kqueue-4.2.13.Final-osx-x86_64.jar",
-              "sha1": "edb4a850bd7212d3a228b1f4cd7e2d2babdd146b",
-              "path": "io/netty/netty-transport-native-kqueue/4.2.13.Final/netty-transport-native-kqueue-4.2.13.Final-osx-x86_64.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-kqueue/4.2.15.Final/netty-transport-native-kqueue-4.2.15.Final-osx-x86_64.jar",
+              "sha1": "4245380831515fb4eca18d32477a27fbb8f7b8f4",
+              "path": "io/netty/netty-transport-native-kqueue/4.2.15.Final/netty-transport-native-kqueue-4.2.15.Final-osx-x86_64.jar"
             }
           },
-          "minecraft_io_netty_netty_transport_native_unix_common_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_transport_native_unix_common_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-unix-common/4.2.13.Final/netty-transport-native-unix-common-4.2.13.Final.jar",
-              "sha1": "79d5e686999a84552d9b7bbb9589e5b853113bda",
-              "path": "io/netty/netty-transport-native-unix-common/4.2.13.Final/netty-transport-native-unix-common-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-transport-native-unix-common/4.2.15.Final/netty-transport-native-unix-common-4.2.15.Final.jar",
+              "sha1": "efb6943b4de9e0226a5ac35330f232605424af02",
+              "path": "io/netty/netty-transport-native-unix-common/4.2.15.Final/netty-transport-native-unix-common-4.2.15.Final.jar"
             }
           },
-          "minecraft_io_netty_netty_transport_4_2_13_Final_default": {
+          "minecraft_io_netty_netty_transport_4_2_15_Final_default": {
             "repoRuleId": "@@rules_mc+//private/repo:library.bzl%minecraft_library_repo",
             "attributes": {
-              "url": "https://libraries.minecraft.net/io/netty/netty-transport/4.2.13.Final/netty-transport-4.2.13.Final.jar",
-              "sha1": "acec47f1ff71785e090e019920f787e0f7d164e3",
-              "path": "io/netty/netty-transport/4.2.13.Final/netty-transport-4.2.13.Final.jar"
+              "url": "https://libraries.minecraft.net/io/netty/netty-transport/4.2.15.Final/netty-transport-4.2.15.Final.jar",
+              "sha1": "a000c3a6196ee40207b73ac619dcb339409dd62f",
+              "path": "io/netty/netty-transport/4.2.15.Final/netty-transport-4.2.15.Final.jar"
             }
           },
           "minecraft_org_apache_commons_commons_lang3_3_20_0_default": {
@@ -12110,7 +12110,7 @@
                   "client#file",
                   "server#file"
                 ],
-                "26.2-pre-2": [
+                "26.2": [
                   "client#file",
                   "server#file"
                 ]
@@ -14716,7 +14716,7 @@
                   "org.lwjgl:lwjgl:3.4.1:natives-windows-x86",
                   "org.slf4j:slf4j-api:2.0.17"
                 ],
-                "26.2-pre-2": [
+                "26.2": [
                   "at.yawk.lz4:lz4-java:1.10.1",
                   "ca.weblite:java-objc-bridge:1.1",
                   "com.azure:azure-json:1.4.0",
@@ -14726,7 +14726,7 @@
                   "com.google.guava:guava:33.6.0-jre",
                   "com.ibm.icu:icu4j:78.3",
                   "com.microsoft.azure:msal4j:1.24.1",
-                  "com.mojang:authlib:8.0.73",
+                  "com.mojang:authlib:9.0.75",
                   "com.mojang:blocklist:1.0.10",
                   "com.mojang:brigadier:1.3.10",
                   "com.mojang:datafixerupper:10.0.21",
@@ -14740,21 +14740,21 @@
                   "com.mojang:text2speech:1.19.12",
                   "commons-codec:commons-codec:1.22.0",
                   "commons-io:commons-io:2.20.0",
-                  "io.netty:netty-buffer:4.2.13.Final",
-                  "io.netty:netty-codec-base:4.2.13.Final",
-                  "io.netty:netty-codec-compression:4.2.13.Final",
-                  "io.netty:netty-codec-http:4.2.13.Final",
-                  "io.netty:netty-common:4.2.13.Final",
-                  "io.netty:netty-handler:4.2.13.Final",
-                  "io.netty:netty-resolver:4.2.13.Final",
-                  "io.netty:netty-transport-classes-epoll:4.2.13.Final",
-                  "io.netty:netty-transport-classes-kqueue:4.2.13.Final",
-                  "io.netty:netty-transport-native-epoll:4.2.13.Final:linux-aarch_64",
-                  "io.netty:netty-transport-native-epoll:4.2.13.Final:linux-x86_64",
-                  "io.netty:netty-transport-native-kqueue:4.2.13.Final:osx-aarch_64",
-                  "io.netty:netty-transport-native-kqueue:4.2.13.Final:osx-x86_64",
-                  "io.netty:netty-transport-native-unix-common:4.2.13.Final",
-                  "io.netty:netty-transport:4.2.13.Final",
+                  "io.netty:netty-buffer:4.2.15.Final",
+                  "io.netty:netty-codec-base:4.2.15.Final",
+                  "io.netty:netty-codec-compression:4.2.15.Final",
+                  "io.netty:netty-codec-http:4.2.15.Final",
+                  "io.netty:netty-common:4.2.15.Final",
+                  "io.netty:netty-handler:4.2.15.Final",
+                  "io.netty:netty-resolver:4.2.15.Final",
+                  "io.netty:netty-transport-classes-epoll:4.2.15.Final",
+                  "io.netty:netty-transport-classes-kqueue:4.2.15.Final",
+                  "io.netty:netty-transport-native-epoll:4.2.15.Final:linux-aarch_64",
+                  "io.netty:netty-transport-native-epoll:4.2.15.Final:linux-x86_64",
+                  "io.netty:netty-transport-native-kqueue:4.2.15.Final:osx-aarch_64",
+                  "io.netty:netty-transport-native-kqueue:4.2.15.Final:osx-x86_64",
+                  "io.netty:netty-transport-native-unix-common:4.2.15.Final",
+                  "io.netty:netty-transport:4.2.15.Final",
                   "it.unimi.dsi:fastutil:8.5.18",
                   "net.java.dev.jna:jna-platform:5.17.0",
                   "net.java.dev.jna:jna:5.17.0",
@@ -16539,8 +16539,8 @@
                 "com.microsoft.azure:msal4j:1.24.1": [
                   "default#struct(path = \"com/microsoft/azure/msal4j/1.24.1/msal4j-1.24.1.jar\", sha1 = \"c233f2d047b9755f7041adf21a858c680e4c9242\", url = \"https://libraries.minecraft.net/com/microsoft/azure/msal4j/1.24.1/msal4j-1.24.1.jar\")"
                 ],
-                "com.mojang:authlib:8.0.73": [
-                  "default#struct(path = \"com/mojang/authlib/8.0.73/authlib-8.0.73.jar\", sha1 = \"292f6a2ee493612178fcfbe68d73f8bfb9385d2b\", url = \"https://libraries.minecraft.net/com/mojang/authlib/8.0.73/authlib-8.0.73.jar\")"
+                "com.mojang:authlib:9.0.75": [
+                  "default#struct(path = \"com/mojang/authlib/9.0.75/authlib-9.0.75.jar\", sha1 = \"d61056a234d5e4b272e09d59b0713f80d6c0b6af\", url = \"https://libraries.minecraft.net/com/mojang/authlib/9.0.75/authlib-9.0.75.jar\")"
                 ],
                 "com.mojang:datafixerupper:10.0.21": [
                   "default#struct(path = \"com/mojang/datafixerupper/10.0.21/datafixerupper-10.0.21.jar\", sha1 = \"b6b2ae770c02e0c1eb90f9985b151e9085a38d0b\", url = \"https://libraries.minecraft.net/com/mojang/datafixerupper/10.0.21/datafixerupper-10.0.21.jar\")"
@@ -16554,50 +16554,50 @@
                 "commons-codec:commons-codec:1.22.0": [
                   "default#struct(path = \"commons-codec/commons-codec/1.22.0/commons-codec-1.22.0.jar\", sha1 = \"6b3eb4beb7058c2a638f5f17bcb388649fd339dd\", url = \"https://libraries.minecraft.net/commons-codec/commons-codec/1.22.0/commons-codec-1.22.0.jar\")"
                 ],
-                "io.netty:netty-buffer:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-buffer/4.2.13.Final/netty-buffer-4.2.13.Final.jar\", sha1 = \"177025483d7565afaf4f820139d409bdc0cd7000\", url = \"https://libraries.minecraft.net/io/netty/netty-buffer/4.2.13.Final/netty-buffer-4.2.13.Final.jar\")"
+                "io.netty:netty-buffer:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-buffer/4.2.15.Final/netty-buffer-4.2.15.Final.jar\", sha1 = \"2beb620803bf871cda2dd5d46b8f831e8015dd34\", url = \"https://libraries.minecraft.net/io/netty/netty-buffer/4.2.15.Final/netty-buffer-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-codec-base:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-codec-base/4.2.13.Final/netty-codec-base-4.2.13.Final.jar\", sha1 = \"a4476639056149914d7a145ce0bb9f86bb7e3f49\", url = \"https://libraries.minecraft.net/io/netty/netty-codec-base/4.2.13.Final/netty-codec-base-4.2.13.Final.jar\")"
+                "io.netty:netty-codec-base:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-codec-base/4.2.15.Final/netty-codec-base-4.2.15.Final.jar\", sha1 = \"e97149fdd5fb04858efa90e314651c8d700dc68b\", url = \"https://libraries.minecraft.net/io/netty/netty-codec-base/4.2.15.Final/netty-codec-base-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-codec-compression:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-codec-compression/4.2.13.Final/netty-codec-compression-4.2.13.Final.jar\", sha1 = \"c2a1fc65daf1a3d5467db37b6e0ce42bbb5b98a8\", url = \"https://libraries.minecraft.net/io/netty/netty-codec-compression/4.2.13.Final/netty-codec-compression-4.2.13.Final.jar\")"
+                "io.netty:netty-codec-compression:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-codec-compression/4.2.15.Final/netty-codec-compression-4.2.15.Final.jar\", sha1 = \"89fc4a20b7ae6af974304b1695405e62c4f9b16d\", url = \"https://libraries.minecraft.net/io/netty/netty-codec-compression/4.2.15.Final/netty-codec-compression-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-codec-http:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-codec-http/4.2.13.Final/netty-codec-http-4.2.13.Final.jar\", sha1 = \"196f0b6d0779a7a23be4a8bff362741ff0282ce8\", url = \"https://libraries.minecraft.net/io/netty/netty-codec-http/4.2.13.Final/netty-codec-http-4.2.13.Final.jar\")"
+                "io.netty:netty-codec-http:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-codec-http/4.2.15.Final/netty-codec-http-4.2.15.Final.jar\", sha1 = \"e611826aa054371bb9a17f27bdb05755a4cac5f0\", url = \"https://libraries.minecraft.net/io/netty/netty-codec-http/4.2.15.Final/netty-codec-http-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-common:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-common/4.2.13.Final/netty-common-4.2.13.Final.jar\", sha1 = \"f91909ed1b9280cd46d8b0ee260ebff40e1c73d8\", url = \"https://libraries.minecraft.net/io/netty/netty-common/4.2.13.Final/netty-common-4.2.13.Final.jar\")"
+                "io.netty:netty-common:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-common/4.2.15.Final/netty-common-4.2.15.Final.jar\", sha1 = \"7222492c1af9c2d4d78d521eea340a619e242fda\", url = \"https://libraries.minecraft.net/io/netty/netty-common/4.2.15.Final/netty-common-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-handler:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-handler/4.2.13.Final/netty-handler-4.2.13.Final.jar\", sha1 = \"920eb7284d62152dfc5cb8ef0f9e0deb47ed5635\", url = \"https://libraries.minecraft.net/io/netty/netty-handler/4.2.13.Final/netty-handler-4.2.13.Final.jar\")"
+                "io.netty:netty-handler:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-handler/4.2.15.Final/netty-handler-4.2.15.Final.jar\", sha1 = \"d5344afd1148e3b9927a74be019605ebb0937a93\", url = \"https://libraries.minecraft.net/io/netty/netty-handler/4.2.15.Final/netty-handler-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-resolver:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-resolver/4.2.13.Final/netty-resolver-4.2.13.Final.jar\", sha1 = \"c68d861f923020f82fea2c99d5921d8142b5c012\", url = \"https://libraries.minecraft.net/io/netty/netty-resolver/4.2.13.Final/netty-resolver-4.2.13.Final.jar\")"
+                "io.netty:netty-resolver:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-resolver/4.2.15.Final/netty-resolver-4.2.15.Final.jar\", sha1 = \"b961a16d379b508b473e064ba06842bba280f4e3\", url = \"https://libraries.minecraft.net/io/netty/netty-resolver/4.2.15.Final/netty-resolver-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-transport-classes-epoll:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-transport-classes-epoll/4.2.13.Final/netty-transport-classes-epoll-4.2.13.Final.jar\", sha1 = \"afd19f8ba23aeb6e8db675a4e9642e3cbc0b90c4\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-classes-epoll/4.2.13.Final/netty-transport-classes-epoll-4.2.13.Final.jar\")"
+                "io.netty:netty-transport-classes-epoll:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-transport-classes-epoll/4.2.15.Final/netty-transport-classes-epoll-4.2.15.Final.jar\", sha1 = \"44bafba9c9993800e955b365bba4981326f3f3b1\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-classes-epoll/4.2.15.Final/netty-transport-classes-epoll-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-transport-classes-kqueue:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-transport-classes-kqueue/4.2.13.Final/netty-transport-classes-kqueue-4.2.13.Final.jar\", sha1 = \"3bc69154c356b57279cbb6a50998a3158b4a9bec\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-classes-kqueue/4.2.13.Final/netty-transport-classes-kqueue-4.2.13.Final.jar\")"
+                "io.netty:netty-transport-classes-kqueue:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-transport-classes-kqueue/4.2.15.Final/netty-transport-classes-kqueue-4.2.15.Final.jar\", sha1 = \"f248656bb907607c5a41c7b61fd918a97db79250\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-classes-kqueue/4.2.15.Final/netty-transport-classes-kqueue-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-transport-native-epoll:4.2.13.Final:linux-aarch_64": [
-                  "default#struct(path = \"io/netty/netty-transport-native-epoll/4.2.13.Final/netty-transport-native-epoll-4.2.13.Final-linux-aarch_64.jar\", sha1 = \"eebb86f112e04b9733ae3cc8b427cf7f345157fe\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-epoll/4.2.13.Final/netty-transport-native-epoll-4.2.13.Final-linux-aarch_64.jar\")"
+                "io.netty:netty-transport-native-epoll:4.2.15.Final:linux-aarch_64": [
+                  "default#struct(path = \"io/netty/netty-transport-native-epoll/4.2.15.Final/netty-transport-native-epoll-4.2.15.Final-linux-aarch_64.jar\", sha1 = \"cccd31f2c8e966ab1e7a4d2293c8a3965628fe73\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-epoll/4.2.15.Final/netty-transport-native-epoll-4.2.15.Final-linux-aarch_64.jar\")"
                 ],
-                "io.netty:netty-transport-native-epoll:4.2.13.Final:linux-x86_64": [
-                  "default#struct(path = \"io/netty/netty-transport-native-epoll/4.2.13.Final/netty-transport-native-epoll-4.2.13.Final-linux-x86_64.jar\", sha1 = \"c70d4ce6fb2feac68d3c9c3d72e44eb362cc6c80\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-epoll/4.2.13.Final/netty-transport-native-epoll-4.2.13.Final-linux-x86_64.jar\")"
+                "io.netty:netty-transport-native-epoll:4.2.15.Final:linux-x86_64": [
+                  "default#struct(path = \"io/netty/netty-transport-native-epoll/4.2.15.Final/netty-transport-native-epoll-4.2.15.Final-linux-x86_64.jar\", sha1 = \"ce256127f8ed3f076756f1f4dcb5877d65d1f1c2\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-epoll/4.2.15.Final/netty-transport-native-epoll-4.2.15.Final-linux-x86_64.jar\")"
                 ],
-                "io.netty:netty-transport-native-kqueue:4.2.13.Final:osx-aarch_64": [
-                  "default#struct(path = \"io/netty/netty-transport-native-kqueue/4.2.13.Final/netty-transport-native-kqueue-4.2.13.Final-osx-aarch_64.jar\", sha1 = \"67b47e1512ce10f339dfcd81c3769cbc1f732d9a\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-kqueue/4.2.13.Final/netty-transport-native-kqueue-4.2.13.Final-osx-aarch_64.jar\")"
+                "io.netty:netty-transport-native-kqueue:4.2.15.Final:osx-aarch_64": [
+                  "default#struct(path = \"io/netty/netty-transport-native-kqueue/4.2.15.Final/netty-transport-native-kqueue-4.2.15.Final-osx-aarch_64.jar\", sha1 = \"8ea0ef3eb716d821332e4b4926825a4b7c1a6d38\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-kqueue/4.2.15.Final/netty-transport-native-kqueue-4.2.15.Final-osx-aarch_64.jar\")"
                 ],
-                "io.netty:netty-transport-native-kqueue:4.2.13.Final:osx-x86_64": [
-                  "default#struct(path = \"io/netty/netty-transport-native-kqueue/4.2.13.Final/netty-transport-native-kqueue-4.2.13.Final-osx-x86_64.jar\", sha1 = \"edb4a850bd7212d3a228b1f4cd7e2d2babdd146b\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-kqueue/4.2.13.Final/netty-transport-native-kqueue-4.2.13.Final-osx-x86_64.jar\")"
+                "io.netty:netty-transport-native-kqueue:4.2.15.Final:osx-x86_64": [
+                  "default#struct(path = \"io/netty/netty-transport-native-kqueue/4.2.15.Final/netty-transport-native-kqueue-4.2.15.Final-osx-x86_64.jar\", sha1 = \"4245380831515fb4eca18d32477a27fbb8f7b8f4\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-kqueue/4.2.15.Final/netty-transport-native-kqueue-4.2.15.Final-osx-x86_64.jar\")"
                 ],
-                "io.netty:netty-transport-native-unix-common:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-transport-native-unix-common/4.2.13.Final/netty-transport-native-unix-common-4.2.13.Final.jar\", sha1 = \"79d5e686999a84552d9b7bbb9589e5b853113bda\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-unix-common/4.2.13.Final/netty-transport-native-unix-common-4.2.13.Final.jar\")"
+                "io.netty:netty-transport-native-unix-common:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-transport-native-unix-common/4.2.15.Final/netty-transport-native-unix-common-4.2.15.Final.jar\", sha1 = \"efb6943b4de9e0226a5ac35330f232605424af02\", url = \"https://libraries.minecraft.net/io/netty/netty-transport-native-unix-common/4.2.15.Final/netty-transport-native-unix-common-4.2.15.Final.jar\")"
                 ],
-                "io.netty:netty-transport:4.2.13.Final": [
-                  "default#struct(path = \"io/netty/netty-transport/4.2.13.Final/netty-transport-4.2.13.Final.jar\", sha1 = \"acec47f1ff71785e090e019920f787e0f7d164e3\", url = \"https://libraries.minecraft.net/io/netty/netty-transport/4.2.13.Final/netty-transport-4.2.13.Final.jar\")"
+                "io.netty:netty-transport:4.2.15.Final": [
+                  "default#struct(path = \"io/netty/netty-transport/4.2.15.Final/netty-transport-4.2.15.Final.jar\", sha1 = \"a000c3a6196ee40207b73ac619dcb339409dd62f\", url = \"https://libraries.minecraft.net/io/netty/netty-transport/4.2.15.Final/netty-transport-4.2.15.Final.jar\")"
                 ],
                 "org.apache.commons:commons-lang3:3.20.0": [
                   "default#struct(path = \"org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.jar\", sha1 = \"65897b3e5731220962e659e001904af3c3cbeba9\", url = \"https://libraries.minecraft.net/org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.jar\")"
@@ -18381,7 +18381,7 @@
                 "com.microsoft.azure:msal4j:1.24.1": [
                   "common#default"
                 ],
-                "com.mojang:authlib:8.0.73": [
+                "com.mojang:authlib:9.0.75": [
                   "common#default"
                 ],
                 "com.mojang:datafixerupper:10.0.21": [
@@ -18396,49 +18396,49 @@
                 "commons-codec:commons-codec:1.22.0": [
                   "common#default"
                 ],
-                "io.netty:netty-buffer:4.2.13.Final": [
+                "io.netty:netty-buffer:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-codec-base:4.2.13.Final": [
+                "io.netty:netty-codec-base:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-codec-compression:4.2.13.Final": [
+                "io.netty:netty-codec-compression:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-codec-http:4.2.13.Final": [
+                "io.netty:netty-codec-http:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-common:4.2.13.Final": [
+                "io.netty:netty-common:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-handler:4.2.13.Final": [
+                "io.netty:netty-handler:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-resolver:4.2.13.Final": [
+                "io.netty:netty-resolver:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-transport-classes-epoll:4.2.13.Final": [
+                "io.netty:netty-transport-classes-epoll:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-transport-classes-kqueue:4.2.13.Final": [
+                "io.netty:netty-transport-classes-kqueue:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-transport-native-epoll:4.2.13.Final:linux-aarch_64": [
+                "io.netty:netty-transport-native-epoll:4.2.15.Final:linux-aarch_64": [
                   "linux#default"
                 ],
-                "io.netty:netty-transport-native-epoll:4.2.13.Final:linux-x86_64": [
+                "io.netty:netty-transport-native-epoll:4.2.15.Final:linux-x86_64": [
                   "linux#default"
                 ],
-                "io.netty:netty-transport-native-kqueue:4.2.13.Final:osx-aarch_64": [
+                "io.netty:netty-transport-native-kqueue:4.2.15.Final:osx-aarch_64": [
                   "osx#default"
                 ],
-                "io.netty:netty-transport-native-kqueue:4.2.13.Final:osx-x86_64": [
+                "io.netty:netty-transport-native-kqueue:4.2.15.Final:osx-x86_64": [
                   "osx#default"
                 ],
-                "io.netty:netty-transport-native-unix-common:4.2.13.Final": [
+                "io.netty:netty-transport-native-unix-common:4.2.15.Final": [
                   "common#default"
                 ],
-                "io.netty:netty-transport:4.2.13.Final": [
+                "io.netty:netty-transport:4.2.15.Final": [
                   "common#default"
                 ],
                 "org.apache.commons:commons-lang3:3.20.0": [
@@ -18577,18 +18577,18 @@
                 "1.17": "f425401a00adf0112fde624ee80c66333530f8a1",
                 "1.18": "d31a2e85ae149dd1b1a7070b22cb8887892fda6c",
                 "1.19": "a9c8b05a8082a65678beda6dfa2b8f21fa627bce",
-                "5": "db62ae630450cab4aec3934b72b1d8ec4ef21294",
-                "12": "30ba6128b86aa8c0b9242a329f90500828df1f41",
-                "16": "da55990fd4a95fdf2d292fc3a504677872461382",
-                "17": "1531e69bbb5c7aff208154558a13230915beba00",
-                "18": "009c78033ec08b34909458eb45290666e5d3348b",
-                "19": "bb9da5ab97ea145463c845cfe042ec8f19eb28fe",
-                "24": "6043d14faa6ffb5b4618df5ec9ebad3392c86832",
-                "26": "79aa583b413bccc585c4dd7a246ae931a1e73df7",
-                "27": "c99bb1445f1731156582a619a237c64bea6028f5",
-                "29": "f40f03045949c4d211bbc9313ea9831e2a6b39e9",
-                "30": "d30e47e96819a087aed5b65fdd6854f28ee02e19",
-                "32": "e3aa70ce491a53b3f138fe03645acd6eccfc6157"
+                "5": "141e67ab38f80e63d8ceebaa2d342afd363c81e3",
+                "12": "c0117130994d750c6d372f207a32e2ff41401166",
+                "16": "c912b1461c12d3251ef34449df536b54cd14c2ae",
+                "17": "9ee72f902d76d30eea52f65eb09aa7a34401f59f",
+                "18": "385432ddc79c2275acec644dddf63183ab827930",
+                "19": "77ebc9c328ba8dddddef362cf5efd8669992a71e",
+                "24": "4df37a3c27420f14247e674fb1d6f5bce9f07713",
+                "26": "09e4389254dcc09d10bf56c4c19f3d263cc73827",
+                "27": "c2ebfe537bc726d7009149310467d6f0f0d1bbaf",
+                "29": "07d9faff8c2ddcf5bf7376c9f8c2256035d3c174",
+                "30": "03dec833c02512ee8143c02daf977aafc36c3d04",
+                "32": "f8a4b0071155bcfad32d83a39d78b6da48b7a6e6"
               },
               "asset_urls": {
                 "pre-1.6": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json",
@@ -18601,18 +18601,18 @@
                 "1.17": "https://piston-meta.mojang.com/v1/packages/f425401a00adf0112fde624ee80c66333530f8a1/1.17.json",
                 "1.18": "https://piston-meta.mojang.com/v1/packages/d31a2e85ae149dd1b1a7070b22cb8887892fda6c/1.18.json",
                 "1.19": "https://piston-meta.mojang.com/v1/packages/a9c8b05a8082a65678beda6dfa2b8f21fa627bce/1.19.json",
-                "5": "https://piston-meta.mojang.com/v1/packages/db62ae630450cab4aec3934b72b1d8ec4ef21294/5.json",
-                "12": "https://piston-meta.mojang.com/v1/packages/30ba6128b86aa8c0b9242a329f90500828df1f41/12.json",
-                "16": "https://piston-meta.mojang.com/v1/packages/da55990fd4a95fdf2d292fc3a504677872461382/16.json",
-                "17": "https://piston-meta.mojang.com/v1/packages/1531e69bbb5c7aff208154558a13230915beba00/17.json",
-                "18": "https://piston-meta.mojang.com/v1/packages/009c78033ec08b34909458eb45290666e5d3348b/18.json",
-                "19": "https://piston-meta.mojang.com/v1/packages/bb9da5ab97ea145463c845cfe042ec8f19eb28fe/19.json",
-                "24": "https://piston-meta.mojang.com/v1/packages/6043d14faa6ffb5b4618df5ec9ebad3392c86832/24.json",
-                "26": "https://piston-meta.mojang.com/v1/packages/79aa583b413bccc585c4dd7a246ae931a1e73df7/26.json",
-                "27": "https://piston-meta.mojang.com/v1/packages/c99bb1445f1731156582a619a237c64bea6028f5/27.json",
-                "29": "https://piston-meta.mojang.com/v1/packages/f40f03045949c4d211bbc9313ea9831e2a6b39e9/29.json",
-                "30": "https://piston-meta.mojang.com/v1/packages/d30e47e96819a087aed5b65fdd6854f28ee02e19/30.json",
-                "32": "https://piston-meta.mojang.com/v1/packages/e3aa70ce491a53b3f138fe03645acd6eccfc6157/32.json"
+                "5": "https://piston-meta.mojang.com/v1/packages/141e67ab38f80e63d8ceebaa2d342afd363c81e3/5.json",
+                "12": "https://piston-meta.mojang.com/v1/packages/c0117130994d750c6d372f207a32e2ff41401166/12.json",
+                "16": "https://piston-meta.mojang.com/v1/packages/c912b1461c12d3251ef34449df536b54cd14c2ae/16.json",
+                "17": "https://piston-meta.mojang.com/v1/packages/9ee72f902d76d30eea52f65eb09aa7a34401f59f/17.json",
+                "18": "https://piston-meta.mojang.com/v1/packages/385432ddc79c2275acec644dddf63183ab827930/18.json",
+                "19": "https://piston-meta.mojang.com/v1/packages/77ebc9c328ba8dddddef362cf5efd8669992a71e/19.json",
+                "24": "https://piston-meta.mojang.com/v1/packages/4df37a3c27420f14247e674fb1d6f5bce9f07713/24.json",
+                "26": "https://piston-meta.mojang.com/v1/packages/09e4389254dcc09d10bf56c4c19f3d263cc73827/26.json",
+                "27": "https://piston-meta.mojang.com/v1/packages/c2ebfe537bc726d7009149310467d6f0f0d1bbaf/27.json",
+                "29": "https://piston-meta.mojang.com/v1/packages/07d9faff8c2ddcf5bf7376c9f8c2256035d3c174/29.json",
+                "30": "https://piston-meta.mojang.com/v1/packages/03dec833c02512ee8143c02daf977aafc36c3d04/30.json",
+                "32": "https://piston-meta.mojang.com/v1/packages/f8a4b0071155bcfad32d83a39d78b6da48b7a6e6/32.json"
               },
               "version_assets": {
                 "b1.7.3": "pre-1.6",
@@ -18648,7 +18648,7 @@
                 "26.1.1": "30",
                 "26w14a": "30",
                 "26.1.2": "30",
-                "26.2-pre-2": "32"
+                "26.2": "32"
               }
             }
           }

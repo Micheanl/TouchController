@@ -9,6 +9,7 @@ import com.mojang.blaze3d.opengl.GlDevice;
 import com.mojang.blaze3d.shaders.GpuDebugOptions;
 import com.mojang.blaze3d.shaders.ShaderSource;
 import com.mojang.blaze3d.systems.GpuSurfaceBackend;
+import org.jspecify.annotations.NonNull;
 import org.lwjgl.sdl.SDLVideo;
 
 public class SDLGlDevice extends GlDevice {
@@ -20,6 +21,7 @@ public class SDLGlDevice extends GlDevice {
     }
 
     @Override
+    @NonNull
     public GpuSurfaceBackend createSurface(long windowHandle) {
         return new SDLGlSurface(windowHandle);
     }
