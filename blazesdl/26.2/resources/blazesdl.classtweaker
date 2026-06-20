@@ -32,6 +32,7 @@ accessible field com/mojang/blaze3d/opengl/GlBackend VERSION_MINOR I
 accessible field com/mojang/blaze3d/opengl/GlSurface swapchainWidth I
 accessible field com/mojang/blaze3d/opengl/GlSurface swapchainHeight I
 
+extendable class com/mojang/blaze3d/opengl/GlDevice
 accessible method com/mojang/blaze3d/opengl/GlDevice <init> (JLcom/mojang/blaze3d/shaders/ShaderSource;Lcom/mojang/blaze3d/shaders/GpuDebugOptions;)V
 accessible field com/mojang/blaze3d/opengl/GlDevice windowHandle J
 
