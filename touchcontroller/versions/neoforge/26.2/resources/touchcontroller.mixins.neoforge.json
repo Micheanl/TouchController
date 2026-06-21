@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "package": "top.fifthlight.touchcontroller.neoforge.v26_2.mixin",
+    "compatibilityLevel": "JAVA_25",
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "client": [
+        "KeyBindingMixin",
+        "KeyModifierMixin"
+    ]
+}

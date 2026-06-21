@@ -1,0 +1,22 @@
+load("//rule:merge_library.bzl", "kt_merge_library")
+
+kt_merge_library(
+    name = "26.2",
+    srcs = glob(["*.kt"]),
+    actual = True,
+    merge_deps = [
+        "//touchcontroller/versions/extension/26.2",
+        "//touchcontroller/versions/gal/entity/26.2",
+    ],
+    visibility = ["//touchcontroller:__subpackages__"],
+    deps = [
+        "//combine/backend/minecraft/item/26.2",
+        "//combine/item/data",
+        "//game/26.2:game_client",
+        "//game/26.2:game_client_libraries",
+        "//touchcontroller/common/config/item",
+        "//touchcontroller/common/gal/entity",
+        "//touchcontroller/common/gal/player",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_collections_immutable_jvm",
+    ],
+)

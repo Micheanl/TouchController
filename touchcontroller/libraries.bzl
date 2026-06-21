@@ -32,6 +32,7 @@ touchcontroller_unified_fabric = {lib.name: lib.version for lib in _libraries}
 touchcontroller_common_deps = {
     "combine-common": "//combine/backend/minecraft:minecraft_common_standalone",
     "combine-26-1": "//combine/backend/minecraft/versions/26.1:26.1_merged",
+    "combine-26-2": "//combine/backend/minecraft/versions/26.2:26.2_merged",
     "combine-theme-blackstone": "//combine/theme/blackstone:blackstone_common",
     "combine-theme-blackstone-atlas": "//combine/theme/blackstone:blackstone_atlas",
     "combine-theme-blackstone-vanilla": "//combine/theme/blackstone:blackstone_vanilla",
@@ -42,6 +43,7 @@ touchcontroller_common_deps = {
     "touchcontroller-texture-atlas": "//touchcontroller/resources/texture:texture_atlas",
     "touchcontroller-texture-vanilla": "//touchcontroller/resources/texture:texture_vanilla",
     "touchcontroller-26-1": "//touchcontroller/versions/26.1:26.1_merged",
+    "touchcontroller-26-2": "//touchcontroller/versions/26.2:26.2_merged",
 }
 
 touchcontroller_neoforge_deps = {
@@ -53,6 +55,7 @@ touchcontroller_neoforge_deps = {
     "touchcontroller-1-21-11-neoforge": "//touchcontroller/versions/neoforge/1.21.11",
     "touchcontroller-26-1-neoforge": "//touchcontroller/versions/neoforge/26.1",
     "touchcontroller-26-1-2-neoforge": "//touchcontroller/versions/neoforge/26.1.2",
+    "touchcontroller-26-2-neoforge": "//touchcontroller/versions/neoforge/26.2",
 }
 
 touchcontroller_neoforge_config = {
@@ -65,6 +68,7 @@ touchcontroller_neoforge_config = {
         "26.1.1",
         "26.1.2",
     ],
+    "combine-26-2": ["26.2"],
     "combine-theme-blackstone": ["common"],
     "combine-theme-blackstone-atlas": ["1.21.1"],
     "combine-theme-blackstone-vanilla": [
@@ -73,6 +77,7 @@ touchcontroller_neoforge_config = {
         "26.1",
         "26.1.1",
         "26.1.2",
+        "26.2",
     ],
     "touchcontroller-api": ["common"],
     "touchcontroller-common": ["common"],
@@ -83,6 +88,7 @@ touchcontroller_neoforge_config = {
         "26.1",
         "26.1.1",
         "26.1.2",
+        "26.2",
     ],
     "touchcontroller-texture": ["common"],
     "touchcontroller-texture-atlas": ["1.21.1"],
@@ -92,6 +98,7 @@ touchcontroller_neoforge_config = {
         "26.1",
         "26.1.1",
         "26.1.2",
+        "26.2",
     ],
     "touchcontroller-1-21-1-neoforge": ["1.21.1"],
     "touchcontroller-1-21-10-neoforge": ["1.21.10"],
@@ -101,9 +108,46 @@ touchcontroller_neoforge_config = {
         "26.1.1",
         "26.1.2",
     ],
+    "touchcontroller-26-2": ["26.2"],
     "touchcontroller-26-1-neoforge": [
         "26.1",
         "26.1.1",
     ],
     "touchcontroller-26-1-2-neoforge": ["26.1.2"],
+    "touchcontroller-26-2-neoforge": ["26.2"],
+}
+
+touchcontroller_fabric_deps = {
+    "combine-fabric-1-21-1": "//combine/backend/minecraft/fabric/1.21.1",
+    "combine-fabric-1-21-10": "//combine/backend/minecraft/fabric/1.21.10",
+    "combine-fabric-1-21-11": "//combine/backend/minecraft/fabric/1.21.11",
+    "touchcontroller-1-21-1-fabric": "//touchcontroller/versions/fabric/1.21.1",
+    "touchcontroller-1-21-10-fabric": "//touchcontroller/versions/fabric/1.21.10",
+    "touchcontroller-1-21-11-fabric": "//touchcontroller/versions/fabric/1.21.11",
+    "touchcontroller-26-1-fabric": "//touchcontroller/versions/fabric/26.1",
+    "touchcontroller-26-2-fabric": "//touchcontroller/versions/fabric/26.2",
+}
+
+touchcontroller_fabric_config = {
+    "combine-common": "=",
+    "combine-fabric-1-21-1": "=",
+    "combine-fabric-1-21-10": "=",
+    "combine-fabric-1-21-11": "=",
+    "combine-26-1": "=",
+    "combine-theme-blackstone": "=",
+    "combine-theme-blackstone-atlas": "=",
+    "combine-theme-blackstone-vanilla": "=",
+    "touchcontroller-common": "=",
+    "touchcontroller-api": "=",
+    "touchcontroller-lang-modern": "=",
+    "touchcontroller-texture": "=",
+    "touchcontroller-texture-atlas": "=",
+    "touchcontroller-texture-vanilla": "=",
+    "touchcontroller-1-21-1-fabric": "=",
+    "touchcontroller-1-21-10-fabric": "=",
+    "touchcontroller-1-21-11-fabric": "=",
+    "touchcontroller-26-1": "=",
+    "touchcontroller-26-1-fabric": "=",
+    "touchcontroller-26-2": "=",
+    "touchcontroller-26-2-fabric": "=",
 }

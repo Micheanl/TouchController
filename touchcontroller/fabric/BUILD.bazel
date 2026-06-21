@@ -45,7 +45,8 @@ fabric_merge_jij(
         "//combine/backend/minecraft/fabric/1.21.1": "combine-1-21-1:=",
         "//combine/backend/minecraft/fabric/1.21.10": "combine-1-21-10:=",
         "//combine/backend/minecraft/fabric/1.21.11": "combine-1-21-11:=",
-        "//combine/backend/minecraft/versions/26.1:26.1_merged": "combine-26.1:=",
+        "//combine/backend/minecraft/versions/26.1:26.1_merged": "combine-26-1:=",
+        "//combine/backend/minecraft/versions/26.2:26.2_merged": "combine-26-2:=",
         "//touchcontroller/api": "touchcontroller-api:=",
         "//touchcontroller/common:common_merged": "touchcontroller-common:=",
         "//touchcontroller/resources/lang": "touchcontroller-lang-modern:=",
@@ -57,5 +58,7 @@ fabric_merge_jij(
         "//touchcontroller/versions/fabric/1.21.11": "touchcontroller-1-21-11:=",
         "//touchcontroller/versions/26.1:26.1_merged": "touchcontroller-26-1:=",
         "//touchcontroller/versions/fabric/26.1": "touchcontroller-26-1-fabric:=",
+        "//touchcontroller/versions/26.2:26.2_merged": "touchcontroller-26-2:=",
+        "//touchcontroller/versions/fabric/26.2": "touchcontroller-26-2-fabric:=",
     } | combine_fabric_libraries | touchcontroller_fabric_libraries,
 )

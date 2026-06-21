@@ -1,0 +1,16 @@
+load("//rule:merge_library.bzl", "kt_merge_library")
+
+kt_merge_library(
+    name = "26.2",
+    srcs = glob(["*.kt"]),
+    actual = True,
+    merge_deps = [
+        "//touchcontroller/versions/gal/key/26.2",
+        "//touchcontroller/versions/mixin/26.2",
+    ],
+    visibility = ["//touchcontroller:__subpackages__"],
+    deps = [
+        "//game/26.2:game_client",
+        "//touchcontroller/common/gal/key",
+    ],
+)
