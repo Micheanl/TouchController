@@ -1,0 +1,17 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary")
+
+exports_files([
+    "launcher.bat.tpl",
+    "launcher.sh.tpl",
+])
+
+kt_jvm_binary(
+    name = "class_version_checker",
+    srcs = ["ClassVersionChecker.kt"],
+    main_class = "top.fifthlight.classversionchecker.ClassVersionChecker",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:com_github_ajalt_clikt_clikt_core_jvm",
+        "@maven//:com_github_ajalt_clikt_clikt_jvm",
+    ],
+)

@@ -1,6 +1,7 @@
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("//combine:properties.bzl", "combine_version")
+load("//rule:class_version_test.bzl", "class_version_test")
 load("//rule:jar.bzl", "jar")
 load("//rule:merge_library.bzl", "merge_library_group", "merge_library_jar")
 load("//touchcontroller:properties.bzl", "touchcontroller_authors", "touchcontroller_contributors", "touchcontroller_description", "touchcontroller_fabric_game_versions", "touchcontroller_homepage", "touchcontroller_issue_tracker", "touchcontroller_license", "touchcontroller_source", "touchcontroller_version")
@@ -125,4 +126,11 @@ merge_library_jar(
         "//touchcontroller/common",
         "//touchcontroller/resources/texture:icon_jar",
     ],
+)
+
+class_version_test(
+    name = "common_merged_class_version",
+    class_major = 52,
+    jars = [":common_merged"],
+    tags = ["class_version"],
 )

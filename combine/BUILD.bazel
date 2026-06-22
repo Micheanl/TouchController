@@ -1,4 +1,26 @@
+load("//rule:jvm_opts.bzl", "kt_jvm_javac_options_set", "kt_jvm_kotlinc_options_set")
 load("//rule:merge_library.bzl", "merge_library_group")
+
+jvm_versions = [
+    8,
+    11,
+    17,
+    21,
+    25,
+]
+
+kt_jvm_kotlinc_options_set(
+    name = "kotlinc_opts",
+    versions = jvm_versions,
+    visibility = ["//combine:__subpackages__"],
+    x_lambdas = "indy",
+)
+
+kt_jvm_javac_options_set(
+    name = "javac_opts",
+    versions = jvm_versions,
+    visibility = ["//combine:__subpackages__"],
+)
 
 merge_library_group(
     name = "combine",

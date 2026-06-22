@@ -1,5 +1,6 @@
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("//combine:properties.bzl", "combine_description", "combine_home_page", "combine_issue_tracker", "combine_license", "combine_sources_page", "combine_version")
+load("//rule:class_version_test.bzl", "class_version_test")
 load("//rule:merge_library.bzl", "merge_library_jar")
 
 expand_template(
@@ -29,6 +30,13 @@ merge_library_jar(
     deps = [
         "//combine/backend/minecraft/versions/1.21.10",
     ],
+)
+
+class_version_test(
+    name = "neoforge_class_version",
+    class_major = 65,
+    jars = [":neoforge"],
+    tags = ["class_version"],
 )
 
 alias(

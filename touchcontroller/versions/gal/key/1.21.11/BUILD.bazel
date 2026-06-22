@@ -3,6 +3,8 @@ load("//rule:merge_library.bzl", "kt_merge_library")
 kt_merge_library(
     name = "1.21.11",
     srcs = glob(["*.kt"]),
+    javac_opts = "//touchcontroller:javac_opts_jvm_21",
+    kotlinc_opts = "//touchcontroller:kotlinc_opts_jvm_21",
     merge_deps = [
         "//touchcontroller/versions/extension/1.21.11",
     ],

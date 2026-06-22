@@ -1,5 +1,6 @@
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("//combine:properties.bzl", "combine_description", "combine_home_page", "combine_issue_tracker", "combine_license", "combine_sources_page", "combine_version")
+load("//rule:class_version_test.bzl", "class_version_test")
 load("//rule:jar.bzl", "jar")
 load("//rule:merge_library.bzl", "merge_library_jar")
 load("//rule:remap_jar.bzl", "remap_jar")
@@ -39,6 +40,13 @@ merge_library_jar(
         ":meta_jar",
         "//combine/backend/minecraft/versions/1.21.8",
     ],
+)
+
+class_version_test(
+    name = "fabric_unmapped_class_version",
+    class_major = 65,
+    jars = [":fabric_unmapped"],
+    tags = ["class_version"],
 )
 
 remap_jar(

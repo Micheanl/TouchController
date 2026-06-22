@@ -29,5 +29,7 @@ expand_template(
 kt_merge_library(
     name = "buildinfo",
     srcs = [":buildinfo_sources"],
+    javac_opts = "//touchcontroller:javac_opts_jvm_8",
+    kotlinc_opts = "//touchcontroller:kotlinc_opts_jvm_8",
     visibility = ["//touchcontroller:__subpackages__"],
 )

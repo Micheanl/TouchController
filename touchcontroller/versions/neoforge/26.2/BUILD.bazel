@@ -1,5 +1,6 @@
 load("@rules_java//java:java_binary.bzl", "java_binary")
 load("//combine:properties.bzl", "combine_version")
+load("//rule:class_version_test.bzl", "class_version_test")
 load("//rule:merge_library.bzl", "kt_merge_library", "merge_library_jar")
 load("//rule/neoforge:merge_jij.bzl", "neoforge_merge_jij")
 load("//rule/neoforge:mod_toml_jar.bzl", "neoforge_mod_toml_jar")
@@ -30,6 +31,8 @@ kt_merge_library(
             "**/*.java",
         ],
     ),
+    javac_opts = "//touchcontroller:javac_opts_jvm_25",
+    kotlinc_opts = "//touchcontroller:kotlinc_opts_jvm_25",
     merge_deps = [
         "//touchcontroller/versions/neoforge/gal/key/26.2",
     ],
@@ -82,6 +85,13 @@ merge_library_jar(
     aspect_impl_package_suffix = "neoforge.v26_2",
     aspects = ["//touchcontroller/versions/26.2:26.2_merged"],
     deps = [":neoforge_unmerged"],
+)
+
+class_version_test(
+    name = "neoforge_class_version",
+    class_major = 69,
+    jars = [":neoforge"],
+    tags = ["class_version"],
 )
 
 alias(

@@ -5,6 +5,8 @@ load("//rule:remap_jar.bzl", "remap_jar")
 kt_merge_library(
     name = "hello_world_unmerged",
     srcs = glob(["*.kt"]),
+    javac_opts = "//combine:javac_opts_jvm_21",
+    kotlinc_opts = "//combine:kotlinc_opts_jvm_21",
     resource_strip_prefix = "combine/example/hello_world/versions/1.21.10/resources",
     resources = glob(["resources/**"]),
     deps = [

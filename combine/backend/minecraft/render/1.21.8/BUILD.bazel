@@ -7,6 +7,8 @@ kt_merge_library(
         "**/*.java",
     ]),
     actual = True,
+    javac_opts = "//combine:javac_opts_jvm_21",
+    kotlinc_opts = "//combine:kotlinc_opts_jvm_21",
     resource_strip_prefix = "combine/backend/minecraft/render/1.21.8/resource",
     resources = glob(["resource/**"]),
     visibility = ["//visibility:public"],

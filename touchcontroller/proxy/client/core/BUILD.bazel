@@ -5,6 +5,8 @@ load("//touchcontroller/proxy/client:properties.bzl", "proxy_client_version")
 kt_merge_library(
     name = "core",
     srcs = glob(["**/*.kt"]),
+    javac_opts = "//touchcontroller:javac_opts_jvm_8",
+    kotlinc_opts = "//touchcontroller:kotlinc_opts_jvm_8",
     merge_deps = [
         "//touchcontroller/proxy/message",
         "//touchcontroller/proxy/message/input",

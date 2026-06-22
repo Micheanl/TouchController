@@ -5,6 +5,8 @@ load("//rule:remap_jar.bzl", "remap_jar")
 kt_merge_library(
     name = "widget_factory_unmerged",
     srcs = glob(["*.kt"]),
+    javac_opts = "//combine:javac_opts_jvm_21",
+    kotlinc_opts = "//combine:kotlinc_opts_jvm_21",
     resource_strip_prefix = "combine/example/widget_factory/versions/1.21.8/resources",
     resources = glob(["resources/**"]),
     runtime_deps = [

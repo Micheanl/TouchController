@@ -5,6 +5,8 @@ load("//rule:remap_jar.bzl", "remap_jar")
 kt_jvm_library(
     name = "calculator_unmapped",
     srcs = glob(["*.kt"]),
+    javac_opts = "//combine:javac_opts_jvm_21",
+    kotlinc_opts = "//combine:kotlinc_opts_jvm_21",
     resource_strip_prefix = "combine/example/calculator/resources",
     resources = glob(["resources/**"]),
     runtime_deps = [

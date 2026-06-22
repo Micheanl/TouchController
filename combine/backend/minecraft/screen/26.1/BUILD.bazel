@@ -4,6 +4,8 @@ kt_merge_library(
     name = "26.1",
     srcs = glob(["*.kt"]),
     actual = True,
+    javac_opts = "//combine:javac_opts_jvm_25",
+    kotlinc_opts = "//combine:kotlinc_opts_jvm_25",
     merge_deps = [
         "//combine/backend/minecraft/clipboard/26.1",
         "//combine/backend/minecraft/dispatcher/26.1",

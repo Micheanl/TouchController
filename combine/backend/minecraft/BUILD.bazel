@@ -1,6 +1,7 @@
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
-load("//combine:libraries.bzl", "combine_unified_deps", "combine_unified_fabric", "combine_unified_neoforge")
+load("//combine:libraries.bzl", "combine_libraries", "combine_unified_deps", "combine_unified_fabric", "combine_unified_neoforge")
 load("//combine:properties.bzl", "combine_description", "combine_home_page", "combine_issue_tracker", "combine_license", "combine_sources_page", "combine_version")
+load("//rule:class_version_test.bzl", "class_version_test")
 load("//rule:merge_jar.bzl", "merge_jar")
 load("//rule:merge_library.bzl", "merge_library_jar")
 load("//rule:unified_jar.bzl", "unified_jar")
@@ -14,6 +15,13 @@ merge_library_jar(
         "//combine",
         "//combine/item",
     ],
+)
+
+class_version_test(
+    name = "minecraft_unmerged_class_version",
+    class_major = 52,
+    jars = [":minecraft_unmerged"],
+    tags = ["class_version"],
 )
 
 expand_template(
@@ -102,4 +110,11 @@ unified_jar(
         "combine-neoforge-1-21-10": "//combine/backend/minecraft/neoforge/1.21.10",
         "combine-neoforge-1-21-11": "//combine/backend/minecraft/neoforge/1.21.11",
     } | combine_unified_deps,
+)
+
+class_version_test(
+    name = "libraries_class_version",
+    class_major = 52,
+    jars = combine_libraries,
+    tags = ["class_version"],
 )

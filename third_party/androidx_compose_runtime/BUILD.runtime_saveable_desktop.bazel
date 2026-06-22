@@ -1,8 +1,17 @@
+load("@rules_kotlin//kotlin:core.bzl", "kt_kotlinc_options")
 load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
+
+kt_kotlinc_options(
+    name = "kotlinc_opts_jvm_8",
+    jvm_target = "1.8",
+    x_jdk_release = "1.8",
+    x_lambdas = "indy",
+)
 
 kt_jvm_library(
     name = "runtime_saveable_desktop",
     srcs = glob(["commonMain/**/*.kt"]),
+    kotlinc_opts = ":kotlinc_opts_jvm_8",
     visibility = ["//visibility:public"],
     deps = [
         "@//:compose",

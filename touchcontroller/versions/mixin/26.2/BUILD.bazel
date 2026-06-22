@@ -3,6 +3,7 @@ load("//rule:merge_library.bzl", "java_merge_library")
 java_merge_library(
     name = "26.2",
     srcs = glob(["*.java"]),
+    javacopts = ["--release=25"],
     merge_deps = [
         "//touchcontroller/versions/event/26.2",
         "//touchcontroller/versions/extension/26.2",

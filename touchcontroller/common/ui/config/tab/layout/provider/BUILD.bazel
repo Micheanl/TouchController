@@ -4,6 +4,8 @@ kt_merge_library(
     name = "provider",
     srcs = ["CustomTabProvider.kt"],
     expect = True,
+    javac_opts = "//touchcontroller:javac_opts_jvm_8",
+    kotlinc_opts = "//touchcontroller:kotlinc_opts_jvm_8",
     merge_deps = [
         "//touchcontroller/common/ui/config/tab",
     ],
@@ -14,6 +16,8 @@ kt_merge_library(
     name = "provider_impl",
     srcs = ["CustomTabProviderImpl.kt"],
     actual = True,
+    javac_opts = "//touchcontroller:javac_opts_jvm_8",
+    kotlinc_opts = "//touchcontroller:kotlinc_opts_jvm_8",
     merge_deps = [
         ":provider",
         "//touchcontroller/common/ui/config/tab",

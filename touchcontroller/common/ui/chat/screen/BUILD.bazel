@@ -4,6 +4,8 @@ kt_merge_library(
     name = "screen",
     srcs = glob(["*.kt"]),
     actual = True,
+    javac_opts = "//touchcontroller:javac_opts_jvm_8",
+    kotlinc_opts = "//touchcontroller:kotlinc_opts_jvm_8",
     merge_deps = [
         "//touchcontroller/common/control/action/provider",
         "//touchcontroller/common/gal/chat",

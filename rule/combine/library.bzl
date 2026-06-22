@@ -70,6 +70,8 @@ def _kt_texture_lib_impl(name, visibility, dep):
         srcs = [source_lib],
         visibility = visibility,
         expect = True,
+        javac_opts = "//rule:javac_opts_jvm_8",
+        kotlinc_opts = "//rule:kotlinc_opts_jvm_8",
         deps = ["//combine/core/paint"],
     )
 

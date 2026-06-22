@@ -4,6 +4,8 @@ kt_merge_library(
     name = "1.21.10",
     srcs = glob(["*.kt"]),
     actual = True,
+    javac_opts = "//touchcontroller:javac_opts_jvm_21",
+    kotlinc_opts = "//touchcontroller:kotlinc_opts_jvm_21",
     visibility = ["//touchcontroller:__subpackages__"],
     deps = [
         "//combine/data",

@@ -76,6 +76,7 @@ archive_override(
     patches = [
         "//third_party/rules_kotlin/patches:common_library.patch",
         "//third_party/rules_kotlin/patches:module_dot_bazel_version.patch",
+        "//third_party/rules_kotlin/patches:javac_release_25.patch",
     ],
     sha256 = "118fcba9b15a5f35f52be6ea84a3cd98f78658b2071ec0f3a1de6d2863f2e50a",
     url = "https://github.com/bazel-contrib/rules_kotlin/releases/download/v2.3.21/rules_kotlin-v2.3.21.tar.gz",

@@ -1,9 +1,33 @@
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("//combine:libraries.bzl", "combine_unified_deps", "combine_unified_fabric", "combine_unified_neoforge")
+load("//rule:class_version_test.bzl", "class_version_test")
 load("//rule:extract_update_log.bzl", "extract_update_log")
+load("//rule:jvm_opts.bzl", "kt_jvm_javac_options_set", "kt_jvm_kotlinc_options_set")
 load("//rule:unified_jar.bzl", "unified_jar")
-load("//touchcontroller:libraries.bzl", "touchcontroller_common_deps", "touchcontroller_fabric_config", "touchcontroller_fabric_deps", "touchcontroller_neoforge_config", "touchcontroller_neoforge_deps", "touchcontroller_unified_deps", "touchcontroller_unified_fabric", "touchcontroller_unified_neoforge")
+load("//touchcontroller:libraries.bzl", "touchcontroller_common_deps", "touchcontroller_fabric_config", "touchcontroller_fabric_deps", "touchcontroller_libraries", "touchcontroller_neoforge_config", "touchcontroller_neoforge_deps", "touchcontroller_unified_deps", "touchcontroller_unified_fabric", "touchcontroller_unified_neoforge")
 load("//touchcontroller:properties.bzl", "touchcontroller_version")
+
+jvm_versions = [
+    8,
+    11,
+    17,
+    21,
+    25,
+]
+
+kt_jvm_kotlinc_options_set(
+    name = "kotlinc_opts",
+    versions = jvm_versions,
+    visibility = ["//touchcontroller:__subpackages__"],
+    x_lambdas = "indy",
+    x_optin = ["kotlin.uuid.ExperimentalUuidApi"],
+)
+
+kt_jvm_javac_options_set(
+    name = "javac_opts",
+    versions = jvm_versions,
+    visibility = ["//touchcontroller:__subpackages__"],
+)
 
 alias(
     name = "license",
@@ -36,4 +60,11 @@ unified_jar(
     neoforge_mod_toml = "//touchcontroller/neoforge:neoforge_mod_toml",
     resources = {":icon": "touchcontroller"},
     deps = touchcontroller_fabric_deps | touchcontroller_common_deps | touchcontroller_neoforge_deps | combine_unified_deps | touchcontroller_unified_deps,
+)
+
+class_version_test(
+    name = "libraries_class_version",
+    class_major = 52,
+    jars = touchcontroller_libraries,
+    tags = ["class_version"],
 )

@@ -3,6 +3,8 @@ load("//rule:merge_library.bzl", "kt_merge_library")
 kt_merge_library(
     name = "sound",
     srcs = glob(["*.kt"]),
+    javac_opts = "//combine:javac_opts_jvm_8",
+    kotlinc_opts = "//combine:kotlinc_opts_jvm_8",
     visibility = ["//visibility:public"],
     deps = [
         "@maven//:androidx_compose_runtime_runtime_desktop",

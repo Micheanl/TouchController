@@ -4,6 +4,8 @@ load("//rule:merge_library.bzl", "kt_merge_library", "merge_library_jar")
 kt_merge_library(
     name = "widget_factory_unmerged",
     srcs = glob(["*.kt"]),
+    javac_opts = "//combine:javac_opts_jvm_25",
+    kotlinc_opts = "//combine:kotlinc_opts_jvm_25",
     resource_strip_prefix = "combine/example/widget_factory/versions/26.1/resources",
     resources = glob(["resources/**"]),
     runtime_deps = [

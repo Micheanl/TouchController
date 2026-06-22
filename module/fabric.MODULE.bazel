@@ -284,17 +284,17 @@ fabric_versions = {
         ),
         maven.artifact(
             name = "maven_fabric_%s" % version.replace(".", "_"),
-            group = "net.fabricmc",
             artifact = "fabric-language-kotlin",
-            version = "1.13.5+kotlin.2.2.10",
             exclusions = ["net.fabricmc:fabric-loader"],
+            group = "net.fabricmc",
+            version = "1.13.5+kotlin.2.2.10",
         ),
         maven.artifact(
             name = "maven_fabric_%s" % version.replace(".", "_"),
-            group = "io.github.prospector" if "modmenu_legacy" in entry else "com.terraformersmc",
             artifact = "modmenu",
-            version = entry["modmenu"],
             exclusions = ["net.fabricmc:fabric-loader"],
+            group = "io.github.prospector" if "modmenu_legacy" in entry else "com.terraformersmc",
+            version = entry["modmenu"],
         ) if "modmenu" in entry else (),
         use_repo(maven, "maven_fabric_%s" % version.replace(".", "_")),
     )
@@ -324,10 +324,10 @@ fabric_versions = {
         ),
         maven.artifact(
             name = "maven_fabric_%s" % version.replace(".", "_"),
-            group = "net.fabricmc",
             artifact = "fabric-language-kotlin",
-            version = "1.13.5+kotlin.2.2.10",
             exclusions = ["net.fabricmc:fabric-loader"],
+            group = "net.fabricmc",
+            version = "1.13.5+kotlin.2.2.10",
         ),
         use_repo(maven, "maven_fabric_%s" % version.replace(".", "_")),
     )
@@ -356,17 +356,17 @@ fabric_versions = {
         ),
         maven.artifact(
             name = "maven_fabric_%s" % version.replace(".", "_"),
-            group = "net.fabricmc",
             artifact = "fabric-language-kotlin",
-            version = "1.13.5+kotlin.2.2.10",
             exclusions = ["net.fabricmc:fabric-loader"],
+            group = "net.fabricmc",
+            version = "1.13.5+kotlin.2.2.10",
         ),
         maven.artifact(
             name = "maven_fabric_%s" % version.replace(".", "_"),
-            group = "net.glasslauncher.mods",
             artifact = "ModMenu",
-            version = entry["modmenu"],
             exclusions = ["net.fabricmc:fabric-loader"],
+            group = "net.glasslauncher.mods",
+            version = entry["modmenu"],
         ) if "modmenu" in entry else (),
         use_repo(maven, "maven_fabric_%s" % version.replace(".", "_")),
     )

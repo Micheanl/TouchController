@@ -14,6 +14,7 @@ import javax.tools.Diagnostic;
 import javax.tools.StandardLocation;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ServiceLoader;
 import java.util.Set;
 
@@ -33,16 +34,26 @@ public class ExpectAnnotationProcessor extends AbstractProcessor {
         var factoryInterface = expectInterfaceName.nestedClass("Factory");
 
         var factoryImplField = FieldSpec.builder(factoryInterface, "factoryImpl", Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-                .initializer("$T.load($T.class).findFirst().orElseThrow(() -> new $T($S))",
-                        ServiceLoader.class,
+                .build();
+
+        var staticBlock = CodeBlock.builder()
+                .addStatement("$T<$T> iterator = $T.load($T.class).iterator()",
+                        Iterator.class,
                         factoryInterface,
+                        ServiceLoader.class,
+                        factoryInterface)
+                .beginControlFlow("if (!iterator.hasNext())")
+                .addStatement("throw new $T($S)",
                         RuntimeException.class,
                         "No factory of " + expectInterfaceName.canonicalName() + " found")
+                .endControlFlow()
+                .addStatement("factoryImpl = iterator.next()")
                 .build();
 
         var typeSpecBuilder = TypeSpec.classBuilder(className)
                 .addModifiers(Modifier.PUBLIC)
-                .addField(factoryImplField);
+                .addField(factoryImplField)
+                .addStaticBlock(staticBlock);
 
         for (var constructorData : expectData.constructors()) {
             var methodSpecBuilder = MethodSpec.methodBuilder(constructorData.name())

@@ -23,6 +23,7 @@ _libraries = [
     _library("cafe.adriel.voyager:voyager-screenmodel-desktop:1.1.0-beta03"),
 ]
 
+touchcontroller_libraries = [lib.label for lib in _libraries]
 touchcontroller_fabric_libraries = {lib.label: (lib.name + ":" + lib.version) for lib in _libraries}
 touchcontroller_neoforge_libraries = {lib.label: (lib.coordinate + ":LIBRARY") for lib in _libraries}
 touchcontroller_unified_deps = {lib.name: lib.label for lib in _libraries}

@@ -1,12 +1,17 @@
 http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
 http_jar = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_jar")
 
 SDK_BASE_VERSION = "261.22158"
+
 SDK_INTELLIJ_REPO_VERSION = SDK_BASE_VERSION + ".277"
+
 SDK_INTELLIJ_VERSION = SDK_INTELLIJ_REPO_VERSION
+
 SDK_INTELLIJ_REPOSITORY = "releases"  # releases or snapshots
 
 IC_URL = "https://www.jetbrains.com/intellij-repository/%s/com/jetbrains/intellij/idea/ideaIU/%s/ideaIU-%s.zip" % (SDK_INTELLIJ_REPOSITORY, SDK_INTELLIJ_VERSION, SDK_INTELLIJ_VERSION)
+
 IC_SHA = "33f9c1c316f8fe5eaa1dd965bb929d1fcd15d757ad3d4b25028ceb5c4fbcb8fd"
 
 http_archive(
@@ -17,6 +22,7 @@ http_archive(
 )
 
 IC_SOURCES_URL = "https://www.jetbrains.com/intellij-repository/%s/com/jetbrains/intellij/idea/ideaIU/%s/ideaIU-%s-sources.jar" % (SDK_INTELLIJ_REPOSITORY, SDK_INTELLIJ_VERSION, SDK_INTELLIJ_VERSION)
+
 IC_SOURCES_SHA = "56a2c511761f67eb7aa9d3d0d20ba6f7c70651655c009c5a08cbe74ed2fbec31"
 
 http_jar(

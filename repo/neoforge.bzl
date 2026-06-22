@@ -75,6 +75,8 @@ def _neoforge_repo_impl(rctx):
 
     neoforge_libraries = {}
     for library in config_data["libraries"]:
+        if library.endswith("@zip"):
+            continue
         label = '"@%s//jar"' % _convert_maven_coordinate_to_repo(repository_prefix, library)
         if library not in neoforge_libraries:
             neoforge_libraries[library] = label
@@ -479,6 +481,8 @@ def _neoforge_impl(mctx):
 
         config_data = json.decode(mctx.read("%s/config.json" % output_prefix))
         for library in config_data["libraries"]:
+            if library.endswith("@zip"):
+                continue
             append_library(library, version_legacy)
         for module in config_data.get("modules", []):
             append_library(module, version_legacy)

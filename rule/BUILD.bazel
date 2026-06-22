@@ -1,0 +1,14 @@
+load("//rule:jvm_opts.bzl", "kt_jvm_javac_options_set", "kt_jvm_kotlinc_options_set")
+
+kt_jvm_kotlinc_options_set(
+    name = "kotlinc_opts",
+    versions = [8],
+    visibility = ["//visibility:public"],
+    x_lambdas = "indy",
+)
+
+kt_jvm_javac_options_set(
+    name = "javac_opts",
+    versions = [8],
+    visibility = ["//visibility:public"],
+)

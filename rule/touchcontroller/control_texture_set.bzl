@@ -234,6 +234,8 @@ def _kt_control_texture_set_lib_impl(
         srcs = [source_lib],
         visibility = visibility,
         actual = True,
+        javac_opts = "//rule:javac_opts_jvm_8",
+        kotlinc_opts = "//rule:kotlinc_opts_jvm_8",
         merge_deps = [
             kt_text_binding_lib,
             _texture_sets_lib,
@@ -456,6 +458,8 @@ def _kt_empty_texture_lib_impl(
         name = name,
         srcs = [source_lib],
         visibility = visibility,
+        javac_opts = "//rule:javac_opts_jvm_8",
+        kotlinc_opts = "//rule:kotlinc_opts_jvm_8",
         merge_deps = [
             kt_text_binding_lib,
         ],

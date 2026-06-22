@@ -30,6 +30,8 @@ def _combine_theme_impl(
         srcs = srcs,
         merge_deps = [":" + name + "_texture_lib"],
         visibility = visibility,
+        javac_opts = "//rule:javac_opts_jvm_8",
+        kotlinc_opts = "//rule:kotlinc_opts_jvm_8",
         deps = [
             "//combine/core/paint",
             "//combine/style",
