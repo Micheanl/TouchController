@@ -3,7 +3,6 @@ package top.fifthlight.blazesdl;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import net.neoforged.fml.jarcontents.JarContents;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.fml.loading.moddiscovery.readers.JarModsDotTomlModFileReader;
 import net.neoforged.neoforgespi.locating.*;
@@ -16,72 +15,19 @@ import java.io.InputStreamReader;
 import java.io.UncheckedIOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.*;
 import java.security.DigestOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HexFormat;
+import java.util.List;
 
 public class NeoForgeLoadingHandler implements IDependencyLocator, IModFileReader {
     private static final Logger LOGGER = LoggerFactory.getLogger(NeoForgeLoadingHandler.class);
     private static final Gson GSON = new Gson();
     private static final String MANIFEST_PATH = "fabric.mod.json";
     private final ModFileDiscoveryAttributes attributes = ModFileDiscoveryAttributes.DEFAULT.withDependencyLocator(this);
-
-    // Copied from ClasspathResourceUtils
-    private static List<Path> findFileSystemRootsOfFileOnClasspath(String relativePath) {
-        var classLoader = Thread.currentThread().getContextClassLoader();
-        if (IDependencyLocator.class.getModule().isNamed()) {
-            classLoader = ClassLoader.getSystemClassLoader();
-        }
-
-        return findFileSystemRootsOfFileOnClasspath(classLoader, relativePath);
-    }
-
-    private static List<Path> findFileSystemRootsOfFileOnClasspath(ClassLoader classLoader, String relativePath) {
-        Iterator<URL> resourceIt;
-        try {
-            resourceIt = classLoader.getResources(relativePath).asIterator();
-        } catch (IOException var5) {
-            throw new IllegalArgumentException("Failed to enumerate classpath locations of " + relativePath);
-        }
-
-        var result = new LinkedHashSet<Path>();
-
-        while (resourceIt.hasNext()) {
-            var resourceUrl = resourceIt.next();
-            result.add(getRootFromResourceUrl(relativePath, resourceUrl));
-        }
-
-        return new ArrayList<>(result);
-    }
-
-    public static Path getRootFromResourceUrl(String relativePath, URL resourceUrl) {
-        if ("jar".equals(resourceUrl.getProtocol())) {
-            var fileUri = URI.create(resourceUrl.toString().split("!")[0].substring("jar:".length()));
-            return Paths.get(fileUri);
-        } else {
-            Path resourcePath;
-            try {
-                resourcePath = Paths.get(resourceUrl.toURI());
-            } catch (URISyntaxException var4) {
-                throw new IllegalArgumentException("Failed to convert " + resourceUrl + " to URI");
-            }
-
-            var current = Paths.get(relativePath);
-
-            while (current != null) {
-                current = current.getParent();
-                resourcePath = resourcePath.getParent();
-                if (resourcePath == null) {
-                    throw new IllegalArgumentException("Resource " + resourceUrl + " did not have same nesting depth as " + relativePath);
-                }
-            }
-
-            return resourcePath;
-        }
-    }
 
     private static String extractEmbeddedJarFile(JarContents contents, String relativePath, Path destination) {
         try (var inStream = contents.openFile(relativePath); var outStream = Files.newOutputStream(destination)) {
@@ -126,46 +72,16 @@ public class NeoForgeLoadingHandler implements IDependencyLocator, IModFileReade
 
     @Override
     public void scanMods(List<IModFile> loadedMods, IDiscoveryPipeline pipeline) {
-        if (!FMLEnvironment.isProduction()) {
-            for (var path : findFileSystemRootsOfFileOnClasspath(MANIFEST_PATH)) {
-                if (!Files.isRegularFile(path)) continue;
-                try (var contents = JarContents.ofPath(path)) {
-                    processJar(contents, pipeline);
-                } catch (IOException e) {
-                    LOGGER.warn("Failed to read mod {} in classpath", path);
-                }
-            }
-        }
+        try {
+            var glfwClassUrl = ClassLoader.getSystemClassLoader().getResource("org/lwjgl/glfw/GLFW.class");
+            var lastExcl = glfwClassUrl.getPath().lastIndexOf("!/");
+            var glfwPath = Paths.get(new URI(glfwClassUrl.getPath().substring(0, lastExcl)));
+            pipeline.addModFile(IModFile.create(JarContents.ofPath(glfwPath), JarModsDotTomlModFileReader::manifestParser, IModFile.Type.GAMELIBRARY, attributes));
 
-        var gameDirectory = FMLPaths.GAMEDIR.get();
-        var modsDir = gameDirectory.resolve(FMLPaths.MODSDIR.relative()).toAbsolutePath().normalize();
-        if (!Files.exists(modsDir)) {
-            return;
-        }
-
-        List<Path> jarFiles;
-        try (var files = Files.list(modsDir)) {
-            jarFiles = files
-                    .filter(p -> p.getFileName().toString().toLowerCase(Locale.ROOT).endsWith(".jar"))
-                    .sorted(Comparator.comparing(p -> p.getFileName().toString().toLowerCase(Locale.ROOT)))
-                    .toList();
-        } catch (IOException e) {
-            LOGGER.warn("Failed to list mods directory {}", modsDir, e);
-            return;
-        }
-
-        for (var path : jarFiles) {
-            if (!Files.isRegularFile(path)) continue;
-            try {
-                if (Files.size(path) == 0) continue;
-            } catch (IOException ignored) {
-            }
-
-            try {
-                processJar(JarContents.ofPath(path), pipeline);
-            } catch (IOException e) {
-                LOGGER.warn("Failed to read mod {}", path);
-            }
+            var jarPath = Path.of(NeoForgeLoadingHandler.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+            processJar(JarContents.ofPath(jarPath), pipeline);
+        } catch (IOException | URISyntaxException e) {
+            throw new RuntimeException(e);
         }
     }
 
