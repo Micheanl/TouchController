@@ -120,6 +120,11 @@ We are using Weblate Platform to translate our projects. You can help us by join
 
 Thanks to every translate contributor for making our projects multilingual!
 
+## Environment setup guide
+
+Want to improve the code? Or just want to compile the mods yourself? Welcome! Read [this document](ENVIRONMENT_SETUP.md)
+to set up your environment.
+
 ## Star History
 
 <a href="https://star-history.com/#TouchController/TouchController&Date">
