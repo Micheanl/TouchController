@@ -14,9 +14,9 @@ touchcontroller.jar
 │   ├── net.neoforged.neoforgespi.locating.IDependencyLocator  ← NeoForge 早期服务
 │   └── net.neoforged.neoforgespi.locating.IModFileReader      ← NeoForge 早期服务
 │
-│   # JiJ 嵌套 JAR（Fabric + NeoForge 共享同一目录）
+│   # JiJ 嵌套 JAR
 ├── META-INF/jars/
-│   ├── multijar-neoforge-manifest.json        ← NeoForge 自举定位器的版本清单
+│   ├── multijar-neoforge-manifest.json        ← NeoForge 定位器的版本清单
 │   │
 │   │  # 加载器无关的公共代码（始终加载）
 │   ├── touchcontroller-common.jar             ← 公共代码
@@ -42,5 +42,6 @@ touchcontroller.jar
 │   ├── touchcontroller-neoforge-1.21.10.jar
 │   └── ...
 │
-└── NeoV3Locator.class                         ← NeoForge 自举加载器
+├── NeoV10Locator.class                        ← NeoForge 10+ 自举加载器
+└── NeoV3Locator.class                         ← NeoForge 3+ 自举加载器
 ```

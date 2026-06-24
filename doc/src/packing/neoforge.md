@@ -21,21 +21,3 @@ touchcontroller-neoforge.jar
 ```
 
 外层 JAR 实际上不是一个 NeoForge 模组：它的作用只是加载嵌套的 JAR 文件。
-
-### 为什么可以这么做
-
-这个方案可行，依赖于 NeoForge 的三个基础设施：
-
-#### 1. 早期服务发现（Early Service Discovery）
-
-FML 在正式加载模组之前，会通过 `ServiceLoaderUtil.loadServices()` 发现所有提供 `IDependencyLocator`、`IModFileReader` 等 SPI 接口的 JAR，加载到早期服务 ClassLoader 中。
-
-这些 JAR 在加载早期服务的过程中已被标记为"已定位"。后续 `ModsFolderLocator` 执行普通模组发现时，会跳过这些 JAR，因此外层 JAR 不会被当作普通模组加载。
-
-#### 2. Dependency Locator 回调
-
-普通模组发现完成后，`ModDiscoverer` 依次调用所有已发现的 `IDependencyLocator.scanMods(List.copyOf(loadedFiles), pipeline)`。我们在这个回调中扫描 mods 目录，找到含有 `multijar-neoforge-manifest.json` 的 JAR，读取版本清单，提取匹配的内部 JAR 并通过 `pipeline.readModFile()` + `pipeline.addModFile()` 将其注入模组列表。
-
-#### 3. Minecraft 版本在此时已知
-
-生产环境候选定位器（`ProductionClientProvider` / `ProductionServerProvider`）以 `HIGHEST_SYSTEM_PRIORITY` 优先运行，在 `IDependencyLocator` 执行之前已将 `minecraft` 模组加入 `loadedFiles`。因此在 `scanMods()` 中可以通过遍历 `loadedFiles` 获取当前 MC 版本，选择匹配的内部 JAR。
