@@ -77,30 +77,6 @@ License: LGPL-3.0-or-later
 
 ---
 
-**PathFlow**
-
-一个 Kotlin 库，用于定义数据的特征和转换规则，从而自动求解转换路径，完成数据转换。计划用于 BlazeRod 库，以自动完成不同格式的动画转换。
-
-A Kotlin library for defining data features and transformation rules, thereby automatically solving transformation paths and completing data transformations. It is planned to be used in the BlazeRod library to automate animation conversions of different formats.
-
-License: LGPL-3.0-or-later
-
-[GitHub](https://github.com/TouchController/TouchController/tree/master/pathflow)
-
----
-
-**FastMerger**
-
-一款为处理速度设计的 JAR shadowing + relocating 软件，为打包 Minecraft Mod 依赖而生。
-
-A software to do JAR shadowing + relocating designed for processing speed, born for packing Minecraft Mod dependencies.
-
-License: LGPL-3.0-or-later
-
-[GitHub](https://github.com/TouchController/TouchController/tree/master/fastmerger)
-
----
-
 **rules_mc**
 
 一款用于在 Bazel 内下载获取 Minecraft 官方客户端 + 服务端，以及依赖库的规则。
