@@ -1,5 +1,9 @@
 # TouchController NEWS - User visible changes
 
+## 0.3.1-alpha12
+
+- Added support for Fabric 26.2
+
 ## 0.3.1-alpha11
 
 - Fixed render issued caused by native library loading order in NeoForge 26.1.2

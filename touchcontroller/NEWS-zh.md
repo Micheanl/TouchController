@@ -1,5 +1,9 @@
 # TouchController NEWS - 用户可见的更改
 
+## 0.3.1-alpha12
+
+- 添加了 Fabric 26.2 支持
+
 ## 0.3.1-alpha11
 
 - 修复了 NeoForge 26.1.2 上因为原生库加载顺序导致的渲染问题
