@@ -14,6 +14,7 @@ import top.fifthlight.touchcontroller.common.gal.config.ConfigDirectoryProvider
 import top.fifthlight.touchcontroller.common.gal.config.ConfigDirectoryProviderFactory
 import top.fifthlight.touchcontroller.common.serialization.jsonFormat
 import java.io.IOException
+import java.nio.file.NoSuchFileException
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption
 import kotlin.io.path.*
@@ -52,7 +53,9 @@ object PresetManager {
                 order = order,
             )
         } catch (ex: Exception) {
-            logger.warn("Failed to read presets", ex)
+            if (ex !is NoSuchFileException) {
+                logger.warn("Failed to read presets", ex)
+            }
         }
     }
 

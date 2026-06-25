@@ -23,6 +23,7 @@ import top.fifthlight.touchcontroller.common.gal.config.ConfigDirectoryProviderF
 import top.fifthlight.touchcontroller.common.gal.gameconfig.GameConfigEditor
 import top.fifthlight.touchcontroller.common.gal.gameconfig.GameConfigEditorFactory
 import top.fifthlight.touchcontroller.common.serialization.jsonFormat
+import java.nio.file.NoSuchFileException
 import kotlin.io.path.*
 
 @ActualImpl(PlatformConfigProvider::class)
@@ -61,7 +62,9 @@ object GlobalConfigHolder : PlatformConfigProvider {
             logger.info("Reading TouchController config file")
             _config.value = jsonFormat.decodeFromString(configFile.readText())
         } catch (ex: Exception) {
-            logger.warn("Failed to read config: ", ex)
+            if (ex !is NoSuchFileException) {
+                logger.warn("Failed to read config: ", ex)
+            }
             val timeStamp = System.currentTimeMillis()
             val backupFileName = configFile.resolveSibling("${configFile.fileName}-backup-$timeStamp")
             runCatching {
