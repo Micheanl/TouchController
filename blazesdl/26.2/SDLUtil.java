@@ -12,19 +12,23 @@ import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_Rect;
 import org.lwjgl.system.MemoryStack;
 
-import java.nio.ByteBuffer;
-
 public class SDLUtil {
     public static final boolean IS_WAYLAND = "wayland".equalsIgnoreCase(SDLVideo.SDL_GetCurrentVideoDriver());
     public static final boolean IS_WINDOWS = "windows".equalsIgnoreCase(SDLVideo.SDL_GetCurrentVideoDriver());
 
-    public static @Nullable ByteBuffer keyboardState;
+    public static long keyboardStateAddress;
+    public static boolean keyboardStateValid;
+
+    public static void setKeyboardState(long address) {
+        keyboardStateAddress = address;
+        keyboardStateValid = address != 0L;
+    }
 
     public static boolean isMouseGrabbed = false;
-    public static float virtualMouseX = 0f;
-    public static float virtualMouseY = 0f;
-    public static float realMouseX = 0f;
-    public static float realMouseY = 0f;
+    public static double virtualMouseX;
+    public static double virtualMouseY;
+    public static double realMouseX;
+    public static double realMouseY;
 
     public static void updateTextInputArea(Window window, int x, int y, int w, int h, int cursor) {
         if (!(window instanceof SDLWindow sdlWindow)) {

@@ -94,6 +94,8 @@ public abstract class MinecraftMixin {
 
     @Redirect(method = "close", at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwTerminate()V"))
     private void onGlfwTerminate() {
+        BlazeSDL.API.fireShutdown();
+        SDLAudioManager.quit();
         SDLInit.SDL_Quit();
     }
 }

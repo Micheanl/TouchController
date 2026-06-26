@@ -23,7 +23,12 @@ public class AssetsPlugin implements DevLaunchPlugin {
         }
 
         Path assetsVersionPath = Paths.get(context.resolveRunfile(Paths.get(assetsVersion).normalize().toString()));
-        Path assetsPath = assetsVersionPath.resolve(Paths.get("..", "..")).toRealPath();
+        Path assetsPath;
+        if (Files.isDirectory(assetsVersionPath)) {
+            assetsPath = assetsVersionPath.resolve(Paths.get("..", "..")).toRealPath();
+        } else {
+            assetsPath = assetsVersionPath.toRealPath().getParent().getParent();
+        }
 
         if ("true".equals(DevLaunchPlugin.property("legacyAssets"))) {
             Path resourcesDir = Paths.get("resources");

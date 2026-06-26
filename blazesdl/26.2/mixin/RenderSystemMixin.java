@@ -26,13 +26,15 @@ import java.util.function.LongSupplier;
 @Mixin(RenderSystem.class)
 public class RenderSystemMixin {
     @Unique
-    private static final SDL_Event.Buffer eventBuffer = SDL_Event.calloc(256);
+    private static int lastEventCount = 0;
 
     @Redirect(method = "initBackendSystem", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/platform/GLX;_initGlfw()Ljava/util/function/LongSupplier;"))
     private static LongSupplier redirectInitGlfw() {
         if (SDLInit.SDL_WasInit(SDLInit.SDL_INIT_VIDEO) == 0) {
             SDLInit.SDL_Init(SDLInit.SDL_INIT_VIDEO);
         }
+        BlazeSDL.API.fireInit();
+        SDLAudioManager.init();
 
         final var freq = SDLTimer.SDL_GetPerformanceFrequency();
         var multiplier = 1_000_000_000.0 / freq;
@@ -58,19 +60,25 @@ public class RenderSystemMixin {
             throw new IllegalStateException("Current window is not SDLWindow!");
         }
 
-        SDLUtil.keyboardState = SDLKeyboard.SDL_GetKeyboardState();
+        SDLUtil.setKeyboardState(SDLKeyboard.nSDL_GetKeyboardState(0L));
 
+        var api = BlazeSDL.API;
         try (var stack = MemoryStack.stackPush()) {
             SDLEvents.SDL_PumpEvents();
             int count;
             do {
+                var eventBuffer = api.getEventBuffer(lastEventCount);
                 count = SDLEvents.SDL_PeepEvents(eventBuffer, SDLEvents.SDL_GETEVENT, SDLEvents.SDL_EVENT_FIRST, SDLEvents.SDL_EVENT_LAST);
                 if (count == -1) {
                     throw SDLError.handleError("SDL_PeepEvents");
                 }
+                lastEventCount = count;
                 for (var i = 0; i < count; i++) {
                     var event = eventBuffer.get(i);
                     if (BlazeSDL.API.handleEvent(event)) {
+                        continue;
+                    }
+                    if (BlazeSDL.API.handleGamepadEvent(event)) {
                         continue;
                     }
 
@@ -89,6 +97,9 @@ public class RenderSystemMixin {
                                 callback.invoke(windowHandle, event.window().data1(),
                                         event.window().data2());
                             }
+                        }
+                        case SDLEvents.SDL_EVENT_WINDOW_DISPLAY_CHANGED -> {
+                            sdlWindow.getMonitorManager().onMonitorChange(event.window().windowID(), 0);
                         }
                         case SDLEvents.SDL_EVENT_WINDOW_RESIZED, SDLEvents.SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED -> {
                             var windowHandle = windowIdToHandle(event.window().windowID());

@@ -34,7 +34,7 @@ public abstract class MonitorMixin {
         }
         try {
             for (var i = modes.limit() - 1; i >= 0; i--) {
-                var mode = SDLVideoMode.fromSDLDisplayMode(modes.get(i));
+                var mode = SDLVideoMode.fromSDLDisplayMode(modes.get(i), displayId);
                 if (mode.getRedBits() >= 8 && mode.getGreenBits() >= 8 && mode.getBlueBits() >= 8) {
                     videoModes.add(mode);
                 }
@@ -58,7 +58,7 @@ public abstract class MonitorMixin {
             if (mode == null) {
                 throw SDLError.handleError("SDL_GetCurrentDisplayMode");
             }
-            currentMode = SDLVideoMode.fromSDLDisplayMode(mode.address());
+            currentMode = SDLVideoMode.fromSDLDisplayMode(mode.address(), displayId);
         }
         return new Monitor(monitorName, displayId, videoModes.build(), currentMode, x, y);
     }

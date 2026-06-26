@@ -22,8 +22,7 @@ import java.nio.ByteBuffer;
 public abstract class GLFWMixin {
     @Overwrite
     public static int glfwGetKey(long window, int key) {
-        var keyboardState = SDLUtil.keyboardState;
-        if (keyboardState == null) {
+        if (!SDLUtil.keyboardStateValid) {
             return GLFW.GLFW_RELEASE;
         }
         var sdlKeyCode = SDLKeyMapping.toSdlKey(key);
@@ -31,7 +30,7 @@ public abstract class GLFWMixin {
         if (sdlScanCode == SDLScancode.SDL_SCANCODE_UNKNOWN) {
             return GLFW.GLFW_RELEASE;
         }
-        var state = keyboardState.get(sdlScanCode);
+        var state = MemoryUtil.memGetByte(SDLUtil.keyboardStateAddress + sdlScanCode);
         return state != 0 ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE;
     }
 
@@ -109,6 +108,9 @@ public abstract class GLFWMixin {
 
     @Overwrite
     public static String glfwGetClipboardString(@NativeType("GLFWwindow *") long window) {
+        if (!SDLClipboard.SDL_HasClipboardText()) {
+            return null;
+        }
         return SDLClipboard.SDL_GetClipboardText();
     }
 

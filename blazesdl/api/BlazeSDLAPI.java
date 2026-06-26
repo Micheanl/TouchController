@@ -15,4 +15,14 @@ public interface BlazeSDLAPI {
     }
 
     void registerEventHandler(@NonNull BlazeSDLEventHandler handler);
+
+    void unregisterEventHandler(@NonNull BlazeSDLEventHandler handler);
+
+    void registerGamepadHandler(@NonNull BlazeSDLGamepadHandler handler);
+
+    void unregisterGamepadHandler(@NonNull BlazeSDLGamepadHandler handler);
+
+    void registerInitializationHandler(@NonNull BlazeSDLInitializationHandler handler);
+
+    void unregisterInitializationHandler(@NonNull BlazeSDLInitializationHandler handler);
 }
