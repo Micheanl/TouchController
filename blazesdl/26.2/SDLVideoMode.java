@@ -8,8 +8,6 @@ package top.fifthlight.blazesdl;
 import com.mojang.blaze3d.platform.VideoMode;
 import org.jspecify.annotations.NonNull;
 import org.lwjgl.sdl.SDLPixels;
-import org.lwjgl.sdl.SDLProperties;
-import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_DisplayMode;
 import org.lwjgl.system.MemoryUtil;
 
@@ -22,20 +20,16 @@ public class SDLVideoMode extends VideoMode {
     protected float refreshRateFloat;
     protected float refreshRateNumerator;
     protected float refreshRateDenominator;
-    private final boolean hdr;
-    private final float hdrHeadroom;
 
-    public SDLVideoMode(int width, int height, int redBits, int greenBits, int blueBits, int refreshRate, float refreshRateFloat, float refreshRateNumerator, float refreshRateDenominator, SDL_DisplayMode sdlDisplayMode, boolean hdr, float hdrHeadroom) {
+    public SDLVideoMode(int width, int height, int redBits, int greenBits, int blueBits, int refreshRate, float refreshRateFloat, float refreshRateNumerator, float refreshRateDenominator, SDL_DisplayMode sdlDisplayMode) {
         super(width, height, redBits, greenBits, blueBits, refreshRate);
         this.refreshRateFloat = refreshRateFloat;
         this.refreshRateNumerator = refreshRateNumerator;
         this.refreshRateDenominator = refreshRateDenominator;
         this.displayMode = sdlDisplayMode;
-        this.hdr = hdr;
-        this.hdrHeadroom = hdrHeadroom;
     }
 
-    public static SDLVideoMode fromSDLDisplayMode(long displayModePointer, long displayHandle) {
+    public static SDLVideoMode fromSDLDisplayMode(long displayModePointer) {
         var buffer = ByteBuffer.allocateDirect(SDL_DisplayMode.SIZEOF);
         MemoryUtil.memCopy(displayModePointer, MemoryUtil.memAddress(buffer), SDL_DisplayMode.SIZEOF);
         var displayMode = new SDL_DisplayMode(buffer);
@@ -48,16 +42,6 @@ public class SDLVideoMode extends VideoMode {
         var greenBits = pixelFormatDetails.Gbits();
         var blueBits = pixelFormatDetails.Bbits();
 
-        var hdr = false;
-        var hdrHeadroom = 0f;
-        if (displayHandle != 0L) {
-            var props = SDLVideo.SDL_GetDisplayProperties((int) displayHandle);
-            if (props != 0) {
-                hdr = SDLProperties.SDL_GetBooleanProperty(props, SDLVideo.SDL_PROP_DISPLAY_HDR_ENABLED_BOOLEAN, false);
-                SDLProperties.SDL_DestroyProperties(props);
-            }
-        }
-
         return new SDLVideoMode(displayMode.w(),
                 displayMode.h(),
                 redBits,
@@ -67,9 +51,7 @@ public class SDLVideoMode extends VideoMode {
                 displayMode.refresh_rate(),
                 displayMode.refresh_rate_numerator(),
                 displayMode.refresh_rate_denominator(),
-                displayMode,
-                hdr,
-                hdrHeadroom);
+                displayMode);
     }
 
     public float getRefreshRateFloat() {
@@ -85,8 +67,7 @@ public class SDLVideoMode extends VideoMode {
     }
 
     public @NonNull String toString() {
-        var hdrStr = hdr ? String.format(Locale.ROOT, " HDR(%.1f)", hdrHeadroom) : "";
-        return String.format(Locale.ROOT, "%sx%s@%s (%sbit%s)", this.getWidth(), this.getHeight(), this.getRefreshRateFloat(), this.getRedBits() + this.getGreenBits() + this.getBlueBits(), hdrStr);
+        return String.format(Locale.ROOT, "%sx%s@%s (%sbit)", this.getWidth(), this.getHeight(), this.getRefreshRateFloat(), this.getRedBits() + this.getGreenBits() + this.getBlueBits());
     }
 
     @Override
@@ -94,11 +75,11 @@ public class SDLVideoMode extends VideoMode {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         var that = (SDLVideoMode) o;
-        return Float.compare(refreshRateFloat, that.refreshRateFloat) == 0 && Float.compare(refreshRateNumerator, that.refreshRateNumerator) == 0 && Float.compare(refreshRateDenominator, that.refreshRateDenominator) == 0 && hdr == that.hdr && Float.compare(hdrHeadroom, that.hdrHeadroom) == 0;
+        return Float.compare(refreshRateFloat, that.refreshRateFloat) == 0 && Float.compare(refreshRateNumerator, that.refreshRateNumerator) == 0 && Float.compare(refreshRateDenominator, that.refreshRateDenominator) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), refreshRateFloat, refreshRateNumerator, refreshRateDenominator, hdr, hdrHeadroom);
+        return Objects.hash(super.hashCode(), refreshRateFloat, refreshRateNumerator, refreshRateDenominator);
     }
 }
